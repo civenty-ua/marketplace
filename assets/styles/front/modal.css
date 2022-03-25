@@ -1,0 +1,7 @@
+.wellcome-modal-block{
+    padding: calc(70px - 18px) calc(60px - 29px);
+    padding-bottom: 0;
+}
+.wellcome-modal-block span{
+    color: var(--f-orange);
+}

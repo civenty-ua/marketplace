@@ -1,0 +1,32 @@
+{% if
+    attributeParameters.attribute.type == constant('App\\Entity\\Market\\Attribute::TYPE_LIST') or
+    attributeParameters.attribute.type == constant('App\\Entity\\Market\\Attribute::TYPE_LIST_MULTIPLE')
+%}
+    {% include 'market/commodity/block/appliedFilter/entitiesList.html.twig' with {
+        'title'         : attributeParameters.attribute.title,
+        'list'          : attributeParameters.categoryAttributeListValues ?? [],
+        'value'         : value,
+        'titleProperty' : 'value',
+        'inputName'     : inputName,
+    } only %}
+{% elseif attributeParameters.attribute.type == constant('App\\Entity\\Market\\Attribute::TYPE_DICTIONARY') %}
+    {% set dictionaryName   = attributeParameters.attribute.dictionary %}
+    {% set dictionaryList   = getAttributesDictionaries()[dictionaryName] ?? [] %}
+    {% set fieldList        = dictionaryList[value] is defined
+        ? {(value) : dictionaryList[value]}
+        : []
+    %}
+
+    {% include 'market/commodity/block/appliedFilter/list.html.twig' with {
+        'title'     : attributeParameters.attribute.title,
+        'list'      : fieldList,
+        'value'     : value,
+        'inputName' : inputName,
+    } only %}
+{% elseif attributeParameters.attribute.type == constant('App\\Entity\\Market\\Attribute::TYPE_INT') %}
+    {% include 'market/commodity/block/appliedFilter/numbersRange.html.twig' with {
+        'title'     : attributeParameters.attribute.title,
+        'value'     : value,
+        'inputName' : inputName,
+    } only %}
+{% endif %}

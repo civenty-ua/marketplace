@@ -1,0 +1,28 @@
+<div class="personal-area__inner">
+
+    <div class="personal-area-sidebar">
+        <div class="personal-area-sidebar__content">
+            <div class="personal-area-sidebar__tabs-navigation">
+                <a class="btn-sidebar-tail-right js-btn-sidebar active" href="#tab_change_password">
+                    <svg class="ico">
+                        <use xlink:href="/images/smat/ico-password_24x24.svg#Layer_1"></use>
+                    </svg>
+                    <span>Заміна пароля</span>
+                </a>
+                <a class="btn-sidebar-tail-right js-btn-sidebar" href="#tab_edit_profile">
+                    <svg class="ico">
+                        <use xlink:href="/images/smat/ico-account-edit_24x24.svg#Layer_1"></use>
+                    </svg>
+                    <span>Редагування профілю</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="personal-area-center">
+        <div class="personal-area-center__tabs-wrapper js-tabs-wrapper">
+            {% include 'smat/blocks/tab-personal-area-settings__tab-change-password.html.twig' %}
+            {% include 'smat/blocks/tab-personal-area-settings__tab-edit-profile.html.twig' %}
+        </div>
+    </div>
+</div>

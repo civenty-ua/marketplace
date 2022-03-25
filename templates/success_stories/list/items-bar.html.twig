@@ -1,0 +1,14 @@
+{% if items|length > 0 %}
+    <div class="item-container">
+        {% for item in items %}
+            {% include '/success_stories/item/plate.html.twig' with {
+                'item': item
+            } %}
+        {% endfor %}
+    </div>
+{% else %}
+    <center>{{ 'item.no_found'|trans }}</center>
+{% endif %}
+<div class="navigation">
+    {{ knp_pagination_render(items) }}
+</div>

@@ -1,0 +1,35 @@
+{% extends 'layout/content.html.twig' %}
+
+{% block title %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_title }}
+    {% else %}
+        {{ page.title }}
+    {% endif %}
+{% endblock %}
+
+{% block description %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_description }}
+    {% endif %}
+{% endblock %}
+
+{% block keywords %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_keywords }}
+    {% endif %}
+{% endblock %}
+
+
+{% block opengraph_title %}{{ page.title }}{% endblock %}
+{% block opengraph_description %}{% if page.description %}{{ page.description| striptags| raw }}{% elseif page.short %}{{ page.short| striptags| raw }}{% else %}{{ op['default_description']['value'] }}{% endif %}{% endblock %}
+{% block opengraph_url %}{{ app.request.uri }}{% endblock %}
+{% block opengraph_image %}{{ baseDom~asset('images/business-tools/'~ page.imageName) }}{% endblock %}
+
+{% block body %}
+    {% if app.request.pathInfo is same as('/about-us')  %}
+        {{ page.content|raw }}
+    {% else %}
+        {{ page.content|raw|fileparser }}
+    {% endif %}
+{% endblock %}

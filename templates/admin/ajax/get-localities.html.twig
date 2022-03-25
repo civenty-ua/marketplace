@@ -1,0 +1,6 @@
+<select id="{{ form }}_locality" name="{{ form }}[locality]" class="form-select" data-entity="locality">
+    <option value="">Виберіть населений пункт</option>
+    {% for locality in localities %}
+        <option value="{{ locality.id }}">{{ locality.name }}</option>
+    {% endfor %}
+</select>

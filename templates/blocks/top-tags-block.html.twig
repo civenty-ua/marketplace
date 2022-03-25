@@ -1,0 +1,15 @@
+{% if topTags|length > 0 %}
+    <div class="section">
+            {% if tagTitleFlag is not defined %}
+                <h2 class="h2">{{ 'item.popular_tags'|trans }}</h2>
+            {% else %}
+                <h2 class="h2">{{ 'item.tags'|trans }}</h2>
+            {% endif %}
+        <div class="category-container">
+            {% for tag in topTags %}
+                <a href="{{ path('tag_detail', {'slug': tag['slug'] is defined ? tag['slug'] : tag.slug}) }}"
+                   class="category-item">{{ tag['name'] is defined ? tag['name'] : tag.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

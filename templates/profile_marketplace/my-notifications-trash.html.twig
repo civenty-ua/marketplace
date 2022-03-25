@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'profile.title'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <ul class="breadcrumbs">
+            <li><a href="{{ path('home') }}">{{ 'home.home'|trans }}</a></li>
+            <li>{{ 'profile.title'|trans }}</li>
+        </ul>
+
+        <h1 class="h1">
+            <strong>{{ 'profile.title'|trans }}</strong>
+        </h1>
+
+        <div class="section__subtitle">Видалені повідомлення</div>
+
+        <div class="tabs-personal-area personal-area__wrapper">
+            {% set tabSelected = 'marketplace' %}
+            <div class="tabs__navigation-wrapper">
+                {% include 'profile/blocks/tabs.html.twig' with {
+                    'selected' : tabSelected,
+                } only %}
+            </div>
+
+            {% include 'profile_marketplace/blocks/my-notifications-trash-block.html.twig' %}
+        </div>
+    </div>
+{% endblock %}

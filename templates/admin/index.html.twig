@@ -1,0 +1,115 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block head_stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('admin') }}
+{% endblock %}
+
+{% block head_javascript %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('admin') }}
+{% endblock %}
+
+{% block content_title 'admin.dashboard.pageTitle'|trans %}
+
+{% block main %}
+    {% if ['ROLE_SUPER_ADMIN', 'ROLE_ADMIN_EDUCATION'] | filter((role) => role in app.user.roles) | join(', ') %}
+    <div class="admin-dashboard">
+        <div class="column">
+            <h2>{{ 'admin.dashboard.usersInfo.title'|trans }}</h2>
+            <div class="users-info">
+                <div class="block today">
+                    <div class="bar">
+                        <span class="counter">{{ users.registeredToday.total }}</span>
+                        <span class="title">{{ 'admin.dashboard.usersInfo.registerToday'|trans }}</span>
+                    </div>
+                    <div class="gender-split">
+                        {{ 'admin.dashboard.usersInfo.gender.women'|trans }}: {{ users.registeredToday.women }}
+                    </div>
+                    <div class="gender-split">
+                        {{ 'admin.dashboard.usersInfo.gender.men'|trans }}: {{ users.registeredToday.men }}
+                    </div>
+                    {% if users.registeredToday.unknown or users.registeredAllTime.unknown %}
+                    <div class="gender-split">
+                        {{ 'admin.dashboard.usersInfo.gender.unknown'|trans }}: {{ users.registeredToday.unknown }}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="block total">
+                    <div class="bar">
+                        <span class="counter">{{ users.registeredAllTime.total }}</span>
+                        <span class="title">{{ 'admin.dashboard.usersInfo.registerTotal'|trans }}</span>
+                    </div>
+                    <div class="gender-split">
+                        {{ 'admin.dashboard.usersInfo.gender.women'|trans }}: {{ users.registeredAllTime.women }}
+                    </div>
+                    <div class="gender-split">
+                        {{ 'admin.dashboard.usersInfo.gender.men'|trans }}: {{ users.registeredAllTime.men }}
+                    </div>
+                    {% if users.registeredToday.unknown or users.registeredAllTime.unknown %}
+                    <div class="gender-split">
+                        {{ 'admin.dashboard.usersInfo.gender.unknown'|trans }}: {{ users.registeredAllTime.unknown }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div
+                class="chart"
+                data-info="{{ users.registeredAllTime.registrationChart|json_encode }}"
+            >
+                <h3>{{ 'admin.dashboard.usersInfo.registrationChart'|trans }}</h3>
+                <canvas height="100"></canvas>
+            </div>
+            <div
+                class="chart horizontal-bar"
+                data-info="{{ users.registeredAllTime.topRegionsChart|json_encode }}"
+            >
+                {% set regionsCount = users.registeredAllTime.topRegionsChart|length %}
+                {% if regionsCount == 5 %}
+                    {% set chartHeight = 100 %}
+                {% elseif regionsCount == 4 %}
+                    {% set chartHeight = 85 %}
+                {% elseif regionsCount == 3 %}
+                    {% set chartHeight = 70 %}
+                {% elseif regionsCount == 2 %}
+                    {% set chartHeight = 50 %}
+                {% elseif regionsCount == 1 %}
+                    {% set chartHeight = 35 %}
+                {% else %}
+                    {% set chartHeight = 0 %}
+                {% endif %}
+                <h3>{{ 'admin.dashboard.usersInfo.topRegionsChart'|trans }}</h3>
+                <canvas height="{{ chartHeight }}"></canvas>
+            </div>
+        </div>
+        <div class="column">
+            <h2>{{ 'admin.dashboard.infoPlatform.title'|trans }}</h2>
+            <div
+                class="chart"
+                data-info="{{ articles.chart|json_encode }}"
+            >
+                <h3>{{ 'admin.dashboard.articlesCountChart'|trans }}</h3>
+                <canvas height="100"></canvas>
+            </div>
+            <div
+                class="chart"
+                data-info="{{ coursesRegistrations.chart|json_encode }}"
+            >
+                <h3>{{ 'admin.dashboard.courseRegistrationChart'|trans }}</h3>
+                <canvas height="100"></canvas>
+            </div>
+            <div
+                class="chart"
+                data-info="{{ webinars.chart|json_encode }}"
+            >
+                <h3>{{ 'admin.dashboard.webinarsCountChart'|trans }}</h3>
+                <canvas height="100"></canvas>
+            </div>
+        </div>
+    </div>
+        {% else %}
+        <div class="admin-dashboard">
+            <p>{{ 'user.block_in_dev'|trans }}</p>
+        </div>
+    {% endif %}
+{% endblock %}

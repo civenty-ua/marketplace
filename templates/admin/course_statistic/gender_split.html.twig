@@ -1,0 +1,27 @@
+<div class="course-statistics-gender-split container">
+    <div class="row">
+        {% for item in field.formattedValue %}
+            <div class="col">
+                <div class="counter">
+                    {% if (item.type == 'male') %}
+                        <i class="fa fa-male fa-2x"></i>
+                    {% elseif (item.type == 'female') %}
+                        <i class="fa fa-female fa-2x"></i>
+                    {% elseif (item.type == 'none') %}
+                        <i class="fa fa-question-circle fa-2x"></i>
+                    {% endif %}
+                    <h2
+                        class="count-title count-number"
+                        data-to="{{ item.count }}"
+                        data-speed="{{ item.count }}"
+                    >
+                        {{ item.count }}
+                    </h2>
+                    <p class="count-text ">
+                        {{ ('admin.courseStatistic.gender.' ~ item.type)|trans }}
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

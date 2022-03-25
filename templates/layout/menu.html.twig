@@ -1,0 +1,117 @@
+<div class="desktop-menu">
+    {{ knp_menu_render('main', {'currentClass': 'active'}) }}
+</div>
+
+<div class="js-shade shade"></div>
+<div class="js-mobile-menu mobile-menu">
+    <div class="mobile-menu__header">
+        <select class="select-input language js-language-switcher">
+            <option value="/en" {% if app.request.locale == "en" %} selected {% endif %}>{{ 'English'|trans }}</option>
+            <option value="" {% if app.request.locale == "uk" %} selected {% endif %}>{{ 'Ukraine'|trans }}</option>
+        </select>
+
+        <a href="javascript:void(0)" class="js-mobile-menu__close mobile-menu__close">
+            <svg>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cross"></use>
+            </svg>
+        </a>
+    </div>
+    <div class="mobile-menu__content">
+
+        <div class="mobile-menu__block">
+            {% if app.user.email is not defined %}
+                <a href="{{ path('login') }}" class="footer-block__text-with-icon">
+                    <svg>
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#account"></use>
+                    </svg>
+                    <span>{{ 'header.login'|trans }}</span>
+                </a>
+            {% else %}
+                <a href="{{ path('app_profile') }}" class="footer-block__text-with-icon">
+                    {% if app.user.avatar is empty %}
+                        <svg viewBox="0 2 24 24">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    xlink:href="#account">
+                            </use>
+                        </svg>
+                    {% else %}
+                        <img src="{{ user_avatar_asset(app.user, 'avatar') }}"
+                                alt="{{ app.user.name }}"
+                        >
+                    {% endif %}
+                    <span>{{ 'header.my_profile'|trans }}</span>
+                </a>
+                <a href="{{ path('market_profile_favorites_products') }}" class="footer-block__text-with-icon">
+                    <svg viewBox="0 2 24 24">
+                        <use xmlns:xlink="http://www.w3.org/2000/svg" xlink:href="#favorite"></use>
+                    </svg>
+                    <span>{{ 'header.favorites'|trans }}</span>
+                </a>
+                <a href="{{ path('app_logout') }}" class="footer-block__text-with-icon">
+                    <svg viewBox="0 2 24 24">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+                    </svg>
+                    <span>{{ 'header.logout'|trans }}</span>
+                </a>
+            {% endif %}
+        </div>
+
+        {{ knp_menu_render('mobile', {'currentClass': 'active'}) }}
+
+        <div class="mobile-menu__block">
+            <div class="footer-block__text-with-icon">
+                <svg>
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
+                </svg>
+                <span>info@uhbdp.org</span>
+            </div>
+            <div class="footer-block__text-with-icon">
+                <svg>
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#phone"></use>
+                </svg>
+                <span>0 800 500 184</span>
+            </div>
+            <div class="footer-block__text-without-icon"> {{ ('header.call_text'|trans)|raw }}</div>
+        </div>
+
+        <div class="mobile-menu__block">
+            <div class="footer-block__social">
+                {% if op['facebook']['value'] is defined %}
+                    <a target="_blank" href="{{ op['facebook']['value'] }}" class="footer-block__social-item">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
+                        </svg>
+                    </a>
+                {% endif %}
+                {% if op['twitter']['value'] is defined %}
+                    <a target="_blank" href="{{ op['twitter']['value'] }}" class="footer-block__social-item">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
+                        </svg>
+                    </a>
+                {% endif %}
+                {% if op['youtube']['value'] is defined %}
+                    <a target="_blank" href="{{ op['youtube']['value'] }}" class="footer-block__social-item">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#youtube"></use>
+                        </svg>
+                    </a>
+                {% endif %}
+                {% if op['telegram']['value'] is defined %}
+                    <a target="_blank" href="{{ op['telegram']['value'] }}" class="footer-block__social-item">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#telegram"></use>
+                        </svg>
+                    </a>
+                {% endif %}
+                {% if op['instagram']['value'] is defined %}
+                    <a target="_blank" href="{{ op['instagram']['value'] }}" class="footer-block__social-item">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
+                        </svg>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div
+    class="js-commodities-list-sub-filters-additional-data"
+    data-input-name-template="filters[#INDEX#][#ACTION#]"
+>
+    {% for filter in filter.filters %}
+        {% set filterIndex = loop.index0 %}
+
+        <input
+            type="hidden"
+            name="filters[{{ filterIndex }}][commodityType]"
+            value="{{ filter.commodityType }}"
+        >
+        <input
+            type="hidden"
+            name="filters[{{ filterIndex }}][filterIsClosed]"
+            value="{{ filter.filterIsClosed }}"
+        >
+    {% endfor %}
+</div>

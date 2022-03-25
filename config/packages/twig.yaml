@@ -1,0 +1,9 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    form_themes:
+        - 'form/fields_types.html.twig'
+        - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+#        - 'form/vich_fields.html.twig'
+    paths:
+        '%kernel.project_dir%/vendor/vich/uploader-bundle/templates': VichUploader
+

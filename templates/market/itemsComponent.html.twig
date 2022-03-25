@@ -1,0 +1,16 @@
+<div
+    class="js-items-component list-block market"
+    data-rebuild-list-url="{{ rebuildUrl }}"
+>
+    <div class="js-hidden-fields-container display-none">
+        {% block hiddenFields %}
+        {% endblock %}
+    </div>
+    <div class="js-filter-container">
+        {% block filter %}
+        {% endblock %}
+    </div>
+    <div class="js-list-container">
+        {{ block('itemsList') }}
+    </div>
+</div>

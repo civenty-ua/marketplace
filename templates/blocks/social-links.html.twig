@@ -1,0 +1,46 @@
+{% if item.facebook is not empty or item.twitter is not empty or item.youtube is not empty or item.telegram is not empty or item.instagram is not empty %}
+    <div class="social-item-container">
+        {% if item.facebook is not empty %}
+            <a target="_blank" href="{{ item.facebook }}" class="social-item">
+                <svg>
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
+                </svg>
+            </a>
+        {% endif %}
+        {% if item.linkedin is not empty %}
+            <a target="_blank" href="{{ item.linkedin }}" class="social-item">
+                <svg>
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#linkedin"></use>
+                </svg>
+            </a>
+        {% endif %}
+        {% if item.twitter is not empty %}
+            <a target="_blank" href="{{ item.twitter }}" class="social-item">
+                <svg>
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
+                </svg>
+            </a>
+        {% endif %}
+        {% if item.youtube is not empty %}
+            <a target="_blank" href="{{ item.youtube }}" class="social-item">
+                <svg>
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#youtube"></use>
+                </svg>
+            </a>
+        {% endif %}
+        {% if item.telegram is not empty %}
+            <a target="_blank" href="{{ item.telegram }}" class="social-item">
+                <svg>
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#telegram"></use>
+                </svg>
+            </a>
+        {% endif %}
+        {% if item.instagram is not empty %}
+            <a target="_blank" href="{{ item.instagram }}" class="social-item">
+                <svg>
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
+                </svg>
+            </a>
+        {% endif %}
+    </div>
+{% endif %}

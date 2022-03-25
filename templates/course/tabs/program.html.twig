@@ -1,0 +1,88 @@
+{% if ajaxFlag is not defined %}
+<div id="program" class="tab">
+    {% endif %}
+    <div class="program">
+        {% for part in course.coursePartsSort %}
+            <div class="program-item">
+
+                {% if part.type == 'lesson_module' %}
+                    <div class="program-item__module">{{ 'course.module'|trans ~ ' ' ~ loop.index }}</div>
+                    <div class="program-item-title">
+                        <div class="accordion-block">
+                            <a href="javascript:void(0)" class="js-accordion-block__open accordion-header">
+                                <div class="accordion-header__title">
+                                    {{ part.title }}
+                                </div>
+                                <div class="accordion-header__quantity"></div>
+                            </a>
+                            <div class="js-accordion-block__content accordion-block__content">
+                                <div class="program-item__description">
+                                    {{ part.description }}
+                                </div>
+
+                                <div class="program-icon__text">
+                                    <div class="program-item__speaker">
+                                        {% if part.expert is not null and part.expert.image is not empty %}
+                                            <img class="speaker-image"
+                                                 src="{{ asset('upload/expert/' ~ part.expert.image ) }}">
+                                        {% else %}
+                                            <img class="speaker-image" src="{{ asset('main/default-avatar.png') }}">
+                                        {% endif %}
+                                        <div class="speaker-info">
+                                            <div class="speaker-info__text">
+                                                <span>{{ 'course.speaker'|trans }}:</span>
+                                                {% if part.expert is not null  and part.expert.name is not empty %}
+                                                    <a href="{{ path('expert-detail', {'slug': part.expert.slug}) }}">{{ part.expert.name }}</a>
+                                                {% endif %}
+                                            </div>
+                                            <div class="speaker-info__text">
+                                                {% if part.expert is not null and part.expert.name is not empty and part.expert.expertTypes|length > 0 %}
+                                                    {% for role in part.expert.expertTypes %}
+                                                        {{ role.name }},
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% if part.startDate is defined and part.startDate|date('Y-m-d H:i:s') > "now"|date('Y-m-d H:i:s') %}
+                                        <div class="program-item__date">
+                                            <div class="program-item__calendar">
+                                                <svg>
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                         xlink:href="#calendar"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="program-item__start-date">
+                                                <span>{{ 'course.date_begin'|trans }}:</span>
+                                                {% set month = part.startDate|date('M') %}
+                                                {% set day = part.startDate|date('d') %}
+                                                {% set year = part.startDate|date('Y') %}
+                                                {% set time = part.startDate|date('H:i') %}
+                                                <strong>   {{ '%s %s %s %s'|format(day,month|trans, year, time) }}</strong>
+                                            </div>
+
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="program-item__description">
+                                    {{ part.content | raw }}
+                                </div>
+
+                                {% for lesson in part.lessonsSort %}
+                                    {% include 'course/item_lesson.html.twig' with {'lesson': lesson } %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                {% else %}
+                    {% include 'course/item_lesson.html.twig' with {'lesson': part } %}
+                {% endif %}
+            </div>
+        {% endfor %}
+
+    </div>
+    {% if ajaxFlag is not defined %}
+</div>
+{% endif %}

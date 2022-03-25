@@ -1,0 +1,77 @@
+<div class="proposal-info__container mobile">
+    {% for product in  notification.commodity.commodities %}
+        <div class="proposal-info__row proposal-info__row--bordered">
+            <div>
+                <div class="proposal-info__col">
+                    <div class="proposal-info__col-name">Товари або послуги</div>
+                    <div class="proposal-info__col-value">
+                        <div class="proposal-info-item">
+                            <a href="{{ path("#{product.commodityType}_detail",{'id':product.id}) }}">
+                                <img
+                                        class="proposal-info-item__image large"
+                                        src="{{ vich_uploader_asset(product) }}"
+                                        alt="{{ product.title }}"
+                                        title="{{ product.title }}"
+                                >
+                            </a>
+                            <div class="proposal-info-item__title">
+                            <span>
+                                <a href="{{ path("#{product.commodityType}_detail",{'id':product.id}) }}">
+                                    {{ product.title }}
+                                </a>
+                            </span>
+                                <div class="fontSize12px">
+                                    <span class="grey1">ID:</span>
+                                    <span>{{ product.id }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="proposal-info__col">
+                    <div class="proposal-info__col-name">Ціна</div>
+                    <div class="proposal-info__col-value">
+                        <strong>
+                            {{ product.price > 0
+                                ? "#{product.price|numberFormatAgro} #{product|getCurrencyTitle}"
+                                : 'market.product.list.priceNegotiated'|trans
+                            }}
+                        </strong>
+                    </div>
+                </div>
+                <div class="proposal-info__col">
+                    <div class="proposal-info__col-name">Продавці або постачальники</div>
+                    <div class="proposal-info__col-value">
+                        <div class="proposal-info-item">
+                            {% set usersImagesFolder    = '/upload/user/avatar' %}
+                            {% set userDefaultImage     = '/main/default-avatar.png' %}
+                            {% set userAvatar           = product.user and product.user.avatar
+                                ? usersImagesFolder ~ '/' ~ product.user.avatar
+                                : userDefaultImage %}
+
+                            <img class="proposal-info-item__image large avatar"
+                                 src="{{ userAvatar }}" alt="">
+                            <div class="proposal-info-item__title">
+                                    <span>
+                                        <a href="{% if app.user != product.user %}{{ path('market_user_detail',{'id': product.user.id}) }}
+                                    {% else %}javascript:void(0){% endif %}">
+                                            {{ product.user }}
+                                        </a>
+                                    </span>
+                                <div class="fontSize12px">
+                                    <span class="grey1">ID:</span>
+                                    <span>{{ product.user.id }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="proposal-info__col">
+                    <div class="proposal-info__col-name">Активно ще днів</div>
+                    <div class="proposal-info__col-value">
+                        <strong>{{ product.activeTo.diff((date('now'))).days }}</strong></div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

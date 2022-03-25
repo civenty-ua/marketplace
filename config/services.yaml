@@ -1,0 +1,141 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locales: uk|en
+    locale: uk
+
+    app.google.api_key: '%env(string:GOOGLE_API_KEY)%'
+    app.google.client_id: '%env(string:GOOGLE_CLIENT_ID)%'
+    app.google.client_secret: '%env(string:GOOGLE_CLIENT_SECRET)%'
+
+    app.zoom.api_key: '%env(string:ZOOM_API_KEY)%'
+    app.zoom.client_secret: '%env(string:ZOOM_CLIENT_SECRET)%'
+
+    app.entity.files.article: '/public/upload/article'
+    app.entity.files.course: '/public/upload/course'
+    app.entity.files.webinar: '/public/upload/webinar'
+    app.entity.files.partner: '/public/upload/partner'
+    app.entity.files.expert: '/public/upload/expert'
+    app.entity.files.category.image: '/public/upload/category/image'
+    app.entity.files.crop: '/public/upload/crop'
+    app.entity.files.product: '/public/upload/product'
+    app.entity.files.service: '/public/upload/service'
+
+    app.entity.files.occurrence: '/public/upload/occurrence'
+
+    sputnik.user: '%env(string:SPUTNIK_USER)%'
+    sputnik.password: '%env(string:SPUTNIK_PASSWORD)%'
+    sputnik.interface: '%env(string:SPUTNIK_INTERFACE)%'
+
+    email.info: '%env(string:EMAIL_INFO)%'
+    email.title: '%env(string:EMAIL_TITLE)%'
+
+    file_manager:
+        directory: 'upload'
+        path: '%kernel.project_dir%/public/upload'
+        relative_path: 'public/upload'
+        mappings:
+            - App\Service\FileManager\Mapping\UserAvatarMapping
+            - App\Service\FileManager\Mapping\CategoryImageMapping
+            - App\Service\FileManager\Mapping\CategoryBannerMapping
+
+    google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
+    app.course.videoWatchingProgressEdge: 90
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Controller\:
+        resource: '../src/Controller/'
+        tags: ['controller.service_arguments']
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+    app.menu_builder:
+        class: App\Menu\MenuBuilder
+        arguments:
+            - "@knp_menu.factory"
+        tags:
+            - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
+            - { name: knp_menu.menu_builder, method: createFooterMenu, alias: footer }
+            - { name: knp_menu.menu_builder, method: createMobileMenu, alias: mobile }
+
+    app.export.service:
+        class: App\Service\ExportService
+        arguments:
+            - "@session"
+            - "@request_stack"
+
+    Cocur\Slugify\SlugifyInterface: '@app.slugify'
+
+    app.slugify:
+        class: Cocur\Slugify\Slugify
+
+    App\EventSubscriber\DoctrineSubscriber:
+      tags:
+        - { name: 'doctrine.event_listener',
+            event: 'postPersist',
+            priority: 500,
+            connection: 'default' }
+        - { name: 'doctrine.event_listener',
+          event: 'preUpdate',
+          priority: 500,
+          connection: 'default' }
+    App\Event\RequestListener:
+      tags:
+        - { name: kernel.event_listener, event: kernel.request }
+
+    app.sms_sender.provider.sputnik:
+        class: App\Service\SmsSender\Provider\SputnikSmsProvider
+        arguments:
+            - '@parameter_bag'
+            - '@logger'
+
+    app.email_sender.provider.swift_mailer:
+        class: App\Service\MailSender\Provider\SwiftMailerProvider
+        arguments:
+            - '@parameter_bag'
+            - '@logger'
+            - '@mailer'
+
+
+    MailSenderProviderInterface: '@app.email_sender.provider.swift_mailer'
+
+    security.authentication.failure_handler:
+        class: App\Security\AuthFailureHandler
+        arguments: [ "@http_kernel", "@security.http_utils" ]
+    security.authentication.success_handler:
+        class: App\Security\AuthSuccessHandler
+        arguments: [ "@security.http_utils" ]
+    security.authentication.listener.form:
+        class: App\Event\AuthListener
+        arguments:
+            - "@security.token_storage"
+            - "@security.authentication.manager"
+            - "@security.authentication.session_strategy"
+            - "@security.http_utils"
+            - ""
+            - "@security.authentication.success_handler"
+            - "@security.authentication.failure_handler"
+            - [ ]
+            - "@logger"
+            - "@event_dispatcher"
+        calls:
+            - [ setContainer, [ "@service_container" ] ]

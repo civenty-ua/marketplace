@@ -1,0 +1,84 @@
+<div class="personal-area-sidebar">
+    <div class="personal-area-sidebar__content">
+        <div class="personal-area-sidebar__tabs-navigation">
+            <a class="btn-sidebar-tail-right" href="{{ path('market_profile_about_me') }}">
+                <svg class="ico">
+                    <use xlink:href="/images/smat/ico-account-edit_24x24.svg#Layer_1"></use>
+                </svg>
+                <span>{{ 'profile.about_me'|trans }}</span>
+            </a>
+
+            <a class="btn-sidebar-tail-right" href="{{ path('market_profile_my_certificates') }}">
+                <svg class="ico">
+                    <use xlink:href="/images/smat/ico-offer_24x24.svg#Layer_1"></use>
+                </svg>
+                <span>{{ 'profile.my_certificates'|trans }}</span>
+            </a>
+
+            <a class="btn-sidebar-tail-right" href="{{ path('market_profile_my_commodities_product') }}">
+                <svg class="ico">
+                    <use xlink:href="/images/smat/ico-product_24x24.svg#Layer_1"></use>
+                </svg>
+                <span>{{ 'profile.my_commodities'|trans }}</span>
+            </a>
+
+            <a class="btn-sidebar-tail-right" href="{{ path('market_profile_my_commodities_service') }}">
+                <svg class="ico">
+                    <use xlink:href="/images/smat/ico-room-service_24x24.svg#Layer_1"></use>
+                </svg>
+                <span>{{ 'profile.my_services'|trans }}</span>
+            </a>
+
+            <a class="btn-sidebar-tail-right" href="{{ path('market_profile_my_commodities_kit') }}">
+                <svg class="ico">
+                    <use xlink:href="/images/smat/ico-service-star_24x24.svg#Layer_1"></use>
+                </svg>
+                <span>{{ 'profile.my_joint_proposals'|trans }}</span>
+            </a>
+
+            <a class="btn-sidebar-tail-right" href="{{ path('market_profile_favorites_products') }}">
+                <svg class="ico">
+                    <use xlink:href="/images/smat/ico-heart-outline_24x24.svg#Layer_1"></use>
+                </svg>
+                <span>{{ 'market.profile.menu.favorites'|trans }}</span>
+                <small>{{ userFavoritesCount != 0 ? userFavoritesCount : '' }}</small>
+            </a>
+
+            <a class="btn-sidebar-tail-right active" href="{{ path('my_notifications') }}">
+                <div class="ico-wrapper">
+                    <svg class="ico">
+                        <use xlink:href="/images/smat/ico-notification_24x24.svg#Layer_1"></use>
+                    </svg>
+                    <div class="ico-total">{{ unreadUserNotificationCount }}</div>
+                </div>
+                <span>{{ 'profile.notifications'|trans }}</span>
+                <small>({{ allUserNotificationCount }})</small>
+            </a>
+
+            <div class="sidebar-tail-right__dropdown">
+                <a class="btn-sidebar-tail-right dropdown{% if trashFlag is defined and trashFlag == false%} active {% endif %}" href="{{ path('my_notifications') }}">
+                    <svg class="ico">
+                        <use xlink:href="/images/smat/ico-mail-in_24x24.svg#Layer_1"></use>
+                    </svg>
+                    <span>Вхідні</span>
+                    <small>({{ activeUserNotificationCount }})</small>
+                </a>
+
+                <a class="btn-sidebar-tail-right dropdown {% if trashFlag is defined and trashFlag == true%} active {% endif %}" href="{{ path('my_notifications_trash') }}">
+                    <svg class="ico">
+                        <use xlink:href="/images/smat/ico-delete_24x24.svg#Layer_1"></use>
+                    </svg>
+                    <span>Кошик</span>
+                    <small>({{ trashedUserNotificationCount }})</small>
+                </a>
+            </div>
+
+            <a class="btn-sidebar-tail-right" href="{{ path('market_profile_roles') }}">
+                <svg class="ico">
+                    <use xlink:href="/images/smat/ico-bookmarks_24x24.svg#Layer_1"></use>
+                </svg>
+                <span>{{ 'profile.my_roles'|trans }}</span>
+            </a>
+        </div>
+    </div>
+</div>

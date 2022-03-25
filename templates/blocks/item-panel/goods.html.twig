@@ -1,0 +1,22 @@
+{% if wrapperTag is not defined %}
+    {% set wrapperTag = 'li' %}
+{% endif %}
+
+<{{ wrapperTag }} class="glide__slide">
+    <div class="item">
+        <div class="item-image">
+            <a href="{{ path('news_detail', {'slug': item.slug}) }}">
+                <img src="{% if item.imageName is empty %}{{ asset('images/item-default.png') }}{% else %} {{ asset('upload/article/' ~ item.imageName) }} {% endif %}"
+                     alt=""
+                     loading="lazy"
+                >
+            </a>
+        </div>
+        <div class="item-title">
+            <a href="{{ path('news_detail', {'slug': item.slug}) }}" title="{{ item.title }}">{{ item.title }}</a>
+        </div>
+        <div class="item-text">
+            {{ item.content|striptags|u.truncate(200, '...')|raw }}
+        </div>
+    </div>
+</{{ wrapperTag }}>

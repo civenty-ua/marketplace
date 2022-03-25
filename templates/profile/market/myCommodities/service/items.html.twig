@@ -1,0 +1,36 @@
+{% extends 'profile/market/myCommodities/list.html.twig' %}
+{# ------------------------------------------- #}
+{# filter #}
+{# ------------------------------------------- #}
+{% block commoditiesFilter %}
+    <div class="checkbox-row">
+        <div class="field-checkbox">
+            {% include 'market/commodity/block/filter/checkbox.html.twig' with {
+                'name'      : 'activity[]',
+                'value'     : 1,
+                'title'     : "market.profile.favorite.filter.activity.Y"|trans,
+                'isChecked' : true in filter.activity,
+            } only %}
+        </div>
+        <div class="field-checkbox">
+            {% include 'market/commodity/block/filter/checkbox.html.twig' with {
+                'name'      : 'activity[]',
+                'value'     : 0,
+                'title'     : "market.profile.favorite.filter.activity.N"|trans,
+                'isChecked' : false in filter.activity,
+            } only %}
+        </div>
+    </div>
+{% endblock %}
+{# ------------------------------------------- #}
+{# items list #}
+{# ------------------------------------------- #}
+{% block itemsList %}
+    {% include 'market/commodity/items.html.twig' with {
+        'items'             : items,
+        'currentPage'       : filter.page,
+        'paginationName'    : 'page',
+        'actions'           : actions,
+        'mainAction'        : mainAction,
+    } only %}
+{% endblock %}

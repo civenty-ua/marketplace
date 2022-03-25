@@ -1,0 +1,42 @@
+<div class="section">
+    <div class="about-contacts-feedback">
+        <h2 class="h2">{{ 'contact-us.title'|trans }}</h2>
+
+        <div class="about-contacts-feedback__subtitle">
+            {{ 'contact-us.description'|trans }}
+        </div>
+
+        <div class="about-contacts-feedback__fields-group">
+            {{ form_start(form) }}
+            <div class="about-contacts-feedback__fields-group-inner">
+                <div class="about-contacts-feedback__fields-column">
+                    <div class="field field-input-text">
+                        {{ form_row(form.name) }}
+                    </div>
+                    <div class="field field-input-text">
+                        {{ form_row(form.phone) }}
+                    </div>
+                    <div class="field field-input-text">
+                        {{ form_row(form.email) }}
+                    </div>
+                </div>
+                <div class="about-contacts-feedback__fields-column">
+                    <div class="field field-textarea">
+                        {{ form_row(form.message) }}
+                    </div>
+                </div>
+                <div class="about-contacts-feedback__bottom">
+                    <div class="field-buttons">
+                        <div class="buttons-list">
+                            <div class="centeredBlock">
+                                {{ form_row(form.save) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ form_row(form.captcha) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>

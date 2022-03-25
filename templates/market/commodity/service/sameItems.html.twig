@@ -1,0 +1,9 @@
+{% extends 'market/itemsSlider.html.twig' %}
+
+{% block itemIteration %}
+    {% include 'market/commodity/service/itemTablet.html.twig' with {
+        'item'          : item,
+        'actions'       : actions,
+        'mainAction'    : mainAction,
+    } only %}
+{% endblock %}

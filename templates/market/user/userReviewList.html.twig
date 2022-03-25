@@ -1,0 +1,16 @@
+{% extends 'market/itemsComponent.html.twig' %}
+{# ------------------------------------------- #}
+{# rebuild URL #}
+{# ------------------------------------------- #}
+{% set rebuildUrl = path('market_user_review_list_rebuild', {
+    'id' : user.id
+}) %}
+{# ------------------------------------------- #}
+{# items list #}
+{# ------------------------------------------- #}
+{% block itemsList %}
+    {% include 'market/user-review-item-block.html.twig' with {
+        'items'         : items,
+        'currentPage'   : currentPage,
+    } only %}
+{% endblock %}

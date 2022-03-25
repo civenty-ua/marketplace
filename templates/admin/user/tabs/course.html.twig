@@ -1,0 +1,28 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Назва</th>
+        <th scope="col">Дата</th>
+        <th scope="col">Дії</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in user.courseRegistration %}
+        <tr>
+            <th scope="row">{{ item.id }}</th>
+            <td>{{ item.itemId.title }}</td>
+            <td>{{ item.createdAt|format_datetime() }}</td>
+            <td>
+                {% set itemDetail = ea_url()
+                    .setController('App\\Controller\\Admin\\CourseRegistrationCrudController')
+                    .setAction(constant('EasyCorp\\Bundle\\EasyAdminBundle\\Config\\Action::DETAIL'))
+                    .setEntityId(item.id)
+                %}
+                <a href="{{ itemDetail }}"><i class="action-icon fas fa-edit"></i></a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+

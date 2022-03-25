@@ -1,0 +1,97 @@
+{# ------------------------------------------- #}
+{# menu data #}
+{# ------------------------------------------- #}
+{% set items = [
+    {
+        'routes'    : ['market_profile_about_me'],
+        'title'     : 'market.profile.menu.aboutMe'|trans,
+        'icon'      : '/images/smat/ico-account-edit_24x24.svg#Layer_1',
+    },
+    {
+        'routes'    : [
+            'market_profile_my_certificates',
+            'market_profile_edit_my_certificates',
+            'market_profile_create_certificate'
+        ],
+        'title'     : 'market.profile.menu.myCertificates'|trans,
+        'icon'      : '/images/smat/ico-offer_24x24.svg#Layer_1',
+    },
+    {
+        'routes'    : [
+            'market_profile_my_commodities_product',
+            'market_profile_my_commodities_product_create',
+            'market_profile_my_commodities_product_edit',
+        ],
+        'title'     : 'market.profile.menu.myProducts'|trans,
+        'icon'      : '/images/smat/ico-product_24x24.svg#Layer_1',
+    },
+    {
+        'routes'    : [
+            'market_profile_my_commodities_service',
+            'market_profile_my_commodities_service_create',
+            'market_profile_my_commodities_service_edit',
+        ],
+        'title'     : 'market.profile.menu.myServices'|trans,
+        'icon'      : '/images/smat/ico-room-service_24x24.svg#Layer_1',
+    },
+    {
+        'routes'    : [
+            'market_profile_my_commodities_kit',
+            'market_profile_my_commodities_kit_create',
+            'market_profile_my_commodities_kit_edit',
+        ],
+        'title'     : 'market.profile.menu.myKits'|trans,
+        'icon'      : '/images/smat/ico-service-star_24x24.svg#Layer_1',
+    },
+    {
+        'routes'    : [
+            'market_profile_favorites_products',
+            'market_profile_favorites_services',
+            'market_profile_favorites_kits',
+            'market_profile_favorites_users',
+        ],
+        'title'     : 'market.profile.menu.favorites'|trans,
+        'icon'      : '/images/smat/ico-heart-outline_24x24.svg#Layer_1',
+    },
+    {
+        'routes'    : ['my_notifications'],
+        'title'     : 'market.profile.menu.notifications'|trans,
+        'icon'      : '/images/smat/ico-notification_24x24.svg#Layer_1',
+    },
+    {
+        'routes'    : ['market_profile_roles'],
+        'title'     : 'market.profile.menu.roles'|trans,
+        'icon'      : '/images/smat/ico-bookmarks_24x24.svg#Layer_1',
+    },
+] %}
+{# ------------------------------------------- #}
+{# output #}
+{# ------------------------------------------- #}
+{% for item in items %}
+    <a
+        class="
+            {% if position == 'desktop' %}
+                btn-sidebar-tail-right
+            {% elseif position == 'mobile' %}
+                sidebar-button
+            {% endif %}
+
+            {% if app.request.get('_route') in item.routes %}
+                active
+            {% endif %}
+        "
+        href="{{ path(item.routes[0]) }}"
+    >
+        {% if 'my_notifications' in item.routes %}
+            <div class="ico-wrapper">
+                <svg class="ico"><use xlink:href="{{ item.icon }}"></use></svg>
+                <div class="ico-total">{{ unreadUserNotificationCount }}</div>
+            </div>
+            <span>{{ item.title }}</span>
+            <small>({{ allUserNotificationCount }})</small>
+        {% else %}
+            <svg class="ico"><use xlink:href="{{ item.icon }}"></use></svg>
+            <span>{{ item.title }}</span>
+        {% endif %}
+    </a>
+{% endfor %}

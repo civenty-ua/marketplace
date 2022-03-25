@@ -1,0 +1,15 @@
+{% if items|length > 0 %}
+    <div class="item-container">
+        {% for item in items %}
+            {% include '/eco_articles/item/plate.html.twig' with {
+                'item': item,
+                'wrapperTag': 'div'
+            } %}
+        {% endfor %}
+    </div>
+{% else %}
+    <center>{{ 'item.no_found'|trans }}</center>
+{% endif %}
+<div class="pagination">
+    {{ knp_pagination_render(items) }}
+</div>

@@ -1,0 +1,23 @@
+.subscribe-block .left-block > * {
+    text-align: center;
+}
+
+.subscribe-block .right-block {
+    align-items: center;
+    display: flex;
+}
+
+@media (min-width: 768px) {
+    .subscribe-block .content-block {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .subscribe-block .left-block {
+        max-width: 350px;
+    }
+
+    .subscribe-block .left-block > * {
+        text-align: left;
+    }
+}

@@ -1,0 +1,29 @@
+{% block profile_market %}
+<div class="personal-area marketplace personal-area__wrapper">
+    <div class="filter-wrapper">
+        <a href="javascript:void(0)" class="js-mobile-filter__open filter__button">
+            <svg>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#filter"></use>
+            </svg>
+            <span>{{ 'item.filters'|trans }}</span>
+        </a>
+    </div>
+
+    <div class="personal-area__inner">
+        <div class="personal-area-sidebar">
+            <div class="personal-area-sidebar__content">
+                {% include 'profile/blocks/market/left-menu.html.twig' %}
+            </div>
+        </div>
+
+        <div class="personal-area-center__tabs-wrapper">
+            <div class="personal-area-center__tab marginBottom0">
+                {{ form_start(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="js-shade shade"></div>
+{% include 'profile/blocks/market/left-menu-mobile.html.twig' %}
+{% endblock %}

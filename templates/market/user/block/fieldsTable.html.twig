@@ -1,0 +1,227 @@
+{# ------------------------------------------- #}
+{# name #}
+{# ------------------------------------------- #}
+<div class="seller-info-row">
+    <div class="seller-info-row__title">
+        <b>{{ 'market.user.detail.name'|trans }}</b>
+    </div>
+    <div class="seller-info-row__content">
+        {{ user.name }}
+    </div>
+</div>
+{# ------------------------------------------- #}
+{# roles #}
+{# ------------------------------------------- #}
+{% set userRoles = user|marketUserPrintableRoles %}
+
+{% if userRoles|length > 0 %}
+    <div class="seller-info-row">
+        <div class="seller-info-row__title">
+            <b>{{ 'market.user.detail.roles'|trans }}</b>
+        </div>
+        <div class="seller-info-row__content">
+            {{ userRoles }}
+        </div>
+    </div>
+{% endif %}
+{# ------------------------------------------- #}
+{# gender #}
+{# ------------------------------------------- #}
+{% if user.gender is not null %}
+    <div class="seller-info-row">
+        <div class="seller-info-row__title">
+            <b>{{ 'market.user.detail.gender.title'|trans }}</b>
+        </div>
+        <div class="seller-info-row__content">
+            {% if user.gender == 0 %}
+                {{ 'market.user.detail.gender.male'|trans }}
+            {% elseif user.gender == 1 %}
+                {{ 'market.user.detail.gender.female'|trans }}
+            {% endif %}
+        </div>
+    </div>
+{% endif %}
+{# ------------------------------------------- #}
+{# email #}
+{# ------------------------------------------- #}
+{% if (app.user ?? null) is not null %}
+    <div class="seller-info-row">
+        <div class="seller-info-row__title">
+            <b>{{ 'market.user.detail.email'|trans }}</b>
+        </div>
+        <div class="seller-info-row__content">
+            {% include 'market/user/block/partlyHiddenField.html.twig' with {
+                'userId'    : user.id,
+                'field'     : 'email',
+                'value'     : user.email,
+                'title'     : 'market.user.detail.showEmail'|trans,
+            } only %}
+        </div>
+    </div>
+{% endif %}
+{# ------------------------------------------- #}
+{# main phone #}
+{# ------------------------------------------- #}
+{% if (app.user ?? null) is not null and user.phone %}
+    <div class="seller-info-row">
+        <div class="seller-info-row__title">
+            <b>{{ 'market.user.detail.phone'|trans }}</b>
+        </div>
+        <div class="seller-info-row__content">
+            {% include 'market/user/block/partlyHiddenField.html.twig' with {
+                'userId'    : user.id,
+                'field'     : 'mainPhone',
+                'value'     : user.phone,
+                'title'     : 'market.user.detail.showPhone'|trans,
+            } only %}
+        </div>
+    </div>
+{% endif %}
+{# ------------------------------------------- #}
+{# phones #}
+{# ------------------------------------------- #}
+{% if (app.user ?? null) is not null %}
+    {% for phone in user.phones %}
+        <div class="seller-info-row">
+            <div class="seller-info-row__title">
+                <b>{{ 'market.user.detail.phone'|trans }}</b>
+            </div>
+            <div class="seller-info-row__content">
+                {% include 'market/user/block/partlyHiddenField.html.twig' with {
+                    'userId'    : user.id,
+                    'field'     : 'phone',
+                    'valueId'   : phone.id,
+                    'value'     : phone.phone,
+                    'title'     : 'market.user.detail.showPhone'|trans,
+                } only %}
+            </div>
+        </div>
+
+        {% set phoneMessangers = [] %}
+        {% for messanger in [
+            {
+                'value' : phone.isViber,
+                'icon'  : 'fab fa-viber',
+            },
+            {
+                'value' : phone.isTelegram,
+                'icon'  : 'fab fa-telegram-plane',
+            },
+            {
+                'value' : phone.isWhatsApp,
+                'icon'  : 'fab fa-whatsapp',
+            },
+        ] %}
+            {% if messanger.value %}
+                {% set phoneMessangers = phoneMessangers|merge([messanger.icon]) %}
+            {% endif %}
+        {% endfor %}
+
+        {% if phoneMessangers|length %}
+            <div class="seller-info-row">
+                <div class="seller-info-row__title"></div>
+                <div class="seller-info-row__content">
+                    {% for icon in phoneMessangers %}
+                        <span class="seller-info-row__social-item">
+                            <i class="{{ icon }}"></i>
+                        </span>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+{# ------------------------------------------- #}
+{# social links #}
+{# ------------------------------------------- #}
+{% if (app.user ?? null) is not null %}
+    {% set socialLinks = [] %}
+
+    {% for socialLink in [
+        {
+            'link'  : user.userProperty.facebookLink ?? null,
+            'icon'  : 'fab fa-facebook-f',
+        },
+        {
+            'link' : user.userProperty.instagramLink ?? null,
+            'icon'  : 'fab fa-instagram',
+        },
+    ] %}
+        {% if socialLink.link %}
+            {% set socialLinks = socialLinks|merge([socialLink]) %}
+        {% endif %}
+    {% endfor %}
+
+    {% if socialLinks|length %}
+        <div class="seller-info-row">
+            <div class="seller-info-row__title">
+                <b>{{ 'market.user.detail.socialLinks'|trans }}</b>
+            </div>
+            <div class="seller-info-row__content">
+                {% for socialLink in socialLinks %}
+                    <a href="{{ socialLink.link }}" class="icon-text green">
+                        <i class="{{ socialLink.icon }}"></i>
+                        <span>{{ socialLink.link }}</span>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endif %}
+{# ------------------------------------------- #}
+{# region #}
+{# ------------------------------------------- #}
+{% if user.region %}
+    <div class="seller-info-row">
+        <div class="seller-info-row__title">
+            <b>{{ 'market.user.detail.region'|trans }}</b>
+        </div>
+        <div class="seller-info-row__content">
+            {{ user.region.name }}
+        </div>
+    </div>
+{% endif %}
+{# ------------------------------------------- #}
+{# certificats #}
+{# ------------------------------------------- #}
+{% set certificatesOrganic  = user.userProperty.userCertificatesByFilter(true, true)    ?? [] %}
+{% set certificatesOther    = user.userProperty.userCertificatesByFilter(false)         ?? [] %}
+{% set certificatesData     = {
+    'organic'   : {
+        title           : 'market.user.detail.certificates.organic'|trans,
+        certificates    : certificatesOrganic,
+    },
+    'other'     : {
+        title           : certificatesOrganic|length > 0
+            ? 'market.user.detail.certificates.others'|trans
+            : null,
+        certificates    : certificatesOther,
+    },
+} %}
+
+{% if certificatesData.organic.certificates|length > 0 or certificatesData.other.certificates|length > 0 %}
+    <div class="seller-info-row">
+        <div class="seller-info-row__title">
+            <b>{{ 'market.user.detail.certificates.title'|trans }}</b>
+        </div>
+        <div class="seller-info-row__content seller-info-row__certificates-content">
+            {% for certificateIndex, certificateData in certificatesData %}
+                {% if certificateData.certificates|length > 0 %}
+                    {% if certificateData.title %}
+                        <div>{{ certificateData.title }}:</div>
+                    {% endif %}
+                    <div>
+                        {% for certificate in certificateData.certificates %}
+                            <span
+                                data-fancybox="certificate-{{ certificateIndex }}-{{ loop.index }}"
+                                data-src="{{ vich_uploader_asset(certificate) }}"
+                            >
+                            {{ certificate.name }}
+                        </span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

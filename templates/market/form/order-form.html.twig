@@ -1,0 +1,25 @@
+<div class="offer-form-wrapper">
+    <h4 class="h4 marginBottom40px">
+        {{ comodity.title }},
+        {{ comodity.price > 0
+            ? "#{comodity.price|numberFormatAgro} #{comodity|getCurrencyTitle}"
+            : 'market.product.list.priceNegotiated'|trans
+        }}
+    </h4>
+    {{ form_start(form) }}
+        <div class="field field-input-text">
+            {{ form_label(form.name) }}
+            <div class="input-text-wrap">
+                {{ form_widget(form.name) }}
+            </div>
+            <div class="error">{{ form_errors(form.name) }}</div>
+        </div>
+    <div class="field field-input-text">
+        {{ form_row(form.phone) }}
+    </div>
+    <div class="field field-input-text">
+        {{ form_row(form.message) }}
+    </div>
+    {{ form_widget(form.save) }}
+    {{ form_end(form) }}
+</div>

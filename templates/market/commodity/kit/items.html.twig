@@ -1,0 +1,11 @@
+{% extends 'market/itemsWithPagination.html.twig' %}
+
+{% set emptyListTitle = 'market.product.list.empty'|trans %}
+
+{% block itemIteration %}
+    {% include 'market/commodity/kit/itemTablet.html.twig' with {
+        'item'          : item,
+        'actions'       : actions,
+        'mainAction'    : mainAction,
+    } only %}
+{% endblock %}

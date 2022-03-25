@@ -1,0 +1,30 @@
+{% extends 'layout/content.html.twig' %}
+
+{% block title %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_title }}
+    {% else %}
+        {{ 'menu.about_us.label'|trans ~ ' - ' ~ 'menu.about_us.contacts'|trans }}
+    {% endif %}
+{% endblock %}
+
+{% block description %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_description }}
+    {% endif %}
+{% endblock %}
+
+{% block keywords %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_keywords }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% include 'smat/blocks/about_contacts_top-block.html.twig' %}
+    {% include 'smat/blocks/about_contacts_general-block.html.twig' %}
+    {% include 'smat/blocks/about_contacts_representations-block.html.twig' %}
+    {% include 'smat/blocks/about_contacts_feedback-block.html.twig' with {
+        'form' : requestForm
+    } only %}
+{% endblock %}

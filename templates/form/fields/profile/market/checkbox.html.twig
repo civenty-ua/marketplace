@@ -1,0 +1,25 @@
+<div
+    class="
+        field
+        field-checkbox
+        {% if required ?? false %}required{% endif %}
+        {% if hidden ?? false %}hidden{% endif %}
+    "
+    {{ (row_attr ?? [])|toAttributesString }}
+>
+    <div class="checkbox-wrap">
+        <label>
+            <input
+                type="checkbox"
+                {% if (full_name ?? '')|length > 0 %}name="{{ full_name }}"{% endif %}
+                value="1"
+                {% if required ?? false %}required{% endif %}
+                {% if checked  ?? false %}checked{% endif %}
+                {{ (attr ?? [])|toAttributesString }}
+            >
+            <span>
+                {{ (label ?? null)|trans }}
+            </span>
+        </label>
+    </div>
+</div>

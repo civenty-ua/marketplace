@@ -1,0 +1,226 @@
+.program-support-promo {
+	margin-left: -20px;
+	margin-right: -20px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+ }
+
+.program-support-promo * {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.program-support-promo__inner {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	max-width: 1760px;
+	margin: 0 auto;
+	padding: 80px 40px;
+	background-color: #f3f5f6;
+}
+
+.program-support-promo__info-column {
+	width: 44%;
+	-webkit-flex-shrink: 0;
+	-ms-flex-negative: 0;
+	flex-shrink: 0;
+}
+
+.program-support-promo__info-column-inner {
+	padding-right: 10%;
+}
+
+.program-support-promo__badge {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	margin-bottom: 20px;
+}
+
+.program-support-promo__badge-label {
+	height: 25px;
+	padding: 0 10px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	background-color: #D19000;
+	color: #ffffff;
+}
+
+.program-support-promo__badge-label-ico {
+	display: block;
+	width: 16px;
+	height: 16px;
+	margin-right: 10px;
+	fill: currentColor;
+}
+
+.program-support-promo__badge-label-text {
+	padding-top: 1px;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 1em;
+	text-transform: uppercase;
+	color: currentColor;
+}
+
+.program-support-promo__title {
+	margin-bottom: 20px;
+	font-size: 30px;
+	font-weight: 500;
+	line-height: 1.1em;
+}
+
+.program-support-promo__subtitle {
+	margin-bottom: 30px;
+	font-size: 20px;
+	font-weight: normal;
+	line-height: 1.2em;
+}
+
+.program-support-promo__info {
+	margin-bottom: 30px;
+}
+
+.program-support-promo__info-item {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: start;
+	-ms-flex-align: start;
+	align-items: flex-start;
+}
+
+.program-support-promo__info-ico {
+	display: block;
+	margin-right: 15px;
+	width: 24px;
+	height: 24px;
+	-webkit-flex-shrink: 0;
+	-ms-flex-negative: 0;
+	flex-shrink: 0;
+}
+
+.program-support-promo__info-text {
+	margin-bottom: 10px;
+	font-size: 17px;
+	font-weight: normal;
+	line-height: 1.3em;
+	-webkit-box-flex: 1;
+	-webkit-flex-grow: 1;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+}
+
+.program-support-promo__info-text:last-child {
+	margin-bottom: 0;
+}
+
+.program-support-promo__quote {
+	padding-left: 45px;
+	margin-bottom: 30px;
+	font-size: 20px;
+	font-weight: normal;
+	font-style: italic;
+	line-height: 1.2em;
+	background: url('../../../public/images/smat/ico-quotes_green_30x30.svg') 0 0 no-repeat;
+	-webkit-background-size: 30px 30px;
+	-moz-background-size: 30px 30px;
+	background-size: 30px 30px;
+}
+
+.program-support-promo__pic-column {
+	-webkit-box-flex: 1;
+	-webkit-flex-grow: 1;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+}
+
+.program-support-promo__figure {
+	width: 100%;
+	display: block;
+	overflow: hidden;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+
+.program-support-promo__image {
+	display: block;
+	width: 100%;
+}
+
+@media (max-width: 1199px) {
+	.program-support-promo__info-column {
+		width: 50%
+	}
+	.program-support-promo__info-column-inner {
+		padding-right: 20px;
+	}
+	.program-support-promo__pic-column {
+		padding-left: 20px;
+	}
+}
+
+@media (max-width: 991px) {
+	.program-support-promo__inner {
+		padding: 40px 20px;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
+		flex-direction: column;
+	}
+	.program-support-promo__info-column {
+		width: 100%;
+		-webkit-box-ordinal-group: 3;
+		-ms-flex-order: 2;
+		-webkit-order: 2;
+		order: 2;
+	}
+	.program-support-promo__pic-column {
+		padding: 0;
+		margin-bottom: 30px;
+	}
+}
+
+@media (max-width: 767px) {
+	.program-support-promo__badge {
+		margin-bottom: 10px;
+	}
+	.program-support-promo__title {
+		margin-bottom: 10px;
+		font-size: 20px;
+	}
+	.program-support-promo__subtitle {
+		margin-bottom: 20px;
+		font-size: 15px;
+	}
+	.program-support-promo__info-text {
+		font-size: 15px;
+	}
+	.program-support-promo__info {
+		margin-bottom: 24px;
+	}
+	.program-support-promo__pic-column {
+		margin-bottom: 20px;
+	}
+	.program-support-promo__quote {
+		font-size: 15px;
+	}
+}
+
+
+

@@ -1,0 +1,92 @@
+{# ------------------------------------------- #}
+{# variables #}
+{# ------------------------------------------- #}
+{% set commoditiesMin           = attr.min                        ?? 0 %}
+{% set commoditiesMax           = attr.max                        ?? 0 %}
+{% set ownCommoditiesReuired    = attr.requiredCreatorCommodity   ?? false %}
+{% set ownCommoditiesExist      = false %}
+{% set selectedCommodities      = [] %}
+
+{% for choice in choices %}
+    {% if choice.data in data %}
+        {% set selectedCommodities = selectedCommodities|merge([choice.data]) %}
+    {% endif %}
+{% endfor %}
+
+{% set break = false %}
+{% if ownCommoditiesReuired %}
+    {% for commodity in selectedCommodities %}
+        {% if commodity.user == (app.user ?? null) %}
+            {% set ownCommoditiesExist  = true %}
+            {% set break                = true %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+{# ------------------------------------------- #}
+{# validators data #}
+{# ------------------------------------------- #}
+{% set validationAlerts = [
+    {
+        'enabled'   : commoditiesMin > 0,
+        'title'     : 'market.profile.kitForm.commoditiesSelection.validation.commoditiesCountNotEnough'|trans|replace({
+            '#COUNT#' : commoditiesMin,
+        }),
+        'inputName' : 'commoditiesMinChecker',
+        'isValid'   : selectedCommodities|length >= commoditiesMin,
+        'value'     : commoditiesMin,
+    },
+    {
+        'enabled'   : commoditiesMax > 0,
+        'title'     : 'market.profile.kitForm.commoditiesSelection.validation.commoditiesCountToMuch'|trans|replace({
+            '#COUNT#' : commoditiesMax,
+        }),
+        'inputName' : 'commoditiesMaxChecker',
+        'isValid'   : selectedCommodities|length <= commoditiesMax,
+        'value'     : commoditiesMax,
+    },
+    {
+        'enabled'   : ownCommoditiesReuired,
+        'title'     : 'market.profile.kitForm.commoditiesSelection.validation.creatorCommodityAbsent'|trans ,
+        'inputName' : 'commoditiesOwnerChecker',
+        'isValid'   : ownCommoditiesExist,
+        'value'     : 'Y',
+    },
+] %}
+{# ------------------------------------------- #}
+{# validators output #}
+{# ------------------------------------------- #}
+{% for alertData in validationAlerts %}
+    {% if alertData.enabled %}
+        <label class="field commodities-validation-alert">
+            {{ alertData.title }}
+            <input
+                type="checkbox"
+                name="{{ alertData.inputName }}"
+                value="Y"
+                required
+                {% if alertData.isValid %}checked{% endif %}
+                data-value="{{ alertData.value }}"
+            >
+        </label>
+    {% endif %}
+{% endfor %}
+{# ------------------------------------------- #}
+{# main input #}
+{# ------------------------------------------- #}
+<label class="field hidden js-commodities-selector">
+    <select
+        name="{{ full_name }}"
+        data-current-user="{{ app.user.id ?? 0 }}"
+        {% if required %}required{% endif %}
+        multiple
+    >
+        {% for choice in choices %}
+            <option
+                value="{{ choice.value }}"
+                data-user="{{ choice.data.user.id }}"
+                data-price="{{ choice.data.price ?? 0 }}"
+                {% if choice.data in selectedCommodities %}selected{% endif %}
+            >{{ choice.label }}</option>
+        {% endfor %}
+    </select>
+</label>

@@ -1,0 +1,26 @@
+{% extends 'profile/profileMarket.html.twig' %}
+
+{% block tabContent %}
+    <div class="text-center">
+        <h3 class="h3 marginBottom40px">
+            {{ 'market.profile.myCommodities.rolesRequiredError'|trans }}
+        </h3>
+        <div class="h4 marginBottom40px">
+            {{ 'market.profile.myCommodities.rolesRequiredMessage'|trans|replace({
+                '#ROLE#' : "user.roles.#{role}"|trans,
+            }) }}
+        </div>
+        <a
+            class="square-button green-bg-button height-50"
+            style="margin: auto;"
+            href="{{ path('profile_form_role_create', {
+                'role' : role|lower|replace({
+                    'role_' : '',
+                    '_'     : '-',
+                }),
+            }) }}"
+        >
+            {{ 'role.anceta'|trans }}
+        </a>
+    </div>
+{% endblock %}

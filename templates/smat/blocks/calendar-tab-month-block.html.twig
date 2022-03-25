@@ -1,0 +1,381 @@
+<div id="calendar_period_month" class="calendar-period">
+
+    <div class="calendar-filters">
+        <div class="calendar-filters__wrapper">
+            <div class="calendar-filters__inner">
+                <div class="calendar-filters__category">
+                    {% for category in categories %}
+                        <button class="btn-filter-category js-btn-calendar-category" style="color:#007A33"
+                                data-category="{{ category.id }}">
+                            <span>{{ category.name }}</span>
+                        </button>
+                    {% endfor %}
+                    {# <button class="btn-filter-category js-btn-calendar-category" style="color:#D86018" data-category="ІКЦ Агро-Таврія"> #}
+                    {# <span>ІКЦ Агро-Таврія</span> #}
+                    {# </button> #}
+                    {# <button class="btn-filter-category js-btn-calendar-category active" style="color:#D19000" data-category="ORACS"> #}
+                    {# <span>ORACS</span> #}
+                    {# </button> #}
+                    {# <button class="btn-filter-category js-btn-calendar-category" style="color:#9B51E0" data-category="Фонд ЛАСКА"> #}
+                    {# <span>Фонд ЛАСКА</span> #}
+                    {# </button> #}
+                    {# <button class="btn-filter-category js-btn-calendar-category active" style="color:#D82D71" data-category="Земля Таврії"> #}
+                    {# <span>Земля Таврії</span> #}
+                    {# </button> #}
+                    {# <button class="btn-filter-category js-btn-calendar-category" style="color:#2F80ED" data-category="ГО РЖФО"> #}
+                    {# <span>ГО РЖФО</span> #}
+                    {# </button> #}
+                    {# <button class="btn-filter-category js-btn-calendar-category" style="color:#56CCF2" data-category="ГО РЖФЗ"> #}
+                    {# <span>ГО РЖФЗ</span> #}
+                    {# </button> #}
+                    {# <button class="btn-filter-category js-btn-calendar-category" style="color:#6FCF97" data-category="ГО РЖФХ"> #}
+                    {# <span>ГО РЖФХ</span> #}
+                    {# </button> #}
+                    {# <button class="btn-filter-category js-btn-calendar-category" style="color:#D8D8D8" data-category="Інші"> #}
+                    {# <span>Інші</span> #}
+                    {# </button> #}
+                </div>
+                <div class="calendar-filters__all">
+                    <button class="btn-h30-green-line js-btn-calendar-all-category">
+                        <span>Усі категорії</span>
+                    </button>
+                </div>
+                <button class="btn-wh40-light js-calendar-filters-hide">
+                    <svg class="ico">
+                        <use xlink:href="/images/smat/ico-close_24x24.svg#Layer_1"></use>
+                    </svg>
+                </button>
+            </div>
+            <div class="calendar-filters__overlay js-calendar-filters-hide"></div>
+        </div>
+        <div class="calendar-filters__toggler">
+            <button class="btn-h40-green-line js-calendar-filters-show">
+                <svg class="ico">
+                    <use xlink:href="/images/smat/ico-filter_40x40.svg#Layer_1"></use>
+                </svg>
+                <span>Категорії</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="calendar-content">
+        <div class="calendar-month">
+            <div class="calendar-month-header">
+                <div class="calendar-month-header__day">пн</div>
+                <div class="calendar-month-header__day">вт</div>
+                <div class="calendar-month-header__day">ср</div>
+                <div class="calendar-month-header__day">чт</div>
+                <div class="calendar-month-header__day">пт</div>
+                <div class="calendar-month-header__day">сб</div>
+                <div class="calendar-month-header__day">вс</div>
+            </div>
+            <div class="calendar-month-content">
+                <div class="calendar-month-content__day disabled">
+                    <div class="calendar-month-content__day-num">26</div>
+                </div>
+                <div class="calendar-month-content__day disabled">
+                    <div class="calendar-month-content__day-num">27</div>
+                </div>
+                <div class="calendar-month-content__day disabled">
+                    <div class="calendar-month-content__day-num">28</div>
+                </div>
+                <div class="calendar-month-content__day disabled">
+                    <div class="calendar-month-content__day-num">29</div>
+                </div>
+                <div class="calendar-month-content__day disabled">
+                    <div class="calendar-month-content__day-num">30</div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">1</div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">2</div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">3</div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">4</div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">5</div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">6</div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">7</div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">8</div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">9</div>
+                </div>
+                <div class="calendar-month-content__day today">
+                    <div class="calendar-month-content__day-num">10 сьогодні</div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">11</div>
+                    <div class="calendar-month-content__day-events-list">
+                        <div class="calendar-month-content__day-event" style="color:#D86018"
+                                data-category="ІКЦ Агро-Таврія">
+                            <span class="calendar-month-content__day-event-time">15:00</span>
+                            <span class="calendar-month-content__day-event-title">Вебінар «Судова практика в земельних спорах. Перша сесія»</span>
+                        </div>
+                        <div class="calendar-month-content__day-event" style="color:#9B51E0" data-category="Фонд ЛАСКА">
+                            <span class="calendar-month-content__day-event-time">19:00</span>
+                            <span class="calendar-month-content__day-event-title">Курс Фонд ЛАСКА «Кращі Таїровські практики для гарного врожаю винограду»</span>
+                        </div>
+                        <div class="calendar-month-content__day-event" style="color:#2F80ED" data-category="ГО РЖФО">
+                            <span class="calendar-month-content__day-event-time">19:00</span>
+                            <span class="calendar-month-content__day-event-title">Курс ГО РЖФО «Кращі Таїровські практики для гарного врожаю винограду»</span>
+                        </div>
+                        <div class="calendar-month-content__day-event" style="color:#56CCF2" data-category="ГО РЖФЗ">
+                            <span class="calendar-month-content__day-event-time">15:00</span>
+                            <span class="calendar-month-content__day-event-title">Вебінар ГО РЖФЗ «Судова практика в земельних спорах. Перша сесія»</span>
+                        </div>
+                        <div class="calendar-month-content__day-event" style="color:#6FCF97" data-category="ГО РЖФХ">
+                            <span class="calendar-month-content__day-event-time">19:00</span>
+                            <span class="calendar-month-content__day-event-title">Курс ГО РЖФХ «Кращі Таїровські практики для гарного врожаю винограду»</span>
+                        </div>
+                        <div class="calendar-month-content__day-event" style="color:#D8D8D8" data-category="Інші">
+                            <span class="calendar-month-content__day-event-time">19:00</span>
+                            <span class="calendar-month-content__day-event-title">Інші «Кращі Таїровські практики для гарного врожаю винограду»</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">12</div>
+                    <div class="calendar-month-content__day-events-list">
+                        <div class="calendar-month-content__day-event" style="color:#D86018"
+                                data-category="ІКЦ Агро-Таврія">
+                            <span class="calendar-month-content__day-event-time">15:00</span>
+                            <span class="calendar-month-content__day-event-title">Вебінар «Судова практика в земельних спорах. Перша сесія»</span>
+                        </div>
+                        <div class="calendar-month-content__day-event" style="color:#9B51E0" data-category="Фонд ЛАСКА">
+                            <span class="calendar-month-content__day-event-time">19:00</span>
+                            <span class="calendar-month-content__day-event-title">Курс Фонд ЛАСКА «Кращі Таїровські практики для гарного врожаю винограду»</span>
+                        </div>
+                        <div class="calendar-month-content__day-event" style="color:#6FCF97" data-category="ГО РЖФХ">
+                            <span class="calendar-month-content__day-event-time">19:00</span>
+                            <span class="calendar-month-content__day-event-title">Курс ГО РЖФХ «Кращі Таїровські практики для гарного врожаю винограду»</span>
+                        </div>
+                        <div class="calendar-month-content__day-event" style="color:#D8D8D8" data-category="Інші">
+                            <span class="calendar-month-content__day-event-time">19:00</span>
+                            <span class="calendar-month-content__day-event-title">Інші «Кращі Таїровські практики для гарного врожаю винограду»</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">13</div>
+                    <div class="calendar-month-content__day-events-list">
+                        <div class="calendar-month-content__day-event active" style="color:#D82D71"
+                                data-category="Земля Таврії">
+                            <span class="calendar-month-content__day-event-time">15:00</span>
+                            <span class="calendar-month-content__day-event-title">Вебінар «Судова практика в земельних спорах. Перша сесія»</span>
+                        </div>
+                        <div class="calendar-month-content__day-event active" style="color:#D19000"
+                                data-category="ORACS">
+                            <span class="calendar-month-content__day-event-time">19:00</span>
+                            <span class="calendar-month-content__day-event-title">Курс «Кращі Таїровські практики для гарного врожаю винограду»</span>
+                        </div>
+                        <div class="calendar-month-content__day-event" style="color:#007A33" data-category="UHBDP">
+                            <span class="calendar-month-content__day-event-time">19:00</span>
+                            <span class="calendar-month-content__day-event-title">Курс «Кращі Таїровські практики для гарного врожаю винограду»</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">14</div>
+                    <div class="calendar-month-content__day-events-list">
+                        <div class="calendar-month-content__day-event" style="color:#D86018"
+                                data-category="ІКЦ Агро-Таврія">
+                            <span class="calendar-month-content__day-event-time">15:00</span>
+                            <span class="calendar-month-content__day-event-title">Вебінар «Судова практика в земельних спорах. Перша сесія»</span>
+                        </div>
+                        <div class="calendar-month-content__day-event" style="color:#9B51E0" data-category="Фонд ЛАСКА">
+                            <span class="calendar-month-content__day-event-time">19:00</span>
+                            <span class="calendar-month-content__day-event-title">Курс Фонд ЛАСКА «Кращі Таїровські практики для гарного врожаю винограду»</span>
+                        </div>
+                        <div class="calendar-month-content__day-event" style="color:#2F80ED" data-category="ГО РЖФО">
+                            <span class="calendar-month-content__day-event-time">19:00</span>
+                            <span class="calendar-month-content__day-event-title">Курс ГО РЖФО «Кращі Таїровські практики для гарного врожаю винограду»</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">15</div>
+                    <div class="calendar-month-content__day-events-list">
+                        <div class="calendar-month-content__day-event" style="color:#56CCF2" data-category="ГО РЖФЗ">
+                            <span class="calendar-month-content__day-event-time">15:00</span>
+                            <span class="calendar-month-content__day-event-title">Вебінар ГО РЖФЗ «Судова практика в земельних спорах. Перша сесія»</span>
+                        </div>
+                        <div class="calendar-month-content__day-event" style="color:#6FCF97" data-category="ГО РЖФХ">
+                            <span class="calendar-month-content__day-event-time">19:00</span>
+                            <span class="calendar-month-content__day-event-title">Курс ГО РЖФХ «Кращі Таїровські практики для гарного врожаю винограду»</span>
+                        </div>
+                        <div class="calendar-month-content__day-event" style="color:#D8D8D8" data-category="Інші">
+                            <span class="calendar-month-content__day-event-time">19:00</span>
+                            <span class="calendar-month-content__day-event-title">Інші «Кращі Таїровські практики для гарного врожаю винограду»</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">16</div>
+                    <div class="calendar-month-content__day-events-list">
+                        <div class="calendar-month-content__day-event" style="color:#D86018"
+                                data-category="ІКЦ Агро-Таврія">
+                            <span class="calendar-month-content__day-event-time">15:00</span>
+                            <span class="calendar-month-content__day-event-title">Вебінар «Судова практика в земельних спорах. Перша сесія»</span>
+                        </div>
+                        <div class="calendar-month-content__day-event" style="color:#9B51E0" data-category="Фонд ЛАСКА">
+                            <span class="calendar-month-content__day-event-time">19:00</span>
+                            <span class="calendar-month-content__day-event-title">Курс Фонд ЛАСКА «Кращі Таїровські практики для гарного врожаю винограду»</span>
+                        </div>
+                        <div class="calendar-month-content__day-event" style="color:#2F80ED" data-category="ГО РЖФО">
+                            <span class="calendar-month-content__day-event-time">19:00</span>
+                            <span class="calendar-month-content__day-event-title">Курс ГО РЖФО «Кращі Таїровські практики для гарного врожаю винограду»</span>
+                        </div>
+                        <div class="calendar-month-content__day-event" style="color:#56CCF2" data-category="ГО РЖФЗ">
+                            <span class="calendar-month-content__day-event-time">15:00</span>
+                            <span class="calendar-month-content__day-event-title">Вебінар ГО РЖФЗ «Судова практика в земельних спорах. Перша сесія»</span>
+                        </div>
+                        <div class="calendar-month-content__day-event" style="color:#6FCF97" data-category="ГО РЖФХ">
+                            <span class="calendar-month-content__day-event-time">19:00</span>
+                            <span class="calendar-month-content__day-event-title">Курс ГО РЖФХ «Кращі Таїровські практики для гарного врожаю винограду»</span>
+                        </div>
+                        <div class="calendar-month-content__day-event" style="color:#D8D8D8" data-category="Інші">
+                            <span class="calendar-month-content__day-event-time">19:00</span>
+                            <span class="calendar-month-content__day-event-title">Інші «Кращі Таїровські практики для гарного врожаю винограду»</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">17</div>
+                    <div class="calendar-month-content__day-events-list">
+                        <div class="calendar-month-content__day-event active" style="color:#D82D71"
+                                data-category="Земля Таврії">
+                            <span class="calendar-month-content__day-event-time">17:00</span>
+                            <span class="calendar-month-content__day-event-title">Вебінар «Основні вимоги харчового законодавства для первинних виробників і переробників»</span>
+                        </div>
+                        <div class="calendar-month-content__day-event active" style="color:#D19000"
+                                data-category="ORACS">
+                            <span class="calendar-month-content__day-event-time">19:00</span>
+                            <span class="calendar-month-content__day-event-title">Вебінар «Вирощування баштанних культур»</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">18</div>
+                    <div class="calendar-month-content__day-events-list">
+                        <div class="calendar-month-content__day-event active" style="color:#D82D71"
+                                data-category="Земля Таврії">
+                            <span class="calendar-month-content__day-event-title">Курс «Трав'яний бізнес 2021: лікарські рослини».Тема 4</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">19</div>
+                    <div class="calendar-month-content__day-events-list">
+                        <div class="calendar-month-content__day-event active" style="color:#D19000"
+                                data-category="ORACS">
+                            <span class="calendar-month-content__day-event-time">17:00</span>
+                            <span class="calendar-month-content__day-event-title">Вебінар «Використання вимог належних практик для виробництва безпечного продукту в плодоовочевому секторі. Систематизація виробничих процесів»</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">20</div>
+                    <div class="calendar-month-content__day-events-list">
+                        <div class="calendar-month-content__day-event active" style="color:#D82D71"
+                                data-category="Земля Таврії">
+                            <span class="calendar-month-content__day-event-time">17:00</span>
+                            <span class="calendar-month-content__day-event-title">Актуальні питання у сфері земельних відносин</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">21</div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">22</div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">23</div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">24</div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">25</div>
+                    <div class="calendar-month-content__day-events-list">
+                        <div class="calendar-month-content__day-event active" style="color:#D19000"
+                                data-category="ORACS">
+                            <span class="calendar-month-content__day-event-time">17:00</span>
+                            <span class="calendar-month-content__day-event-title">Актуальні питання у сфері земельних відносин</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">26</div>
+                    <div class="calendar-month-content__day-events-list">
+                        <div class="calendar-month-content__day-event active" style="color:#D19000"
+                                data-category="ORACS">
+                            <span class="calendar-month-content__day-event-time">17:00</span>
+                            <span class="calendar-month-content__day-event-title">Вебінар «Судова практика в земельних спорах. Друга сесія»</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">27</div>
+                    <div class="calendar-month-content__day-events-list">
+                        <div class="calendar-month-content__day-event active" style="color:#D19000"
+                                data-category="ORACS">
+                            <span class="calendar-month-content__day-event-time">17:00</span>
+                            <span class="calendar-month-content__day-event-title">Актуальні питання у сфері земельних відносин</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">28</div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">29</div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">30</div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">31</div>
+                    <div class="calendar-month-content__day-events-list">
+                        <div class="calendar-month-content__day-event active" style="color:#D82D71"
+                                data-category="Земля Таврії">
+                            <span class="calendar-month-content__day-event-time">17:00</span>
+                            <span class="calendar-month-content__day-event-title">Актуальні питання у сфері земельних відносин</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">1</div>
+                </div>
+                <div class="calendar-month-content__day">
+                    <div class="calendar-month-content__day-num">2</div>
+                </div>
+                <div class="calendar-month-content__day disabled">
+                    <div class="calendar-month-content__day-num">3</div>
+                </div>
+                <div class="calendar-month-content__day disabled">
+                    <div class="calendar-month-content__day-num">4</div>
+                </div>
+                <div class="calendar-month-content__day disabled">
+                    <div class="calendar-month-content__day-num">5</div>
+                </div>
+                <div class="calendar-month-content__day disabled">
+                    <div class="calendar-month-content__day-num">6</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,13 @@
+{% if
+    item.commodityType == constant('App\\Entity\\Market\\Commodity::TYPE_PRODUCT') and
+    item.getIsOrganicAndApproved
+%}
+    <div class="organic-badge">
+        <svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#organic"></use>
+        </svg>
+        <span>
+            {{ 'market.commodity.isOrganic'|trans }}
+        </span>
+    </div>
+{% endif %}

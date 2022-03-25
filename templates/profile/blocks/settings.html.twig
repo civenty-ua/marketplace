@@ -1,0 +1,27 @@
+<div class="personal-area__inner">
+    <div class="personal-area-sidebar">
+        <div class="personal-area-sidebar__content">
+            <div class="personal-area-sidebar__tabs-navigation">
+                <a class="btn-sidebar-tail-right js-btn-sidebar active" href="#tab_edit_profile">
+                    <svg class="ico">
+                        <use xlink:href="/images/smat/ico-account-edit_24x24.svg#Layer_1"></use>
+                    </svg>
+                    <span>{{ 'profile.edit_profile' | trans }}</span>
+                </a>
+                <a class="btn-sidebar-tail-right js-btn-sidebar" href="#tab_change_password">
+                    <svg class="ico">
+                        <use xlink:href="/images/smat/ico-password_24x24.svg#Layer_1"></use>
+                    </svg>
+                    <span>{{ 'profile.change_password' | trans }}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="personal-area-center">
+        <div class="personal-area-center__tabs-wrapper js-tabs-wrapper">
+            {% include 'profile/blocks/settings_edit-profile.html.twig' %}
+            {% include 'profile/blocks/settings_change-password.html.twig' %}
+        </div>
+    </div>
+</div>

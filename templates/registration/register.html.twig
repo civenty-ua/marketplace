@@ -1,0 +1,155 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'messages' %}
+{% block title %}{{ 'form_registration.title_register'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <div class="section-nav">
+            <div class="section-nav__inner-wrapper">
+                <a class="section-nav__item" href="{{ path('login') }}">
+                    {{ 'header.login'|trans }}
+                </a>
+                <a class="section-nav__item section-nav__item--active" href="{{ path('app_register') }}">
+                    {{ 'form_registration.title_register'|trans }}
+                </a>
+            </div>
+        </div>
+
+        <div class="form-wrapper form-required-control">
+            {% if registrationForm.vars.errors|length %}
+                <div class="form-errors">
+                    {{ form_errors(registrationForm) }}
+                </div>
+            {% endif %}
+            {% for flashError in app.flashes('verify_email_error') %}
+                <div class="form-errors">
+                    {{ flashError }}
+                </div>
+            {% endfor %}
+
+            {{ form_start(registrationForm) }}
+
+            <div class="form-block">
+                {{ form_label(registrationForm.name) }}
+                {{ form_widget(registrationForm.name) }}
+                <div class="input-error">
+                    {{ form_errors(registrationForm.name) }}
+                </div>
+            </div>
+
+            <div class="form-block">
+                {{ form_label(registrationForm.gender) }}
+                {{ form_widget(registrationForm.gender) }}
+            </div>
+            <div class="input-error">
+                {{ form_errors(registrationForm.gender) }}
+            </div>
+
+            <div class="form-block date-of-birth__block">
+                {{ form_label(registrationForm.dateOfBirth) }}
+                {{ form_widget(registrationForm.dateOfBirth.day, {'attr': {'class': 'select-input height-50'}}) }}
+                {{ form_widget(registrationForm.dateOfBirth.month, {'attr': {'class': 'select-input height-50'}}) }}
+                {{ form_widget(registrationForm.dateOfBirth.year, {'attr': {'class': 'select-input height-50'}}) }}
+                <div class="input-error">
+                    {{ form_errors(registrationForm.dateOfBirth) }}
+                </div>
+            </div>
+
+            <div class="form-block">
+                {{ form_label(registrationForm.email) }}
+                {{ form_widget(registrationForm.email) }}
+                <div class="input-error">
+                    {{ form_errors(registrationForm.email) }}
+                </div>
+            </div>
+
+            <div class="form-block">
+                {{ form_label(registrationForm.phone) }}
+                {{ form_widget(registrationForm.phone) }}
+                <div class="input-error">
+                    {{ form_errors(registrationForm.phone) }}
+                    {{ form_errors(registrationForm.code) }}
+                </div>
+            </div>
+
+            <div class="form-block">
+                <a
+                    href="javascript:void(0)"
+                    class="js-verification-phone__button square-button green-bg-button height-50"
+                    {% if registrationForm.code.vars.value is not empty %}style="display: none;"{% endif %}
+                >
+                    {{ 'form_registration.verifi_phone'|trans }}
+                </a>
+
+                <div class="js-verification-phone__code verification-phone__code" {% if registrationForm.code.vars.value is not empty %} style="display: block;"{% endif %}>
+                    <div class="form-block">
+                        {{ form_label(registrationForm.code) }}
+                        {{ form_widget(registrationForm.code) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-block">
+                {{ form_label(registrationForm.region) }}
+                {{ form_widget(registrationForm.region) }}
+            </div>
+
+            <div class="form-block">
+                {{ form_label(registrationForm.plainPassword) }}
+                <div class="password-input">
+                    {{ form_widget(registrationForm.plainPassword) }}
+                    <a class="js-password-input__trigger password-input__trigger" href="javascript:void(0)">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eye-off"></use>
+                        </svg>
+                    </a>
+                </div>
+                {{ form_help(registrationForm.plainPassword) }}
+                <div class="input-error">
+                    {{ form_errors(registrationForm.plainPassword) }}
+                </div>
+            </div>
+
+            <div class="form-block">
+                {{ form_label(registrationForm.passwordConfirm) }}
+                <div class="password-input">
+                    {{ form_widget(registrationForm.passwordConfirm) }}
+                    <a class="js-password-input__trigger password-input__trigger" href="javascript:void(0)">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eye-off"></use>
+                        </svg>
+                    </a>
+                </div>
+                <div class="input-error">
+                    {{ form_errors(registrationForm.passwordConfirm) }}
+                </div>
+            </div>
+
+            <div class="form-block">
+                {{ form_row(registrationForm.agreeTerms) }}
+            </div>
+            <div class="form-block">
+                {{ form_row(registrationForm.agreeTerms2) }}
+            </div>
+
+            <div class="form-block marginBottom40px">
+                <label class="checkbox">
+                    {{ form_label(registrationForm.isNewsSub) }}
+                    {{ form_widget(registrationForm.isNewsSub) }}
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+            <div class="form-buttons">
+                <a href="{{ path('app_register') }}" class="square-button height-50">
+                    {{ 'form_registration.cancel'|trans }}
+                </a>
+                <button type="submit" class="square-button green-bg-button height-50">
+                    {{ 'form_registration.register'|trans }}
+                </button>
+            </div>
+
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+{% endblock %}

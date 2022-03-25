@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ lesson.title }}</title>
+        <script src="https://www.youtube.com/iframe_api"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div
+                id="player"
+                data-video-id="{{ lesson.videoItem.videoId }}"
+                data-interaction-log-route="{{ path('video_interaction_log', {id: lesson.videoItem.id}) }}"
+        ></div>
+        <script>
+            let
+                player,
+                watchControl = {
+                    lastOperationTime: null,
+                    lastOperationType: null,
+                    duration: 0
+                };
+
+            /**
+             * Youtube video initialization function
+             */
+            function onYouTubeIframeAPIReady() {
+                let videoId = document.getElementById('player').getAttribute('data-video-id');
+
+                player = new YT.Player('player', {
+                    height: '360',
+                    width: '640',
+                    videoId: videoId,
+                    playerVars: {
+                        controls: 1
+                    },
+                    events: {
+                        'onReady': function (event) {
+                            event.target.playVideo();
+                        },
+                        'onStateChange': function (event) {
+                            handleUserVideoInteraction(event.target, event.data);
+                        }
+                    }
+                });
+            }
+
+            /**
+             * Function: handle user any video interaction
+             */
+            function handleUserVideoInteraction(video, eventType) {
+                let eventTypesAllowedValues = [
+                    YT.PlayerState.UNSTARTED,
+                    YT.PlayerState.ENDED,
+                    YT.PlayerState.PLAYING,
+                    YT.PlayerState.PAUSED,
+                    YT.PlayerState.BUFFERING,
+                    YT.PlayerState.CUED
+                ];
+
+                if (!eventTypesAllowedValues.includes(eventType)) {
+                    throw Error(`unknown event type ${eventType}`);
+                }
+
+                if (
+                    [
+                        YT.PlayerState.PAUSED,
+                        YT.PlayerState.ENDED
+                    ].includes(eventType) &&
+                    watchControl.lastOperationType === YT.PlayerState.PLAYING &&
+                    watchControl.lastOperationTime
+                ) {
+                    watchControl.duration += Date.now() - watchControl.lastOperationTime;
+                }
+
+                watchControl.lastOperationTime = Date.now();
+                watchControl.lastOperationType = eventType;
+            }
+
+            /**
+             * Function: post user video watch duration
+             */
+            function postUserVideoWatchDuration() {
+                let
+                    videoTag = document.getElementById('player'),
+                    duration = watchControl.duration;
+
+                if (duration <= 0) {
+                    return;
+                }
+
+                watchControl.duration = 0;
+                $.ajax({
+                    type: 'POST',
+                    url: videoTag.getAttribute('data-interaction-log-route'),
+                    data: JSON.stringify({
+                        duration: duration / 1000
+                    }),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    error: function () {
+                        watchControl.duration += duration;
+                    }
+                });
+            }
+
+            /**
+             * user video duration posting
+             */
+            setInterval(function () {
+                postUserVideoWatchDuration();
+            }, 30 * 1000);
+            /**
+             * on page leaving
+             */
+            window.addEventListener('beforeunload', function () {
+                handleUserVideoInteraction(player, YT.PlayerState.PAUSED);
+                postUserVideoWatchDuration();
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,10 @@
+<label class="field">
+    <select name="{{ name }}[]" multiple>
+        {% for choice in choices %}
+            <option
+                value="{{ choice.value }}"
+                {% if choice.data in value %}selected{% endif %}
+            ></option>
+        {% endfor %}
+    </select>
+</label>

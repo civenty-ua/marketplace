@@ -1,0 +1,39 @@
+<div id="organizer" class="tab">
+    <div class="organizer-wrapper">
+        {% for partner in partners %}
+            <div class="organizer-item">
+                {% if partner.image is defined and partner.image is not null %}
+                    <img class="organizer-item-image"
+                         alt="{{ 'item.partners' | trans }}"
+                         src="{{ asset('upload/partner/' ~ partner.image) }}"
+                         loading="lazy"
+                    >
+                {% else %}
+                    <img class="organizer-item-image"
+                         alt="{{ 'item.partners' | trans }}"
+                         src="{{ asset('main/default-avatar.png') }}"
+                         loading="lazy"
+                    >
+                {% endif %}
+                <div class="organizer-item-title">
+                    {{ partner.name }}
+                </div>
+                {# <div class="organizer-item__city">м. Одеса</div> #}
+                <div class="organizer-item__info">
+                    <div>
+                        <span>{{ 'course.partner_site'|trans }}:</span>
+                        <span>E-mail:</span>
+                        <span>{{ 'course.partner_phone'|trans }}:</span>
+                        <span>{{ 'course.partner_address'|trans }}:</span>
+                    </div>
+                    <div>
+                        <a class="green" href="{{ partner.site|raw }}">{{ partner.site }}</a>
+                        <a class="green" href="email:{{ partner.email }}">{{ partner.email }}</a>
+                        <a class="green" href="tel:{{ partner.phone }}">{{ partner.phone }}</a>
+                        <a class="green" href="#">{{ partner.address }}</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

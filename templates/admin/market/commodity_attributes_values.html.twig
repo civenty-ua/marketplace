@@ -1,0 +1,56 @@
+<div
+    class="market-commodity-edit-attributes-values-bar"
+    data-attributes-data="{{ attributesMapData | json_encode }}"
+    data-attributes-exist-values-data="{{ attributesExistValuesData | json_encode }}"
+>
+    <label class="item template">
+        <span class="title"></span>
+        <span class="field">
+            <span data-type="string">
+                <input
+                    type="text"
+                    class="form-control"
+                    name="{{ full_name }}[#attribute-id#]"
+                    disabled
+                >
+            </span>
+            <span data-type="int">
+                <input
+                    type="number"
+                    min="0"
+                    class="form-control"
+                    name="{{ full_name }}[#attribute-id#]"
+                    disabled
+                >
+            </span>
+            <span data-type="list">
+                <select
+                    class="form-select"
+                    name="{{ full_name }}[#attribute-id#]"
+                    disabled
+                >
+                    <option value=""></option>
+                </select>
+            </span>
+            <span data-type="listMultiple">
+                <span class="list-value">
+                    <input
+                        type="checkbox"
+                        name="{{ full_name }}[#attribute-id#][]"
+                        disabled
+                    >
+                    <span class="list-value-title">#title#</span>
+                </span>
+            </span>
+            <span data-type="dictionary">
+                <select
+                    class="form-select"
+                    name="{{ full_name }}[#attribute-id#]"
+                    disabled
+                >
+                    <option value=""></option>
+                </select>
+            </span>
+        </span>
+    </label>
+</div>

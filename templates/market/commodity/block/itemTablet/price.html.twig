@@ -1,0 +1,25 @@
+{% set measure  = item|getCommoditySpecialAttribute(
+    constant('App\\Entity\\Market\\Attribute::SPECIAL_CODE_MEASURE'),
+    true
+) %}
+{% set volume   = item|getCommoditySpecialAttribute(
+    constant('App\\Entity\\Market\\Attribute::SPECIAL_CODE_VOLUME'),
+    true
+) %}
+{# ------------------------------------------- #}
+{# output #}
+{# ------------------------------------------- #}
+<div class="product-item__price">
+    {% if item.price > 0 %}
+        <span class="price">{{ item.price|numberFormatAgro }}</span>
+        <span class="unit">{{ item|getCurrencyTitle }}</span>
+    {% else %}
+        <b>{{ 'market.product.list.priceNegotiated'|trans }}</b>
+    {% endif %}
+
+    {% if measure and volume %}
+        <span class="amount">
+            {{ volume|getAttributePrintableValue }} {{ measure|getAttributePrintableValue }}
+        </span>
+    {% endif %}
+</div>

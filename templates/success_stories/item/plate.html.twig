@@ -1,0 +1,25 @@
+<li class="glide__slide">
+    <div class="item">
+        <div class="item-image">
+            <div class="item-badge article__badge">
+                {% if (item.region) %}
+                    {{ item.region.name }}
+                {% else %}
+                    {{ item.typePage }}
+                {% endif %}
+            </div>
+            <a href="{{ path('success_stories_detail', {'slug': item.slug}) }}">
+                <img src="{{ asset('upload/article/' ~ item.imageName) }}"
+                     alt="{{ item.title }}"
+                     loading="lazy"
+                >
+            </a>
+        </div>
+        <div class="item-title">
+            <a href="{{ path('success_stories_detail', {'slug': item.slug}) }}">{{ item.title }}</a>
+        </div>
+        <div class="item-text">
+            {{ item.short|striptags|u.truncate(100,'...')|raw }}
+        </div>
+    </div>
+</li>

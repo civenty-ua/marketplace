@@ -1,0 +1,35 @@
+<div class="section">
+    <h2 class="h2">{{ title }}</h2>
+
+    <div class="js-glide glide marginBottom40px" data-max-items-per-slide="5">
+        <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+                {% for item in items %}
+                    {% include '/blocks/item-panel/video.html.twig' with {'item': item } %}
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="glide__arrows" data-glide-el="controls">
+            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+                <svg width="36" height="80" viewBox="0 0 36 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.0001 9.13334L9.85812 40L22.0001 70.8667" stroke="black" stroke-width="1.5"/>
+                </svg>
+            </button>
+            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+                <svg width="36" height="80" viewBox="0 0 36 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.9999 9.13334L26.1419 40L13.9999 70.8667" stroke="black" stroke-width="1.5"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="glide__bullets" data-glide-el="controls[nav]">
+            {% for item in items %}
+                <button class="glide__bullet" data-glide-dir="={{ loop.index0 }}"></button>
+            {% endfor %}
+        </div>
+    </div>
+
+    <a href="{{ link }}"
+            class="square-button green-bg-button centeredBlock height-50">{{ 'home.view_all'|trans }}</a>
+</div>

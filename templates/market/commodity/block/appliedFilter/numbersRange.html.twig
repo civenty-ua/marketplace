@@ -1,0 +1,23 @@
+{% set titleFrom    = 'market.product.filter.numberFrom'|trans %}
+{% set titleTo      = 'market.product.filter.numberTo'|trans %}
+{% set valueFrom    = (value[0] ?? '')|numberFormatAgro %}
+{% set valueTo      = (value[1] ?? '')|numberFormatAgro %}
+{% set valueFull    = null %}
+
+{% if valueFrom and valueTo %}
+    {% set valueFull = "#{titleFrom} #{valueFrom} #{titleTo} #{valueTo}" %}
+{% elseif valueFrom %}
+    {% set valueFull = "#{titleFrom} #{valueFrom}" %}
+{% elseif valueTo %}
+    {% set valueFull = "#{titleTo} #{valueTo}" %}
+{% endif %}
+
+{% if valueFull %}
+    {% include 'market/commodity/block/appliedFilter/item.html.twig' with {
+        'title' : title,
+        'value' : valueFull,
+        'data'  : {
+            (inputName) : value is iterable ? value : [value],
+        },
+    } only %}
+{% endif %}

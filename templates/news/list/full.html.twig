@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block canonical %}{{ url('news_list') }}{% endblock %}
+
+{% block title %}
+    {{ 'menu.about_us.news'|trans }}
+{% endblock %}
+
+{% block body %}
+    {% set newsBanner = op['news_banner_enable']['value'] %}
+    {% if newsBanner is defined and newsBanner == true %}
+        {% include 'news/list/banner.html.twig' %}
+    {% endif %}
+    {% include 'news/list/list.html.twig' %}
+    {% include 'blocks/business-tools-lite-block.html.twig' %}
+    {% include 'blocks/catalog-block.html.twig' %}
+    {% include 'blocks/knowledge-base-block.html.twig' with {
+        'categories': categories
+    } %}
+    {% include 'blocks/top-tags-block.html.twig' with {'topTags': topTags} %}
+{% endblock %}

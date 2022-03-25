@@ -1,0 +1,84 @@
+<div class="accordion-block">
+    <a href="javascript:void(0)" class="js-accordion-block__open accordion-header active">
+        <div class="accordion-header__title fontSize17-20px">{{ 'item.category'|trans }}</div>
+        <div class="accordion-header__quantity">({{ categories|length }})</div>
+    </a>
+    <div class="js-accordion-block__content accordion-block__content" style="display: block">
+        <div class="scrollable-block custom-scroll">
+            {% for category in categories %}
+                <label class="checkbox">
+                    <span class="checkbox__title">{{ category[0].name }}</span>
+                    <span class="checkbox__quantity">({{ (category[1]) }})</span>
+                    <input type="checkbox" data-checkbox-id="category-{{ category[0].id }}"
+                            value="{{ category[0].id }}" data-name="category"
+                            {% if category[0].id in appliedQueryParams.category %}checked{% endif %}>
+                    <span class="checkmark"></span>
+                </label>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="accordion-block">
+    <a href="javascript:void(0)" class="js-accordion-block__open accordion-header active">
+        <div class="accordion-header__title fontSize17-20px">{{ 'item.crops'|trans }}</div>
+        <div class="accordion-header__quantity">({{ crops|length }})</div>
+    </a>
+    <div class="js-accordion-block__content accordion-block__content" style="display: block">
+        <div class="scrollable-block custom-scroll">
+            {% for crop in crops %}
+                <label class="checkbox">
+                    <span class="checkbox__title">{{ crop[0].name }}</span>
+                    <span class="checkbox__quantity">({{ crop[1] }})</span>
+                    <input type="checkbox" data-checkbox-id="crop-{{ crop[0].id }}"
+                            value="{{ crop[0].id }}"
+                            data-name="crop"
+                            {% if crop[0].id in appliedQueryParams.crop %}checked{% endif %}>
+                    <span class="checkmark"></span>
+                </label>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="accordion-block">
+    <a href="javascript:void(0)" class="js-accordion-block__open accordion-header active">
+        <div class="accordion-header__title fontSize17-20px">{{ 'item.partners'|trans }}</div>
+        <div class="accordion-header__quantity">({{ partners|length }})</div>
+    </a>
+    <div class="js-accordion-block__content accordion-block__content" style="display: block">
+        <div class="scrollable-block custom-scroll">
+            {% for partner in partners %}
+                <label class="checkbox">
+                    <span class="checkbox__title">{{ partner[0].name }}</span>
+                    <span class="checkbox__quantity">({{ (partner[1]) }})</span>
+                    <input type="checkbox" data-checkbox-id="partner-{{ partner[0].id }}"
+                            value="{{ partner[0].id }}" data-name="partner"
+                            {% if partner[0].id in appliedQueryParams.partner %}checked{% endif %}>
+                    <span class="checkmark"></span>
+                </label>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="accordion-block">
+    <a href="javascript:void(0)" class="js-accordion-block__open accordion-header active">
+        <div class="accordion-header__title fontSize17-20px">{{ 'item.experts'|trans }}</div>
+        <div class="accordion-header__quantity">({{ experts|length }})</div>
+    </a>
+    <div class="js-accordion-block__content accordion-block__content" style="display: block">
+        <div class="scrollable-block custom-scroll">
+            {% for expert in experts %}
+                <label class="checkbox">
+                    <span class="checkbox__title">{{ expert[0].name }}</span>
+                    <span class="checkbox__quantity">({{ (expert[1]) }})</span>
+                    <input type="checkbox" data-checkbox-id="expert-{{ expert[0].id }}"
+                            value="{{ expert[0].id }}" data-name="expert"
+                            {% if expert[0].id in appliedQueryParams.expert %}checked{% endif %}>
+                    <span class="checkmark"></span>
+                </label>
+            {% endfor %}
+        </div>
+    </div>
+</div>

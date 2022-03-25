@@ -1,0 +1,37 @@
+{% extends 'market/itemsComponent.html.twig' %}
+
+{% set rebuildUrl = path('market_profile_commodity_kit_all_commodities_rebuild') %}
+{# -------------------------------------------------------------------- #}
+{# hidden fields #}
+{# -------------------------------------------------------------------- #}
+{% block hiddenFields %}
+    {% include 'profile/market/myCommodities/kit/commodities/hiddenSelector.html.twig' with {
+        'name'      : 'selectedCommodities',
+        'choices'   : form.commodities.vars.choices,
+        'value'     : form.commodities.vars.data,
+    } only %}
+{% endblock %}
+{# -------------------------------------------------------------------- #}
+{# filter #}
+{# -------------------------------------------------------------------- #}
+{% block filter %}
+    <div class="search-bar">
+        {% include 'market/search.html.twig' with {
+            'placeholder'   : 'market.profile.kitForm.commoditiesSelection.all.searchPlaceholder'|trans,
+            'name'          : 'commoditiesSelector[all][search]',
+            'value'         : '',
+        } only %}
+    </div>
+{% endblock %}
+{# -------------------------------------------------------------------- #}
+{# items list #}
+{# -------------------------------------------------------------------- #}
+{% block itemsList %}
+    {% include 'market/commodity/items.html.twig' with {
+        'items'             : commodities,
+        'currentPage'       : 1,
+        'paginationName'    : 'commoditiesSelector[all][page]',
+        'actions'           : [],
+        'mainAction'        : 'kitCreatingAdd',
+    } only %}
+{% endblock %}

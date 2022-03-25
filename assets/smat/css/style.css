@@ -1,0 +1,25 @@
+@import url("../js/slick/slick.css");
+@import url("../js/jqueryScrollbar/jquery.scrollbar.css");
+@import url("../js/select2/select2.min.css");
+
+@import url("./btn.css");
+@import url("./form.css");
+@import url("./slick-slider.css");
+@import url("./common-elements.css");
+
+@import url("./knowledge-charts.css");
+@import url("./course-promo.css");
+@import url("./program-support-promo.css");
+@import url("./business-toolset.css");
+@import url("./sertification-pics.css");
+@import url("./partners.css");
+@import url("./personal-area.css");
+@import url("./about.css");
+@import url("./calendar.css");
+@import url("./popular-topics.css");
+@import url('./tab.css');
+
+@import url("./fix.css");
+
+@import url("./profile/notification.css");
+

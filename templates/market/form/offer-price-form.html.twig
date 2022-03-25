@@ -1,0 +1,54 @@
+<div class="offer-form-wrapper">
+    <h4 class="h4 marginBottom40px">{{ 'form_offer_price.title'|trans }}</h4>
+    <div class="offer-form-detail">
+        <div class="offer-form-detail-item">
+            <div class="offer-form-detail-item-title">{{ 'form_offer_price.item'|trans }}</div>
+            <div class="offer-form-detail-item-text">{{ comodity.title }}</div>
+        </div>
+        <div class="offer-form-detail-item">
+            <div class="offer-form-detail-item-title">
+                {{ 'form_offer_price.cost'|trans }}
+            </div>
+            <div class="offer-form-detail-item-text">
+                {{ comodity.price > 0
+                    ? "#{comodity.price|numberFormatAgro} #{comodity|getCurrencyTitle}"
+                    : 'market.product.list.priceNegotiated'|trans
+                }}
+            </div>
+        </div>
+    </div>
+    {{ form_start(form) }}
+    <div class="field field-input-text">
+        {{ form_label(form.name) }}
+        <div class="input-text-wrap">
+            {{ form_widget(form.name) }}
+        </div>
+        <div class="error">{{ form_errors(form.name) }}</div>
+    </div>
+
+    <div class="field field-input-text">
+        {{ form_row(form.phone) }}
+    </div>
+    <div class="field field-input-text">
+        {{ form_row(form.message) }}
+    </div>
+
+    <div class="field field-input-text">
+        <label>
+            <span>{{ 'form_offer_price.ofefer_price'|trans }}</span>
+            <i
+                    class="fas fa-info-circle js-tooltip green"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    data-original-title="Ваша ціна за кг, грн"
+                    data-original-title="{{ 'form_offer_price.ofefer_price'|trans }}"
+            ></i>
+        </label>
+        <div class="input-text-wrap">
+            {{ form_widget(form.price) }}
+        </div>
+        <div class="error show">{{ form_errors(form.price) }}</div>
+    </div>
+    {{ form_widget(form.save) }}
+    {{ form_end(form) }}
+</div>

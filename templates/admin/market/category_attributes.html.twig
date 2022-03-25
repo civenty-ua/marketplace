@@ -1,0 +1,184 @@
+<div
+    class="market-category-edit-attributes-bar"
+    data-names-prefix="{{ full_name }}"
+>
+    {% for attributeParameter in [null]|merge(attributesExist) %}
+        {% set itemIndex = loop.index %}
+        <div
+            class="
+                attribute-block
+                {% if (attributeParameter is empty) %}template{% endif %}
+            "
+            data-attribute-type="{{ attributeParameter is not empty ? attributeParameter.attribute.type : '' }}"
+            data-index="{{ itemIndex }}"
+        >
+            <span
+                class="
+                    btn
+                    btn-link
+                    btn-link-danger
+                    field-collection-delete-button
+                    delete-attribute
+                "
+                title="{{ 'admin.market.category.attributes_form.delete'|trans }}"
+            >
+                <i class="far fa-trash-alt"></i>
+            </span>
+            <input
+                type="hidden"
+                name="{{ full_name }}[{{ itemIndex }}][id]"
+                value="{{ attributeParameter is not empty ? attributeParameter.id : '' }}"
+                {% if (attributeParameter is empty) %}disabled{% endif %}
+            >
+            <label class="field attribute-type">
+                <span class="title">
+                    {{ 'admin.market.category.attributes_form.attribute'|trans }}
+                </span>
+                <select
+                    class="form-select"
+                    name="{{ full_name }}[{{ itemIndex }}][attribute]"
+                    {% if (attributeParameter is empty) %}disabled{% endif %}
+                >
+                    {% for attribute in attributesAll %}
+                        {% set isSelected =
+                            attributeParameter is not empty and
+                            attribute.id == attributeParameter.attribute.id
+                        %}
+                        <option
+                            value="{{ attribute.id }}"
+                            data-attribute-type="{{ attribute.type }}"
+                            {% if isSelected %}selected{% endif %}
+                            {% if
+                                not isSelected and
+                                attributesExist[attribute.id] is defined
+                            %}disabled{% endif %}
+                        >
+                            {% set attributeTitle   = attribute.title %}
+                            {% set typeTitle        = "admin.market.attribute.types.#{attribute.type}"|trans %}
+                            {% set codeTitle        = "admin.market.attribute.codes.#{attribute.code}"|trans %}
+
+                            {{ attribute.code
+                                ? "#{attributeTitle} [#{typeTitle} / #{codeTitle}]"
+                                : "#{attributeTitle} [#{typeTitle}]"
+                            }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </label>
+            <label class="field form-check form-switch">
+                <span class="title checkbox-switch form-check-label">
+                    {{ 'admin.market.category.attributes_form.required'|trans }}
+                </span>
+                <input
+                    type="checkbox"
+                    name="{{ full_name }}[{{ itemIndex }}][required]"
+                    class="form-check-input"
+                    value="1"
+                    {% if (attributeParameter is not empty and attributeParameter.required) %}checked{% endif %}
+                    {% if (attributeParameter is empty) %}disabled{% endif %}
+                >
+            </label>
+            <label class="field form-check form-switch">
+                <span class="title checkbox-switch form-check-label">
+                    {{ 'admin.market.category.attributes_form.showOnList'|trans }}
+                </span>
+                <input
+                    type="checkbox"
+                    name="{{ full_name }}[{{ itemIndex }}][show_on_list]"
+                    class="form-check-input"
+                    value="1"
+                    {% if (attributeParameter is not empty and attributeParameter.showOnList) %}checked{% endif %}
+                    {% if (attributeParameter is empty) %}disabled{% endif %}
+                >
+            </label>
+            <label class="field">
+                <span class="title">
+                    {{ 'admin.market.category.attributes_form.sort'|trans }}
+                </span>
+                <input
+                    type="number"
+                    name="{{ full_name }}[{{ itemIndex }}][sort]"
+                    class="form-control"
+                    value="{{ attributeParameter is not empty ? attributeParameter.sort : '' }}"
+                    {% if (attributeParameter is empty) %}disabled{% endif %}
+                    required
+                >
+            </label>
+            <label class="field form-check form-switch field-list-sort">
+                <span class="title checkbox-switch form-check-label">
+                    {{ 'admin.market.category.attributes_form.listSortAlphabetic'|trans }}
+                </span>
+                <input
+                    type="checkbox"
+                    name="{{ full_name }}[{{ itemIndex }}][list_sort_alphabetic]"
+                    class="form-check-input"
+                    value="1"
+                    {% if (attributeParameter is not empty and attributeParameter.listSortAlphabetic) %}checked{% endif %}
+                    {% if (attributeParameter is empty) %}disabled{% endif %}
+                >
+            </label>
+            <div class="field-list-values">
+                <span class="title">
+                    {{ 'admin.market.category.attributes_form.list_values'|trans }}
+                </span>
+                <div class="values-bar">
+                    {% set attributeListValues = attributeParameter is not empty and attributeParameter.categoryAttributeListValues is not empty
+                        ? attributeParameter.categoryAttributeListValues
+                        : [null]
+                    %}
+                    {% for attributeListValue in attributeListValues %}
+                        <div data-index="{{ loop.index }}">
+                            <input
+                                type="hidden"
+                                name="{{ full_name }}[{{ itemIndex }}][list_values][{{ loop.index }}][id]"
+                                value="{{ attributeListValue is not empty ? attributeListValue.id : '' }}"
+                                {% if (attributeParameter is empty) %}disabled{% endif %}
+                            >
+                            <label>
+                                <input
+                                    class="form-control"
+                                    type="text"
+                                    name="{{ full_name }}[{{ itemIndex }}][list_values][{{ loop.index }}][value]"
+                                    value="{{ attributeListValue is not empty ? attributeListValue.value : '' }}"
+                                    {% if (attributeParameter is empty) %}disabled{% endif %}
+                                >
+                            </label>
+                            <span
+                                class="
+                                    btn
+                                    btn-link
+                                    field-collection-add-button
+                                    add-list-value
+                                "
+                                title="{{ 'admin.market.category.attributes_form.add'|trans }}"
+                            >
+                                <i class="fa fa-plus pr-1"></i>
+                            </span>
+                            <span
+                                class="
+                                    btn
+                                    btn-link
+                                    field-collection-delete-button
+                                    delete-list-value
+                                "
+                                title="{{ 'admin.market.category.attributes_form.delete'|trans }}"
+                            >
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <span class="
+        btn
+        btn-link
+        field-collection-add-button
+        add-attribute
+        {% if attributesAll|length == attributesExist|length %}disabled{% endif %}
+    ">
+        <i class="fa fa-plus pr-1"></i>
+        {{ 'admin.market.category.attributes_form.add'|trans }}
+    </span>
+</div>

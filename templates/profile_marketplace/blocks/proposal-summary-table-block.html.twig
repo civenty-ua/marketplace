@@ -1,0 +1,70 @@
+<div class="proposal-info">
+    {% if notification.title %}
+        <div>
+            <h4 class="h4 marginBottom20px">  {% if notification.commodity.isActive%}
+                <a href="{{ path(notification.commodity.commodityType ~'_detail',
+                    {'id':notification.commodity.id}) }}">
+                    Тема: {{ notification.title }}
+                </a>
+                {% else %}
+                    Тема: {{ notification.title }}
+                {% endif %}</h4>
+        </div>
+    {% endif %}
+    <div class="proposal-info-item marginBottom40px">
+        <div class="js-row proposal-info-item__title fontSize17-20px">
+        </div>
+    </div>
+    {% include 'profile_marketplace/blocks/kit-agreement-notification-mobile-list-block.twig' %}
+    {% include 'profile_marketplace/blocks/kit-agreement-notification-desktop-list-block.twig' %}
+    <div class="proposal-info__footer">
+        <div class="proposal-info__row">
+            <div class="proposal-info__col-name">Контакти</div>
+            <div class="proposal-info__col-value">{{ notification.sender.email }}</div>
+            <div class="proposal-info__col-value">{{ notification.phone ?? notification.sender.phone }}</div>
+        </div>
+
+        <div class="proposal-info__row">
+            <div class="proposal-info__col-name">Повідомлення дійсне до:</div>
+            <div class="proposal-info__col-value">
+                <div class="proposal-info__period">
+                    <div class="fontSize15-20px green"> <br>
+                        {{ notification.commodity.activeTo | format_datetime() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% set summary = 0 %}
+        {% for commodity in notification.commodity.commodities%}
+            {% set summary = summary + commodity.price %}
+        {% endfor %}
+        <div class="proposal-info__row">
+            <div class="product-price-item">
+
+                <div class="proposal-info__col-name">
+                    {{ 'market.profile.kitForm.summaryInformation.commoditySummary'|trans }}
+                </div>
+                <div class="grey1">
+                    <strong class="fontSize20px">
+                        {{ summary|numberFormatAgro }}
+                    </strong>
+                    {{ 'market.currency.short'|trans }}
+                </div>
+                <br>
+
+                <div class="proposal-info__col-name">
+                    {{ 'market.profile.kitForm.summaryInformation.kitPrice'|trans }}
+                </div>
+                <div class="green">
+                    <strong class="fontSize30px">
+                        {{ notification.commodity.price > 0
+                            ? "#{notification.commodity.price|numberFormatAgro} #{notification.commodity|getCurrencyTitle}"
+                            : 'market.product.list.priceNegotiated'|trans
+                        }}
+                    </strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

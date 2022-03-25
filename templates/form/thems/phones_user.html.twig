@@ -1,0 +1,38 @@
+
+<div class="js-phone-row-item phone-row-item">
+    <div class="field field-input-text">
+        <label class="field-label-wrapper">
+            <span class="field-label-require">
+                {{ form_label(form.phone) }} <i class=" fas fa-star-of-life"></i>
+            </span>
+        </label>
+        <div class="input-text-wrap">
+            {{ form_widget(form.phone) }}
+        </div>
+        <div class="error">{{ form_errors(form.phone) }}</div>
+    </div>
+
+    <div class="field">
+        <label>Мессенджер на цьому телефоні</label>
+        <div class="field-checkbox-group">
+            <div class="checkbox-wrap">
+                <label>
+                    {{ form_widget(form.isViber) }}
+                    <span>Viber</span>
+                </label>
+            </div>
+            <div class="checkbox-wrap">
+                <label>
+                    {{ form_widget(form.isTelegram) }}
+                    <span>Telegram</span>
+                </label>
+            </div>
+            <div class="checkbox-wrap">
+                <label>
+                    {{ form_widget(form.isWhatsApp) }}
+                    <span>Whatsapp</span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

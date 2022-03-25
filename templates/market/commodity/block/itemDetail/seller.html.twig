@@ -1,0 +1,67 @@
+<div class="product-seller-inner-wrapper">
+    {# ------------------------------------------- #}
+    {# image #}
+    {# ------------------------------------------- #}
+    {% include 'market/user/block/avatar.html.twig' with {
+        'user'  : item.user,
+        'class' : 'product-seller__image',
+    } only %}
+    {# ------------------------------------------- #}
+    {# right block #}
+    {# ------------------------------------------- #}
+    <div class="product-seller-info">
+        <a
+            href="{{ path('market_user_detail', {'id' : item.user.id }) }}"
+            class="product-seller-info__name"
+        >
+            {{ item.user.name }}
+        </a>
+        {% set userRoles = item.user|marketUserPrintableRoles %}
+        {% if userRoles|length > 0 %}
+            <span class="product-seller-info__position">
+                {{ userRoles }}
+            </span>
+        {% endif %}
+        <div class="product-seller-info__rating">
+            <div class="{{ userCanRate == true ? 'js-rating' : 'js-rating-readonly' }} rating"
+                 data-score="{{ rate }}"
+                 data-half="y"
+                 data-action="{{ path('user_estimate',{'id': item.user.id}) }}"></div>
+            <span>{{ rate }}</span>
+        </div>
+        {% if (app.user ?? null) is not null %}
+            {% for phone in item.userDisplayPhones %}
+                <span class="product-seller-info__item">
+                    <i class="fas fa-phone"></i>
+                    {% include 'market/user/block/partlyHiddenField.html.twig' with {
+                        'userId'    : item.user.id,
+                        'field'     : 'phone',
+                        'valueId'   : phone.id,
+                        'value'     : phone.phone,
+                        'title'     : 'market.product.detail.showPhone'|trans,
+                    } only %}
+                </span>
+            {% endfor %}
+            <span class="product-seller-info__item">
+                <i class="far fa-envelope"></i>
+                {% include 'market/user/block/partlyHiddenField.html.twig' with {
+                    'userId'    : item.user.id,
+                    'field'     : 'email',
+                    'value'     : item.user.email,
+                    'title'     : 'market.product.detail.showEmail'|trans,
+                } only %}
+            </span>
+        {% endif %}
+        {% if item.user.region %}
+            <div class="product-seller-info__item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>{{ item.user.region.name }}</span>
+            </div>
+        {% endif %}
+    </div>
+    {% if (item ?? null) is not null %}
+    <span class="square-button height-50 orange-bg-button" data-market-href="{{ path('bid_offer_form', {'itemId': item.id}) }}">
+        {{ 'market.product.detail.sellerGetContact'|trans }}
+    </span>
+    {% endif %}
+</div>

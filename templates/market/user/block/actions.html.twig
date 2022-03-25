@@ -1,0 +1,124 @@
+{% set isAuthorized     = (app.user ?? null) is not null %}
+{% set isCurrentUser    = isAuthorized and app.user == user %}
+{% set userIsInFavorite = user.favorites|length > 0 %}
+{# ------------------------------------------- #}
+{# main action calculating #}
+{# ------------------------------------------- #}
+{% set mainActionsCondition = {
+    'kitCreatingAdd'    : true,
+    'view'              : true,
+} %}
+{% set mainAction           = (mainActionsCondition[mainAction] ?? false) == true
+    ? mainAction
+    : null
+%}
+
+{% if not mainAction and mainActionsCondition['view'] == true %}
+    {% set mainAction = 'view' %}
+{% endif %}
+{# ------------------------------------------- #}
+{# sub-actions calculating #}
+{# ------------------------------------------- #}
+{% set subActionsCondition  = {
+    'view'                  : true,
+    'toFavoriteToggle'      : isAuthorized and not isCurrentUser,
+    'removeFromFavorite'    : isAuthorized and not isCurrentUser and userIsInFavorite,
+} %}
+{% set subActionsIncome     = actions %}
+{% set actions              = [] %}
+
+{% for subAction in subActionsIncome %}
+    {% if (subActionsCondition[subAction] ?? false) == true and subAction != mainAction %}
+        {% set actions = actions|merge([subAction]) %}
+    {% endif %}
+{% endfor %}
+{# ------------------------------------------- #}
+{# output #}
+{# ------------------------------------------- #}
+<div class="
+    product-item__button
+    {% if not mainAction %}empty{% endif %}
+    {% if actions|length > 0 %}has-sub-actions{% endif %}
+">
+    {# ------------------------------------------- #}
+    {# main action (KIT ADD) #}
+    {# ------------------------------------------- #}
+    {% if mainAction == 'kitCreatingAdd' %}
+        <span
+            class="square-button buy js-kit-creating-user-add"
+            data-id="{{ user.id }}"
+        >
+            {{ 'market.user.list.actions.kitAddCommodity'|trans }}
+        </span>
+    {# ------------------------------------------- #}
+    {# main action (VIEW) #}
+    {# ------------------------------------------- #}
+    {% elseif mainAction == 'view' %}
+        <a
+            class="square-button buy"
+            href="{{ path('market_user_detail', {'id' : user.id}) }}"
+        >
+            {{ 'market.user.list.actions.detail'|trans }}
+        </a>
+    {% endif %}
+    {# ------------------------------------------- #}
+    {# subactions list #}
+    {# ------------------------------------------- #}
+    {% if actions|length > 0 %}
+        <span
+            class="square-button more dropdown-toggle-split"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+        >
+            <i class="fas fa-ellipsis-h"></i>
+        </span>
+        <div class="dropdown-menu">
+            {# ---------------------------- #}
+            {# view detail #}
+            {# ---------------------------- #}
+            {% if 'view' in actions %}
+                <a href="{{ path('market_user_detail', {'id' : user.id}) }}" class="dropdown-item">
+                    <i class="far fa-eye"></i>
+                    <span>
+                        {{ 'market.user.list.actions.detailAlt'|trans }}
+                    </span>
+                </a>
+            {% endif %}
+            {# ---------------------------- #}
+            {# favorites toggle #}
+            {# ---------------------------- #}
+            {% if 'toFavoriteToggle' in actions %}
+                <span
+                    class="
+                        dropdown-item
+                        item-favorite-toggle
+                        {% if user.favorites|length > 0 %}added{% endif %}
+                    "
+                    data-action-url="{{ path('user_to_favorite_toggle', {'id' : user.id}) }}"
+                >
+                    <span class="already-exist">
+                        <i class="fas fa-heart-broken"></i>
+                        <span>{{ 'market.user.list.actions.favoriteRemove'|trans }}</span>
+                    </span>
+                    <span class="not-exist">
+                        <i class="fas fa-heart"></i>
+                        <span>{{ 'market.user.list.actions.favoriteAdd'|trans }}</span>
+                    </span>
+                </span>
+            {% endif %}
+            {# ---------------------------- #}
+            {# remove from favorites #}
+            {# ---------------------------- #}
+            {% if 'removeFromFavorite' in actions %}
+                <span
+                    class="dropdown-item item-favorite-remove"
+                    data-action-url="{{ path('user_to_favorite_toggle', {'id' : user.id}) }}"
+                >
+                    <i class="fas fa-heart-broken"></i>
+                    <span>{{ 'market.product.list.actions.favoriteRemove'|trans }}</span>
+                </span>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>

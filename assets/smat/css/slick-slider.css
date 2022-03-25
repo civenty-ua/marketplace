@@ -1,0 +1,95 @@
+.slick-dots {
+	margin-top: 20px;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+}
+
+.slick-dots li {
+	display: block;
+	position: relative;
+	width: 35px;
+	height: 35px;
+	cursor: pointer;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	-webkit-transition: all 0.15s ease 0s;
+	-ms-transition: all 0.15s ease 0s;
+	transition: all 0.15s ease 0s;
+}
+
+.slick-dots li:only-child {
+	display: none;
+}
+
+.slick-dots li button {
+	display: block;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.slick-dots li::before {
+	display: block;
+	position: absolute;
+	content: '';
+	z-index: 2;
+	top: 50%;
+	left: 50%;
+	cursor: pointer;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	width: 6px;
+	height: 6px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	background-color: #C1C1C1;
+	-webkit-transition: all 0.15s ease 0s;
+	-ms-transition: all 0.15s ease 0s;
+	transition: all 0.15s ease 0s;
+}
+
+.slick-dots li.slick-active::before {
+	width: 10px;
+	height: 10px;
+	background-color: #007A33;
+}
+
+.green-bg .slick-dots li.slick-active::before {
+	background-color: #ffffff;
+}
+
+.body-desktop-device .slick-dots li:hover {
+	background-color: #F3F5F6;
+}
+
+.body-desktop-device .slick-dots li:hover::before,
+.body-desktop-device .slick-dots li:active::before,
+.body-mobile-device .slick-dots li:active::before {
+	width: 10px;
+	height: 10px;
+}
+
+.body-desktop-device .green-bg .slick-dots li:hover::before,
+.body-desktop-device .green-bg .slick-dots li:active::before,
+.body-mobile-device .green-bg .slick-dots li:active::before {
+	background-color: #007A33;
+}
+
+.body-desktop-device .slick-dots li:active,
+.body-mobile-device .slick-dots li:active {
+	background-color: #D8D8D8;
+}
+
+

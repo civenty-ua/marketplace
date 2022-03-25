@@ -1,0 +1,32 @@
+{# ------------------------------------------- #}
+{# attributes parameters by ID #}
+{# ------------------------------------------- #}
+{% set attributesParametersById = {} %}
+
+{% for attributeParameters in item.category.categoryAttributesParameters %}
+    {% set attributesParametersById = attributesParametersById|merge({
+        ("attribute-#{attributeParameters.attribute.id}") : attributeParameters
+    }) %}
+{% endfor %}
+{# ------------------------------------------- #}
+{# attributes printable parameters data set #}
+{# ------------------------------------------- #}
+{% for attributeValue in item.commodityAttributesValues %}
+    {% if
+        attributesParametersById["attribute-#{attributeValue.attribute.id}"] is defined and
+        attributesParametersById["attribute-#{attributeValue.attribute.id}"].showOnList and
+        attributeValue.attribute.code not in attributeValue.attribute.availableSpecialCodes
+    %}
+        {% set printableValue = attributeValue|getAttributePrintableValue %}
+        {% if printableValue|length > 0 %}
+            <div class="product-item-description-row">
+                <div class="product-item-description__property">
+                    {{ attributeValue.attribute.title }}:
+                </div>
+                <div class="product-item-description__value">
+                    {{ printableValue }}
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endfor %}

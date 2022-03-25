@@ -1,0 +1,10 @@
+{% set newsBanner = 'news_banner_image' %}
+{% set newsBannerImageLink = 'news_banner_image_link' %}
+{% if newsBanner in op|keys and newsBannerImageLink in op|keys %}
+    <a href="{{ op['news_banner_image_link']['value'] }}">
+        <div class="top-image-large">
+            <img class="top-image-large__img" src="{{ op['news_banner_image']['value'] }}"
+                 alt="{{ op['news_banner_image']['value'] }}">
+        </div>
+    </a>
+{% endif %}

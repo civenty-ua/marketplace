@@ -1,0 +1,9 @@
+<div id="review" class="tab">
+    {% for item in review %}
+        <div class="review-item">
+            <div class="review__title">{{ item['username'] }}</div>
+            <div class="review__subtitle"></div>
+            <div>{{ item['answer'] }}</div>
+        </div>
+    {% endfor %}
+</div>

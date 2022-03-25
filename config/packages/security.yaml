@@ -1,0 +1,56 @@
+security:
+    encoders:
+        App\Entity\User:
+            algorithm: auto
+    always_authenticate_before_granting: true
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+            lazy: true
+            provider: app_user_provider
+            form_login:
+                login_path: login
+                check_path: login
+            guard:
+                authenticators:
+                    - App\Security\LoginFormAuthenticator
+            user_checker: App\Security\BannedUserChecker
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+    role_hierarchy:
+        ROLE_SERVICE_PROVIDER: ROLE_USER
+        ROLE_WHOLESALE_BUYER: ROLE_USER
+        ROLE_SALESMAN: ROLE_USER
+        ROLE_ADMIN: ROLE_USER
+        ROLE_ADMIN_EDUCATION: ROLE_USER
+        ROLE_ADMIN_MARKET: [ROLE_WHOLESALE_BUYER, ROLE_SALESMAN, ROLE_SERVICE_PROVIDER]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN_EDUCATION, ROLE_ADMIN_MARKET, ROLE_ADMIN ]
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        - { path: ^/admin, roles: [ROLE_SUPER_ADMIN, ROLE_ADMIN_EDUCATION, ROLE_ADMIN_MARKET] }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/lesson, roles: ROLE_USER }
+        - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/profile/form-bayer, role: ROLE_USER }
+        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+

@@ -1,0 +1,16 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        {% for key,item in table %}
+            <th scope="col">{{ key }}</th>
+        {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% for item in table %}
+            <td>{{ item }}</td>
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>

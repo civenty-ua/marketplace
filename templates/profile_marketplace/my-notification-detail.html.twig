@@ -1,0 +1,161 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'profile.title'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <ul class="breadcrumbs">
+            <li><a href="{{ path('home') }}">{{ 'home.home'|trans }}</a></li>
+            <li>{{ 'profile.title'|trans }}</li>
+        </ul>
+
+        <h1 class="h1">
+            <strong>{{ 'profile.title'|trans }}</strong>
+        </h1>
+
+        <div class="section__subtitle">Повідомлення
+            від {{ notification.sender ? notification.sender.name : 'Система' }}</div>
+
+        <div class="tabs-personal-area personal-area__wrapper">
+            {% set tabSelected = 'marketplace' %}
+            <div class="tabs__navigation-wrapper">
+                {% include 'profile/blocks/tabs.html.twig' with {
+                    'selected' : tabSelected,
+                } only %}
+            </div>
+
+            <div class="personal-area marketplace personal-area__wrapper">
+                <div class="filter-wrapper">
+                    <a href="javascript:void(0)" class="js-mobile-filter__open filter__button">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#filter"></use>
+                        </svg>
+                        <span>{{ 'item.filters'|trans }}</span>
+                    </a>
+                </div>
+
+                <div class="personal-area__inner">
+                    {% include 'profile_marketplace/blocks/personal-area-sidebar.html.twig' %}
+
+                    <div class="personal-area-center__tabs-wrapper">
+                        <div class="personal-area-center__tab">
+                            <div class="filter-bar filter-bar_nav">
+                                <a class="square-button borderless black" href="{{ path('my_notifications') }}">
+                                    <svg>
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-left"></use>
+                                    </svg>
+                                    <span>Всі повідомлення</span>
+                                </a>
+                                {% if notification.isActive == true %}
+                                    <a class="square-button borderless black"
+                                       href="{{ path('notification_delete',{'id': notification.id}) }}">
+                                        <svg>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#delete"></use>
+                                        </svg>
+                                        <span>Видалити</span>
+                                    </a>
+                                {% endif %}
+                            </div>
+
+                            <div class="marginBottom20px">
+                                <div class="fontSize12px marginBottom5px">Від кого:</div>
+                                <div class="product-seller">
+                                    <div class="product-seller-inner-wrapper product-seller__detail-notification">
+                                        <div>
+                                            {% set usersImagesFolder    = '/upload/user/avatar' %}
+                                            {% set userDefaultImage     = '/main/default-avatar.png' %}
+                                            {% set userAvatar           = notification.sender and notification.sender.avatar
+                                                ? usersImagesFolder ~ '/' ~ notification.sender.avatar
+                                                : userDefaultImage %}
+                                            <img class="product-seller__image"
+                                                 src="{{ notification.sender ? userAvatar : userDefaultImage }}"
+                                                 alt="">
+                                            <div class="product-seller-info">
+                                                {% if notification.sender %}
+                                                    <a class="product-seller-info__name"
+                                                   href="{{ path('market_user_detail', {'id' : notification.sender.id}) }}">{{ notification.sender.name }}</a>
+                                                {% else %}
+                                                <span>Система</span>
+                                                 {% endif %}
+                                                <span class="product-seller-info__position">{{ notification.sender ? notification.sender.currentNameRolesString : '' }}</span>
+                                                {% if notification.sender %}
+                                                    <div class="product-seller-info__rating">
+                                                        <div class="js-rating-readonly rating" data-score="{{ rate }}"></div>
+                                                        <span>{{ rate }}</span>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        {% if notification.sender %}
+                                            <div>
+                                                {% if notification.sender.mainPhone is defined %}
+                                                    <a href="javascript:void(0)" class="product-seller-info__item">
+                                                        <i class="fas fa-phone"></i>
+                                                        <span class="js-row phone product-seller-info__item-text">
+                                                        {{ notification.sender.mainPhone ?? notification.sender.phone }}
+                                                    </span>
+                                                    </a>
+                                                {% endif %}
+                                                {% if notification.sender.email is defined  and notification.sender.email %}
+                                                    <a href="javascript:void(0)" class="product-seller-info__item">
+                                                        <i class="far fa-envelope"></i>
+                                                        <span class="email product-seller-info__item-text">
+                                                        {{ notification.sender.email }}
+                                                    </span>
+                                                    </a>
+                                                {% endif %}
+                                                {% if notification.sender.address|trim|length > 0 %}
+                                                    <div class="product-seller-info__item">
+                                                        <i class="fas fa-map-marker-alt"></i>
+                                                        <span>{{ notification.sender.address }}</span>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                {% if notification.title %}
+                                    <div>
+                                        <h4 class="h4 marginBottom20px">
+                                            {% if notification.commodity is defined and
+                                                notification.commodity  is not null and
+                                                notification.commodity.isActive
+                                            %}
+                                            <a href="{{ path(notification.commodity.commodityType ~'_detail',
+                                                {'id':notification.commodity.id}) }}">
+                                                Тема:{{ ' '~notification.title }}
+                                            </a>
+                                                {% else %}
+                                                    Тема:{{ ' '~notification.title }}
+                                            {% endif %}
+
+                                        </h4>
+                                    </div>
+                                {% endif %}
+                                <div class="fontSize12px marginBottom5px">{{ notification.createdAt|format_datetime() }}</div>
+                                <div class="fontSize15-17px">
+                                    {{ notification.message }}
+                                </div>
+                                {% if notification.price is defined %}
+                                    <div class="green">
+                                        <strong class="fontSize30px">
+                                            {{ notification.commodity.price > 0
+                                                ? "#{notification.commodity.price|numberFormatAgro} #{notification.commodity|getCurrencyTitle}"
+                                                : 'market.product.list.priceNegotiated'|trans
+                                            }}
+                                        </strong>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% include 'profile_marketplace/blocks/personal-area-sidebar-mobile.html.twig' %}
+        </div>
+    </div>
+{% endblock %}

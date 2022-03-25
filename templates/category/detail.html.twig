@@ -1,0 +1,112 @@
+{% extends 'layout/content.html.twig' %}
+
+{% block title %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_title }}
+    {% else %}
+        {{ category.name }}
+    {% endif %}
+{% endblock %}
+
+{% block description %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_description }}
+    {% endif %}
+{% endblock %}
+
+{% block keywords %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_keywords }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% if category.banner %}
+        {% include 'category/blocks/banner.html.twig' %}
+    {% endif %}
+
+    <div class="section">
+        {% include 'category/blocks/breadcrumbs.html.twig' %}
+
+        <h1 class="h1"><strong>{{ category.name }}</strong></h1>
+
+        <div class="content-wrapper">
+            {{ category.content|raw|fileparser }}
+        </div>
+    </div>
+
+    {% if promoCourse %}
+        {% include 'blocks/course-promo-block.html.twig' with {'course': promoCourse} %}
+    {% endif %}
+
+    {% if learning %}
+        {% include 'blocks/item-carousel-block.html.twig' with {
+            'title': learningTitle,
+            'items': learning,
+            'link': path('courses_and_webinars')
+        } %}
+    {% endif %}
+
+    {% if articles %}
+        {% include 'blocks/item-carousel-block.html.twig' with {
+            'title': articleTitle,
+            'items': articles,
+            'link': path('courses_and_webinars') ~ '?type=article'
+        } %}
+    {% endif %}
+
+    {% if businessTools %}
+        {% include 'blocks/business-tools-block.html.twig' with {'pagesList' : businessTools} %}
+    {% endif %}
+
+    {% include 'blocks/program-support-promo-block.html.twig' %}
+
+    {% if successStories %}
+        {% include 'blocks/page-carousel-block.html.twig' with {
+            'title': 'menu.about_us.success_stories'|trans,
+            'items': successStories,
+            'link': path('success_stories_list')
+        } %}
+    {% endif %}
+
+    {% if videos %}
+        {% include 'blocks/video-carousel-block.html.twig' with {
+            'title': 'home.interesting_videos'|trans,
+            'items': videos,
+            'link': path('courses_and_webinars')
+        } %}
+    {% endif %}
+
+    {% if news %}
+        {% include 'blocks/page-carousel-block.html.twig' with {
+            'title': 'home.news'|trans,
+            'type': 'news',
+            'items': news,
+            'link': path('news_list')
+        } %}
+    {% endif %}
+
+    {% if category.certification %}
+        {% include 'category/blocks/certification.html.twig' %}
+    {% endif %}
+
+    {% if partners %}
+        {% include 'category/blocks/partners.html.twig' %}
+    {% endif %}
+    <div class="section">
+        <div class="content-wrapper-bottom">
+            {{ category.bottomContent|raw|fileparser }}
+        </div>
+    </div>
+
+    {% if tags %}
+        <div class="section">
+            <div class="category-container marginBottom40px marginLeft20px">
+                {% for tag in tags %}
+                    <a href="{{ path('tag_detail', {'slug': tag.slug}) }}" class="category-item">{{ tag.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

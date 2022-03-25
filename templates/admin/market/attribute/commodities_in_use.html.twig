@@ -1,0 +1,62 @@
+{% set categoriesById       = {} %}
+{% set commoditiesAmount    = {} %}
+
+{% for commodity in commodities %}
+    {% set index = "category-#{commodity.category.id}" %}
+
+    {% if categoriesById[index] is not defined %}
+        {% set categoriesById = categoriesById|merge({
+            (index) : commodity.category,
+        }) %}
+    {% endif %}
+    {% if commoditiesAmount[index] is not defined %}
+        {% set commoditiesAmount = commoditiesAmount|merge({
+            (index) : 0,
+        }) %}
+    {% endif %}
+
+    {% set commoditiesAmount = commoditiesAmount|merge({
+        (index) : commoditiesAmount[index] + 1,
+    }) %}
+{% endfor %}
+{# ------------------------------------------- #}
+{# output #}
+{# ------------------------------------------- #}
+<div
+    class="market-attribute-edit-usage-bar"
+    data-submit-confirm-message="{{ 'admin.market.attribute.usageBar.preSubmitAlert'|trans }}"
+>
+    <div class="alert-message">
+        <div class="title">{{ 'admin.market.attribute.usageBar.title'|trans }}</div>
+        <div class="message">{{ 'admin.market.attribute.usageBar.message'|trans }}</div>
+    </div>
+    <div class="categories-list">
+        <span class="message">{{ 'admin.market.attribute.usageBar.categoriesInUse'|trans }}:</span>
+        <ul>
+            {% for key, category in categoriesById %}
+                <li>
+                    {% set categoryController   = category.commodityType == constant(
+                        'App\\Entity\\Market\\Commodity::TYPE_PRODUCT'
+                    )
+                        ? 'App\\Controller\\Admin\\Market\\CategoryProductCrudController'
+                        : 'App\\Controller\\Admin\\Market\\CategoryServiceCrudController'
+                    %}
+                    {% set commoditiesTitle     = category.commodityType == constant(
+                        'App\\Entity\\Market\\Commodity::TYPE_PRODUCT'
+                    )
+                        ? 'admin.market.attribute.usageBar.commodities.products'|trans
+                        : 'admin.market.attribute.usageBar.commodities.services'|trans
+                    %}
+                    {% set categoryEditLink     = ea_url()
+                        .setController(categoryController)
+                        .setAction(constant('EasyCorp\\Bundle\\EasyAdminBundle\\Config\\Action::EDIT'))
+                        .setEntityId(category.id)
+                    %}
+                    <a href="{{ categoryEditLink }}" target="_blank">
+                        {{ category.title }} ({{ commoditiesAmount[key] }} {{ commoditiesTitle }})
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

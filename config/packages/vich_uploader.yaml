@@ -1,0 +1,24 @@
+vich_uploader:
+    db_driver: orm
+    mappings:
+        article_image:
+            uri_prefix: /upload/article
+            upload_destination: '%kernel.project_dir%/public/upload/article'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        category_banner_image:
+            uri_prefix: /upload/category/banner
+            upload_destination: '%kernel.project_dir%/public/upload/category/banner'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        certificate_file:
+            uri_prefix: /upload/certificate
+            upload_destination: '%kernel.project_dir%/public/upload/certificate'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        commodity_product_image:
+            uri_prefix: /upload/product
+            upload_destination: '%kernel.project_dir%/public/upload/product'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        commodity_service_image:
+            uri_prefix: /upload/service
+            upload_destination: '%kernel.project_dir%/public/upload/service'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

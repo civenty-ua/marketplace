@@ -1,0 +1,11 @@
+{% extends '@EasyAdmin/crud/edit.html.twig' %}
+
+{% block edit_form %}
+    {{ parent() }}
+
+    {% if commoditiesInUse|length > 0 %}
+        {% include 'admin/market/attribute/commodities_in_use.html.twig' with {
+            'commodities' : commoditiesInUse,
+        } only %}
+    {% endif %}
+{% endblock edit_form %}

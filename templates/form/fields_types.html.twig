@@ -1,0 +1,140 @@
+{% block feedback_form_rate_field_row %}
+    <div class="form-block rate-field-row">
+        <label for="{{ id }}">
+            {{ label }}
+            {% if tooltip|length %}
+                {{ block('feedback_form_tooltip_row') }}
+            {% endif %}
+        </label>
+        {{- form_errors(form) -}}
+        <div
+                id="{{ id }}"
+                class="js-rating rating"
+                data-score="{{ value }}"
+                data-score-name="{{ full_name }}"
+        ></div>
+    </div>
+{% endblock feedback_form_rate_field_row %}
+
+{% block feedback_form_string_field_row %}
+    <div class="form-block">
+        <label for="{{ id }}">
+            {{ label }}
+            {% if tooltip|length %}
+                {{ block('feedback_form_tooltip_row') }}
+            {% endif %}
+        </label>
+        {{- form_errors(form) -}}
+        <input
+                type="text"
+                class="form-text"
+                {{ block('widget_attributes') }}
+                value="{{ value }}"
+        >
+    </div>
+{% endblock feedback_form_string_field_row %}
+
+{% block feedback_form_number_field_row %}
+    <div class="form-block">
+        <label for="{{ id }}">
+            {{ label }}
+            {% if tooltip|length %}
+                {{ block('feedback_form_tooltip_row') }}
+            {% endif %}
+        </label>
+        {{- form_errors(form) -}}
+        <input
+                type="number"
+                class="form-text"
+                {{ block('widget_attributes') }}
+                value="{{ value }}"
+        >
+    </div>
+{% endblock feedback_form_number_field_row %}
+
+{% block feedback_form_tooltip_row %}
+    <i
+            class="fas fa-info-circle js-tooltip"
+            data-toggle="tooltip"
+            data-placement="top"
+            data-original-title="{{ tooltip }}"
+    ></i>
+{% endblock feedback_form_tooltip_row %}
+
+{% block choice_with_link_field_row %}
+    <div class="form-block checkbox-with-link">
+        <label class="checkbox">
+            <input
+                type="checkbox"
+                {{ block('widget_attributes') }}
+                value="1"
+            >
+            <span class="checkmark"></span>
+        </label>
+        <a href="{{ link }}" target="_blank">
+            {{ block('field_title_row') }}
+        </a>
+    </div>
+{% endblock choice_with_link_field_row %}
+{% block pretty_checkbox_row %}
+     <label class="checkbox marginBottom40px">
+     <span class="checkbox__title">{{ 'form_registration.remember'|trans }}</span>
+     <input type="checkbox" {{ block('widget_attributes') }} value="1">
+     <span class="checkmark"></span>
+     </label>
+{% endblock %}
+
+{% block field_title_row %}
+    {%- if translation_domain is same as(false) -%}
+        {%- if label_html is same as(false) -%}
+            {{- label -}}
+        {%- else -%}
+            {{- label|raw -}}
+        {%- endif -%}
+    {%- else -%}
+        {%- if label_html is same as(false) -%}
+            {{- label|trans(label_translation_parameters, translation_domain) -}}
+        {%- else -%}
+            {{- label|trans(label_translation_parameters, translation_domain)|raw -}}
+        {%- endif -%}
+    {%- endif -%}
+{% endblock field_title_row %}
+{# ------------------------------------------- #}
+{# profile market fields #}
+{# ------------------------------------------- #}
+{% block profile_market_text_field_row %}
+    {% include 'form/fields/profile/market/text.html.twig' %}
+{% endblock %}
+{% block profile_market_textarea_field_row %}
+    {% include 'form/fields/profile/market/textarea.html.twig' %}
+{% endblock %}
+{% block profile_market_number_field_row %}
+    {% include 'form/fields/profile/market/number.html.twig' %}
+{% endblock %}
+{% block profile_market_checkbox_field_row %}
+    {% include 'form/fields/profile/market/checkbox.html.twig' %}
+{% endblock %}
+{% block profile_market_image_field_row %}
+    {% include 'form/fields/profile/market/image.html.twig' %}
+{% endblock %}
+{% block profile_market_select_field_row %}
+    {% include 'form/fields/profile/market/select.html.twig' %}
+{% endblock %}
+{% block profile_market_commodity_attributes_field_row %}
+    {% include 'form/fields/profile/market/commodityAttributes.html.twig' %}
+{% endblock %}
+{% block profile_market_kit_commodities_field_row %}
+    {% include 'form/fields/profile/market/kitCommodities.html.twig' %}
+{% endblock %}
+{% block profile_market_role_phone_row %}
+    {% include 'form/fields/profile/role/phone-collection-field.html.twig' %}
+{% endblock %}
+{% block profile_market_role_collection_row %}
+    {% include 'form/fields/profile/role/collection-field.html.twig' %}
+{% endblock %}
+{% block profile_market_certificate_row %}
+    {% include 'form/fields/profile/role/certificate-collection-field.html.twig' %}
+{% endblock %}
+{% block profile_market_role_submit_row %}
+    {% include 'form/fields/profile/role/submit-field.html.twig' %}
+{% endblock %}

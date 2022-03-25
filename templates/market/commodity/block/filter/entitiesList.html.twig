@@ -1,0 +1,19 @@
+<div class="select-wrap">
+    <select
+        name="{{ name }}{% if multiple == true %}[]{% endif %}"
+        class="js-select2"
+        {% if multiple %}multiple{% endif %}
+    >
+        {% if emptyValue == true and not multiple%}
+            <option value=""></option>
+        {% endif %}
+        {% for entity in entities %}
+            <option
+                value="{{ entity.id }}"
+                {% if entity.id in values %}selected{% endif %}
+            >
+                {{ attribute(entity, titlePropertyName) }}
+            </option>
+        {% endfor %}
+    </select>
+</div>

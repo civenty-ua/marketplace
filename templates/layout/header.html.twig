@@ -1,0 +1,200 @@
+{% block header %}
+    <header>
+        <div class="header-top">
+            <div class="header-top__social">
+                {% if op['facebook']['value'] is defined %}
+                    <a target="_blank" href="{{ op['facebook']['value'] }}" class="social-item-header">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
+                        </svg>
+                    </a>
+                {% endif %}
+                {% if op['twitter']['value'] is defined %}
+                    <a target="_blank" href="{{ op['twitter']['value'] }}" class="social-item-header">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
+                        </svg>
+                    </a>
+                {% endif %}
+                {% if op['youtube']['value'] is defined %}
+                    <a target="_blank" href="{{ op['youtube']['value'] }}" class="social-item-header">
+
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#youtube"></use>
+                        </svg>
+                    </a>
+                {% endif %}
+                {% if op['telegram']['value'] is defined %}
+                    <a target="_blank" href="{{ op['telegram']['value'] }}" class="social-item-header">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#telegram"></use>
+                        </svg>
+                    </a>
+                {% endif %}
+                {% if op['instagram']['value'] is defined %}
+                    <a target="_blank" href="{{ op['instagram']['value'] }}" class="social-item-header">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
+                        </svg>
+                    </a>
+                {% endif %}
+            </div>
+            <div class="header-top__right-block">
+                <div class="header-top__inner-left">
+                    {% if op['email']['value'] is defined %}
+                        <a href="mailto:{{ op['email']['value']|trim }}" class="header-top__item">
+                            <svg>
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
+                            </svg>
+                            <span>{{ op['email']['value']|trim }}</span>
+                        </a>
+                    {% endif %}
+                    {% if op['phone']['value'] is defined %}
+                        <div class="js-dropdown call-dropdown">
+                            <div class="js-dropdown__trigger header-top__item caret">
+                                <svg>
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#phone"></use>
+                                </svg>
+                                <div class="header-top__item-text">
+                                    <span>{{ op['phone']['value']|trim }}</span>
+                                    <span class="header-top__item-text-small">{{ 'header.calls_are_free'|trans }}</span>
+                                </div>
+                            </div>
+                            <div class="js-dropdown__content call-dropdown__content">
+                                <div class="call-dropdown__inner-wrapper">
+                                    {{ ('header.call_text'|trans)|raw }}
+                                    <a href="tel:{{ op['phone']['value'] | trim | replace({' ': ''}) }}"
+                                       class="square-button green-bg-button marginTop20px">{{ 'header.call'|trans }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                {% if app.user.email is not defined %}
+                    <div class="header-top__inner-right">
+                        <a href="{{ path('login') }}" class="header-top__item">
+                            <span>{{ 'header.login'|trans }}</span>
+                        </a>
+                        <a href="{{ path('app_register') }}" class="header-top__item">
+                            <span>{{ 'header.registration'|trans }}</span>
+                        </a>
+                        <select class="select-input language js-language-switcher">
+                            <option value="/en" {% if app.request.locale == "en" %} selected {% endif %}>{{ 'English'|trans }}</option>
+                            <option value="" {% if app.request.locale == "uk" %} selected {% endif %}>{{ 'Ukraine'|trans }}</option>
+                        </select>
+                    </div>
+                {% else %}
+                    <div class="header-top__inner-right">
+                        <a href="{{ path('market_profile_favorites_products') }}" class="header-top__item">
+                            <svg>
+                                <use xmlns:xlink="http://www.w3.org/2000/svg" xlink:href="#favorite"></use>
+                            </svg>
+                            <span>{{ 'header.favorites'|trans }}</span>
+                        </a>
+                        <div class="js-dropdown user-menu">
+                            <div class="js-dropdown__trigger user-menu__trigger">
+                                {% if app.user.avatar is empty %}
+                                    <div class="user-menu__avatar">
+                                        <svg>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#account"></use>
+                                        </svg>
+                                    </div>
+                                {% else %}
+                                    <div class="user-menu__avatar">
+                                        <img src="{{ user_avatar_asset(app.user, 'avatar') }}"
+                                             alt="{{ app.user.name }}"
+                                        >
+                                    </div>
+                                {% endif %}
+                                <span>{{ app.user.name }}</span>
+                            </div>
+                            <div class="js-dropdown__content user-menu__content">
+                                <div class="user-menu__inner-wrapper">
+                                    {% if app.user.avatar is empty %}
+                                        <div class="user-menu__content-avatar">
+                                            <svg>
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                     xlink:href="#account">
+                                                </use>
+                                            </svg>
+                                        </div>
+                                    {% else %}
+                                        <div class="user-menu__content-avatar">
+                                            <img src="{{ user_avatar_asset(app.user, 'avatar') }}"
+                                                 alt="{{ app.user.name }}"
+                                            >
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="user-menu__info">
+                                        <span>{{ app.user.name }}</span>
+                                        <span>{{ app.user.email }}</span>
+                                    </div>
+
+                                    <a href="{{ path('app_profile') }}"
+                                       class="user-menu__item"
+                                    >
+                                        {{ 'header.my_profile' | trans }}
+                                    </a>
+                                    <a href="{{ path('app_logout') }}"
+                                       class="user-menu__item"
+                                    >
+                                        {{ 'header.logout' | trans }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <select class="select-input language js-language-switcher">
+                            <option value="/en" {% if app.request.locale == "en" %} selected {% endif %}>{{ 'English'|trans }}</option>
+                            <option value="" {% if app.request.locale == "uk" %} selected {% endif %}>{{ 'Ukraine'|trans }}</option>
+                        </select>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="header__inner-wrapper">
+            <div class="header-logo">
+                <a class="header-logo__item" href="{{ path('home') }}">
+                    <img src="{{ asset('images/logo-1.svg') }}" alt="{{ 'title'|trans }}" height="30">
+                </a>
+            </div>
+
+            <div class="header-search">
+                <form
+                        data-locale="{{ app.request.locale }}"
+                        class="js-search-all width100"
+                        action="{{ path('search-all') }}" method="get">
+                    <div class="search">
+                        <div class="js-search-input">
+                            <input type="text" class="search-input" value="{{ app.request.get('q') }}"
+                                   placeholder="{{ 'header.i_am_looking_for'|trans }}">
+                            <div class="js-search-input__clear"
+                                 data-clear-tooltip-title="{{ 'clear-tooltip'|trans }}"></div>
+                        </div>
+                        <button type="submit" class="js-tooltip search__button" data-toggle="tooltip"
+                                data-placement="auto" title="{{ 'search-tooltip'|trans }}">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="mobile-block-favorite">
+                {% if app.user.email is defined %}
+                    <a class="header-favorite" href="{{ path('market_profile_favorites_products') }}">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/2000/svg" xlink:href="#favorite"></use>
+                        </svg>
+                        <span>{{ 'header.favorites'|trans }}</span>
+                    </a>
+                {% endif %}
+                <a class="js-mobile-menu__open mobile-menu__button" href="javascript:void(0)">
+                    <svg>
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu"></use>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+    {% include 'layout/menu.html.twig' with {op:op} %}
+{% endblock %}

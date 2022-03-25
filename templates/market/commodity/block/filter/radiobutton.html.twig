@@ -1,0 +1,18 @@
+<div class="radio-wrap js-fake-radio-button">
+    <label>
+        <input
+            type="text"
+            name="{{ name }}"
+            value="{{ isChecked ? value : '' }}"
+            data-value="{{ value }}"
+            {% if isChecked %}
+                data-checked="Y"
+            {% else %}
+                disabled
+            {% endif %}
+        >
+        <span>
+            {{ title }}
+        </span>
+    </label>
+</div>

@@ -1,0 +1,13 @@
+<ul class="breadcrumbs">
+    {% for item in items %}
+        <li>
+            {% if item.link is defined and not loop.last %}
+                <a href="{{ item.link }}">
+                    {{ item.title }}
+                </a>
+            {% else %}
+                {{ item.title }}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>

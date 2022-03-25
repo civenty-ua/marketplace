@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block canonical %}{{ url('success_stories_list') }}{% endblock %}
+
+{% block title %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_title }}
+    {% else %}
+        {{ 'menu.success_stories'|trans }}
+    {% endif %}
+{% endblock %}
+
+{% block description %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_description }}
+    {% endif %}
+{% endblock %}
+
+{% block keywords %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_keywords }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% include 'success_stories/list/list.html.twig' %}
+    {% include 'blocks/business-tools-lite-block.html.twig' %}
+    {% include 'blocks/catalog-block.html.twig' %}
+    {% include 'blocks/knowledge-base-block.html.twig' with {
+        'categories': categories
+    } %}
+    {% include 'blocks/top-tags-block.html.twig' with {'topTags': topTags} %}
+{% endblock %}

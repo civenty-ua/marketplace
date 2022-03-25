@@ -1,0 +1,13 @@
+{% extends 'profile/profileMarket.html.twig' %}
+
+{% block tabContent %}
+    {% include "profile/market/myCommodities/#{commodityType}/items.html.twig" with {
+        'commodityType'         : commodityType,
+        'items'                 : items,
+        'filter'                : filter,
+        'availableSortValues'   : availableSortValues,
+        'actions'               : itemActions,
+        'mainAction'            : mainAction,
+        'publicationsCountLeft' : publicationsCountLeft,
+    } only %}
+{% endblock %}

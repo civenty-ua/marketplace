@@ -1,0 +1,32 @@
+.offer-form-detail {
+    margin-bottom: 40px;
+}
+
+@media (min-width: 480px) {
+    .offer-form-detail {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 0;
+    }
+}
+
+.offer-form-detail-item {
+    display: block;
+}
+
+.offer-form-detail-item-title {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--f-black);
+    margin-bottom: 10px;
+}
+
+.offer-form-detail-item-text {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--f-black);
+}
+
+.offer-form-wrapper {
+    text-align: left;
+}

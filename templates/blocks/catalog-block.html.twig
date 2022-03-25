@@ -1,0 +1,74 @@
+<div class="white1-bg">
+    <div class="section">
+        <div class="catalog">
+            <div class="catalog-block">
+                <div>
+                    <h2 class="h2">{{ 'footer.eco_catalog'|trans }}</h2>
+                    <div class="catalog-block__container">
+                        <div class="catalog-item">
+                            <img src="{{ asset('/images/catalog-of-eco-technologies/1.png') }}" alt="">
+                            <span>{{ 'catalog.earth_bloom'|trans }}</span>
+                        </div>
+                        <div class="catalog-item">
+                            <img src="{{ asset('/images/catalog-of-eco-technologies/2.png') }}" alt="">
+                            <span>{{ 'catalog.plants_protection'|trans }}</span>
+                        </div>
+                        <div class="catalog-item">
+                            <img src="{{ asset('/images/catalog-of-eco-technologies/3.png') }}" alt="">
+                            <span>{{ 'catalog.trash_util'|trans }}</span>
+                        </div>
+                        <div class="catalog-item">
+                            <img src="{{ asset('/images/catalog-of-eco-technologies/4.png') }}" alt="">
+                            <span>{{ 'catalog.green_energy'|trans }}</span>
+                        </div>
+                        <div class="catalog-item">
+                            <img src="{{ asset('/images/catalog-of-eco-technologies/5.png') }}" alt="">
+                            <span>{{ 'catalog.eco_tech_integration'|trans }}</span>
+                        </div>
+                        <div class="catalog-item">
+                            <img src="{{ asset('/images/catalog-of-eco-technologies/6.png') }}" alt="">
+                            <span>{{ 'catalog.resourse_usage'|trans }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% set ecoLink = 'catalog_eco' %}
+                {% if ecoLink in op|keys %}
+                    <a href="{{ op['catalog_eco']['value'] }}"
+                            class="square-button height-50 green-bg-button centeredBlock">{{ 'home.read_more'|trans }}</a>
+                {% endif %}
+            </div>
+            <div class="catalog-block">
+                <div>
+                    <h2 class="h2">{{ 'footer.mini_catalog'|trans }}</h2>
+                    <div class="catalog-block__container">
+                        <div class="catalog-item">
+                            <img src="{{ asset('/images/catalog-of-small-mechanization/1.png') }}" alt="">
+                            <span>{{ 'catalog.planting'|trans }}</span>
+                        </div>
+                        <div class="catalog-item">
+                            <img src="{{ asset('/images/catalog-of-small-mechanization/2.png') }}" alt="">
+                            <span>{{ 'catalog.care'|trans }}</span>
+                        </div>
+                        <div class="catalog-item">
+                            <img src="{{ asset('/images/catalog-of-small-mechanization/3.png') }}" alt="">
+                            <span>{{ 'catalog.harvest'|trans }}</span>
+                        </div>
+                        <div class="catalog-item">
+                            <img src="{{ asset('/images/catalog-of-small-mechanization/4.png') }}" alt="">
+                            <span>{{ 'catalog.dorobka'|trans }}</span>
+                        </div>
+                        <div class="catalog-item">
+                            <img src="{{ asset('/images/catalog-of-small-mechanization/5.png') }}" alt="">
+                            <span>{{ 'catalog.recycle'|trans }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% set mechaLink = 'catalog_mecha' %}
+                {% if mechaLink in op|keys %}
+                    <a href="{{ op['catalog_mecha']['value'] }}"
+                            class="square-button height-50 green-bg-button centeredBlock">{{ 'home.read_more'| trans }}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

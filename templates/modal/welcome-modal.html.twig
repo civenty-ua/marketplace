@@ -1,0 +1,13 @@
+{% set pathUri = path('market_profile_roles') %}
+{% set roles %}
+    {% for role in roles %}
+        <span class="font-weight-bold">{{ ('user.roles.' ~ role) | trans }}</span>{% if (not loop.last) %}{{ ', ' }}{% endif %}
+    {% endfor %}
+{% endset %}
+
+<div class="wellcome-modal-block text-left">
+    <h3 class="fs-3 font-weight-bold fontSize30px">{{ 'modal.title'|trans }}</h3>
+    <p class="marginBottom20px marginTop20px">{{ 'modal.line1'|trans({'%roles%' : roles,'%pathUri%':pathUri})|raw }}</p>
+    {% set pathUri = path('about') %}
+    <p>{{ 'modal.line2'|trans({'%pathUri%':pathUri})|raw }}</p>
+</div>

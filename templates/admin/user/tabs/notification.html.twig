@@ -1,0 +1,79 @@
+{{ ea.request.query.remove('entityId') }}
+{% set sendUrl = ea_url()
+    .setController('App\\Controller\\Admin\\Market\\SystemMessageCrudController')
+    .setAction('new') %}
+<div class="section marginBottom20px marginTop20px">
+    <div class="block right-block">
+        <a class="btn btn-primary" href="{{ sendUrl }}">Відправити системне повідомлення</a>
+    </div>
+</div>
+<ul class="nav nav-tabs" id="notificationTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link " id="notification-send" data-toggle="tab" href="#notificationSend" role="tab"
+           aria-controls="notificationSend" aria-selected="true">Відправлені</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" id="notification-resive" data-toggle="tab" href="#notificationResive" role="tab"
+           aria-controls="notificationResive" aria-selected="false">Отримані</a>
+    </li>
+</ul>
+<div class="tab-content" id="userTabContent">
+    <div class="tab-pane fade" id="notificationSend" role="tabpanel" aria-labelledby="course-tab">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Кому</th>
+                <th scope="col">Тема</th>
+                <th scope="col">Повідомлення</th>
+                <th scope="col">Тип</th>
+                <th scope="col">Прочитано</th>
+                <th scope="col">Дата</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in user.notificationsSent %}
+                <tr>
+                    <td scope="row">{{ item.id }}</td>
+                    <td>{{ item.sender.name }}</td>
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.message }}</td>
+                    <td>{{ item.type }}</td>
+                    <td>{{ item.isRead }}</td>
+                    <td>{{ item.createdAt|format_datetime() }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="tab-pane fade show active" id="notificationResive" role="tabpanel" aria-labelledby="webinar-tab">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Від кого</th>
+                <th scope="col">Тема</th>
+                <th scope="col">Повідомлення</th>
+                <th scope="col">Тип</th>
+                <th scope="col">Прочитано</th>
+                <th scope="col">Дата</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in user.notificationsReceived %}
+                <tr>
+                    <td scope="row">{{ item.id }}</td>
+                    <td>{{ item.receiver.name }}</td>
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.message }}</td>
+                    <td>{{ item.type }}</td>
+                    <td>{% if item.isRead == 1 %}{{ 'Так' }}{% else %} {{ 'Ні' }} {% endif %}</td>
+                    <td>{{ item.createdAt|format_datetime() }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

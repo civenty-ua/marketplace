@@ -1,0 +1,73 @@
+<table class="table table-borderless table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Товари або послуги</th>
+        <th scope="col">Ціна</th>
+        <th scope="col">Продавці або постачальники</th>
+        <th scope="col">Активно ще днів</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for product in  notification.commodity.commodities %}
+        <tr>
+            <td>
+                <div class="proposal-info-item">
+                    <a href="{{ path("#{product.commodityType}_detail",{'id':product.id}) }}">
+                        <img
+                                class="proposal-info-item__image large"
+                                src="{{ vich_uploader_asset(product) }}"
+                                alt="{{ product.title }}"
+                                title="{{ product.title }}"
+                        >
+                    </a>
+                    <div class="proposal-info-item__title">
+                        <span>
+                            <a href="{{ path("#{product.commodityType}_detail",{'id':product.id}) }}">
+                                {{ product.title }}
+                            </a>
+                        </span>
+                        <div class="fontSize12px">
+                            <span class="grey1">ID:</span>
+                            <span>{{ product.id }}</span>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <strong>
+                    {{ product.price > 0
+                        ? "#{product.price|numberFormatAgro} #{product|getCurrencyTitle}"
+                        : 'market.product.list.priceNegotiated'|trans
+                    }}
+                </strong>
+            </td>
+            <td>
+                <div class="proposal-info-item">
+                    {% set usersImagesFolder    = '/upload/user/avatar' %}
+                    {% set userDefaultImage     = '/main/default-avatar.png' %}
+                    {% set userAvatar           = product.user and product.user.avatar
+                        ? usersImagesFolder ~ '/' ~ product.user.avatar
+                        : userDefaultImage %}
+                    <img class="proposal-info-item__image large avatar"
+                         src="{{ userAvatar }}" alt="">
+                    <div class="proposal-info-item__title">
+                        <span>
+                            <a {% if app.user != product.user %} target="_blank" href="{{ path('market_user_detail',{'id': product.user.id}) }}"
+                                   {% else %}href ="javascript:void(0)"{% endif %}>
+                                            {{ product.user }}
+                            </a>
+                        </span>
+                        <div class="fontSize12px">
+                            <span class="grey1">ID:</span>
+                            <span>{{ product.user.id }}</span>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <strong>{{ product.activeTo.diff((date('now'))).days }}</strong>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

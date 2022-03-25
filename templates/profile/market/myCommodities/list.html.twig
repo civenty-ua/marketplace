@@ -1,0 +1,84 @@
+{% extends 'market/itemsComponent.html.twig' %}
+
+{% set rebuildUrl = path("market_profile_my_commodities_#{commodityType}_list_rebuild") %}
+{# -------------------------------------------------------------------- #}
+{# new just created commodity parameters #}
+{# -------------------------------------------------------------------- #}
+{% set justCreatedCommodityParameters   = app.flashes('commodityCreated') %}
+{% set justCreatedCommodityLink         = justCreatedCommodityParameters[0] ?? null %}
+{# -------------------------------------------------------------------- #}
+{# filter #}
+{# -------------------------------------------------------------------- #}
+{% block filter %}
+    {# ------------------------------------------- #}
+    {# information block #}
+    {# ------------------------------------------- #}
+    <div class="marginBottom40px">
+        {% if justCreatedCommodityLink %}
+            <h3 class="h3 text-center marginBottom20px">
+                {{ "market.profile.myCommodities.#{commodityType}.addedSuccessfully"|trans }}
+            </h3>
+        {% endif %}
+        <h3 class="h3 text-center marginBottom20px">
+            {% if publicationsCountLeft > 0 %}
+                {{ 'market.profile.myCommodities.publicationsCountLeft'|trans|replace({
+                    '#NUMBER#' : publicationsCountLeft,
+                }) }}
+            {% else %}
+                {{ 'market.profile.myCommodities.publicationsCountLeftNoMore'|trans }}
+            {% endif %}
+        </h3>
+        {% if justCreatedCommodityLink %}
+            <a
+                class="square-button height-50 centeredBlock"
+                href="{{ justCreatedCommodityLink }}"
+                target="_blank"
+            >
+                {{ "market.profile.myCommodities.#{commodityType}.addedSuccessfullyLink"|trans }}
+            </a>
+        {% endif %}
+    </div>
+    {# ------------------------------------------- #}
+    {# search + filter #}
+    {# ------------------------------------------- #}
+    <div class="profile-my-commodities-filter">
+        <div class="search-bar">
+            {% set sortList = [] %}
+            {% for value in availableSortValues %}
+                {% set sortList = sortList|merge({
+                    (value) : "market.commodity.sortTypes.#{value}"|trans
+                }) %}
+            {% endfor %}
+
+            {% include 'market/search.html.twig' with {
+                'placeholder'   : "market.#{commodityType}.search.placeholder"|trans,
+                'name'          : 'search',
+                'value'         : filter.search,
+            } only %}
+            {% include 'market/commodity/block/filter/select.html.twig' with {
+                'name'          : 'sortField',
+                'emptyValue'    : false,
+                'multiple'      : false,
+                'list'          : sortList,
+                'values'        : [filter.sortField],
+            } only %}
+        </div>
+        <div class="filter-bar">
+            {{ block('commoditiesFilter') }}
+        </div>
+        {% if publicationsCountLeft > 0 %}
+            <a
+                class="add-commodity square-button green-bg-button height-50"
+                href="{{ path("market_profile_my_commodities_#{commodityType}_create") }}"
+            >
+                <svg viewBox="0 0 24 24">
+                    <rect x="11" y="3" width="2" height="18"></rect>
+                    <rect x="3" y="13" width="2" height="18" transform="rotate(-90 3 13)"></rect>
+                </svg>
+                <span>
+                    {{ "market.profile.myCommodities.#{commodityType}.add"|trans }}
+                </span>
+            </a>
+        {% endif %}
+    </div>
+{% endblock %}

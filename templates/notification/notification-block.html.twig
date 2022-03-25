@@ -1,0 +1,65 @@
+{% if items|length > 0 %}
+    {% for item in items %}
+        {% set notificationDetailUrl = '' %}
+        {% if item.type not in ['Спільна пропозиція','Відгук'] %}
+            {% set notificationDetailUrl = path('notification_detail',{'id':item.id}) %}
+        {% endif %}
+        {% if item.type in 'Спільна пропозиція' %}
+            {% set notificationDetailUrl = path('notification_offer_detail',{'id':item.id}) %}
+        {% endif %}
+        {% if item.type in 'Відгук' %}
+            {% set notificationDetailUrl = path('notification_review_detail',{'id':item.id}) %}
+        {% endif %}
+        <div class="notification-item {% if  item.isRead == true %} read {% endif %}" data-url="{{ notificationDetailUrl }}">
+            <div class="notification-checkbox">
+                <label class="checkbox">
+                    <input type="checkbox"
+                           autocomplete="off"
+                           data-id="{{ item.id }}">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="notification-item__content">
+                 <a
+                     href="{{ notificationDetailUrl }}"
+                     class="notification-item__title blue"
+                 >{{ item.type }}</a>
+                {% if item.sender %}
+                    <a
+                        href="{{ path('market_user_detail', {'id' : item.sender.id}) }}"
+                        class="notification-item__info desktop sender"
+                    >{{ item.sender }}</a>
+                {% else %}
+                    <span class="notification-item__info desktop sender">{{ item.sender }}</span>
+                {% endif %}
+                <div class="notification-item__message">
+                    {{ item.title ? item.title|striptags|u.truncate(50,'...')  : item.message|striptags|u.truncate(50,'...') }}
+                </div>
+                <div class="notification-item__info desktop date">
+                    {{ item.createdAt|format_datetime() }}
+                </div>
+                <div class="notification-item__mobile-info">
+                    {% if item.sender %}
+                        <a
+                            href="{{ path('market_user_detail', {'id' : item.sender.id}) }}"
+                            class="notification-item__info"
+                        >{{ item.sender }}</a>
+                    {% endif %}
+                    <div class="notification-item__info">
+                        {{ item.createdAt|format_datetime('medium', 'medium', locale='ua') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <center>{{ 'item.no_found'|trans }}</center>
+{% endif %}
+<div class="navigation">
+    <input
+            type="hidden"
+            value="{{ currentPage }}"
+            name="{{ paginationName }}"
+    >
+    {{ knp_pagination_render(items) }}
+</div>

@@ -1,0 +1,19 @@
+{% if review is defined and review is not empty %}
+    <div id="review" class="tab">
+        <div class="review">
+            {% for item in review %}
+                <div class="review-item">
+                    <div class="review__title">{{ item['username'] }}</div>
+                    <div class="review__subtitle"></div>
+                    <div>{{ item['answer'] }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% else %}
+    <div id="review" class="tab">
+        <div class="review__block centeredBlock">
+            <div class="h2">{{ course.title is defined ? 'course.finish'|trans : 'home.webinar'|trans }}</div>
+        </div>
+    </div>
+{% endif %}

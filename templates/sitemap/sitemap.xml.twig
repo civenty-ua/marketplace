@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>{{ url('home') }}</loc>
+        <lastmod>{{ date() | date('Y-m-d') }}</lastmod>
+        <priority>1</priority>
+    </url>
+    {% for category in categories %}
+        <url>
+            <loc>{{ url('category_detail', {'slug': category.slug}) }}</loc>
+            <lastmod>{{ category.updatedAt | date('Y-m-d') }}</lastmod>
+            <priority>0.8</priority>
+        </url>
+    {% endfor %}
+    {% for article in articles %}
+        <url>
+            <loc>{{ url('article_detail', {'slug': article.slug}) }}</loc>
+            <lastmod>{{ article.updatedAt | date('Y-m-d') }}</lastmod>
+            <priority>0.7</priority>
+        </url>
+    {% endfor %}
+    {% for course in courses %}
+        <url>
+            <loc>{{ url('course_detail', {'slug': course.slug}) }}</loc>
+            <lastmod>{{ course.updatedAt | date('Y-m-d') }}</lastmod>
+            <priority>0.7</priority>
+        </url>
+    {% endfor %}
+    {% for webinar in webinars %}
+        <url>
+            <loc>{{ url('webinar_detail', {'slug': webinar.slug}) }}</loc>
+            <lastmod>{{ webinar.updatedAt | date('Y-m-d') }}</lastmod>
+            <priority>0.7</priority>
+        </url>
+    {% endfor %}
+    {% for news in newsList %}
+        <url>
+            <loc>{{ url('news_detail', {'slug': news.slug}) }}</loc>
+            <lastmod>{{ news.updatedAt | date('Y-m-d') }}</lastmod>
+            <priority>0.6</priority>
+        </url>
+    {% endfor %}
+</urlset>

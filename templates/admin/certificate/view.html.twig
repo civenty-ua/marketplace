@@ -1,0 +1,19 @@
+{% for item in field.value %}
+    <div class="admin-certificate-view">
+        {% set html_id = 'ea-lightbox-' ~ item.id %}
+        {% if item.isImage %}
+            <a href="{{ vich_uploader_asset(item) }}" target="_blank">
+                <div>
+                    <img src="{{ vich_uploader_asset(item)|imagine_filter('certificate') }}"
+                         alt="{{ item.name }}" class="img-fluid">
+                </div>
+
+                <span>{{ item.name }}</span>
+            </a>
+        {% else %}
+            <a href="{{ vich_uploader_asset(item) }}" target="_blank">
+                <span>{{ item.name }}</span>
+            </a>
+        {% endif %}
+    </div>
+{% endfor %}

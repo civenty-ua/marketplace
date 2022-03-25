@@ -1,0 +1,81 @@
+{% extends 'profile/profileMarket.html.twig' %}
+
+{# {% form_theme formS 'form/vich_fields.html.twig' %} #}
+
+{% import _self as formMacros %}
+{# ------------------------------------------- #}
+
+{% macro printCertificateRow(item) %}
+    <div class="field field-input-text">
+        {{ form_widget(item.name) }}
+    </div>
+    <div class="field">
+        {{ form_row(item.file, {
+            'titleAdd'      : 'market.profile.commodityForm.image.add'|trans,
+            'titleChange'   : 'market.profile.commodityForm.image.change'|trans,
+            'attr'          : {
+                'placeholder'   : 'market.profile.commodityForm.image.placeolder'|trans,
+            },
+        }) }}
+    </div>
+    <div class="field">
+        <label>{{ 'role.is_organic_help'|trans }}</label>
+        <div class="field-checkbox-group">
+            <div class="checkbox-wrap">
+                <label>
+                    {{ form_widget(item.isEcology) }}
+                    <span>{{ 'role.is_organic'|trans }}</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="field">
+        {{ form_widget(item.submit) }}
+    </div>
+{% endmacro %}
+
+{% block tabContent %}
+    {# {% if not form.vars.valid %}
+        <div class="error marginBottom40px text-center" style="color: red"> #}{# todo add custom class css #}{#
+{{ form_errors(form) }}
+</div>
+{% endif %} #}
+
+    <div class="commodity-creating-form remove-actions">
+        <div class="article-header__block marginBottom40px">
+            <a class="return-button" href="{{ path('market_profile_roles') }}">
+                <i class="fas fa-angle-left"></i>
+            </a>
+            <h3 class="h3">{{ 'role.application_form_role'|trans}} <span class="orange">“{{ role }}”</span></h3>
+        </div>
+        <div class="info-message marginBottom40px">
+            <i class="fas fa-star-of-life"></i>
+            <div class="info-message__text">
+                <span>{{ 'role.required_to_fill'|trans}}</span>
+            </div>
+        </div>
+        <div class="role-form personal-area__fields-group">
+            {{ form_start(form) }}
+            {% for item in form %}
+                {% if item.vars.name == 'region' %}
+                    {{ form_row(form.region, {
+                        'label'         : 'market.profile.productForm.region',
+                        'emptyValue'    : true,
+                    }) }}
+                    {% else %}
+                    {{ form_row(item) }}
+                {% endif %}
+            {% endfor %}
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+    <div class="field-buttons">
+        <div class="buttons-list">
+            <a class="btn-h50-green-line" href="#">
+                <span>{{ 'role.cancel'|trans}}</span>
+            </a>
+            <a href="javascript:void(0)" class="role-submit btn-h50-green">{{ 'role.send'|trans}}</a>
+        </div>
+    </div>
+{% endblock %}

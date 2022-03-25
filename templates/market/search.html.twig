@@ -1,0 +1,27 @@
+<div class="
+    market-search
+    {% if value|length == 0 %}empty{% endif %}
+    js-market-search
+">
+    <label>
+        <input
+            type="text"
+            placeholder="{{ placeholder ?? '' }}"
+            value="{{ value }}"
+            name="{{ name }}"
+            autocomplete="off"
+        >
+        <span
+            class="clear-button"
+            title="{{ 'clear-tooltip'|trans }}"
+        >
+            <i class="fas fa-times"></i>
+        </span>
+    </label>
+    <span
+        class="search-button"
+        title="{{ 'search-tooltip'|trans }}"
+    >
+        <i class="fas fa-search"></i>
+    </span>
+</div>

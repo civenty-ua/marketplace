@@ -1,0 +1,11 @@
+<h1>{{ 'form_registration.confirm_email_title'|trans }}</h1>
+
+<p>
+    {{ 'form_registration.link'|trans }}: <br><br>
+    <a href="{{ signedUrl|raw }}">{{ 'form_registration.link_confirm'|trans }}</a>.
+    {{ 'form_registration.date_expire'|trans }} {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+</p>
+
+<p>
+    {{ 'form_registration.gheers'|trans }}!
+</p>

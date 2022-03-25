@@ -1,0 +1,11 @@
+{% for attributeValue in item.commodityAttributesValues %}
+    {% if attributeValue.attribute.code not in attributeValue.attribute.availableSpecialCodes %}
+        {% set printableValue = attributeValue|getAttributePrintableValue %}
+        {% if printableValue %}
+            <div class="product-detail__item">
+                <b>{{ attributeValue.attribute.title }}</b>
+                <span>{{ printableValue }}</span>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endfor %}

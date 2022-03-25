@@ -1,0 +1,65 @@
+version: '2'
+
+services:
+    agro_market_db:
+        image: mysql
+        container_name: 'agro_market_mysql'
+        restart: always
+        volumes:
+            - "./.data/db:/var/lib/mysql"
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        networks:
+            agro_market_net:
+                ipv4_address: 172.24.222.20
+    agro_market_web:
+        image: nginx
+        container_name: 'agro_market_nginx'
+        volumes:
+            - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - ../:/var/www/html
+        ports:
+            - 9180:80
+        restart: always
+        depends_on:
+            - agro_market_php
+            - agro_market_db
+        links:
+            - agro_market_php
+            - agro_market_db
+        networks:
+            agro_market_net:
+                ipv4_address: 172.24.222.21
+    agro_market_php:
+        build: php7-fpm
+        container_name: 'agro_market_php'
+        restart: always
+        volumes:
+            - ../:/var/www/html
+            - ./php7-fpm/php.ini:/usr/local/etc/php/php.ini
+            - ./php7-fpm/www.conf:/usr/local/etc/php-fpm.d/www.conf
+            - ./cron/www-data:/etc/crontabs/www-data
+        environment:
+            - COMPOSER_MEMORY_LIMIT=-1
+        depends_on:
+            - agro_market_db
+        links:
+            - agro_market_db
+        command: sh -c "chown root. /etc/crontabs/www-data"
+        networks:
+            agro_market_net:
+                ipv4_address: 172.24.222.25
+
+networks:
+    agro_market_net:
+        driver: bridge
+        driver_opts:
+            com.docker.network.enable_ipv6: "false"
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.24.222.0/24
+                  gateway: 172.24.222.1

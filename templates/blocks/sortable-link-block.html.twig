@@ -1,0 +1,1 @@
+<option {% for attr, value in options %}{% if attr == 'href' %}value="{{ value }}" {% else %} {{ attr }}="{{ value }}"{% endif %}{% endfor %}>{{ title }}</option>

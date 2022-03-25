@@ -1,0 +1,17 @@
+<span
+    class="
+        to-favorite-button
+        item-favorite-toggle
+        {% if user.favorites|length > 0 %}added{% endif %}
+    "
+    data-action-url="{{ path('user_to_favorite_toggle', {'id' : user.id}) }}"
+>
+    <span class="already-exist">
+        <i class="fas fa-heart-broken green"></i>
+        <span>{{ 'market.user.list.actions.favoriteRemove'|trans }}</span>
+    </span>
+    <span class="not-exist">
+        <i class="far fa-heart green"></i>
+        <span>{{ 'market.user.list.actions.favoriteAdd'|trans }}</span>
+    </span>
+</span>

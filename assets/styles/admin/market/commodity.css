@@ -1,0 +1,47 @@
+.market-commodity-edit-attributes-values-bar .item {
+    align-items: center;
+    border-radius: var(--border-radius);
+    box-shadow: inset 0 0 0 1px var(--form-input-border-color);
+    display: flex;
+    margin: 10px 0;
+    padding: 1rem 1.25rem;
+}
+.market-commodity-edit-attributes-values-bar .item .title {
+    width: calc(100% / 3);
+}
+.market-commodity-edit-attributes-values-bar .item.item-required .title::after {
+    bottom: 4px;
+    color: var(--color-danger);
+    content: "•";
+    filter: opacity(75%);
+    position: relative;
+    right: -2px;
+}
+.market-commodity-edit-attributes-values-bar .item .field {
+    width: calc((100% / 3) * 2);
+}
+.market-commodity-edit-attributes-values-bar .item .field > [data-type="listMultiple"] {
+    display: flex;
+    flex-direction: column;
+}
+.market-commodity-edit-attributes-values-bar .item .field > [data-type="listMultiple"] .list-value {
+    align-items: center;
+    display: flex;
+}
+.market-commodity-edit-attributes-values-bar .item .field > [data-type="listMultiple"] .list-value-title {
+    margin-left: 5px;
+}
+.market-commodity-edit-attributes-values-bar .item.template {
+    display: none;
+}
+
+.admin-word-break {
+    word-break: break-word;
+}
+/*
+ * Kit form
+ */
+.ts-control .item.inactive,
+.ts-dropdown .option.inactive:not(.active):not(:hover):not(:active):not(:focus) {
+    background-color: #DA7471 !important;
+}

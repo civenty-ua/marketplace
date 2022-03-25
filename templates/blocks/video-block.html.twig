@@ -1,0 +1,16 @@
+<div class="video-block__wrapper">
+    <div
+            class="video-block"
+            data-video-id="{{ video.videoId }}"
+            data-interaction-log-route="{{ path('video_interaction_log', {
+                id: video.id
+            }) }}"
+            data-width="{{ width|default(0)|number_format }}"
+            data-height="{{ height|default(0)|number_format }}"
+    >
+        <div
+                id="video-{{ video.videoId }}-{{ random() }}"
+                class="video-item"
+        ></div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+{% extends 'market/itemsComponent.html.twig' %}
+{# ------------------------------------------- #}
+{# rebuild URL #}
+{# ------------------------------------------- #}
+{% set rebuildUrl = path('market_profile_favorites_users_list_rebuild') %}
+{# ------------------------------------------- #}
+{# items list #}
+{# ------------------------------------------- #}
+{% block itemsList %}
+    {% include 'market/user/items.html.twig' with {
+        'items'             : items,
+        'currentPage'       : filter.page,
+        'paginationName'    : 'page',
+        'actions'           : actions,
+        'mainAction'        : mainAction,
+    } only %}
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'profile/profileMarket.html.twig' %}
+
+{% block tabContent %}
+    <h3 class="h3 marginBottom40px">
+        {{ 'market.profile.aboutMe.title'|trans }}
+    </h3>
+    {{ form_start(form) }}
+        {# ---------------------------- #}
+        {# description #}
+        {# ---------------------------- #}
+        {% set maxlength    = form.description.vars.attr.maxlength  ?? 100 %}
+        {% set value        = form.description.vars.value           ?? '' %}
+
+        <div class="
+            field
+            textarea-wrap
+            {% if form.description.vars.errors|length > 0 %}error{% endif %}
+        ">
+            {{ form_widget(form.description, {
+                'attr' : {
+                    'class'     : 'js-textarea',
+                    'maxlength' : maxlength,
+                    'rows'      : 5,
+                },
+            }) }}
+            <div class="textarea-count">
+                <span class="js-textarea-count__current-count">{{ value|length }}</span>
+                <span class="textarea-count__maximum-count">/ {{ maxlength }}</span>
+            </div>
+            <div class="error">
+                {{ form_errors(form.description) }}
+            </div>
+        </div>
+        {# ---------------------------- #}
+        {# description link #}
+        {# ---------------------------- #}
+        <div class="
+            field
+            field-input-text
+            {% if form.descriptionVideoLink.vars.errors|length > 0 %}error{% endif %}
+        ">
+            <label>{{ 'market.profile.aboutMe.descriptionVideoLink.title'|trans }}</label>
+            <div class="input-text-wrap">
+                {{ form_widget(form.descriptionVideoLink, {
+                    'attr' : {
+                        'placeholder' : 'market.profile.aboutMe.descriptionVideoLink.placeholder'|trans,
+                    },
+                }) }}
+            </div>
+            <div class="error">
+                {{ form_errors(form.descriptionVideoLink) }}
+            </div>
+        </div>
+        {# ---------------------------- #}
+        {# submit #}
+        {# ---------------------------- #}
+        {{ form_row(form.submit, {
+            'label' : 'market.profile.aboutMe.submit'|trans,
+            'attr'  : {
+                'class' : 'form-button',
+            },
+        }) }}
+    {{ form_end(form) }}
+{% endblock %}

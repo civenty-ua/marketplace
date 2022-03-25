@@ -1,0 +1,18 @@
+{% set valueIttarable       = value is iterable ? value : [value] %}
+{% set valueDisplayParts    = [] %}
+
+{% for subValue in valueIttarable %}
+    {% if list[subValue] is defined %}
+        {% set valueDisplayParts = valueDisplayParts|merge([list[subValue]]) %}
+    {% endif %}
+{% endfor %}
+
+{% if valueDisplayParts|length > 0 %}
+    {% include 'market/commodity/block/appliedFilter/item.html.twig' with {
+        'title' : title,
+        'value' : valueDisplayParts|join(', '),
+        'data'  : {
+            (inputName) : value,
+        },
+    } only %}
+{% endif %}

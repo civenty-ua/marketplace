@@ -1,0 +1,53 @@
+{% extends 'market/commodity/list.html.twig' %}
+
+{% block meta_robots %}{{ metaRobots }}{% endblock %}
+
+{% if seo is defined and seo is not null %}
+    {% set pageTitle = seo.meta_title %}
+{% else %}
+    {% set pageTitle = 'market.product.titles.multiple' | trans %}
+{% endif %}
+
+{% if seo is defined and seo is not null %}
+    {% set pageDescription = seo.meta_description %}
+{% endif %}
+
+{% if seo is defined and seo is not null %}
+    {% set pageKeywords = seo.meta_keywords %}
+{% endif %}
+
+{# ------------------------------------------- #}
+{# template variables #}
+{# ------------------------------------------- #}
+{% set listRebuildAjaxUrl   = path('products_list_ajax_rebuild') %}
+{% set commodityType        = constant('App\\Entity\\Market\\Commodity::TYPE_PRODUCT') %}
+{# ------------------------------------------- #}
+{# filter #}
+{# ------------------------------------------- #}
+{% block filter %}
+    {% include 'market/commodity/product/filter.html.twig' with {
+        'fields'    : fields,
+        'filter'    : filter,
+    } only %}
+{% endblock %}
+{# ------------------------------------------- #}
+{# applied filter block #}
+{# ------------------------------------------- #}
+{% block appliedFilter %}
+    {% include 'market/commodity/product/listAppliedFilterBar.html.twig' with {
+        'fields'    : fields,
+        'filter'    : filter,
+    } only %}
+{% endblock %}
+{# ------------------------------------------- #}
+{# items list block #}
+{# ------------------------------------------- #}
+{% block itemsList %}
+    {% include 'market/commodity/items.html.twig' with {
+        'items'             : items,
+        'currentPage'       : filter.page ?? 1,
+        'paginationName'    : 'page',
+        'actions'           : itemActions,
+        'mainAction'        : mainAction,
+    } only %}
+{% endblock %}

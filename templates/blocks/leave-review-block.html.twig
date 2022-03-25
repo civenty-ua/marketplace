@@ -1,0 +1,53 @@
+<div class="section white1-bg greyBorderBottom1px">
+    <div class="review__block">
+        <h2 class="h2">Сподобався курс</h2>
+
+        <div class="review-count">
+            <div class="review-count__item"><span>Вже оцінили: </span><strong>12</strong></div>
+            <div class="review-count__item"><span>Середня оцінка: </span><strong>4,5</strong></div>
+        </div>
+
+        <div class="review-rating">
+            <span>Так собі</span>
+            <div class="js-rating-readonly rating" data-score="2.5"></div>
+            <span>Відмінно</span>
+        </div>
+    </div>
+</div>
+{% if app.user is not defined %}
+    <div class="section white1-bg">
+        <div class="leave-review__block">
+            <h2 class="h2">Написати відгук</h2>
+
+            <div class="review-form">
+                <div class="review-form__title">Авторизуйтеся, щоб залишити свій коментар</div>
+                <form>
+                    <div class="review-form-block">
+                        <div class="form-block">
+                            <input type="text" class="form-text">
+                        </div>
+                        <div class="form-block">
+                            <input type="password" class="form-text">
+                        </div>
+                        <button type="submit" class="form-button">Увійти</button>
+                    </div>
+                    <div class="review-form__bottom-block">
+                        <div>
+                            <a href="javascript:void(0)" class="green-link">Реєстрація</a>
+                        </div>
+                        <div>
+                            <a href="javascript:void(0)" class="green-link">Забули пароль?</a>
+                        </div>
+                        <div>
+                            <label class="checkbox">
+                                <span class="checkbox__title">Запам’ятати мене</span>
+                                <input type="checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endif %}

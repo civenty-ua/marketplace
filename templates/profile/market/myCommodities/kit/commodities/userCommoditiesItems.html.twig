@@ -1,0 +1,20 @@
+<div class="js-user-commodities-items-container">
+    <h3 class="h3 text-center marginBottom40px">
+        {{ 'market.profile.kitForm.commoditiesSelection.byUser.userCommoditiesTitle'|trans|replace({
+            '#USER#' : selectedUser.name ?? '',
+        }) }}
+    </h3>
+    <div class="back-to-users-list-link marginBottom20px js-kit-creating-user-deselect">
+        <i class="fas fa-chevron-left"></i>
+        <span>
+        {{ 'market.profile.kitForm.commoditiesSelection.byUser.backToUsersList'|trans }}
+    </span>
+    </div>
+    {% include 'market/commodity/items.html.twig' with {
+        'items'             : commodities,
+        'currentPage'       : 1,
+        'paginationName'    : 'commoditiesSelector[userCommodities][page]',
+        'actions'           : [],
+        'mainAction'        : 'kitCreatingAdd',
+    } only %}
+</div>

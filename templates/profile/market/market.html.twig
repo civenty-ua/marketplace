@@ -1,0 +1,409 @@
+<div class="personal-area marketplace personal-area__wrapper">
+    <div class="filter-wrapper">
+        <a href="javascript:void(0)" class="js-mobile-filter__open filter__button">
+            <svg>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#filter"></use>
+            </svg>
+            <span>{{ 'item.filters'|trans }}</span>
+        </a>
+    </div>
+
+    <div class="personal-area__inner">
+        <div class="personal-area-sidebar">
+            <div class="personal-area-sidebar__content">
+                {% include 'profile/blocks/market/left-menu.html.twig' %}
+            </div>
+        </div>
+
+        <div class="personal-area-center__tabs-wrapper">
+            <div class="personal-area-center__tab marginBottom0">
+
+                <h3 class="h3 marginBottom40px">
+                    {{ 'role.current'|trans }} - <span class="orange">{{ user.currentNameRolesString}} </span>. {{ 'role.current_comment'|trans }}
+                </h3>
+
+                <div class="pricing-list-wrapper">
+                    <div class="pricing-list__col">
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title">Покупки</div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item">Товари</div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item">Послуги</div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item">Пропозиції</div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title">Додати товар</div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item">Купити</div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item">Продати</div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title">Додати послугу</div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item">Купити</div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item">Продати</div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title">Пропозиції</div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item">Купити</div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item">Продати</div>
+                        </div>
+                    </div>
+                    <div class="pricing-list__col">
+                        {% if 'ROLE_USER' in user.roles %}
+                            <div class="active-pricing-list__col">
+                                <div class="active-pricing-list-title">Моя роль</div>
+                            </div>
+                        {% endif %}
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title column-header">Покупець</div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pricing-list__col">
+
+                        {% if 'ROLE_WHOLESALE_BUYER' in user.roles %}
+                            <div class="active-pricing-list__col">
+                                <div class="active-pricing-list-title">Моя роль</div>
+                            </div>
+                        {% endif %}
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title column-header">Оптовий покупець</div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        {% if 'ROLE_WHOLESALE_BUYER' not in user.roles %}
+                            <div class="pricing-list__row">
+                                <a class="square-button green-bg-button" href="{{ path('profile_form_bayer') }}">Анкета</a>
+                            </div>
+                        {% else %}
+
+                        {% endif %}
+
+                    </div>
+                    <div class="pricing-list__col">
+                        {% if 'ROLE_SALESMAN' in user.roles %}
+                            <div class="active-pricing-list__col">
+                                <div class="active-pricing-list-title">Моя роль</div>
+                            </div>
+                        {% endif %}
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title column-header">Продавець</div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        {% if 'ROLE_SALESMAN' not in user.roles %}
+                            <div class="pricing-list__row">
+                                <a class="square-button green-bg-button" href="{{ path('profile_form_bayer') }}">Анкета</a>
+                            </div>
+                        {% else %}
+
+                        {% endif %}
+
+
+                    </div>
+                    <div class="pricing-list__col">
+                        {% if 'ROLE_SERVICE_PROVIDER' in user.roles %}
+                            <div class="active-pricing-list__col">
+                                <div class="active-pricing-list-title">Моя роль</div>
+                            </div>
+                        {% endif %}
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title column-header">Постачальник послуг</div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        {% if 'ROLE_SERVICE_PROVIDER' not in user.roles %}
+                            <div class="pricing-list__row">
+                                <a class="square-button green-bg-button" href="{{ path('profile_form_bayer') }}">Анкета</a>
+                            </div>
+                        {% else %}
+                        {% endif %}
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="js-shade shade"></div>
+{% include 'profile/blocks/market/left-menu-mobile.html.twig' %}

@@ -1,0 +1,45 @@
+{% extends 'layout/content.html.twig' %}
+
+{% block title %}
+    {% if pageTitle is defined %}{{ pageTitle }}{% endif %}
+{% endblock %}
+
+{% block description %}
+    {% if pageDescription is defined %}{{ pageDescription }}{% endif %}
+{% endblock %}
+
+{% block keywords %}
+    {% if pageKeywords is defined %}{{ pageKeywords }}{% endif %}
+{% endblock %}
+
+{% block body %}
+    <div class="section {{ pageCssClass }}">
+        {# ------------------------------------------- #}
+        {# breadcrumbs #}
+        {# ------------------------------------------- #}
+        {{ block('breadcrumbs') }}
+        {# ------------------------------------------- #}
+        {# head #}
+        {# ------------------------------------------- #}
+        <div class="product-header">
+            {{ block('contentHead') }}
+        </div>
+        {# ------------------------------------------- #}
+        {# content #}
+        {# ------------------------------------------- #}
+        {% block contentBody %}
+            <div class="product-content">
+                <div class="product-content__left-block">
+                    {{ block('contentLeftSide') }}
+                </div>
+                <div class="product-content__right-block">
+                    {{ block('contentRightSide') }}
+                </div>
+            </div>
+        {% endblock %}
+        {# ------------------------------------------- #}
+        {# bottom additional content #}
+        {# ------------------------------------------- #}
+        {{ block('contentBottom') }}
+    </div>
+{% endblock %}

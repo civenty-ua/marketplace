@@ -1,0 +1,34 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Відгук про користувача</th>
+        <th scope="col">Текст відгуку</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for review in user|userToUserReview %}
+            <tr>
+                <th scope="row">{{ review.id }}</th>
+                <td>
+                    {% set itemDetail = ea_url()
+                        .setController('App\\Controller\\Admin\\UserCrudController')
+                        .setAction(constant('EasyCorp\\Bundle\\EasyAdminBundle\\Config\\Action::DETAIL'))
+                        .setEntityId(review.targetUser.id)
+                    %}
+                    <a href="{{ itemDetail }}">{{ review.targetUser }}</a>
+                </td>
+                <td>{{ review.reviewText ? review.reviewText | striptags : '' }}</td>
+                <td>
+                    {% set itemDetail = ea_url()
+                        .setController('App\\Controller\\Admin\\Market\\UserToUserReviewCrudController')
+                        .setAction(constant('EasyCorp\\Bundle\\EasyAdminBundle\\Config\\Action::DETAIL'))
+                        .setEntityId(review.id)
+                    %}
+                    <a href="{{ itemDetail }}"><i class="action-icon fas fa-edit"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+

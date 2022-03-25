@@ -1,0 +1,35 @@
+<div class="section">
+    <div class="program-support-promo">
+        <div class="program-support-promo__inner">
+            <div class="program-support-promo__info-column">
+                <div class="program-support-promo__info-column-inner">
+                    <div class="program-support-promo__title">{{ 'program_support_promo.title' | trans }}</div>
+                    <div class="program-support-promo__quote">
+                        {{ 'program_support_promo.quote' | trans }}
+                    </div>
+                    <div class="program-support-promo__bottom">
+                        {% if  op['category_static_link']['value'] | is_download_link == false %}
+                            <a class="btn-h50-green" href="{{ op['category_static_link']['value'] }}">
+                                <span>{{ 'home.read_more' | trans }}</span>
+                            </a>
+                        {% else %}
+                            <a class="btn-h50-green file-link"
+                               href="{{ app.user ? op['category_static_link']['value'] : '#' }}">
+                                <span>{{ 'home.read_more' | trans }}</span>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="program-support-promo__pic-column">
+                <figure class="program-support-promo__figure">
+                    <img class="program-support-promo__image"
+                         src="/images/smat/img-bee_course_fb2.jpg"
+                         alt=""
+                         loading="lazy"
+                    >
+                </figure>
+            </div>
+        </div>
+    </div>
+</div>

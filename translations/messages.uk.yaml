@@ -1,0 +1,1479 @@
+modal:
+  title: "Раді вітати Вас на сервісі!"
+  line1: 'Ваша поточна роль - %roles%. Ви можете ознайомитись з іншими ролями і розширити свою роль <a class="font-weight-bold" href="%pathUri%">тут</a>'
+  line2: 'Прочитати про сервіс і ознайомитися з правилами та можливостями Ви можете <a class="font-weight-bold" href="%pathUri%">тут</a>'
+form_offer_price:
+  title: "Запропонувати ціну"
+  item: "Товар"
+  sort: "Сорт"
+  class: "Клас"
+  cost: 'Ціна'
+  fio: "Прізвище, ім'я, по батькові"
+  phone: "Мобільний телефон"
+  email: "Адреса електронної пошти"
+  ofefer_price: "Ваша ціна за кг, грн"
+  cancel: "Відмінити"
+  confirm: "Надіслати"
+  message: "Текст повідомлення:"
+  success: "Ваша пропозиція ціни відправлена!"
+  bid_success: "Повідомлення відправлено!"
+title: АгроВікі
+form_registration:
+  remember: "Запам'ятати мене"
+  not_register: "Не зареєстровані?"
+  login: "Увійти"
+  forgot: "Забули свій пароль"
+  verifi_phone: "Підтвердити телефон"
+  enter_code: "Введіть код з СМС"
+  code_invalid: 'Неправильний код'
+  cancel: "Скасувати"
+  title_register: 'Реєстрація на порталі'
+  register: 'Зареєструватися'
+  name: "Ім'я та прізвище"
+  email: "Електронна пошта"
+  phone: "Телефон"
+  gender_label: "Стать"
+  date_of_birth: "Дата народження"
+  agree_terms: "Погоджуюся з правилами сервісу"
+  agree_terms2: "Даю згоду на обробку персональних даних"
+  agree_subscribe: "Підписуюся на розсилку новин"
+  plain_password: "Пароль"
+  confirm_password: "Підтвердіть пароль"
+  password_regex: 'Пароль має бути не менш ніж з 8 символів, містити цифри та латинські літери, у тому числі великі.'
+  password_confirm_error: 'Паролі не співпадають'
+  password_incorrect: 'Невірний пароль'
+  gender:
+    men: 'Чоловік'
+    women: 'Жінка'
+  region: 'Область'
+  region_select: 'Оберіть область'
+  roles: 'Ролі'
+  email_verify: 'Ваш Email успішно підтверджено!'
+  confirm_email: 'Будь ласка, підтвердіть ваш Email'
+  confirm_email_title: 'Доброго дня! Підтвердіть ваш Email!'
+  confirm_email_error: 'Ваш Email не підтверджено'
+  unknown_email_error: 'Невідомий Email'
+  confirm_email_link: 'Надіслати повторно лист підтвердження реєстрації'
+  link: 'Підтвердіть ваш Email. Для цього перейдіть за наступним посиланням'
+  link_confirm: 'Підтвердити мій Email'
+  date_expire: 'Це посилання діє до '
+  gheers: 'Дякуємо!'
+  sms: 'Це повідомлення від AgroWiki. Ваш код: '
+  captcha: 'Ваш комп''ютер або мережа може надсилати автоматизовані запити'
+  captcha_mis: 'Відсутнє значення капчі'
+  captcha_connection_failed: 'Сервіс Google Recaptcha не відповідає'
+  birthday_error: 'Дата народження не може бути майбутньою'
+success_registration:
+  confirm_title: "Вітаємо! Будь ласка, підтвердіть ваш Email!"
+  confirm_div: "Будь ласка, підтвердіть ваш Email"
+form_reset:
+  title: 'Скинути пароль'
+  enter_emeil: 'Введіть ваш Email,щоб ми надіслали посилання для скидання пароля'
+  enter_password: 'Введіть новий пароль'
+  send_emeil: 'Надіслати'
+  send_password: 'Зберегти'
+  new_password: 'Новий пароль'
+  repeat_password: 'Повторіть пароль'
+  invalid_message: 'Паролі не співпадають.'
+  check_title: 'Посилання для скидання пароля надіслане на ваш Email'
+  check_text: 'Посилання для скидання пароля надіслане на ваш Email. Термін дії цього посилання закінчиться через'
+  try_again_1: "Якщо ви не отримали листа, перевірте папку СПАМ або"
+  try_again_2: 'спробуйте ще раз'
+  link_expired: 'Під час перевірки запиту на скидання виникла проблема - термін дії посилання в Email закінчився. Будь ласка, спробуйте скинути пароль ще раз.'
+feedback_form:
+  title: "Форма зворотного зв'язку"
+  header: "Зворотний зв'язок, %ENTITY_TYPE% - %ENTITY_NAME%"
+  success: "Дякуємо! Ваш відгук по %ENTITY_TYPE% %ENTITY_NAME% успішно відправлений"
+  parent_item:
+    article: 'статті'
+    course: 'курсу'
+    webinar: 'вебінару'
+    other: 'елементу'
+  question:
+    title: 'Назва'
+    description: 'Опис'
+    parameters: 'Параметри'
+    type: 'Тип'
+    types:
+      string: 'рядок'
+      number: 'число'
+      rate: 'оцінка'
+      review: 'відгук'
+    required: "Обов'язкове поле"
+    sort: 'Порядок сортування'
+    answer: 'Відповідь'
+  save: 'Зберегти'
+user_feedback:
+  user:
+    entity: 'Користувач'
+    name: "Користувач (ім'я)"
+    gender: "Користувач (стать)"
+    region: "Користувач (регіон)"
+  parent_item_type: 'Тип елементу'
+  parent_item:
+    common: 'Елемент'
+    article: 'Стаття'
+    course: 'Курс'
+    webinar: 'Вебінар'
+  created_at: 'Дата створення'
+  answers: 'Відповіді'
+  export: 'Експорт'
+  gender:
+    male: 'чоловік'
+    female: 'жінка'
+comment:
+  new:
+    message: 'Повідомлення'
+    messagePlaceholder: 'Ваш коментар'
+    save: 'Опублікувати'
+  list:
+    title: 'Коментарі'
+    showMore: 'Показати більше'
+    avatar: 'Аватар користувача'
+subscribe:
+  title: 'Підписуйтеся!'
+  message: 'Щотижня ми готуємо для Вас найцікавіше'
+  action:
+    title: 'Підписатися на %target%'
+    success: 'Підписка успішна'
+    failed: 'Помилка під час підписки'
+email:
+  item_feedback:
+    title: 'Відгук на %type% "%name%"'
+    types:
+      article: 'статтю'
+      course: 'курс'
+      webinar: 'вебінар'
+      other: 'елемент'
+      occurrence: 'захід'
+    types2:
+      article: 'статті'
+      course: 'курсу'
+      webinar: 'вебінару'
+      occurrence: 'заходу'
+      other: 'елементу'
+    body: 'Дякуємо за перегляд %type% "%name%"'
+    link: 'Для оцінки якості матеріалів <a href="%link%">залиште ваш відгук</a>.'
+'[Default]': '[За замовчуванням]'
+user:
+  avatar: 'Аватар'
+  change_photo: 'Змінити фото'
+  add_photo: 'Додати фото'
+  block_in_dev: 'Блок знаходиться в розробці для вашої ролі!'
+  roles:
+    ROLE_USER: 'Покупець'
+    ROLE_ADMIN_EDUCATION: 'Адміністратор (навчальна платформа)'
+    ROLE_ADMIN_MARKET: 'Адміністратор (торговий майданчик)'
+    ROLE_SUPER_ADMIN: 'Суперадміністратор'
+    ROLE_WHOLESALE_BUYER: 'Оптовий Покупець'
+    ROLE_SALESMAN: 'Продавець'
+    ROLE_SERVICE_PROVIDER: 'Постачальник послуг'
+General: 'Головне'
+Jan: Січня
+Feb: Лютого
+Mar: Березня
+Apr: Квітня
+May: Травня
+Jun: Червня
+Jul: Липня
+Aug: Серпня
+Sep: Вересня
+Oct: Жовтня
+Nov: Листопада
+Dec: Грудня
+NJan: Січень
+NFeb: Лютий
+NMar: Березень
+NApr: Квітень
+NMay: Травень
+NJun: Червень
+NJul: Липень
+NAug: Серпень
+NSep: Вересень
+NOct: Жовтень
+NNov: Листопад
+NDec: Грудень
+
+header:
+  login: 'Авторизація'
+  registration: 'Реєстрація'
+  logout: 'Вихід'
+  calls_are_free: 'Дзвінки безкоштовні'
+  favorites: 'Обране'
+  call: 'Подзвонити'
+  call_text: '<p class="call-dropdown__text">Дзвінки безкоштовні з усіх номерів стаціонарних і мобільних операторів зв’язку України.</p><p class="call-dropdown__text"><strong>Пн-Пт, 08:00-17:00 </strong></p>'
+  all: 'Всюди'
+  course: 'Курси'
+  webinar: 'Вебінари'
+  article: 'Статті'
+  business: 'Бізнес-інструменти'
+  catalog: 'Каталоги'
+  i_am_looking_for: 'Я шукаю...'
+  my_profile: 'Мій кабінет'
+menu:
+  study:
+    label: 'Навчання'
+    courses: 'Курси'
+    webinars: 'Вебінари'
+    articles: 'Статті'
+    other: 'Відео'
+    occurrence: 'Заходи'
+  home: 'Головна'
+  calendar_of_events: 'Календар подій'
+  knowledge_base: 'База знань'
+  business_tools: 'Бізнес-інструменти'
+  catalog:
+    label: 'Каталоги'
+    catalog_of_ecotechnologies: 'Каталог еко-технологій'
+    catalog_of_small_mechanization: 'Каталог малої механізації'
+    support_program:
+      code: 'Каталог програм державної підтримки'
+      description: 'Посилання на каталог програми підтримки'
+  about_us:
+    label: 'Про нас'
+    project: 'Про проект'
+    news: 'Новини'
+    eco-articles: 'Еко-статті'
+    activity: 'Діяльність проекту'
+    partners: 'Партнери'
+    experts: 'Експерти'
+    success_stories: 'Історії успіху'
+    contacts: 'Контакти'
+  trading_floor:
+    label: 'Торгівельний майданчик'
+    goods: 'Товари'
+    services: 'Послуги'
+    proposals: 'Пропозиції'
+    about: 'Як це працює?'
+    contacts: 'Контакти'
+    organic_product: 'Органічний продукт'
+  success_stories: 'Історії успіху'
+Ukraine: 'UA'
+English: 'EN'
+home:
+  read_more: 'Детальніше'
+  title1: '<strong class="green">АгроВікі – перша платформа аграрних знань</strong>'
+  title2: '<strong class="green">Цікаво навчайтеся та успішно продавайте!</strong>'
+  title_middle: 'ВІДЧУЙТЕ СМАК <strong class="green">ПРИБУТКОВОГО</strong> АГРОБІЗНЕСУ!<br/>'
+  partners_text: '<strong class="green">Отримуйте консультації</strong> з агрономії та бізнесу від справжніх професіоналів України!'
+  study_text: '<strong class="green">Навчайтеся</strong>, не виходячи з дому – наші вебінари та онлайн-курси відкриті для всіх!'
+  business_tools_text: '<strong class="green">Покращуйте свій бізнес</strong> за допомогою наших бізнес-інструментів!'
+  technology_text: '<strong class="green">Обирайте технології,</strong> які полегшують фізичну працю та є дружніми до навколишнього середовища'
+  users_text: 'аграріїв України вже учасники проекту АгроВікі.'
+  join: 'Долучайтеся'
+  registration: 'Зареєструватися'
+  question: 'Є питання'
+  feadback: "Форма зворотного зв'язку"
+  webinars: 'вебінарів'
+  courses: 'курсів'
+  success_story: 'історій успіху'
+  other_courses: 'Навчальні матеріали АгроВікі'
+  view_all: 'Переглянути все'
+  view_all_exsperts: 'Переглянути всіх'
+  article: 'Стаття'
+  webinar: 'Вебінар'
+  course: 'Курс'
+  partner: 'Партнер'
+  why: 'Чому вчитися з АгроВікі'
+  goal: 'Метою UHBDP є вільний доступ до знань для виробників плодоовочевої продукції'
+  task: 'Завдання організації'
+  task_detail: 'Цінуйте кожний день Вашого життя.'
+  reviews: 'Відгуки виробників'
+  home: 'Головна'
+  news: 'Новини'
+  telegram: 'Telegram'
+  channel: 'каналі'
+  more_news: 'Більше новин на нашому'
+  partners: 'Партнери'
+  experts: 'Експерти'
+  studying: 'Навчальні матеріали'
+  cookie: 'Наш веб-сайт використовує файли cookie для покращення вашого користування сайтом.'
+  interesting_videos: 'Цікаві тематичні відео'
+item:
+  all: 'Обрати все'
+  clear: 'Скасувати все'
+  category: 'Категорії'
+  category_learning_title: 'Навчальні матеріали'
+  crops: 'Культури'
+  partners: 'Партнери'
+  experts: 'Експерти'
+  regions: 'Області'
+  ok: 'Прийняти'
+  cancel: 'Скасувати'
+  title: 'ОЗНАЙОМТЕСЯ З навчальними матеріалами'
+  description: 'Метою UHBDP є  вільний доступ до знань для виробників плодоовочевої продукції'
+  articles: 'Статті'
+  webinars: 'Вебінари'
+  courses: 'Курси'
+  other: 'Відео'
+  filters: 'Фільтри'
+  knowledge_base: 'База знань'
+  popular_tags: 'Популярні теги'
+  tags: 'Теги'
+  consulting: 'Індивідуальні консультації'
+  views: 'Переглядів'
+  created_at: 'Дата виходу'
+  time_created_at: 'Час виходу'
+  reviews: 'Відгуки'
+  about: 'Про'
+  web-site: 'Веб-сайт'
+  sort_date: 'За датою публікації'
+  sort_name: 'За назвою'
+  sort_views: 'Найпопулярніші'
+  subscribe_to: 'Підписатися на '
+  subscribe: 'Підписатися'
+  like_material: 'Сподобався матеріал?'
+  rated: 'Вже оцінили: '
+  average_mark: 'Середня оцінка: '
+  excellent_mark: 'Відмінно'
+  so-so_mark: 'Так собі'
+  similar_items: 'Схожі матеріали'
+  other_stories: 'Інші історії'
+  awaits: 'Очікується'
+  occurrence_you_registered: 'Ви вже зареєструвалися на захід'
+  webinar_you_registered: 'Ви вже зареєструвалися на  вебінар'
+  webinar_registration_success: 'Ви успішно зареєструвались на вебінар'
+  webinar_registration_dear: 'Шановний(а) '
+  webinar_registration_msg_part_one: 'Це повідомлення від АгроВікі. Ви успішно зареєструвалися на вебінар'
+  webinar_registration_msg_part_two: 'Посилання щоб долучитися до вебінару '
+  webinar_registration_msg_part_three: 'Вебінар почнеться - '
+  webinar_registration_error: 'Щось пішло не так'
+  webinar_email: 'Ми надіслали Вам лист із запрошенням на вебінар. Будь-ласка, перевірте ваш Email.'
+  webinar_email_subject: 'Запрошення на вебінар'
+  no_found: 'За Вашим пошуковим запитом нічого не знайдено. Спробуйте змінити фільтри або використайте інший пошуковий запит'
+  webinar_estimation: 'Ваша оцінка зарахована'
+  webinar_estimation_login: 'Для оцінки вебінара потрібно авторизуватися в системі'
+  webinar_registration_success_message_block: 'Вітаємо, Ви зареєструвалися на вебінар. Посилання для входу перевірте на Email. Після проведення вебінара Ви зможете переглянути відеозапис на цій сторінці.'
+  past_webinar_registration_success_message_block: 'Вітаємо, Ви вже зареєстровані! Перейдіть до відеозапису нижче.'
+  occurrence_registration_success_message_block: 'Вітаємо, Ви зареєструвалися на захід.'
+  course_estimation_login: 'Для оцінки курсу потрібно авторизуватися в системі'
+footer:
+  study: 'Навчання'
+  courses: 'Курси'
+  webinars: 'Вебінари'
+  articles: 'Статті'
+  other: 'Іншe'
+  calendar_events: 'Календар подій'
+  categories: 'Категорії'
+  buisnes_tools: 'Бізнес-інструменти'
+  catalogs: 'Каталоги'
+  eco_catalog: 'Каталог еко-технологій'
+  mini_catalog: 'Каталог малої механізації'
+  about_us: 'Про проект'
+  news: 'Новини'
+  do: 'Діяльність проекту'
+  partners: 'Партнери'
+  experts: 'Експерти'
+  story: 'Історії успіху'
+  contacts: 'Контакти'
+  text: 'Український проект бізнес-розвитку плодоовочівництва (UHBDP) фінансується Міністерством міжнародних справ Канади, співфінансується та реалізується Менонітською Асоціацією Економічного Розвитку (MEDA).'
+  text_2: ' Використання матеріалів з сайту можливе без попереднього узгодження, але обов''язково з посиланням на https://uhbdp.org'
+  phone: 'Дзвінки безкоштовні зі всіх номерів стаціонарних і мобільних операторів зв’язку України'
+  copyright: '© UHBDP, 2015 - 2021. Усі права захищені.'
+course:
+  personal_consulting: 'Індивідуальні консультації'
+  lesson: 'Уроків'
+  register_user: 'учасників вже зареєструвалися'
+  partners: 'Партнери'
+  experts: 'Експерти'
+  about_course: 'Про курс'
+  about_webinar: 'Відеозапис'
+  program: 'Програма'
+  reviews: 'Відгуки'
+  position: 'Спікер курсу'
+  partner_site: 'Веб-сайт'
+  partner_phone: 'Телефон'
+  partner_address: 'Адреса'
+  module: 'Модуль'
+  speaker: 'Спікер'
+  date_begin: 'Дата початку'
+  title: 'Вітаємо'
+  not_course: 'Помилка реєстрації на курс'
+  you_register: 'Ви вже зареєстровані'
+  register_success: 'Ви успішно зареєструвалися на курс '
+  need_login: 'Необхідно увійти в систему'
+  title_info: 'Увага'
+  title_error: 'Помилка'
+  title_ok: 'Вітаємо'
+  will_be_available: ' котрий буде доступний '
+  go_to_lesson: 'До уроку'
+  go_to_course: 'До всієї програми'
+  watch_lesson: 'Для перегляду відео вам потрібно зареєструватися на курс'
+  start: 'Дата початку курсу '
+  finish: 'Пройдіть курс та залиште відгук першим'
+  rating: 'Попередній рейтинг'
+  old_user: 'Вже оцінили (Попередні данні)'
+partners:
+  title: 'Партнерські організації'
+  description: 'Спільно з професійними партнерами у областях, ми створюємо та впроваджуємо провідні сервіси, організовуємо практичні заходи та знаходимо індивідуальний підхід до кожного клієнта Проекту.'
+  thanks: 'Дякуємо нашим стратегічним партнерам за розвиток плодоовочевого ринку на півдні України та покращення добробуту клієнтів!'
+  address: 'Адреса'
+  phone: 'Телефон'
+  site: 'Веб-сайт'
+  social: 'Соцмережі:'
+  more: 'Інші партнери'
+  ukraine: 'Україна'
+  resources: 'Ресурси'
+experts:
+  title: '<strong class="green">Команда UHBDP</strong> - це команда професіоналів, які люблять свою роботу. Ми працюємо над втіленням нашої спільної мети - розвитком плодоовочевого ринку на півдні України.'
+  description: 'Ми беремо безпосередню участь у розвитку плодоовочевого ринку на півдні України і створюємо цінні сервіси та заходи для всіх учасників Проекту. Ми співпрацюємо з місцевими партнерами та громадами, а також з міжнародними фахівцями, впроваджуємо інновації та маємо власні ґрантові програми для їх втілення.'
+  description-1: 'Ми надаємо консультації, інформаційну підтримку виробникам та іншим гравцям плодоовочевого ринку. Ми маємо окрему програму стажувань для студентів, які роблять перші професійні кроки у галузі плодоовочівництва.'
+  description-2: 'Ми робимо все можливе, щоб український плодоовочевий бізнес був сучасним, якісним, прибутковим та добре знаним у світі!'
+  more: 'Інші експерти'
+contact-us:
+  title: 'Напишіть нам!'
+  description: 'Ви прийняли рішення реалізувати одну з технологій, побачених в каталозі? Або у Вас є бажання поділитися новою успішною методикою та своїм унікальним досвідом? Напишіть нам!'
+not-found: 'Нічого не знайдено'
+calendar:
+  day: 'День'
+  month: 'Місяць'
+  year: 'Рік'
+  week: 'Тиждень'
+page_404:
+  text: 'Вибачте, такої сторінки не існує'
+  button: 'На головну'
+catalog:
+  earth_bloom: 'Підвищення родючості ґрунту'
+  plants_protection: 'Засоби захисту рослин'
+  trash_util: 'Утилізація відходів'
+  green_energy: 'Зелена енергетика'
+  eco_tech_integration: 'Впровадження еко-технологій'
+  resourse_usage: 'Раціональне використання ресурсів'
+  planting: 'Посадка'
+  care: 'Догляд'
+  harvest: 'Збір'
+  dorobka: 'Доробка'
+  recycle: 'Переробка'
+tools:
+  calc: 'Бізнес-калькулятор'
+  bee-calc: 'Бізнес-калькулятор для бджоляра'
+  bee-calendar: 'Календар бджоляра'
+  canvas-model: 'Бізнес-модель КАНВАС'
+  wheel: 'Бізнес-колесо'
+  mineral-calc: 'Калькулятор мінеральних добрив'
+  obs-calc: 'OBS-калькулятор'
+  farm-box: 'Платформа "Фермерська скринька"'
+regions:
+  other: 'Інша область'
+contacts:
+  for_us: 'Для нас важливий кожен клієнт та кожна клієнтка, тому ми докладаємо зусиль для того, щоб усі знайшли нашу підтримку якомога швидше.'
+  or: 'або'
+  write_to: 'надіслати нам Email'
+  call: 'зателефонувати до контакт-центру UHBDP за номером'
+  contact_us: 'Для зв''язку з нами ви можете:'
+  partners: 'Наші представництва в областях:'
+  cellphone: 'Тел.'
+  head: 'Директор'
+  name: "Ім'я"
+  surname: 'Прізвище'
+  message: 'Повідомлення'
+  send: 'Надіслати'
+  ok_send: "Ваше звернення успішно відправлене. Найближчим часом з Вами зв`яжуться"
+search:
+  result: 'Результати пошуку'
+success_stories:
+  subtitle: 'Історії успіху є найкращим свідченням того, що наполегливість, старанність та ретельність допомагають у досягненні мети. У цьому розділі Ви зможете побачити історії успіху клієнтів UHBDP та дізнатися про роль, яку Проект відіграв у їх бізнесі.'
+news:
+  subtitle: 'Отримуйте найважливіші аграрні події та корисні матеріали від Українського проекту бізнес-розвитку плодоовочівництва щосереди на Ваш Email. Не пропускайте все дійсно найважливіше!'
+profile:
+  title: 'Особистий кабінет'
+  menu: 'Меню'
+  settings: 'Налаштування'
+  knowledge: 'База знань'
+  marketplace: 'Торгівельний майданчик'
+  change_password: 'Заміна пароля'
+  edit_profile: 'Редагування профілю'
+  viewed_webinars: 'Мої вебінари'
+  viewed_courses: 'Мої курси'
+  downloaded_files: 'Завантажені файли'
+  about_me: 'Про мене'
+  mainInfo: 'Основна інформація'
+  my_certificates: 'Мої сертифікати'
+  my_commodities: 'Мої товари'
+  my_services: 'Мої послуги'
+  my_joint_proposals: 'Мої спільні пропозиції'
+  selected: 'Вибране'
+  notifications: 'Повідомлення'
+  my_roles: 'Мої ролі'
+  forms:
+    profile_edit:
+      cancel: 'Скасувати'
+      submit: 'Зберегти'
+      activity: 'Основна діяльність в агросфері'
+      user_crops: 'Культури'
+      profile_edit_successfully: 'Профіль успішно оновлений'
+    change_password:
+      old_password: 'Старий пароль'
+      new_password: 'Новий пароль'
+      confirm_password: 'Підтвердити новий пароль'
+      cancel: 'Скасувати'
+      submit: 'Змінити пароль'
+      forgot_password: 'Забули свій пароль?'
+      password_changed_successfully: 'Ваш пароль успішно змінений!'
+search-tooltip: 'Пошук'
+clear-tooltip: 'Очистити пошукове поле'
+DeadRequest: 'Некоректний запит'
+RedirectTo: 'Перенаправляти на'
+IsActive: 'Включено'
+Banned: 'Ваш аккаунт заблоковано.'
+BannedInAdmin: 'Заблокований'
+
+options:
+  index_page_counter_webinar_title:
+    description: 'Підпис лічильника вебінарів на головній сторінці'
+  index_page_counter_webinar_value:
+    description: 'Лічильник вебінарів на головній сторінці'
+  index_page_counter_course_title:
+    description: 'Підпис лічильника курсів на головній сторінці'
+  index_page_counter_course_value:
+    description: 'Лічильник курсів на головній сторінці'
+  index_page_counter_commodity_title:
+    description: 'Підпис лічильника товарів на головній сторінці'
+  index_page_counter_commodity_value:
+    description: 'Лічильник товарів на головній сторінці'
+  index_page_counter_buyer_title:
+    description: 'Підпис лічильника закупівельників на головній сторінці'
+  index_page_counter_buyer_value:
+    description: 'Лічильник закупівельників на головній сторінці'
+  market_products:
+    description: 'Опис для товарів'
+  market_services:
+    description: 'Опис для послуг'
+  market_kits:
+    description: 'Опис для cпільних пропозицій'
+  footer_main:
+    description: 'Опис для головної информації в футері'
+  footer_tel:
+    description: 'Опис для телефонної информації в футері'
+
+program_support_promo:
+  title: Програми підтримки агросектору
+  quote: Бюджетні програми щодо підтримки аграрної галузі розробляються державою саме для того, щоб допомогти аграріям. Беріть участь в усіх програмах, які діють. І пам’ятайте, «хто не стукає у двері, тому не відкривають!»
+admin:
+  dashboard:
+    usersInfo:
+      title: 'Профіль учасників'
+      registerToday: 'Нові користувачі'
+      registerTotal: 'Загальна кількість'
+      gender:
+        women: 'Жінок'
+        men: 'Чоловіків'
+        unknown: 'Не вказано'
+      registrationChart: 'Реєстрації на платформі у часі'
+      topRegionsChart: 'Географія користувачів (ТОП 5 областей)'
+    articlesCountChart: 'Кількість статей'
+    courseRegistrationChart: 'Реєстрації на курси'
+    webinarsCountChart: 'Реєстрації на вебінари'
+    infoPlatform:
+      title: 'Взаємодія з платформою'
+    pageTitle: 'Загальна інформація'
+    title: 'Агро платформа'
+    description: 'Загальні показники по роботі сайту'
+    countUser: 'Кількість користувачів'
+    countArtical: 'Кількість статей'
+    countWebinar: 'Кількість вебінарів'
+    countCurse: 'Кількість курсів'
+    countLesson: 'Кількість уроків'
+    countWebinarUsers: 'Кількість зареєстрованих користувачів на вебінари'
+    course:
+      list_title: 'Курси'
+      new_page_title: 'Створити Новий Курс'
+      edit_button_title: 'Курс'
+      edit_page_title: 'Курс'
+      module:
+        list_title: 'Модулі'
+        new_page_title: 'Створити Новий Модуль'
+        edit_button_title: 'Модуль'
+        edit_page_title: 'Модуль'
+      lesson:
+        list_title: 'Уроки'
+        new_page_title: 'Створити Новий Урок'
+        edit_button_title: 'Урок'
+        edit_page_title: 'Урок'
+    webinar:
+      list_title: 'Вебінари'
+      new_page_title: 'Створити Новий Вебінар'
+      edit_button_title: 'Вебінар'
+      edit_page_title: 'Вебінар'
+    article:
+      list_title: 'Статті'
+      new_page_title: 'Створити Нову Статтю'
+      edit_button_title: 'Статтю'
+      edit_page_title: 'Стаття'
+    register_users:
+      list_title: 'Зареєстровані користувачі'
+      new_page_title: 'Зареєстрований користувач'
+      edit_button_title: 'Користувача'
+      edit_page_title: 'Користувач'
+    other:
+      list_title: 'Інше'
+      new_page_title: 'Створити Нове Інше'
+      edit_button_title: 'Інше'
+      edit_page_title: 'Інше'
+    video:
+      list_title: 'Відео'
+      new_page_title: 'Створити Нове Відео'
+      edit_button_title: 'Відео'
+      edit_page_title: 'Відео'
+    feedback_form:
+      list_title: "Форми зворотного зв’язку"
+      new_page_title: 'Створити Нову Форму зворотного зв’язку'
+      edit_button_title: 'Форму'
+      edit_page_title: 'Форма зворотного зв’язку'
+      title_help: "Поле англійською обов’язкове"
+    comment:
+      list_title: 'Коментарі'
+      new_page_title: 'Створити Новий Коментар'
+      edit_button_title: 'Коментар'
+      edit_page_title: 'Коментар'
+    page:
+      list_title: 'Сторінки'
+      new_page_title: 'Створити Нову Сторінку'
+      edit_button_title: 'Сторінку'
+      edit_page_title: 'Сторінка'
+    partner:
+      list_title: 'Партнери'
+      new_page_title: 'Створити Нового Партнера'
+      edit_button_title: 'Партнера'
+      edit_page_title: 'Партнер'
+    expert:
+      list_title: 'Експерти'
+      new_page_title: 'Створити Нового Експерта'
+      edit_button_title: 'Експерта'
+      edit_page_title: 'Експерт'
+    review:
+      list_title: 'Відгуки Виробників'
+      new_page_title: 'Створири Новий Відгук'
+      edit_button_title: 'Відгук'
+      edit_page_title: 'Відгук'
+    directory:
+      type_page:
+        list_title: 'Типи сторінок'
+        new_page_title: 'Створити Новий Тип сторінки'
+        edit_button_title: 'Тип Сторінки'
+        edit_page_title: 'Тип Сторінки'
+      expert_type:
+        list_title: 'Типи Експертів'
+        new_page_title: 'Створити Новий Тип Експерта'
+        edit_button_title: 'Тип Експерта'
+        edit_page_title: 'Тип Експерта'
+      category:
+        list_title: 'Категорії'
+        new_page_title: 'Створити Нову Категорію'
+        edit_button_title: 'Категорію'
+        edit_page_title: 'Категорія'
+      tag:
+        list_title: 'Теги'
+        new_page_title: 'Створити Новий Тег'
+        edit_button_title: 'Тег'
+        edit_page_title: 'Тег'
+      crop:
+        list_title: 'Культури'
+        new_page_title: 'Створити Нову Культуру'
+        edit_button_title: 'Культуру'
+        edit_page_title: 'Культура'
+      activity:
+        list_title: 'Активність'
+        new_page_title: 'Створити Нову Активність'
+        edit_button_title: 'Активність'
+        edit_page_title: 'Активність'
+    user:
+      list_title: 'Користувачі'
+      new_page_title: 'Створити Нового Користувача'
+      edit_button_title: 'Користувача'
+      edit_page_title: 'Користувач'
+      email_confirm: 'Email підтверджений'
+      news_sub: 'Підписка на новини'
+    contact:
+      list_title: 'Контакти'
+      new_page_title: 'Створити Новий Контакт'
+      edit_button_title: 'Контакт'
+      edit_page_title: 'Контакт'
+    messages_from_visitors:
+      list_title: 'Повідомлення відвідувачів'
+      new_page_title: 'Створити Нове Повідомлення'
+      edit_button_title: 'Повідомлення'
+      edit_page_title: 'Повідомлення відвідувача'
+    feedback_from_visitors:
+      list_title: 'Відгуки відвідувачів'
+      new_page_title: 'Створити Новий Відгук'
+      edit_button_title: 'Відгук'
+      edit_page_title: 'Відгук відвідувача'
+      status_action:
+        active_msg: 'Статус відповіді з типом ВІДГУК змінено на АКТИВНИЙ'
+        not_active_msg: 'Статус відповіді з типом ВІДГУК змінено на ВИМКНЕНИЙ'
+        no_reviews: 'Відповіді з типом відгук та атрибутом ОБОВЯЗКОВО не знайдено'
+    option:
+      list_title: 'Налаштування'
+      new_page_title: 'Створити Нове Налаштування'
+      edit_button_title: 'Налаштування'
+      edit_page_title: 'Налаштування'
+    dead_url:
+      list_title: 'Неактивні посилання'
+      new_page_title: 'Створити Нове Посилання'
+      edit_button_title: 'Посилання'
+      edit_page_title: 'Посилання'
+    user_download:
+      list_title: 'Файли користувачів'
+      new_page_title: 'Створити Файл Користувача'
+      edit_button_title: 'Файл Користувача'
+      edit_page_title: 'Файл Користувача'
+      downloaded_at: 'Дата завантаження'
+      ext: 'Розширення файла'
+    occurrence:
+      list_title: 'Захід'
+      new_page_title: 'Створити Новий Захід'
+      edit_button_title: 'Захід'
+      edit_page_title: 'Захід'
+    news:
+      list_title: 'Новини'
+      new_page_title: 'Створити Новину'
+      edit_button_title: 'Новину'
+      edit_page_title: 'Новина'
+  userFeedback:
+    gender:
+      male: 'Чоловік'
+      female: 'Жінка'
+      none: 'Не вказано'
+  itemRegistration:
+    user: 'Користувач'
+    userRegion: 'Регіон'
+    item: 'Елемент'
+    createdDate: 'Дата'
+    userFeedback:
+      title: 'Залишав відгук'
+      exist: 'Так'
+      notExist: 'Ні'
+    titles:
+      index: 'Зареєстровані користувачі'
+      plural: 'користувача'
+      singular: 'користувач'
+    actions:
+      export: 'Експорт'
+      sendFeedbackForm: 'відправити форму'
+      sendFeedbackForms: 'відправити форми'
+    errors:
+      itemHasNoFeedbackForm: 'Елемент не має feedback форми'
+      itemsHasNoFeedbackForm: 'Дані елементи не мають feedback форм: '
+  courseStatistic:
+    title: 'Назва'
+    totalDuration: 'Загальна тривалість курсу'
+    registrationsAmount: 'Кількість реєстрацій'
+    region:
+      title: 'Регіон'
+      split: 'Розподіл за регіоном'
+      empty: 'не вказано'
+    gender:
+      split: 'Розподіл за статтю'
+      male: 'Чоловіків'
+      female: 'Жінок'
+      none: 'Не вказано'
+    usersProgress:
+      title: 'Проходженя'
+      link: 'проходженя'
+      inProgress: '%USER% - %TIME% (%PERCENT%%)'
+      progressNoN: '%USER% - не проходив'
+    titles:
+      index: 'Статистика проходжень'
+      plural: 'статистики'
+      singular: 'статистика'
+    actions:
+      export: 'Експорт'
+  courseRegistration:
+    user: 'Користувач'
+    userRegion: 'Регіон'
+    usersProgress:
+      title: 'Проходженя'
+      inProgress: '%TIME% (%PERCENT%%)'
+      progressNoN: 'не проходив'
+    isNotified:
+      title: 'Отримав feedback форму'
+      yes: 'Так'
+      no: 'Ні'
+    titles:
+      index: 'Проходження курсу'
+      plural: 'проходження'
+      singular: 'проходження'
+    actions:
+      sendFeedbackForm: 'відправити форму'
+    errors:
+      courseWasNoFound: 'Курс не знайдено'
+      courseHasNoFeedbackForm: 'Курс не має feedback форми'
+  comment:
+    title: 'Коментарі'
+    link: 'коментарі'
+  market:
+    title: 'Торгівельний майданчик'
+    product:
+      activity: 'Активна'
+      active_from: 'Активний з'
+      active_to: 'Активний по'
+      title: 'Назва'
+      description: 'Опис'
+      price: 'Ціна'
+      region: 'Регіон'
+      district: 'Район'
+      locality: 'Місто'
+      category: 'Категорія'
+      attributes_values: 'Значення атрибутів товару'
+      image: 'Зображення'
+      type: 'Тип'
+      types:
+        sell: 'Продаж'
+        buy: 'Купівля'
+      user: 'Користувач'
+      userDisplayPhones: 'Телефони користувача'
+      isOrganic: 'Органічний товар'
+      titles:
+        index: 'Продукти'
+        new: 'Створити продукт'
+        edit: 'Продукт'
+        plural: 'продукти'
+        singular: 'продукт'
+    service:
+      titles:
+        index: 'Послуги'
+        new: 'Створити послугу'
+        edit: 'Послуга'
+        plural: 'послуги'
+        singular: 'послугу'
+    kit:
+      approved: 'Схвалено'
+      commodities: 'Продукти та послуги'
+      titles:
+        index: 'Набори'
+        new: 'Створити набір'
+        edit: 'Набір'
+        plural: 'набори'
+        singular: 'набір'
+    kit_agreement:
+      kit: 'Набір'
+      commodity: 'Продукти та послуги'
+      status: 'Статус'
+      statuses:
+        approved: 'Схвалено'
+        rejected: 'Відхилино'
+        pending: 'Очікування'
+        expired: 'Просрочено'
+      titles:
+        index: 'Договори по наборам'
+        new: 'Створити договір по наборам'
+        edit: 'Договір по наборам'
+        plural: 'договори'
+        singular: 'договір'
+    commodityAttrValue:
+      list_title: 'Атрибути продуктів'
+      new_page_title: 'Створити атрибут продукту'
+      edit_button_title: 'Атрибут продукта'
+      edit_page_title: 'Атрибут продукта'
+    userToUserReview:
+      titles:
+        index: 'Відгуки Користувачів про Продавців/Постачальників послуг'
+        new: 'Відгук Користувача про Продавця/Постачальника послуг'
+        edit: 'Відгук Користувача про Продавця/Постачальника послуг'
+        plural: 'Відгуки Користувачів про Продавців/Постачальників послуг'
+        singular: 'Відгук Користувача про Продавця/Постачальника послуг'
+    category:
+      id: 'ID'
+      title: 'Назва'
+      parent: 'Батьківська категорія'
+      attributes: 'Атрибути'
+      attributes_form:
+        noAttributesExist: 'Не має жодного атрибута'
+        attribute: 'Атрибут'
+        required: 'Обовʼязкове'
+        showOnList: 'Показувати на сторінці списку'
+        listSortAlphabetic: 'Сортувати список за алфавітом'
+        sort: 'Сортировка'
+        list_values: 'Значення'
+        delete: 'Видалити'
+        add: 'Додати'
+    categoryProduct:
+      titles:
+        index: 'Категорії продуктів'
+        new: 'Нова категорія'
+        edit: 'Категорія'
+        plural: 'категорії'
+        singular: 'категорію'
+    categoryService:
+      titles:
+        index: 'Категорії послуг'
+        new: 'Нова категорія'
+        edit: 'Категорія'
+        plural: 'категорії'
+        singular: 'категорію'
+    attribute:
+      id: 'ID'
+      title: 'Назва'
+      description: 'Опис'
+      type: 'Тип'
+      required: "Обов'язковий"
+      code: 'Особиста поведінка'
+      codes:
+        volume: "Об'єм продукту"
+        measure: 'Одиниця виміру'
+        price_measure: 'Одиниця виміру (для ціни)'
+      types:
+        string: 'текст'
+        int: 'число'
+        list: 'список'
+        listMultiple: 'множинний список'
+        dictionary: 'словник'
+      dictionary: 'Словник'
+      dictionaries:
+        crop: 'Культура'
+      titles:
+        index: 'Атрибути'
+        new: 'Новий атрибут'
+        edit: 'Атрибути'
+        plural: 'атрибути'
+        singular: 'атрибут'
+      usageBar:
+        title: 'Увага!'
+        message: '
+          Цей атрибут вже використовується.
+          Зміна його параметрів може призвести до різних помилок відображення значень цього атрибуту.'
+        categoriesInUse: 'Використовується у категоріях'
+        commodities:
+          products: 'продуктів'
+          services: 'послуг'
+        preSubmitAlert: '
+          Ви впевнені? Зміна цього атрибуту може призвести до помилок відображення 
+          у товарах та послугах, де цей атрибут вже використовується'
+    certificate:
+      id: 'ID'
+      title: 'Назва'
+      isEcology: 'Чи є органічним'
+      required: "Обов'язковий"
+      approved: 'Чи є підтвердженим'
+      userProperty: 'Користувач'
+      status: 'Cтатус'
+      file: 'Файл сертифіката'
+      createdAt: 'Дата створення'
+      fileSize: 'Розмір файлу'
+      originalName: "Ім'я файлу"
+      fileName: "Ім'я файлу в системі"
+      MIMETypeOfFile: 'MIME тип файлу'
+      approveAction: 'Затвердити сертифікат'
+      deleteAction: 'Відхилити затвердження сертифікату'
+      titles:
+        index: 'Сертифікати'
+        new: 'Створити Сертифікат'
+        edit: 'Змінити Сертифікат'
+        plural: 'Сертифікати'
+        singular: 'Сертифікат'
+    bidOffer:
+      titles:
+        index: 'Пропозиція купити товар чи послугу'
+        new: 'Створити Пропозицію купити товар чи послугу'
+        edit: 'Змінити Пропозицію купити товар чи послугу'
+        plural: 'Пропозиції купити товар чи послугу'
+        singular: 'Пропозиція купити товар чи послугу'
+    priceOffer:
+      titles:
+        index: 'Пропозиція ціни'
+        new: 'Створити Пропозицію ціни'
+        edit: 'Змінити Пропозицію ціни'
+        plural: 'Пропозиції цін'
+        singular: 'Пропозиція ціни'
+    kitAgreementNotification:
+      titles:
+        index: 'Повідомлення про спільну пропозицію'
+        new: 'Створити Повідомлення про спільну пропозицію'
+        edit: 'Змінити Повідомлення про спільну пропозицію'
+        plural: 'Повідомлення спільних пропозицій'
+        singular: 'Повідомлення про спільну пропозицію'
+    systemMessage:
+      titles:
+        index: 'Системне Повідомлення'
+        new: 'Створити Системне Повідомлення'
+        edit: 'Змінити Системне Повідомлення'
+        plural: 'Системні Повідомлення'
+        singular: 'Системне Повідомлення'
+    phone:
+      phone: 'Телефон'
+      main: 'Головний'
+      telegram: 'Телеграм'
+      viber: 'Вайбер'
+      whatsApp: 'Ватсап'
+      titles:
+        index: 'Телефони'
+        new: 'Створити Телефон'
+        edit: 'Змінити Телефон'
+        plural: 'Телефони'
+        singular: 'Телефон'
+    textBlock:
+      titles:
+        index: 'Текстові блоки'
+        new: 'Створити текстовий блок'
+        edit: 'Текстовий Блок'
+        plural: 'Текстові блоки'
+        singular: 'Текстовий Блок'
+    textType:
+      titles:
+        index: 'Текстові Типи'
+        new: 'Створити текстовий тип'
+        edit: 'Текстовий Тип'
+        plural: 'Текстові Типи'
+        singular: 'Текстовий Тип'
+reset_password_email:
+  subject: 'Ваш запит на зміну пароля'
+  title: 'Добрий день!'
+  message: 'Щоб скинути пароль, перейдіть за цим посиланням'
+  success: 'Посилання для скидання пароля надіслане на ваш Email'
+  expire: 'Термін дії цього посилання закінчиться через'
+  not_found_email: 'Вибачте, Вашого e-mail не має у списку користувачів системи.
+   Будь ласка, спробуйте відновити пароль з e-mail,
+    що був вказаний при реєстрації, або зареєструйтеся.'
+  signature: 'З повагою!'
+subscribe_to_news: 'Підписатися на новини сервісу'
+organizer:
+  site: 'Веб-сайт'
+  email: 'Електронна пошта'
+  phone: 'Телефон'
+start_studying: 'Почати навчання'
+starting: 'Стартуємо'
+starting_year: 'року!'
+form:
+  list:
+    emptyValues: 'не має значень'
+  label:
+    delete: 'Видалити'
+contact_us_email:
+  title: 'АгроВікі Контактна Форма'
+  subject: 'Повідомлення від '
+course_review:
+  thanks: 'Дякуємо за перегляд курсу'
+  feedback: 'Для оцінки якості матеріалів просимо відповісти на декілька запитань у '
+  link: 'нашій формі'
+market:
+  title: 'Торгівельний майданчик'
+  currency:
+    short: 'грн'
+  commodity:
+    type: 'Тип'
+    isOrganic: 'Органічний продукт'
+    inactiveMessage: 'Не активно'
+    hasInactiveCommodities: 'Маються не активні продукти'
+    hasInactiveOwner: 'Власник не активний'
+    notApproved: 'Ще не підтверджено'
+    activate: 'Активувати'
+    publicationDates: 'Діє до'
+    search:
+      placeholder: 'Пошук товарів та послуг'
+    sortTypes:
+      createdDate: 'Найновіші'
+      priceDesc: 'Від дорогих до дешевих'
+      priceAsc: 'Від дешевих до дорогих'
+  product:
+    create: 'Додати товар'
+    titles:
+      multiple: 'Товари'
+    filter:
+      productType: 'Тип'
+      productTypes:
+        buy: 'Куплю'
+        sell: 'Продам'
+      category: 'Категорія'
+      subCategory: 'Підкатегорія'
+      numberFrom: 'від'
+      numberTo: 'до'
+      price: 'Ціна'
+      organicOnly: 'Тільки органічні продукти'
+    search:
+      placeholder: 'Пошук товару за назвою та категорією'
+    list:
+      user: 'Продавець'
+      productTypes:
+        buy: 'Куплю'
+        sell: 'Продам'
+      region: 'Область'
+      district: 'Район'
+      locality: 'Місце'
+      phone: 'Телефон'
+      priceNegotiated: 'Договірна ціна'
+      actions:
+        buy: 'Купити'
+        sell: 'Продати'
+        order: 'Замовити'
+        detail: 'Перегляд оголошення'
+        detailShort: 'Детальніше'
+        bid: 'Запропонувати свою ціну'
+        favoriteAdd: 'Додати в обране'
+        favoriteRemove: 'Прибрати з обраного'
+        edit: 'Редагувати'
+        activate: 'Активувати'
+        deactivate: 'Деактивувати'
+        kitAddCommodity: 'Додати'
+        kitLeaving: 'Вийти з пропозиції'
+        kitLeavingAlert:
+          title: 'Увага'
+          message: 'Після виходу з пропозиції, вона буде деактивована, а усі учасники будуь оповіщені'
+          cancel: 'Відміна'
+      empty: 'нічого не знайдено'
+    detail:
+      id: 'ID товара'
+      favoriteAdd: 'В обране'
+      favoriteRemove: 'Прибрати з обраного'
+      price: 'Ціна'
+      showPhone: 'Показати телефон'
+      showEmail: 'Показати email'
+      sellerGetContact: 'Зв’язатися'
+      category: 'Категорія'
+      sameItems: 'Інші подібні товари'
+      sameItemsViewAll: 'Переглянути все'
+      sameSellers: 'Інші продавці'
+      sameSellersViewAll: 'Переглянути все'
+  service:
+    create: 'Додати послугу'
+    titles:
+      multiple: 'Послуги'
+    search:
+      placeholder: 'Пошук послуги за назвою та категорією'
+    list:
+      user: 'Постачальник'
+    detail:
+      id: 'ID послуги'
+      sameItems: 'Інші подібні послуги'
+      sameItemsViewAll: 'Переглянути все'
+      sameSellers: 'Інші постачальники послуг'
+      sameSellersViewAll: 'Переглянути все'
+  kit:
+    create: 'Додати пропозицію'
+    titles:
+      multiple: 'Пропозиції'
+    filter:
+      product:
+        title: 'Товар #index#'
+        add: 'Додати товар'
+      service:
+        title: 'Послуга #index#'
+        add: 'Додати послугу'
+    search:
+      placeholder: 'Пошук товару за назвою та категорією'
+    list:
+      user: 'Продавець'
+    detail:
+      id: 'ID пропозиції'
+      innerCommodities: 'Товари, послуги'
+      innerSellers: 'Продавці або постачальники'
+      sameItems: 'Інші подібні пропозиції'
+      sameItemsViewAll: 'Переглянути все'
+      sameSellers: 'Інші продавці'
+      sameSellersViewAll: 'Переглянути все'
+  commoditySearch:
+    title: 'Пошук'
+  user:
+    review:
+      firstUserReview: 'Будьте першим залишившим відгук про '
+      userReview: 'Відгуки про користувача'
+      publish: 'Опублікувати'
+    titles:
+      multiple: 'Користувачі'
+    list:
+      empty: 'нічого не знайдено'
+      actions:
+        detail: 'Детальніше'
+        detailAlt: 'Перегляд користувача'
+        favoriteAdd: 'Додати в обране'
+        favoriteRemove: 'Прибрати з обраного'
+        kitAddCommodity: 'Додати'
+    detail:
+      id: 'ID'
+      activeFrom: 'Активність з'
+      name: "Ім'я"
+      roles: 'Ролі'
+      gender:
+        title: 'Стать'
+        male: 'Чоловік'
+        female: 'Жінка'
+      email: 'Email'
+      showEmail: 'Показати email'
+      phone: 'Мобільний телефон'
+      showPhone: 'Показати телефон'
+      socialLinks: 'Соц. мережі'
+      region: 'Область'
+      certificates:
+        title: 'Сертифікати'
+        organic: 'Органічні'
+        others: 'Інші'
+      allCommodities:
+        product: 'Всі товари цього продавця'
+        service: 'Всі послуги цього продавця'
+        kit: 'Всі пропозиції цього продавця'
+      sameUsers: 'Вас також можуть зацікавити'
+  profile:
+    menu:
+      myProducts: 'Мої товари'
+      myServices: 'Мої послуги'
+      myKits: 'Мої спільні пропозиції'
+      favorites: 'Обране'
+      notifications: 'Повідомлення'
+      roles: 'Мої ролі'
+      myCertificates: 'Мої сертифікати'
+      aboutMe: 'Про мене'
+    aboutMe:
+      title: 'Про мене'
+      descriptionVideoLink:
+        title: 'Відео'
+        placeholder: 'Посилання на відео'
+        error: 'Вставте правильне посилання на відео ( "https://www.youtube.com/watch?v=_FWirIjoCAQ" )!'
+        notExist: 'Данного відео не існує, перевірте посилання!'
+      submit: 'Зберегти'
+    myCommodities:
+      product:
+        add: 'Додати товар'
+        addedSuccessfully: 'Товар успішно доданий'
+        addedSuccessfullyLink: 'Перейти на сторінку товара'
+      service:
+        add: 'Додати послугу'
+        addedSuccessfully: 'Послуга успішно додана'
+        addedSuccessfullyLink: 'Перейти на сторінку послуги'
+      kit:
+        add: 'Додати пропозицію'
+        addedSuccessfully: 'Пропозиція успішно додана'
+        addedSuccessfullyLink: 'Перейти на сторінку редагування пропозиції'
+      publicationsCountLeft: 'У вас залишилося #NUMBER# публікацій'
+      publicationsCountLeftNoMore: 'У вас не залишилося більше публікацій'
+      editAccessDenied: 'У Вас не має доступу до редагування цього єлементу'
+      rolesRequiredError: 'Для вашої ролі не доступна ця функціональність.'
+      rolesRequiredMessage: 'Заповніть, будь ласка, анкету для отримання ролі "#ROLE#"'
+    commodityForm:
+      step: 'Крок'
+      next: 'Далі'
+      previous: 'Назад'
+      finish: 'Опублікувати'
+      boolean:
+        yes: 'Так'
+        no: 'Ні'
+      image:
+        add: 'Додати фото'
+        change: 'Змінити фото'
+        placeolder: 'Вибрати зображення'
+      description: 'Опис'
+      price: 'Ціна'
+      priceNegotiated: 'Ціна договірна'
+      category: 'Категорія'
+      subCategory: 'Підкатегорія'
+      attributesValues: 'Характеристики'
+      attributesValuesEmpty: 'не має'
+      userContacts: 'Контакти продавця'
+      userDisplayPhones: 'Відображати в оголошенні телефони'
+    productForm:
+      create: 'Створити продукт'
+      edit: 'Редагувати продукт'
+      about: 'Коротко про товар'
+      title: 'Назва товару'
+      type: 'Тип'
+      types:
+        buy: 'Купівля'
+        sell: 'Продаж'
+      location: 'Місце'
+      region: 'Область'
+      district: 'Район'
+      locality: 'Місто'
+      organic: 'Органічний товар'
+    serviceForm:
+      create: 'Створити послугу'
+      edit: 'Редагувати послугу'
+      about: 'Коротко про послугу'
+      title: 'Назва послуги'
+    kitForm:
+      create: 'Створити пропозицію'
+      edit: 'Редагувати пропозицію'
+      about: 'Коротко про пропозицію'
+      title: 'Назва спільної пропозиції'
+      priceSummary: 'Сумарна ціна всіх товарів та послуг у вашої пропозиції становить'
+      commoditiesSelection:
+        tabs:
+          addCommodity: 'Додати товар або послугу'
+          addUser: 'Додати Продавця або Постачальника'
+          addMyCommodity: 'Мої товари та послуги'
+        all:
+          search: 'Найменування товару або ID товару'
+          searchPlaceholder: 'Назва товару, або ID (наприклад: 23984)'
+        byUser:
+          searchPlaceholder: "Ім'я користувача, його email або ID"
+          userCommoditiesTitle: 'Товари та послуги продавця "#USER#"'
+          backToUsersList: 'назад до списку продавців'
+        validation:
+          commoditiesCountNotEnough: 'Пропозицій повинно буди не менше ніж #COUNT#'
+          commoditiesCountToMuch: 'Пропозицій повинно буди не більше ніж #COUNT#'
+          creatorCommodityAbsent: 'Необхідно додати хоча б один свій товар/послугу'
+      preview:
+        commodities: 'Товари або послуги'
+        users: 'Продавці або постачальники'
+        userName: 'Відповідальна особа'
+      summaryInformation:
+        activeToWarning:
+          'Термін дії пропозиції не може бути довше мінімального терміну дії обраних товарів.
+          Це означає, якщо у товару, який бере участь в пропозиції, закінчився термін дії,
+          то пропозиція стає автоматично не активною.'
+        price: 'Ціна, грн'
+        kitPrice: 'Ціна спільної пропозиції'
+        commoditySummary: 'Загальна ціна товарів та послуг'
+        commodityActivityDays: 'Активно ще днів'
+        kitActivityDays:
+          title: 'Пропозиція дійсна'
+          days1: 'день'
+          daysFrom2To4: 'дні'
+          daysOver5: 'днів'
+          till: 'До'
+        addCommodity: 'Додати ще товар або послугу'
+    favorite:
+      empty: 'нічого не знайдено'
+      product:
+        title: 'Товари'
+      service:
+        title: 'Послуги'
+      kit:
+        title: 'Пропозиції'
+      user:
+        title: 'Продавці'
+      filter:
+        activity:
+          Y: 'Активні'
+          N: 'Не активні'
+  certificate:
+    list:
+      actions:
+        edit: 'Редагувати'
+        delete: 'Видалити'
+    search:
+      placeholder: 'Знайти сертифікат'
+      sortValues:
+        name: 'за назвою'
+        create: 'за датою'
+        organic: 'за органічним атрибутом'
+    isOrganic: 'Органічний сертифікат'
+    form:
+      certificateTypeApproved: 'Узгоджені'
+      certificateTypeNotApproved: 'Не узгоджені'
+      ecology: 'Органічний'
+      default: 'Звичайний'
+role:
+  application_form_role: 'Анкета для ролі'
+  required_to_fill: 'Обов’язково для заповнення'
+  cancel: 'Скасувати'
+  send: 'Відправити'
+  current: 'Ваша поточна роль'
+  current_comment: 'Ви можете розширити її згідно ваших потреб'
+  purchases: 'Покупки'
+  goods: 'Товари'
+  servises: 'Послуги'
+  kits: 'Пропозиції'
+  add_product: 'Додати товар'
+  buy: 'Купити'
+  sell: 'Продати'
+  add_service: 'Додати послугу'
+  my_role: 'Моя роль'
+  buyer: 'Покупець'
+  wholesale_bayer: 'Оптовий покупець'
+  anceta: 'Анкета'
+  cansel: 'Відмовитися'
+  seller: 'Продавець'
+  service_provider: 'Постачальник послуг'
+  title: 'Назва підприємства'
+  instagramLink: 'Посилання на Instagram'
+  facebookLink: 'Посилання на Facebook'
+  address: 'Адреса підприемства'
+  legalCompanyType: 'Форма реєстрації бізнесу'
+  companyType: 'Вид підприємства'
+  add_phone: 'Додати телефон'
+  delete_phone: 'Видалити телефон'
+  is_organic: 'Органічний сертифікат'
+  download_file: 'Завантажити сертифікат'
+  add_certificate: 'Додати сертифікат'
+  delete_file: 'Видалити сертифікат'
+  messager: 'Мессенджер на цьому телефоні'
+  is_organic_help: 'Вкажіть чи є даній сертифікат органічним'
+  name_certificate: 'Назва сертифікату'
+  myCertificate: 'Мої сертифікати'
+  success_role_added: 'Заявка на надання ролі подана успішно! Очікуйте перевірки наданих даних.'
+  success_certificate_added: 'Сертифікат успішно збережено.'
+  success_certificate_edit_rejected: 'Неможливо редагувати затвержений органічний сертифікат!'
+  success_certificate_added_check: 'Сертифікат успішно збережено. Очікуйте перевірки.'
+  success_certificate_deleted: 'Сертифікат успішно видалено!'
+  save_certificate: 'Зберегти сертифікат'
+  edit_anceta: 'Редагувати'
+  my_role_wait: 'Очікую'
+  empty_file: "Вкажіть файл сертифікату"
+  empty_name: "Вкажіть назву сертифікату"
+sertificate:
+  empty: 'На жаль ще не завантажено або не узгоджено жодного сертифікату'
+cron:
+  notification_sender:
+    author:
+      title: ''
+      message: ''
+    co_author:
+      title: '%kit_name% було %event%.'
+      message: 'Шановний %user%, спільна пропозиція %kit_name%, де ви є співатором %event%.'
+    enjoyer:
+      title: '%commodity_name% було %event%.'
+      message: 'Шановний %user%, %commodity_type% - %commodity_name%, що у вас в обраному бу(-в)(-ла) %event%.'
+    msg_parts_by_event:
+      CommodityActiveToExpireEvent: 'деактивована за часом'
+      CommodityActivationEvent: 'знову активна'
+      CommodityDeactivationEvent: 'деактивована власником'
+      CommodityAdminActivationEvent: 'активована адміністрацією'
+      CommodityAdminDeactivationEvent: 'деактивована адміністрацією'
+      CommodityNotificationWorkerCommand:
+        kit:
+          msgPart: 'Вашу спільну пропозицію'
+        product:
+          msgPart: 'Ваш товар'
+        service:
+          msgPart: 'Вашу послугу'
+      CommodityCreateEvent:
+        kit:
+          email: 'Перейдіть за посиланням, щоб переглянути нові повідомлення.'
+      CommodityUpdateEvent:
+        product:
+        service:
+        kit:
+          systemMessage:
+            title: 'Деактивація спільної пропозиції - %kit% %byAdmin%'
+            message: '%kit%  -  %user% редагував спільну пропозицію та тим самим деактивува її. Згодом вам буде надіслане нове повідомлення, щоб узгодити нову версію спільної пропозиції - %kit%'
+          kitAgreement:
+            title: 'Заявка на реактивацію спільної пропозиції - %kit%'
+            message: '%kit%  -  %user% редагував спільну пропозицію. Підвердіть участь у спільній пропозиції %kit%, якщо згодні з новими умовами.'
+      CommodityAdminCreateEvent: ''
+      CommodityAdminUpdateEvent: ''
+      CommodityOfferReviewSendEvent:
+        product:
+          buy:
+            titlePart: 'продаж'
+            msgPart: 'продати'
+            message: 'Шановний користувач, нещодавно ви запропонували користувачеві %user%, %msgPart% %product%. %end_msg%'
+          sell:
+            titlePart: 'купити'
+            msgPart: 'купівлю'
+            message: 'Шановний користувач, нещодавно ви запропонували користувачеві %user%, %msgPart% %product%. %end_msg%'
+          title: ''
+        service:
+          titlePart: 'замовлення послуги'
+          msgPart: 'замовлення послуги'
+          message: 'Шановний користувач, нещодавно ви зробили у %user% - %msgPart% - %product%. %end_msg%'
+        kit:
+          titlePart: 'замовлення послуги'
+          msgPart: 'стати учасником спільної пропозиції'
+          message: 'Шановний користувач, нещодавно %user% вам запропонував  %msgPart% - %product%. %end_msg%'
+        price:
+          titlePart: 'пропозицію ціни'
+          msgPart: 'ціну'
+          message: 'Шановний користувач, нещодавно %user% вам запропонував  %msgPart% - на ваш %product%. %end_msg%'
+        end_msg: 'Напишіть відгук, щодо користувача %user% та угоди у цілому.'
+        title: 'Відгукнітся про %titlePart% - %product%.'
+      CommodityKitDeactivationByCoAuthorEvent:
+        author:
+          title: 'Деактивація вашего %kit% користувачем %coauthor%'
+          message: 'Шановний %user%, ваша спільна пропозиція - %kit% була деактивована одним із учасників - %coauthor%. Ви можете відредагувати %kit% та запустити процес підвердження знову.'
+        coauthor:
+          title: 'Деактивація спільної пропозиції, де ви співавтор - %kit% користувачем %coauthor%'
+          message: 'Шановний %user%,  спільна пропозиція, де ви співавтор - %kit% була деактивована одним із учасників - %coauthor%. Автор цієї спільної пропозиції може відредагувати %kit% та запустити процес підвердження знову.'
+Code: 'Код'
+Value: 'Значення'
+Description: 'Опис'
+MaxFileSize: 'Максимальний размір файлу: %value% мб'
+WrongFileType: 'Недопустимий формат файлу. Допустимі формати: %value%'

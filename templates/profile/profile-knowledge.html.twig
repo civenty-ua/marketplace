@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'profile.title' | trans }}{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <ul class="breadcrumbs">
+            <li><a href="{{ path('home') }}">{{ 'home.home' | trans }}</a></li>
+            <li>{{ 'profile.title' | trans }}</li>
+        </ul>
+
+        <h1 class="h1">
+            <strong>{{ 'profile.title' | trans }}</strong>
+        </h1>
+
+        <div class="section__subtitle">{{ user.name }}</div>
+
+        <div class="tabs tabs-personal-area">
+            <div class="tabs__navigation-wrapper">
+                {% include 'profile/blocks/tabs.html.twig' with {
+                    'selected' : 'knowledge',
+                } only %}
+            </div>
+            <div class="tabs__content">
+                <div id="tab_knowledge" class="tab">
+                    <div class="personal-area">
+                        {% block profile_knowledge %}
+                            {% include 'profile/blocks/knowledge.html.twig' %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

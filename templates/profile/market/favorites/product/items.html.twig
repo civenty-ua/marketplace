@@ -1,0 +1,56 @@
+{% extends 'market/itemsComponent.html.twig' %}
+{# ------------------------------------------- #}
+{# rebuild URL #}
+{# ------------------------------------------- #}
+{% set rebuildUrl = path('market_profile_favorites_products_list_rebuild') %}
+{# ------------------------------------------- #}
+{# filter #}
+{# ------------------------------------------- #}
+{% block filter %}
+    <div class="filter-bar">
+        <div class="checkbox-row">
+            {% for type, class in {
+                (constant('App\\Entity\\Market\\CommodityProduct::TYPE_BUY'))   : 'orange',
+                (constant('App\\Entity\\Market\\CommodityProduct::TYPE_SELL'))  : 'blue',
+            } %}
+                <div class="field-checkbox">
+                    {% include 'market/commodity/block/filter/checkbox.html.twig' with {
+                        'name'      : 'productType[]',
+                        'value'     : type,
+                        'title'     : "market.product.filter.productTypes.#{type}"|trans,
+                        'isChecked' : type in filter.productType ?? [],
+                        'class'     : class,
+                    } only %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="select-wrap">
+            {% set sortList = [] %}
+            {% for value in availableSortValues %}
+                {% set sortList = sortList|merge({
+                    (value) : "market.commodity.sortTypes.#{value}"|trans
+                }) %}
+            {% endfor %}
+
+            {% include 'market/commodity/block/filter/select.html.twig' with {
+                'name'          : 'sortField',
+                'emptyValue'    : false,
+                'multiple'      : false,
+                'list'          : sortList,
+                'values'        : [filter.sortField],
+            } only %}
+        </div>
+    </div>
+{% endblock %}
+{# ------------------------------------------- #}
+{# items list #}
+{# ------------------------------------------- #}
+{% block itemsList %}
+    {% include 'market/commodity/items.html.twig' with {
+        'items'             : items,
+        'currentPage'       : filter.page,
+        'paginationName'    : 'page',
+        'actions'           : actions,
+        'mainAction'        : mainAction,
+    } only %}
+{% endblock %}

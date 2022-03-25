@@ -1,0 +1,22 @@
+<div class="lesson-item">
+    <div class="accordion-block">
+        <div class="js-accordion-block__open accordion-header lesson-item__header">
+            <div class="lesson-header">
+                <a href="javascript:void(0)"
+                   class="lesson-header__lesson">{{ lesson.title }}</a>
+            </div>
+            <div class="accordion-header__quantity"></div>
+        </div>
+
+        <div class="js-accordion-block__content accordion-block__content lesson-item__content">
+            <div class="lesson-item-text">
+                {{ lesson.content|raw }}
+            </div>
+            <a href="{{ app.user ? path('lesson_detail', {'lesson_id': lesson.id, 'slug': course.slug}) : '#' }}"
+               class="square-button height-50 green-bg-button{{ app.user ? '' : ' js-lesson-unauthorized-button' }}">
+                {{ 'course.go_to_lesson'|trans }}
+            </a>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'profile.title'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <ul class="breadcrumbs">
+            <li><a href="{{ path('home') }}">{{ 'home.home'|trans }}</a></li>
+            <li>{{ 'profile.title'|trans }}</li>
+        </ul>
+
+        <h1 class="h1">
+            <strong>{{ 'profile.title'|trans }}</strong>
+        </h1>
+
+        <div class="section__subtitle">Спільна пропозиція - {{ ' ' ~ notification.commodity.title }} -
+            від {{ ' ' ~notification.sender.name }}</div>
+
+        <div class="tabs-personal-area personal-area__wrapper">
+            {% set tabSelected = 'marketplace' %}
+            <div class="tabs__navigation-wrapper">
+                {% include 'profile/blocks/tabs.html.twig' with {
+                    'selected' : tabSelected,
+                } only %}
+            </div>
+
+            <div class="personal-area marketplace personal-area__wrapper">
+                <div class="filter-wrapper">
+                    <a href="javascript:void(0)" class="js-mobile-filter__open filter__button">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#filter"></use>
+                        </svg>
+                        <span>{{ 'item.filters'|trans }}</span>
+                    </a>
+                </div>
+
+                <div class="personal-area__inner">
+                    {% include 'profile_marketplace/blocks/personal-area-sidebar.html.twig' %}
+
+                    <div class="personal-area-center__tabs-wrapper">
+                        <div class="personal-area-center__tab">
+                            <div class="filter-bar filter-bar_nav">
+                                <a class="square-button borderless black" href="{{ path('my_notifications') }}">
+                                    <svg>
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-left"></use>
+                                    </svg>
+                                    <span>Всі повідомлення</span>
+                                </a>
+
+                                <a class="square-button borderless black" href="{{ path('notification_delete',{'id': notification.id}) }}">
+                                    <svg>
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#delete"></use>
+                                    </svg>
+                                    <span>Видалити</span>
+                                </a>
+                            </div>
+
+                            <h3 class="h3 marginBottom40px">Заявка на створення спільної пропозиції</h3>
+
+                            <div class="marginBottom40px">
+                                {% include 'profile_marketplace/blocks/proposal-summary-table-block.html.twig'
+                                    with {'shouldHideAddButton': false, 'shouldHideEditButton': false } %}
+                            </div>
+                            {% if daysLeftForApprove > "now"|date and notification.status == constant('App\\Entity\\Market\\Notification\\KitAgreementNotification::STATUS_PENDING') %}
+                                <a href="{{ path('notification_offer_approve',{'id': notification.id}) }}"
+                                   class="square-button orange-bg-button height-50 centeredBlock">Підтвердити
+                                    створення</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% include 'profile_marketplace/blocks/personal-area-sidebar-mobile.html.twig' %}
+        </div>
+    </div>
+{% endblock %}

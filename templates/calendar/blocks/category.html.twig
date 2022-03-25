@@ -1,0 +1,72 @@
+<div class="calendar-filters">
+    <div class="calendar-filters__wrapper desktop">
+        <div class="calendar-filters__inner">
+            <div class="calendar-filters__category">
+                {% for partner in partners %}
+                    <button class="btn-filter-category js-btn-calendar-category" style="color:#007A33"
+                            data-category="{{ partner.id }}">
+                        <span>{{ partner.name }}</span>
+                    </button>
+                {% endfor %}
+            </div>
+            <div class="calendar-filters__all">
+                <button
+                        data-select-all-text="{{ 'item.all'|trans }}"
+                        data-clear-all-text="{{ 'item.clear'|trans }}"
+                        class="btn-h30-green-line js-btn-calendar-all-category"
+                >
+                    <span>{{ 'item.all'|trans }}</span>
+                </button>
+            </div>
+            <button class="btn-wh40-light js-calendar-filters-hide">
+                <svg class="ico">
+                    <use xlink:href="/images/smat/ico-close_24x24.svg#Layer_1"></use>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <div class="calendar-filters__toggler">
+        <button class="btn-h40-green-line js-mobile-filter__open">
+            <svg class="ico">
+                <use xlink:href="/images/smat/ico-filter_40x40.svg#Layer_1"></use>
+            </svg>
+            <span>{{ 'item.category'|trans }}</span>
+        </button>
+    </div>
+</div>
+<div class="js-shade shade"></div>
+<div class="js-mobile-filter mobile-filter">
+    <div class="mobile-filter__inner-wrapper js-mobile-item-filter">
+        <a href="javascript:void(0)" class="js-mobile-filter__close mobile-filter__close">
+            <svg>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cross"></use>
+            </svg>
+        </a>
+        <div class="calendar-filters__wrapper">
+            <div class="calendar-filters__inner">
+                <div class="calendar-filters__category">
+                    {% for partner in partners %}
+                        <button class="btn-filter-category js-btn-calendar-category" style="color:#007A33"
+                                data-category="{{ partner.id }}">
+                            <span>{{ partner.name }}</span>
+                        </button>
+                    {% endfor %}
+                </div>
+                <div class="calendar-filters__all">
+                    <button
+                            data-select-all-text="{{ 'item.all'|trans }}"
+                            data-clear-all-text="{{ 'item.clear'|trans }}"
+                            class="btn-h30-green-line js-btn-calendar-all-category"
+                    >
+                        <span>{{ 'item.all'|trans }}</span>
+                    </button>
+                </div>
+                <button class="btn-wh40-light js-calendar-filters-hide">
+                    <svg class="ico">
+                        <use xlink:href="/images/smat/ico-close_24x24.svg#Layer_1"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

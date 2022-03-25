@@ -1,0 +1,38 @@
+{% extends 'profile/profileNew.html.twig' %}
+{# ------------------------------------------- #}
+{# breadcrumbs #}
+{# ------------------------------------------- #}
+{% set breadcrumbsData = [
+    {
+        'link'  : path('home'),
+        'title' : 'menu.home'|trans,
+    },
+    {
+        'link'  : path('app_profile'),
+        'title' : 'profile.title'|trans,
+    },
+    {
+        'title' : 'profile.marketplace'|trans,
+    },
+] %}
+{# ------------------------------------------- #}
+{# selected tab #}
+{# ------------------------------------------- #}
+{% set tabSelected = 'marketplace' %}
+{# ------------------------------------------- #}
+{# menu #}
+{# ------------------------------------------- #}
+{% block tabMenuDesktop %}
+    {% include 'profile/market/menu.html.twig' with {
+        'position'                      : 'desktop',
+        'allUserNotificationCount'      : allUserNotificationCount,
+        'unreadUserNotificationCount'   : unreadUserNotificationCount
+    } only %}
+{% endblock %}
+{% block tabMenuMobile %}
+    {% include 'profile/market/menu.html.twig' with {
+        'position'                      : 'mobile',
+        'allUserNotificationCount'      : allUserNotificationCount,
+        'unreadUserNotificationCount'   : unreadUserNotificationCount
+    } only %}
+{% endblock %}

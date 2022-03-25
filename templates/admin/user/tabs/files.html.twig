@@ -1,0 +1,19 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Назва</th>
+        <th scope="col">Дата</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in user.userDownloads %}
+        <tr>
+            <th scope="row">{{ item.id }}</th>
+            <td><a href="{{ item.link }}">{{ item.title }}</a></td>
+            <td>{{ item.downloadedAt|format_datetime() }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+

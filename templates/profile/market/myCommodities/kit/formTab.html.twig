@@ -1,0 +1,8 @@
+<div class="personal-area__proposal-block">
+    <div>
+        {{ content }}
+    </div>
+    {% include 'profile/market/myCommodities/kit/preview/minimized.html.twig' with {
+        'form' : form,
+    } only %}
+</div>

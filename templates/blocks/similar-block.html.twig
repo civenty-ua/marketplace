@@ -1,0 +1,45 @@
+{% if similarItemList|length > 0 %}
+    <div class="section">
+        {% if item.typePage and item.typePage.code == 'success_stories' %}
+            <h2 class="h2">{{ 'item.other_stories'|trans }}</h2>
+        {% else %}
+            <h2 class="h2">{{ 'item.similar_items'|trans }}</h2>
+        {% endif %}
+        <div class="js-glide glide" data-max-items-per-slide="5">
+            <div class="glide__track" data-glide-el="track">
+                <ul class="glide__slides">
+                    {% for item in similarItemList %}
+                        {% if item.typePage is defined and  item.typePage is not null %}
+                            {% include '/' ~ item.typePage.code ~'/item/plate.html.twig' with {
+                                'item': item
+                            } %}{% else %}
+                            {% include '/news/item/plate.html.twig' with {
+                                'item': item
+                            } %}
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="glide__arrows" data-glide-el="controls">
+                <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+                    <svg width="36" height="80" viewBox="0 0 36 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22.0001 9.13334L9.85812 40L22.0001 70.8667" stroke="black" stroke-width="1.5"/>
+                    </svg>
+                </button>
+                <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+                    <svg width="36" height="80" viewBox="0 0 36 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.9999 9.13334L26.1419 40L13.9999 70.8667" stroke="black" stroke-width="1.5"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        {% if item.typePage is defined and  item.typePage is not null %}
+            <a href="{{ path( item.typePage.code ~'_list') }}"
+               class="square-button green-bg-button centeredBlock height-50">{{ 'home.view_all'|trans }}</a>
+        {% else %}
+            <a href="{{ path( item.typeItem ~'_list') }}"
+               class="square-button green-bg-button centeredBlock height-50">{{ 'home.view_all'|trans }}</a>
+        {% endif %}
+    </div>
+{% endif %}

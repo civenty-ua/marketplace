@@ -1,0 +1,108 @@
+{% extends 'profile/profileMarket.html.twig' %}
+
+{% block title %}
+    {{ form.vars.data.id
+        ? 'market.profile.kitForm.edit'|trans
+        : 'market.profile.kitForm.create'|trans
+    }}
+{% endblock %}
+
+{% block tabContent %}
+    {% set steps = [] %}
+    {# ------------------------------------------- #}
+    {# step 1 #}
+    {# ------------------------------------------- #}
+    {% set tabContent %}
+        {{ form_row(form.title, {
+            'label' : 'market.profile.kitForm.title',
+            'attr'  : {
+                'data-title-input' : 'Y',
+            },
+        }) }}
+        {{ form_row(form.description, {
+            'label' : 'market.profile.commodityForm.description',
+        }) }}
+    {% endset %}
+    {% set step %}
+        {% include 'profile/market/myCommodities/kit/formTab.html.twig' with {
+            'content'   : tabContent,
+            'form'      : form,
+        } only %}
+    {% endset %}
+    {% set steps = steps|merge([step]) %}
+    {# ------------------------------------------- #}
+    {# step 2 #}
+    {# ------------------------------------------- #}
+    {% set step %}
+        {% include 'profile/market/myCommodities/kit/commoditiesSelector.html.twig' with {
+            'form'          : form,
+            'commodities'   : commodities,
+        } only %}
+    {% endset %}
+    {% set steps = steps|merge([step]) %}
+    {# ------------------------------------------- #}
+    {# step 3 #}
+    {# ------------------------------------------- #}
+    {% set tabContent %}
+        {% set summary = 0 %}
+        {% for commodity in form.commodities.vars.data %}
+            {% set summary = summary + commodity.price %}
+        {% endfor %}
+
+        <div class="
+            alert-row
+            lit-commodities-price-summary
+            marginBottom20px
+            js-kit-commodities-price-summary
+        ">
+            <i class="fas fa-exclamation-circle"></i>
+            <div>
+                <div>
+                    {{ 'market.profile.kitForm.priceSummary'|trans }}
+                </div>
+                <span class="price">
+                    <b>{{ summary|numberFormatAgro }}</b>
+                    <span>{{ 'market.currency.short'|trans }}</span>
+                </span>
+            </div>
+        </div>
+        {% include 'profile/market/myCommodities/price.html.twig' with {
+            'form' : form,
+        } only %}
+        {{ form_row(form.userDisplayPhones, {
+            'label'     : 'market.profile.commodityForm.userDisplayPhones',
+            'hidden'    : form.userDisplayPhones.vars.choices|length == 0,
+        }) }}
+    {% endset %}
+    {% set step %}
+        {% include 'profile/market/myCommodities/kit/formTab.html.twig' with {
+            'content'   : tabContent,
+            'form'      : form,
+        } only %}
+    {% endset %}
+    {% set steps = steps|merge([step]) %}
+    {# ------------------------------------------- #}
+    {# step 4 #}
+    {# ------------------------------------------- #}
+    {% set step %}
+        <div class="alert-row marginBottom40px">
+            <i class="fas fa-exclamation-circle"></i>
+            {{ 'market.profile.kitForm.summaryInformation.activeToWarning'|trans }}
+        </div>
+        {% include 'profile/market/myCommodities/kit/preview/full.html.twig' with {
+            'form' : form,
+        } only %}
+    {% endset %}
+    {% set steps = steps|merge([step]) %}
+    {# ------------------------------------------- #}
+    {# complete form #}
+    {# ------------------------------------------- #}
+    {% include 'profile/market/myCommodities/form.html.twig' with {
+        'form'              : form,
+        'steps'             : steps,
+        'class'             : 'kit',
+        'dataParameters'    : {
+            'data-preview-url-rebuild' : path('market_profile_commodity_kit_preview_rebuild'),
+        },
+    } only %}
+{% endblock %}

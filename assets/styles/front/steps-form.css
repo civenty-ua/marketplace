@@ -1,0 +1,199 @@
+.steps-form .steps .current-info,
+.steps-form .content > .title {
+    display: none;
+}
+/** *********************************************
+ * Steps.
+ ***********************************************/
+.steps-form .steps {
+    margin-bottom: 40px;
+}
+.steps-form .steps ul {
+    display: table;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    table-layout: fixed;
+    width: 100%;
+}
+.steps-form .steps li {
+    display: table-cell;
+    position: relative;
+    text-align: center;
+}
+.steps-form .steps li:before,
+.steps-form .steps li:after {
+    background-color: var(--f-green);
+    content: '';
+    display: block;
+    position: absolute;
+    top: 45px;
+    width: 50%;
+    height: 3px;
+}
+.steps-form .steps li:before {
+    left: 0;
+}
+.steps-form .steps li:after {
+    right: 0;
+}
+.steps-form .steps li:first-child:before,
+.steps-form .steps li:last-child:after {
+    content: none;
+}
+.steps-form .steps li.current:after,
+.steps-form .steps li.current ~ li:before,
+.steps-form .steps li.current ~ li:after {
+    background-color: var(--f-grey);
+}
+.steps-form .steps li a {
+    color: var(--f-grey);
+    display: block;
+    margin: 20px 0;
+    padding-top: 52px;
+    position: relative;
+}
+.steps-form .steps li.current a {
+    color: var(--f-black);
+}
+.steps-form .steps li.disabled a,
+.steps-form .steps li.current a {
+    cursor: default;
+}
+.steps-form .steps li .step {
+    background-color: var(--f-white);
+    border: 3px solid var(--f-grey);
+    border-radius: 50%;
+    color: var(--f-placeholder);
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 45px;
+    margin-left: -24px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    z-index: 10;
+}
+.steps-form .steps li.current .step {
+    background-color: var(--f-white);
+    border-color: var(--f-green);
+    color: var(--f-green);
+}
+.steps-form .steps li.done:not(.error) .step {
+    background-color: var(--f-green);
+    border-color: var(--f-green);
+    color: var(--f-white)
+}
+.steps-form .steps li.error .step {
+    border-color: var(--f-red);
+    color: var(--f-red);
+}
+/** *********************************************
+ * Steps media.
+ ***********************************************/
+@media (max-width: 575px) {
+    .steps-form .steps ul {
+        margin: 0 -15px;
+        width: calc(100% + 30px);
+    }
+    .steps-form .steps li .step {
+        border-width: 2px;
+        font-size: 1.1rem;
+        line-height: 36px;
+        width: 40px;
+        height: 40px;
+    }
+    .steps-form .steps li .step-title {
+        visibility: hidden;
+    }
+    .steps-form .steps li.current a {
+        background: var(--f-white);
+        border: 3px solid var(--f-green);
+        border-radius: 50%;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        top: 10px;
+        left: 8px;
+        width: 60px;
+        height: 60px;
+        z-index: 10;
+    }
+    .steps-form .steps li.current .step {
+        border: none;
+        font-size: 1.5rem;
+        line-height: 40px;
+        top: 7px;
+        left: 31px;
+    }
+    .steps-form .steps li:before,
+    .steps-form .steps li:after {
+        top: 40px;
+        height: 2px;
+    }
+}
+/** *********************************************
+ * Errors.
+ ***********************************************/
+.steps-form .errors-block {
+    color: var(--f-red);
+    margin: 0 0 20px 0;
+}
+/** *********************************************
+ * Actions.
+ ***********************************************/
+.steps-form .actions ul {
+    list-style: none;
+    margin: 20px auto 0 auto;
+    padding: 0;
+    width: fit-content;
+}
+.steps-form .actions li {
+    float: left;
+}
+.steps-form .actions li:not(:first-child) {
+    margin-left: 10px;
+}
+.steps-form .actions li.disabled {
+    display: none;
+}
+.steps-form .actions li a {
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    line-height: 50px;
+    padding: 0 30px;
+    transition: var(--transition);
+}
+.steps-form .actions li:first-child a {
+    background-color: var(--f-white);
+    color: var(--f-grey1);
+    border-color: var(--f-grey);
+}
+.steps-form .actions li:not(:first-child) a {
+    background-color: var(--f-green);
+    color: var(--f-white);
+}
+.steps-form .actions li:first-child:not(.disabled) a:hover,
+.steps-form .actions li:first-child:not(.disabled) a:active,
+.steps-form .actions li:first-child:not(.disabled) a:focus {
+    box-shadow: 0 0 0 100px rgba(0, 0, 0, .02) inset;
+}
+.steps-form .actions li:not(:first-child) a:hover,
+.steps-form .actions li:not(:first-child) a:active,
+.steps-form .actions li:not(:first-child) a:focus {
+   background-color: var(--f-orange);
+}
+.steps-form .actions li:not(:first-child).disabled a:hover,
+.steps-form .actions li:not(:first-child).disabled a:active,
+.steps-form .actions li:not(:first-child).disabled a:focus {
+    color: var(--f-grey2);
+}
+.steps-form .submit-section {
+    display: none;
+}

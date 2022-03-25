@@ -1,0 +1,69 @@
+.market-category-edit-attributes-bar .attribute-block {
+    align-items: flex-start;
+    border-radius: var(--border-radius);
+    box-shadow: inset 0 0 0 1px var(--form-input-border-color);
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    padding: 1rem 1.25rem;
+}
+.market-category-edit-attributes-bar .attribute-block > * {
+    margin-bottom: 10px;
+}
+.market-category-edit-attributes-bar .attribute-block .delete-attribute {
+    padding: 0;
+}
+.market-category-edit-attributes-bar .field {
+    align-items: center;
+    display: flex;
+}
+.market-category-edit-attributes-bar .field .title {
+    font-weight: 500;
+    margin-right: 10px;
+    width: 100px;
+}
+.market-category-edit-attributes-bar .field > input[type="text"],
+.market-category-edit-attributes-bar .field > input[type="number"],
+.market-category-edit-attributes-bar .field > select,
+.market-category-edit-attributes-bar .field > textarea {
+    width: 200px;
+}
+.market-category-edit-attributes-bar .field.attribute-type option[selected] {
+    font-weight: bold;
+}
+.market-category-edit-attributes-bar .field-list-values {
+    width: 100%;
+}
+.market-category-edit-attributes-bar .field-list-values > .title {
+    border-bottom: var(--border-width) solid var(--border-color);
+    display: block;
+    font-weight: 500;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+.market-category-edit-attributes-bar .field-list-values .values-bar > * {
+    align-items: center;
+    display: flex;
+}
+.market-category-edit-attributes-bar .field-list-values .values-bar > * label {
+    margin: 5px 0;
+    padding: 0;
+}
+.market-category-edit-attributes-bar .attribute-block.template,
+.market-category-edit-attributes-bar .field-list-values .values-bar > *:not(:last-child) .add-list-value,
+.market-category-edit-attributes-bar .field-list-values .values-bar > *:last-child .delete-list-value,
+.market-category-edit-attributes-bar .attribute-block:not([data-attribute-type="list"]):not([data-attribute-type="listMultiple"]) .field-list-values {
+    display: none;
+}
+@media (max-width: 768px) {
+    .market-category-edit-attributes-bar .field .title {
+        width: auto;
+    }
+    .market-category-edit-attributes-bar .field > input[type="text"],
+    .market-category-edit-attributes-bar .field > input[type="number"],
+    .market-category-edit-attributes-bar .field > select,
+    .market-category-edit-attributes-bar .field > textarea,
+    .market-category-edit-attributes-bar .field-list-values .values-bar > * label {
+        width: 100%;
+    }
+}

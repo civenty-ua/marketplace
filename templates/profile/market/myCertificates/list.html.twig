@@ -1,0 +1,65 @@
+{% extends 'market/itemsComponent.html.twig' %}
+
+{% import 'profile/market/roles/form_role_create.html.twig' as formMacros %}
+
+{% set rebuildUrl = path("market_profile_my_certificates_xhr") %}
+{# -------------------------------------------------------------------- #}
+{# new just created commodity parameters #}
+{# -------------------------------------------------------------------- #}
+{% set justCreatedCommodityParameters   = app.flashes('sertificateAdded') %}
+{% set justCreatedCommodityLink         = justCreatedCommodityParameters[0] ?? null %}
+{# -------------------------------------------------------------------- #}
+{# filter #}
+{# -------------------------------------------------------------------- #}
+{% block filter %}
+    {# ------------------------------------------- #}
+    {# information block #}
+    {# ------------------------------------------- #}
+    <div class="marginBottom40px">
+        <h3 class="h3 text-center marginBottom20px">
+
+        </h3>
+    </div>
+    {# ------------------------------------------- #}
+    {# search + filter #}
+    {# ------------------------------------------- #}
+    <div class="profile-my-commodities-filter">
+        <div class="search-bar">
+            {% set sortList = [] %}
+            {% for value in availableSortValues %}
+                {% set sortList = sortList|merge({
+                    (value) : "market.certificate.search.sortValues.#{value}"|trans
+                }) %}
+            {% endfor %}
+
+            {% include 'market/search.html.twig' with {
+                'placeholder'   : "market.certificate.search.placeholder"|trans,
+                'name'          : 'search',
+                'value'         : filter.search,
+            } only %}
+            {% include 'market/commodity/block/filter/select.html.twig' with {
+                'name'          : 'sortField',
+                'emptyValue'    : false,
+                'multiple'      : false,
+                'list'          : sortList,
+                'values'        : [filter.sortField],
+            } only %}
+        </div>
+        <div class="filter-bar">
+            {{ block('commoditiesFilter') }}
+        </div>
+            <a
+                    class="add-commodity square-button green-bg-button height-50"
+                    href="{{ path("market_profile_create_certificate") }}"
+            >
+                <svg viewBox="0 0 24 24">
+                    <rect x="11" y="3" width="2" height="18"></rect>
+                    <rect x="3" y="13" width="2" height="18" transform="rotate(-90 3 13)"></rect>
+                </svg>
+                <span>
+                    {{ 'role.add_certificate'|trans }}
+                </span>
+            </a>
+    </div>
+{% endblock %}
+

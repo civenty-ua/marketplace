@@ -1,0 +1,20 @@
+fm_elfinder:
+  instances:
+    default:
+      locale: "%locale%"
+      editor: ckeditor
+      connector:
+        roots:
+          uploads:
+            driver: LocalFileSystem
+            path: 'uploads'
+            upload_allow:
+              - 'image/png' # .png
+              - 'image/jpg' # .jpg
+              - 'image/jpeg' # .jpeg
+              - 'image/svg+xml' # .svg
+              - 'application/pdf' # .pdf
+              - 'application/msword' # .doc
+              - 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' # .docx
+              - 'application/vnd.ms-excel' # .xls
+              - 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' # .xlsx

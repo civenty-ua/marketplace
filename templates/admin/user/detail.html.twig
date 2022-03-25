@@ -1,0 +1,115 @@
+{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+{# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
+{% extends '@!EasyAdmin/crud/detail.html.twig' %}
+
+{% block detail_fields %}
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Загальна інформація</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="course-tab" data-toggle="tab" href="#course" role="tab" aria-controls="course" aria-selected="false">Курси</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="webinar-tab" data-toggle="tab" href="#webinar" role="tab" aria-controls="webinar" aria-selected="false">Вебінари</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="files-tab" data-toggle="tab" href="#files" role="tab" aria-controls="files" aria-selected="false">Завантажені файли</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="product-tab" data-toggle="tab" href="#product" role="tab" aria-controls="product" aria-selected="false">Продукти</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="service-tab" data-toggle="tab" href="#service" role="tab" aria-controls="service" aria-selected="false">Послуги</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="kit-tab" data-toggle="tab" href="#kit" role="tab" aria-controls="kit" aria-selected="false">Пропозиції</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="role-tab" data-toggle="tab" href="#role" role="tab" aria-controls="role" aria-selected="false">Ролі</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="comment-tab" data-toggle="tab" href="#comment" role="tab" aria-controls="comment" aria-selected="false">Коментарі</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="feadback-tab" data-toggle="tab" href="#feadback" role="tab" aria-controls="feadback" aria-selected="false">Відгуки</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="notification-tab" data-toggle="tab" href="#notification" role="tab" aria-controls="notification" aria-selected="false">Повідомлення</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="user-to-user-review-tab" data-toggle="tab" href="#user-to-user-review" role="tab" aria-controls="user-to-user-review" aria-selected="false">Відгуки про користувачів</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="bid-offer-tab" data-toggle="tab" href="#bid-offer" role="tab" aria-controls="bid-offer" aria-selected="false">Угоди</a>
+        </li>
+    </ul>
+    {%  set user = entity.instance %}
+    <div class="tab-content" id="userTabContent">
+        <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
+            {% set DataForUserExport = {
+                'id': user.id,
+                'action': 'singleUserExport',
+                'crudController': 'App\\Controller\\Admin\\UserCrudController',
+            } %}
+            <a class="btn btn-primary" style="margin-top: 20px !important;" href="{{ DataForUserExport|adminUrlGenerator }}">Експорт {{ user.name }}</a>
+
+            {% set form_panel_is_already_open = false %}
+            {% for field in entity.fields %}
+                {% set is_form_field_panel = 'field-form_panel' in field.cssClass %}
+
+                {% if is_form_field_panel or (loop.first and not is_form_field_panel) %}
+                    {% if form_panel_is_already_open %}
+                        {{ _self.close_form_field_panel() }}
+                        {% set form_panel_is_already_open = false %}
+                    {% endif %}
+
+                    {{ _self.open_form_field_panel(is_form_field_panel ? field : null) }}
+                    {% set form_panel_is_already_open = true %}
+                {% endif %}
+                {% block detail_field %}
+                    {% if not is_form_field_panel %}
+                        {{ _self.render_field(entity, field) }}
+                    {% endif %}
+                {% endblock %}
+            {% endfor %}
+            {{ _self.close_form_field_panel() }}
+        </div>
+        <div class="tab-pane fade" id="course" role="tabpanel" aria-labelledby="course-tab">
+            {% include 'admin/user/tabs/course.html.twig' with {'user' : user} %}
+        </div>
+        <div class="tab-pane fade" id="webinar" role="tabpanel" aria-labelledby="webinar-tab">
+            {% include 'admin/user/tabs/webinar.html.twig' with {'user' : user} %}
+        </div>
+        <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="files-tab">
+            {% include 'admin/user/tabs/files.html.twig' with {'user' : user} %}
+        </div>
+        <div class="tab-pane fade" id="product" role="tabpanel" aria-labelledby="product-tab">
+            {% include 'admin/user/tabs/product.html.twig' with {'user' : user} %}
+        </div>
+        <div class="tab-pane fade" id="service" role="tabpanel" aria-labelledby="service-tab">
+            {% include 'admin/user/tabs/service.html.twig' with {'user' : user} %}
+        </div>
+        <div class="tab-pane fade" id="kit" role="tabpanel" aria-labelledby="kit-tab">
+            {% include 'admin/user/tabs/kit.html.twig' with {'user' : user} %}
+        </div>
+        <div class="tab-pane fade" id="role" role="tabpanel" aria-labelledby="role-tab">
+            {% include 'admin/user/tabs/role.html.twig' with {'user' : user} %}
+        </div>
+        <div class="tab-pane fade" id="comment" role="tabpanel" aria-labelledby="comment-tab">
+            {% include 'admin/user/tabs/comment.html.twig' with {'user' : user} %}
+        </div>
+        <div class="tab-pane fade" id="feadback" role="tabpanel" aria-labelledby="feadback-tab">
+            {% include 'admin/user/tabs/feadback.html.twig' with {'user' : user} %}
+        </div>
+        <div class="tab-pane fade" id="notification" role="tabpanel" aria-labelledby="notification-tab">
+            {% include 'admin/user/tabs/notification.html.twig' with {'user' : user} %}
+        </div>
+        <div class="tab-pane fade" id="user-to-user-review" role="tabpanel" aria-labelledby="user-to-user-review-tab">
+            {% include 'admin/user/tabs/user-to-user-review.html.twig' with {'user' : user} %}
+        </div>
+        <div class="tab-pane fade" id="bid-offer" role="tabpanel" aria-labelledby="bid-offer-tab">
+            {% include 'admin/user/tabs/bid-offer.html.twig' with {'user' : user} %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'market/itemsComponent.html.twig' %}
+{# ------------------------------------------- #}
+{# rebuild URL #}
+{# ------------------------------------------- #}
+{% set rebuildUrl = path('market_user_commodities_list_rebuild', {
+    'id' : user.id,
+}) %}
+{# ------------------------------------------- #}
+{# filter #}
+{# ------------------------------------------- #}
+{% block filter %}
+    {% set sortList = [] %}
+    {% for value in availableSortValues ?? [] %}
+        {% set sortList = sortList|merge({
+            (value) : "market.commodity.sortTypes.#{value}"|trans
+        }) %}
+    {% endfor %}
+
+    <div class="search-bar">
+        <input
+            type="hidden"
+            value="{{ commodityType }}"
+            name="commodityType"
+        >
+        {% include 'market/search.html.twig' with {
+            'placeholder'   : "market.#{commodityType}.search.placeholder"|trans,
+            'name'          : 'search',
+            'value'         : search,
+        } only %}
+        {% include 'market/commodity/block/filter/select.html.twig' with {
+            'name'          : 'sortField',
+            'emptyValue'    : false,
+            'multiple'      : false,
+            'list'          : sortList,
+            'values'        : [sort],
+        } only %}
+    </div>
+{% endblock %}
+{# ------------------------------------------- #}
+{# items list #}
+{# ------------------------------------------- #}
+{% block itemsList %}
+    {% include "market/commodity/items.html.twig" with {
+        'items'             : items,
+        'currentPage'       : filter.page ?? 1,
+        'paginationName'    : 'page',
+        'actions'           : actions,
+        'mainAction'        : mainAction,
+    } only %}
+{% endblock %}

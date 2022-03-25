@@ -1,0 +1,37 @@
+
+###> symfony/framework-bundle ###
+/.env
+/.env.local
+/.env.test
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/public/upload/
+/public/uploads/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+.idea/
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+/public/media/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
+/package-lock.json
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###
+###insertfakeblockgeeksData###
+/src/Command/Import/ImportBlockgeeksFakeDeadUrl.php

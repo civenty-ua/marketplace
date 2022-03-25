@@ -1,0 +1,73 @@
+<div id="program" class="tab">
+    <div class="program">
+
+        <div class="single-lesson">
+            <div class="single-lesson__content">
+                <div class="lesson-header marginBottom20px">
+                    <div class="lesson-header__lesson">{{ lesson.title }}</div>
+                    <div class="lesson-header__title">{{ lesson.description }}</div>
+                </div>
+                <div class="lesson-item__content marginBottom40px">
+                    <div class="lesson-item-text marginBottom40px">{{ lesson.content | raw }}</div>
+                </div>
+            </div>
+            {% if lesson.videoItem and register %}
+                {% if isExpected %}
+                    <div class="lesson-item__video marginBottom40px">
+                        {% include 'blocks/video-block.html.twig' with {
+                            'video': lesson.videoItem
+                        } only %}
+                    </div>
+                {% else %}
+                    <div class="lesson-item__video marginBottom40px text-center text-info">
+                        {% if course.startDate %}
+                            {% set month = course.startDate|date('M') %}
+                            {% set day = course.startDate|date('d') %}
+                            {% set year = course.startDate|date('Y') %}
+                            {% set time = course.startDate|date('H:m') %}
+                            {{ 'course.start'|trans ~ '%s %s %s %s'|format(day,month|trans, year, time) }}
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="lesson-item__video marginBottom40px text-center text-info">
+                    {{ 'course.watch_lesson'|trans }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="lesson-paginator">
+            {% set prevLessons = course.prevLesson(lesson.id) %}
+            {% if prevLessons is not null %}
+                <a class="square-button green-bg-button paginator-button button-left scroll-to-lesson"
+                        href="{{ path('lesson_detail', {'lesson_id': prevLessons.id, 'slug': course.slug}) }}">
+                    <svg>
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                xlink:href="#arrow-left"></use>
+                    </svg>
+                    <span>{{ prevLessons.title|u.truncate(20,'...') }}</span>
+                </a>
+            {% endif %}
+            <a
+                    class="square-button button-center go-to-course-program"
+                    href="{{ path('course_detail', {
+                        'slug'      : course.slug,
+                        'activeTab' : 'program'
+                    }) }}"
+            >
+                {{ 'course.go_to_course'|trans }}
+            </a>
+            {% set nextLesson = course.nextLesson(lesson.id) %}
+            {% if nextLesson is not null %}
+                <a class="square-button green-bg-button paginator-button button-right scroll-to-lesson"
+                        href="{{ path('lesson_detail', {'lesson_id': nextLesson.id, 'slug': course.slug}) }}">
+                    <span>{{ nextLesson.title|u.truncate(20,'...') }}</span>
+                    <svg>
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                xlink:href="#arrow-right"></use>
+                    </svg>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>

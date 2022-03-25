@@ -1,0 +1,9 @@
+<div class="section">
+    <h2 class="h2">{{ 'home.studying'|trans }}</h2>
+    <div class="item-container">
+        {% for item in items %}
+            {% set template = '/blocks/item-panel/' ~ item.typeItem ~ '.html.twig' %}
+            {% include template with {'item': item } %}
+        {% endfor %}
+    </div>
+</div>

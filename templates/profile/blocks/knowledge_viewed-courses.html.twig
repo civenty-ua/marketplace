@@ -1,0 +1,53 @@
+<div id="tab_viewed_courses" class="personal-area-center__tab">
+    <div class="personal-area-center__tab-viewed-courses">
+        <h3 class="personal-area__h3">{{ 'profile.viewed_courses' | trans }}</h3>
+
+        <div class="item-container">
+            {% for viewedCourse in viewedCourses %}
+                {% set item = viewedCourse.item %}
+                <div class="item">
+                    <div class="item-image">
+                        <div class="item-badge course">
+                            <svg>
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#course"></use>
+                            </svg>
+                            <span>{{ 'home.course' | trans }}</span>
+                        </div>
+                        <a href="{{ path('course_detail', {'slug': item.slug}) }}">
+                            <img src="{% if item.imageName is empty %}{{ asset('images/item-default.png') }}{% else %} {{ asset('upload/course/' ~ item.imageName) }} {% endif %}"
+                                 alt="{{ item.title }}"
+                                 loading="lazy"
+                            >
+                        </a>
+                    </div>
+                    <div class="item-title">
+                        <a href="{{ path('course_detail', {'slug': item.slug}) }}" title="{{ item.title }}">{{ item.title }}</a>
+                    </div>
+                    {% if item.partners|length > 0 %}
+                        <div class="item-partner">
+                            <span>{{ 'home.partner'|trans }}:</span>
+                            {% for partner in item.partners %}
+                                <a href="{{ partner.name != 'UHBDP' ? path('partner-detail', {'slug': partner.slug}) : '#' }}"
+                                >{{ partner.name }}</a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <div class="item-text">
+                        {{ item.short|striptags|u.truncate(100, '...')|raw }}
+                    </div>
+                    <div class="icon-text">
+                        <i class="fab fa-youtube"></i>
+                        <span>{{ item.countLesson }} {{ 'course.lesson' | trans }}</span>
+                    </div>
+                    {% if item.personalConsalting %}
+                        <div class="icon-text">
+                            <i class="far fa-comment"></i>
+                            <span>{{ 'course.personal_consulting'|trans }}</span>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            {% include 'blocks/pagination-block.html.twig' %}
+        </div>
+    </div>
+</div>

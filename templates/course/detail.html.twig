@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_title }}
+    {% else %}
+        {{ course.title }}
+    {% endif %}
+{% endblock %}
+
+{% block description %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_description }}
+    {% endif %}
+{% endblock %}
+
+{% block keywords %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_keywords }}
+    {% endif %}
+{% endblock %}
+
+{% block opengraph_title %}{{ course.title }}{% endblock %}
+{% block opengraph_description %}{% if course.description %}{{ course.description| striptags| raw }}{% elseif course.short %}{{ course.short| striptags| raw }}{% else %}{{ op['default_description']['value'] }}{% endif %}{% endblock %}
+{% block opengraph_url %}{{ app.request.uri }}{% endblock %}
+{% block opengraph_image %}{{ baseDom~asset('upload/course/'~ course.imageName) }}{% endblock %}
+{% block body %}
+    {% include 'course/course-block.html.twig' with {
+        'course': course,
+        'user': user,
+    } %}
+    {% include 'blocks/top-tags-block.html.twig' with {'topTags': topTags} %}
+    {% if similarItemList is defined and similarItelList|length > 0 %}
+        {% include 'blocks/similar-block.html.twig' with {'similarItemList': similarItemList} %}
+    {% endif %}
+    {% if topItems|length > 0 %}
+        {% include 'home/blocks/other-courses-block.html.twig' with {'topItems': topItems} %}
+    {% endif %}
+    {% include 'blocks/business-tools-block.html.twig' with {'pagesList' : pagesList} %}
+    {% include 'blocks/catalog-block.html.twig' %}
+    {% include 'blocks/knowledge-base-block.html.twig' with {'categories': categories} %}
+{% endblock %}

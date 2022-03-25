@@ -1,0 +1,57 @@
+{% extends 'layout/content.html.twig' %}
+
+{% block title %}{{ 'search.result'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <h1 class="h1 marginBottom40px"><strong>{{ tag.name }}</strong></h1>
+
+        {% if (items|length > 0) %}
+            <div class="popular-topics">
+                <ul class="popular-topics__items-wrap">
+                    {% for item in items %}
+                        {% set href = "" %}
+                        {% if item.typeItem == constant('App\\Entity\\Item::COURSE') %}
+                            {% set href = path('course_detail', {'slug': item.slug}) %}
+                        {% elseif item.typeItem == constant('App\\Entity\\Item::WEBINAR') %}
+                            {% set href = path('webinar_detail', {'slug': item.slug}) %}
+                        {% elseif item.typeItem == constant('App\\Entity\\Item::OTHER') %}
+                            {% set href = path('article_detail', {'slug': item.slug}) %}
+                        {% elseif item.typeItem == constant('App\\Entity\\Item::OCCURRENCE') %}
+                            {% set href = path('occurrence_detail', {'slug': item.slug}) %}
+                        {% elseif item.typeItem == constant('App\\Entity\\Item::NEWS') %}
+                            {% set href = path('news_detail', {'slug': item.slug}) %}
+                        {% elseif item.typeItem == constant('App\\Entity\\Item::ARTICLE') %}
+                            {% if item.typePage.code == 'article' %}
+                                {% set href = path('article_detail', {'slug': item.slug}) %}
+                            {% elseif item.typePage.code == 'success_stories' %}
+                                {% set href = path('article_detail', {'slug': item.slug}) %}
+                            {% elseif item.typePage.code == 'eco_articles' %}
+                                {% set href = path('article_detail', {'slug': item.slug}) %}
+                            {% endif %}
+                        {% endif %}
+                        <li class="popular-topics__item">
+                            <a class="popular-topics__link" href="{{ href }}">
+                                <span class="popular-topics__date">
+                                    {{ item.createdAt|date("Y m d") }}
+                                </span>
+                                <span class="popular-topics__text">
+                                    {{ item.title }}
+                                </span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="navigation">
+                {{ knp_pagination_render(items) }}
+            </div>
+        {% else %}
+            <div class="h3 centeredBlock">{{ 'not-found'|trans }}</div>
+        {% endif %}
+    </div>
+
+    {% include 'blocks/business-tools-lite-block.html.twig' %}
+    {% include 'blocks/catalog-block.html.twig' %}
+    {# {% include 'blocks/knowledge-base-block.html.twig' with {'categories': categories} %} #}
+{% endblock %}

@@ -1,0 +1,147 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if pageTitle is defined %}{{ pageTitle }}{% endif %}
+{% endblock %}
+
+{% block description %}
+    {% if pageDescription is defined %}{{ pageDescription }}{% endif %}
+{% endblock %}
+
+{% block keywords %}
+    {% if pageKeywords is defined %}{{ pageKeywords }}{% endif %}
+{% endblock %}
+
+{% block body %}
+    <div
+            class="section market-commodities-list-page"
+            data-rebuild-page-url="{{ listRebuildAjaxUrl }}"
+    >
+        {# -------------------------------------------------------------------- #}
+        {# breadcrumbs #}
+        {# -------------------------------------------------------------------- #}
+        {% include 'blocks/breadcrumbs.html.twig' with {
+            'items' : [
+                {
+                    'link'  : path('home'),
+                    'title' : 'menu.home'|trans,
+                },
+                {
+                    'title' : "market.#{commodityType}.titles.multiple"|trans,
+                },
+            ]
+        } only %}
+        {# -------------------------------------------------------------------- #}
+        {# navigation #}
+        {# -------------------------------------------------------------------- #}
+        {% block navigation %}
+            <div class="section-nav">
+                <div class="section-nav__inner-wrapper">
+                    {% include 'market/commodity/block/navigation.html.twig' with {
+                        'active' : commodityType
+                    } only %}
+                </div>
+                <a
+                        class="add-commodity-link desktop square-button green-bg-button"
+                        href="{{ path("market_profile_my_commodities_#{commodityType}_create") }}"
+                >
+                    {{ "market.#{commodityType}.create"|trans }}
+                </a>
+            </div>
+            <a
+                    class="add-commodity-link mobile square-button green-bg-button"
+                    href="{{ path("market_profile_my_commodities_#{commodityType}_create") }}"
+            >
+                {{ "market.#{commodityType}.create"|trans }}
+            </a>
+        {% endblock %}
+        {# -------------------------------------------------------------------- #}
+        {# page #}
+        {# -------------------------------------------------------------------- #}
+        <div class="filter-with-list-container">
+            <div class="filter-block js-commodities-list-filter">
+                <div class="button-container">
+                    <span class="js-reset-all square-button grey-button">
+                        {{ 'item.clear'|trans }}
+                    </span>
+                </div>
+                <div class="js-commodities-list-filter-fields">
+                    {{ block('filter') }}
+                </div>
+            </div>
+            <div class="list-block market">
+                {% block optionDescription %}
+                    <div class="section__subtitle">
+                        {{ app.request.locale == 'uk'
+                        ? optionDescriptionUk
+                        : optionDescriptionEn }}
+                    </div>
+                {% endblock %}
+                <div class="search-bar js-commodities-search-bar">
+                    {% block searchBar %}
+                        {% set sortList = [] %}
+                        {% for value in fields.availableSortValues %}
+                            {% set sortList = sortList|merge({
+                                (value) : "market.commodity.sortTypes.#{value}"|trans
+                            }) %}
+                        {% endfor %}
+
+                        {% set searchPlaceholder = commodityType is defined
+                            ? "market.#{commodityType}.search.placeholder"|trans
+                            : 'market.commodity.search.placeholder'|trans %}
+                        {% include 'market/search.html.twig' with {
+                            'placeholder'   : searchPlaceholder,
+                            'name'          : 'search',
+                            'value'         : filter.search ?? '',
+                        } only %}
+                        {% include 'market/commodity/block/filter/select.html.twig' with {
+                            'name'          : 'sortField',
+                            'emptyValue'    : false,
+                            'multiple'      : false,
+                            'list'          : sortList,
+                            'values'        : [filter.sortField ?? ''],
+                        } only %}
+                    {% endblock %}
+                </div>
+                <div class="filter-wrapper">
+                    <span class="js-mobile-filter__open filter__button">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#filter"></use>
+                        </svg>
+                        <span>{{ 'item.filters'|trans }}</span>
+                    </span>
+                    <div class="active-filter-container js-commodities-list-applied-filters-bar">
+                        {{ block('appliedFilter') }}
+                    </div>
+                </div>
+                <div class="js-commodities-list-items-container">
+                    {{ block('itemsList') }}
+                </div>
+            </div>
+        </div>
+        {# -------------------------------------------------------------------- #}
+        {# filter (mobile) #}
+        {# -------------------------------------------------------------------- #}
+        <div class="js-shade shade"></div>
+        <div class="js-mobile-filter mobile-filter">
+            <div class="mobile-filter__inner-wrapper js-commodities-list-filter">
+                <span class="js-mobile-filter__close mobile-filter__close">
+                    <svg viewBox="0 0 17 17">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M15.5554 16.9698L-0.000151038 1.41421L1.41406 0L16.9696 15.5555L15.5554 16.9698Z"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M16.9698 1.41433L1.41421 16.9699L0 15.5557L15.5555 0.000114921L16.9698 1.41433Z"></path>
+                    </svg>
+                </span>
+                <div class="button-container">
+                    <span class="js-reset-all square-button grey-button">
+                        {{ 'item.clear'|trans }}
+                    </span>
+                </div>
+                <div class="js-commodities-list-filter-fields">
+                    {{ block('filter') }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

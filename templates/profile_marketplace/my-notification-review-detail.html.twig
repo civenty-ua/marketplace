@@ -1,0 +1,183 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'profile.title'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <ul class="breadcrumbs">
+            <li><a href="{{ path('home') }}">{{ 'home.home'|trans }}</a></li>
+            <li>{{ 'profile.title'|trans }}</li>
+        </ul>
+
+        <h1 class="h1">
+            <strong>{{ 'profile.title'|trans }}</strong>
+        </h1>
+
+        <div class="section__subtitle">Повідомлення
+            від {{ notification.sender ? notification.sender.name : 'Система' }}</div>
+
+        <div class="tabs-personal-area personal-area__wrapper">
+            {% set tabSelected = 'marketplace' %}
+            <div class="tabs__navigation-wrapper">
+                {% include 'profile/blocks/tabs.html.twig' with {
+                    'selected' : tabSelected,
+                } only %}
+            </div>
+
+            <div class="personal-area marketplace personal-area__wrapper">
+                <div class="filter-wrapper">
+                    <a href="javascript:void(0)" class="js-mobile-filter__open filter__button">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#filter"></use>
+                        </svg>
+                        <span>{{ 'item.filters'|trans }}</span>
+                    </a>
+                </div>
+
+                <div class="personal-area__inner">
+                    {% include 'profile_marketplace/blocks/personal-area-sidebar.html.twig' %}
+
+                    <div class="personal-area-center__tabs-wrapper">
+                        <div class="personal-area-center__tab">
+                            <div class="filter-bar filter-bar_nav">
+                                <a class="square-button borderless black" href="{{ path('my_notifications') }}">
+                                    <svg>
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-left"></use>
+                                    </svg>
+                                    <span>Всі повідомлення</span>
+                                </a>
+
+                                <a class="square-button borderless black"
+                                   href="{{ path('notification_delete',{'id': notification.id}) }}">
+                                    <svg>
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#delete"></use>
+                                    </svg>
+                                    <span>Видалити</span>
+                                </a>
+                            </div>
+                            <div class="product-seller">
+                                <div class="product-seller-inner-wrapper product-seller__detail-notification">
+                                    <div>
+                                        {% set usersImagesFolder    = '/upload/user/avatar' %}
+                                        {% set userDefaultImage     = '/main/default-avatar.png' %}
+                                        {% set userAvatar           = notification.sender and notification.sender.avatar
+                                            ? usersImagesFolder ~ '/' ~ notification.sender.avatar
+                                            : userDefaultImage %}
+                                        <img class="product-seller__image"
+                                             src="{{ notification.sender ? userAvatar : userDefaultImage }}"
+                                             alt="">
+                                        <div class="product-seller-info">
+                                            <a class="product-seller-info__name"
+                                               href="{% if notification.sender is defined %}
+                                                {{ path('market_user_detail',{'id':notification.sender.id }) }}{% else %}
+                                                javascript:void(0)
+                                                {% endif %}">
+                                                {{ notification.sender ? notification.sender.name : 'Система' }}</a>
+                                            <span class="product-seller-info__position">{{ notification.sender ? notification.sender.currentNameRolesString : '' }}</span>
+                                            {% if notification.sender %}
+                                                <div class="product-seller-info__rating">
+                                                    <div class="{{ userCanRate == true ? 'js-rating' : 'js-rating-readonly' }} rating"
+                                                         data-score="{{ rate }}"
+                                                         data-half="y"
+                                                         data-action="{{ path('user_estimate',{'id': notification.sender.id}) }}"></div>
+                                                    <span>{{ rate }}</span>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    {% if notification.sender %}
+                                        <div>
+                                            {% if notification.sender.mainPhone is defined %}
+                                                <a href="javascript:void(0)" class="product-seller-info__item">
+                                                    <i class="fas fa-phone"></i>
+                                                    <span class="js-row phone product-seller-info__item-text">
+                                                        {{ notification.sender.mainPhone ?? notification.sender.phone }}
+                                                    </span>
+                                                </a>
+                                            {% endif %}
+                                            {% if notification.sender.email is defined  and notification.sender.email %}
+                                                <a href="javascript:void(0)" class="product-seller-info__item">
+                                                    <i class="far fa-envelope"></i>
+                                                    <span class="email product-seller-info__item-text">
+                                                        {{ notification.sender.email }}
+                                                    </span>
+                                                </a>
+                                            {% endif %}
+                                            {% if notification.sender.address|trim|length > 0 %}
+                                                <div class="product-seller-info__item">
+                                                    <i class="fas fa-map-marker-alt"></i>
+                                                    <span>{{ notification.sender.address }}</span>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% if notification.title %}
+                                <div>
+                                    <h4 class="h4 marginBottom20px">
+                                        {% if notification.parentNotification.commodity.isActive%}
+                                        <a href="{{ path(notification.parentNotification.commodity.commodityType ~'_detail',
+                                            {'id':notification.parentNotification.commodity.id}) }}">
+                                            Тема:{{ ' '~notification.title }}
+                                        </a>
+                                        {% else %}
+                                            Тема:{{ ' '~notification.title }}
+                                        {% endif %}
+                                    </h4>
+                                </div>
+                            {% endif %}
+                            <div>
+                                <h3 class="h3 marginBottom20px">{{ notification.message }}</h3>
+                            </div>
+{#                            {% if notification.parentNotification.offerReviewNotificationSent == false %}#}
+                                {{ form_start(form) }}
+                                {# ---------------------------- #}
+                                {# reviewText #}
+                                {# ---------------------------- #}
+                                {% set maxlength    = form.reviewText.vars.attr.maxlength  ?? 100 %}
+                                {% set value        = form.reviewText.vars.value           ?? '' %}
+
+                                <div class="
+            field
+            textarea-wrap marginTop20px
+            {% if form.reviewText.vars.errors|length > 0 %}error{% endif %}
+        ">
+                                    {{ form_widget(form.reviewText, {
+                                        'attr' : {
+                                            'class'     : 'js-textarea',
+                                            'maxlength' : maxlength,
+                                            'rows'      : 5,
+                                        },
+                                    }) }}
+                                    <div class="textarea-count">
+                                        <span class="js-textarea-count__current-count">{{ value|length }}</span>
+                                        <span class="textarea-count__maximum-count">/ {{ maxlength }}</span>
+                                    </div>
+                                    <div class="error">
+                                        {{ form_errors(form.reviewText) }}
+                                    </div>
+                                </div>
+                                {# ---------------------------- #}
+                                {# submit #}
+                                {# ---------------------------- #}
+                                {{ form_row(form.submit, {
+                                    'label' : 'market.profile.aboutMe.submit'|trans,
+                                    'attr'  : {
+                                        'class' : 'form-button',
+                                    },
+                                }) }}
+                                {{ form_end(form) }}
+{#                            {% else %}#}
+{#                                <h3 class="h3 marginTop20px">Ви вже відправил відгук про користувача#}
+{#                                    - {{ notification.parentNotification.sender }}</h3>#}
+{#                            {% endif %}#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% include 'profile_marketplace/blocks/personal-area-sidebar-mobile.html.twig' %}
+        </div>
+    </div>
+{% endblock %}

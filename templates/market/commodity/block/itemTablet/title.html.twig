@@ -1,0 +1,14 @@
+<div class="item-title">
+    {% if item|checkCommodityIsPublished %}
+        <a
+            href="{{ path("#{item.commodityType}_detail", {'id' : item.slug}) }}"
+            title="{{ item.title }}"
+        >
+            {{ item.title }}
+        </a>
+    {% else %}
+        <span>
+            {{ item.title }}
+        </span>
+    {% endif %}
+</div>

@@ -1,0 +1,35 @@
+<div class="client-item-image">
+    <a href="{{ path('market_user_detail', {'id' : user.id }) }}">
+        {% include 'market/user/block/avatar.html.twig' with {
+            'user' : user,
+        } only %}
+    </a>
+</div>
+<div class="client-item-title">
+    <a href="{{ path('market_user_detail', {'id' : user.id }) }}">
+        {{ user.name }}
+    </a>
+</div>
+{% set userRoles = user|marketUserPrintableRoles %}
+{% if userRoles|length > 0 %}
+    <div class="user-roles-text">
+        {{ userRoles }}
+    </div>
+{% endif %}
+<div class="marginBottom20px">
+    <div class="icon-text">
+        <div class="grey1">ID:</div>
+        <span><b>{{ user.id }}</b></span>
+    </div>
+    {% if user.region %}
+        <div class="icon-text">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>{{ user.region.name }}</span>
+        </div>
+    {% endif %}
+</div>
+{% include 'market/user/block/actions.html.twig' with {
+    'user'          : user,
+    'actions'       : actions,
+    'mainAction'    : mainAction,
+} only %}

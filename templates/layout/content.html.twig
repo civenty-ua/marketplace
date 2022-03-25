@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% if app.user %}
+        <script>
+            {#$(function () {#}
+            {#    $(document).on('click', 'a', function (e) {#}
+            {#        e.preventDefault();#}
+            {#        let link = $(this).attr('href');#}
+            {#        let linkTitle = $(this).attr('title');#}
+            {#        let linkText = $(this).text();#}
+            {#        let text = null;#}
+
+            {#        if (linkText) {#}
+            {#            text = linkText;#}
+            {#        } else if (linkTitle) {#}
+            {#            text = linkTitle;#}
+            {#        }#}
+            {#        if (isFileLink(link)) {#}
+            {#            $.ajax({#}
+            {#                type: 'POST',#}
+            {#                url: '{{ path('app_profile_download_file') }}',#}
+            {#                dataType: 'json',#}
+            {#                data: {#}
+            {#                    text: text,#}
+            {#                    host: '{{ url('home') }}',#}
+            {#                    link: link#}
+            {#                },#}
+            {#                success: function (response) {#}
+            {#                    if (response.success === true) {#}
+            {#                        window.location.href = link;#}
+            {#                    } else {#}
+            {#                        window.location.reload();#}
+            {#                    }#}
+            {#                }#}
+            {#            });#}
+            {#        } else {#}
+            {#            window.location.href = link;#}
+            {#        }#}
+            {#    });#}
+            {#});#}
+
+            function isFileLink(link) {
+                let ext = link.split('.').pop();
+                let host = window.location.hostname;
+
+                if (link.indexOf(host) < 0 && link.indexOf('/') !== 0) {
+                    return false;
+                }
+
+                return ext === 'doc' ||
+                    ext === 'docx' ||
+                    ext === 'xls' ||
+                    ext === 'xlsx' ||
+                    ext === 'pdf' ||
+                    ext === 'csv';
+            }
+        </script>
+    {% endif %}
+{% endblock %}

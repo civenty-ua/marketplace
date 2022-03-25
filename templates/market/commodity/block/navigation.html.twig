@@ -1,0 +1,27 @@
+{% set commoditiesData = [
+    {
+        'type'  : 'product',
+        'link'  : path('products_list'),
+        'title' : 'market.product.titles.multiple'|trans,
+    },
+    {
+        'type'  : 'service',
+        'link'  : path('services_list'),
+        'title' : 'market.service.titles.multiple'|trans,
+    },
+    {
+        'type'  : 'kit',
+        'link'  : path('kits_list'),
+        'title' : 'market.kit.titles.multiple'|trans,
+    },
+] %}
+{% for itemData in commoditiesData %}
+    <a
+        class="
+            section-nav__item
+            {% if itemData.type == active %}section-nav__item--active{% endif %}
+        "
+        href="{{ itemData.link }}"
+        {% if itemData.type == active %}rel="nofollow"{% endif %}
+    >{{ itemData.title }}</a>
+{% endfor %}

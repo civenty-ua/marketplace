@@ -1,0 +1,327 @@
+{% extends 'profile/market/myCommodities/kit/preview/form.html.twig' %}
+
+{% set type = 'full' %}
+
+{% block content %}
+    {# -------------------------------------------------------------------- #}
+    {# title #}
+    {# -------------------------------------------------------------------- #}
+    <div class="
+        kit-title-edit
+        marginBottom20px
+        {% if form.title.vars.value|length == 0 %}empty{% endif %}
+        js-kit-title-edition
+    ">
+        <div class="title">{{ form.title.vars.value }}</div>
+        <label class="input-text-wrap">
+            <input
+                type="text"
+                value="{{ form.title.vars.value }}"
+                placeholder="{{ 'market.profile.kitForm.title'|trans }}"
+            >
+        </label>
+        <span class="apply form-button">OK</span>
+        <svg class="cancel" viewBox="0 0 17 17">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5554 16.9698L-0.000151038 1.41421L1.41406 0L16.9696 15.5555L15.5554 16.9698Z"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9698 1.41433L1.41421 16.9699L0 15.5557L15.5555 0.000114921L16.9698 1.41433Z"></path>
+        </svg>
+        <svg class="edit" viewBox="0 0 24 24">
+            <path d="M14.06 9L15 9.94L5.92 19H5V18.08L14.06 9ZM17.66 3C17.41 3 17.15 3.1 16.96 3.29L15.13 5.12L18.88 8.87L20.71 7.04C21.1 6.65 21.1 6 20.71 5.63L18.37 3.29C18.17 3.09 17.92 3 17.66 3ZM14.06 6.19L3 17.25V21H6.75L17.81 9.94L14.06 6.19Z"></path>
+        </svg>
+    </div>
+    {# -------------------------------------------------------------------- #}
+    {# commodities (DESKTOP) #}
+    {# -------------------------------------------------------------------- #}
+    {% if form.commodities.vars.data|length > 0 %}
+        <table class="table table-borderless table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">{{ 'market.profile.kitForm.preview.commodities'|trans }}</th>
+                    <th scope="col">{{ 'market.profile.kitForm.summaryInformation.price'|trans }}</th>
+                    <th scope="col">{{ 'market.profile.kitForm.preview.users'|trans }}</th>
+                    <th scope="col">{{ 'market.profile.kitForm.summaryInformation.commodityActivityDays'|trans }}</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for commodity in form.commodities.vars.data %}
+                    <tr class="js-kit-remove-commodity-row">
+                        <td>
+                            <div class="proposal-info-item">
+                                <img
+                                    class="proposal-info-item__image large"
+                                    src="{{ vich_uploader_asset(commodity) }}"
+                                    alt="{{ commodity.title }}"
+                                    title="{{ commodity.title }}"
+                                >
+                                <div class="proposal-info-item__title">
+                                    <span>{{ commodity.title }}</span>
+                                    <div class="fontSize12px">
+                                        <span class="grey1">ID:</span>
+                                        <span>{{ commodity.id }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <b>{{ commodity.price > 0
+                                ? commodity.price|numberFormatAgro
+                                : 'market.profile.commodityForm.priceNegotiated'|trans
+                            }}</b>
+                        </td>
+                        <td>
+                            <div class="proposal-info-item">
+                                {% include 'market/user/block/avatar.html.twig' with {
+                                    'user'  : commodity.user,
+                                    'class' : 'proposal-info-item__image large avatar',
+                                } only %}
+                                <div class="proposal-info-item__title">
+                                    <span>{{ commodity.user.name }}</span>
+                                    <div class="fontSize12px">
+                                        <span class="grey1">ID:</span>
+                                        <span>{{ commodity.user.id }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <strong>
+                                {% set commodityActiveTo    = commodity.activeTo|date('d-m-Y') %}
+                                {% set now                  = 'now'|date('d-m-Y') %}
+                                {{ date(now).diff(date(commodityActiveTo)).days }}
+                            </strong>
+                        </td>
+                        <td>
+                            <span
+                                class="proposal-info-item__trigger js-kit-remove-commodity"
+                                data-value="{{ commodity.id }}"
+                            >
+                                <svg viewBox="0 0 17 17">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5554 16.9698L-0.000151038 1.41421L1.41406 0L16.9696 15.5555L15.5554 16.9698Z"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9698 1.41433L1.41421 16.9699L0 15.5557L15.5555 0.000114921L16.9698 1.41433Z"></path>
+                                </svg>
+                            </span>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    {# -------------------------------------------------------------------- #}
+    {# commodities (MOBILE) #}
+    {# -------------------------------------------------------------------- #}
+    {% if form.commodities.vars.data|length > 0 %}
+        <div class="proposal-info__container mobile">
+            {% for commodity in form.commodities.vars.data %}
+                <div class="
+                    proposal-info__row
+                    proposal-info__row--bordered
+                    js-kit-remove-commodity-row
+                ">
+                    <div>
+                        <div class="proposal-info__col">
+                            <div class="proposal-info__col-name">
+                                {{ 'market.profile.kitForm.preview.commodities'|trans }}
+                            </div>
+                            <div class="proposal-info__col-value">
+                                <div class="proposal-info-item">
+                                    <img
+                                        class="proposal-info-item__image large"
+                                        src="{{ vich_uploader_asset(commodity) }}"
+                                        alt="{{ commodity.title }}"
+                                        title="{{ commodity.title }}"
+                                    >
+                                    <div class="proposal-info-item__title">
+                                        <span>{{ commodity.title }}</span>
+                                        <div class="fontSize12px">
+                                            <span class="grey1">ID:</span>
+                                            <span>{{ commodity.id }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="proposal-info__col">
+                            {% if commodity.price > 0 %}
+                                <div class="proposal-info__col-name">
+                                    {{ 'market.profile.kitForm.summaryInformation.price'|trans }}
+                                </div>
+                                <div class="proposal-info__col-value">
+                                    <b>{{ commodity.price|numberFormatAgro }}</b>
+                                </div>
+                            {% else %}
+                                <div class="proposal-info__col-value">
+                                    <b>{{ 'market.profile.commodityForm.priceNegotiated'|trans }}</b>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="proposal-info__col">
+                            <div class="proposal-info__col-name">
+                                {{ 'market.profile.kitForm.preview.users'|trans }}
+                            </div>
+                            <div class="proposal-info__col-value">
+                                <div class="proposal-info-item">
+                                    {% include 'market/user/block/avatar.html.twig' with {
+                                        'user'  : commodity.user,
+                                        'class' : 'proposal-info-item__image large avatar',
+                                    } only %}
+                                    <div class="proposal-info-item__title">
+                                        <span>{{ commodity.user.name }}</span>
+                                        <div class="fontSize12px">
+                                            <span class="grey1">ID:</span>
+                                            <span>{{ commodity.user.id }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="proposal-info__col">
+                            <div class="proposal-info__col-name">
+                                {{ 'market.profile.kitForm.summaryInformation.commodityActivityDays'|trans }}
+                            </div>
+                            <div class="proposal-info__col-value">
+                                <strong>
+                                    {% set commodityActiveTo    = commodity.activeTo|date('d-m-Y') %}
+                                    {% set now                  = 'now'|date('d-m-Y') %}
+                                    {{ date(now).diff(date(commodityActiveTo)).days }}
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="proposal-info__col">
+                        <div class="proposal-info__col-name"></div>
+                        <div class="proposal-info__col-value">
+                            <span
+                                class="proposal-info-item__trigger js-kit-remove-commodity"
+                                data-value="{{ commodity.id }}"
+                            >
+                                <svg viewBox="0 0 17 17">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5554 16.9698L-0.000151038 1.41421L1.41406 0L16.9696 15.5555L15.5554 16.9698Z"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9698 1.41433L1.41421 16.9699L0 15.5557L15.5555 0.000114921L16.9698 1.41433Z"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {# -------------------------------------------------------------------- #}
+    {# footer #}
+    {# -------------------------------------------------------------------- #}
+    <div class="proposal-info__footer">
+        {# ------------------------------------------- #}
+        {# user contacts information #}
+        {# ------------------------------------------- #}
+        <div class="proposal-info__row">
+            <div class="proposal-info__col-name">
+                {{ 'market.profile.commodityForm.userContacts'|trans }}
+            </div>
+            <div class="proposal-info__col-value">
+                {{ form.vars.data.user.email }}
+            </div>
+            {% for phone in form.userDisplayPhones.vars.data %}
+                <div class="proposal-info__col-value">
+                    {{ phone.phone }}
+                </div>
+            {% endfor %}
+        </div>
+        {# ------------------------------------------- #}
+        {# active to #}
+        {# ------------------------------------------- #}
+        {% if form.commodities.vars.data|length > 0 %}
+            <div class="proposal-info__row">
+                <div class="proposal-info__col-name">
+                    {{ 'market.profile.kitForm.summaryInformation.kitActivityDays.title'|trans }}
+                </div>
+                <div class="proposal-info__col-value">
+                    <div class="proposal-info__period">
+                        <div class="fontSize30px green">
+                            <strong>
+                                {% set commoditiesActiveToDates = [] %}
+                                {% for commodity in form.commodities.vars.data %}
+                                    {% set commoditiesActiveToDates = commoditiesActiveToDates|merge([
+                                        commodity.activeTo|date('U'),
+                                    ]) %}
+                                {% endfor %}
+
+                                {% set kitActiveToDate  = min(commoditiesActiveToDates) %}
+                                {% set now              = 'now'|date('d-m-Y') %}
+                                {% set kitActivityDays  = date(now).diff(date(kitActiveToDate)).days %}
+                                {% set daysTitle        = null %}
+
+                                {% if kitActivityDays == 1 %}
+                                    {% set daysTitle = 'market.profile.kitForm.summaryInformation.kitActivityDays.days1'|trans %}
+                                {% elseif kitActivityDays <= 4 %}
+                                    {% set daysTitle = 'market.profile.kitForm.summaryInformation.kitActivityDays.daysFrom2To4'|trans %}
+                                {% else %}
+                                    {% set daysTitle = 'market.profile.kitForm.summaryInformation.kitActivityDays.daysOver5'|trans %}
+                                {% endif %}
+
+                                {{ kitActivityDays }} {{ daysTitle }}
+                            </strong>
+                        </div>
+                        <div class="fontSize15-20px">
+                            {{ 'market.profile.kitForm.summaryInformation.kitActivityDays.till'|trans }}<br>
+                            {{ kitActiveToDate|date('d.m.Y') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {# ------------------------------------------- #}
+        {# price #}
+        {# ------------------------------------------- #}
+        {% set summary = 0 %}
+        {% for commodity in form.commodities.vars.data %}
+            {% set summary = summary + commodity.price %}
+        {% endfor %}
+
+        {% if form.commodities.vars.data|length > 0 %}
+            <div class="proposal-info__row">
+                <div class="product-price-item text-center">
+                    <div class="proposal-info__col-name">
+                        {{ 'market.profile.kitForm.summaryInformation.commoditySummary'|trans }}
+                    </div>
+                    <div class="grey1">
+                        <strong class="fontSize20px">
+                            {{ summary|numberFormatAgro }}
+                        </strong>
+                        {{ 'market.currency.short'|trans }}
+                    </div>
+                    <br>
+                    <div class="proposal-info__col-name">
+                        {{ 'market.profile.kitForm.summaryInformation.kitPrice'|trans }}
+                    </div>
+                    <div class="green">
+                        {% if form.price.vars.value %}
+                            <strong class="fontSize30px">
+                                {{ form.price.vars.value|numberFormatAgro }}
+                            </strong>
+                            {{ 'market.currency.short'|trans }}
+                        {% else %}
+                            <strong class="fontSize30px">
+                                {{ 'market.profile.commodityForm.priceNegotiated'|trans }}
+                            </strong>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <span class="
+        square-button
+        borderless
+        height-50
+        centeredBlock
+        js-kit-add-commodity-button
+    ">
+        <svg viewBox="0 0 24 24">
+            <rect x="11" y="3" width="2" height="18"></rect>
+            <rect x="3" y="13" width="2" height="18" transform="rotate(-90 3 13)"></rect>
+        </svg>
+        <span>
+            {{ 'market.profile.kitForm.summaryInformation.addCommodity'|trans }}
+        </span>
+    </span>
+{% endblock %}

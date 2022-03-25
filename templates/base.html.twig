@@ -1,0 +1,105 @@
+{% set op = options('all') %}
+{% set baseDom = app.request.getScheme~'://'~app.request.getHttpHost~app.request.getBasePath %}
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}" prefix="og: https://ogp.me/ns#">
+    <head>
+        <meta charset="utf-8">
+        {% if op['GTM_head']['value'] is defined %}
+            <!-- Google Tag Manager  -->
+            <script>{{ op['GTM_head']['value']|raw }}</script>
+            <!-- Google Tag Manager -->
+        {% endif %}
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="keywords" content="{% block keywords %}{% endblock %}"/>
+        <meta name="description" content="{% block description %}{% endblock %}"/>
+        <meta property="og:title" content="{% block opengraph_title %}{% endblock %}"/>
+        <meta property="og:description" content="{% block opengraph_description %}{% endblock %}"/>
+        <meta property="og:url" content="{% block opengraph_url %}{% endblock %}"/>
+        <meta property="og:image" content="{% block opengraph_image %}{% endblock %}"/>
+
+        {% if block('meta_robots') is defined %}
+            {% set _blockMetaRobots = block('meta_robots') %}
+            {% if _blockMetaRobots is not empty %}
+                <meta name="robots" content="{{ _blockMetaRobots }}" />
+            {% endif %}
+        {% endif %}
+
+        {% if app.request.query.get('page') is not empty and app.request.query.get('page') != '1' %}
+            <meta name="robots" content="noindex, nofollow" />
+        {% endif %}
+
+        {% if block('canonical') is defined %}
+            {% set _blockCanonical = block('canonical') %}
+            {% if _blockCanonical is not empty %}
+                <link href="{{ _blockCanonical | raw }}" rel="canonical">
+            {% endif %}
+        {% endif %}
+
+        {% set currentPath = app.request.pathinfo | replace({'/en/': '/'}) %}
+        {% set domain = app.request.getSchemeAndHttpHost() %}
+
+        <link rel="alternate" href="{{ domain ~ currentPath }}" hreflang="uk-ua" />
+        <link rel="alternate" href="{{ domain ~ '/en' ~ currentPath }}" hreflang="en-us" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800&display=swap"
+                rel="stylesheet">
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <div class="cookie-banner" id="cookie-banner">
+            <div class="cookie-banner__inner-wrapper">
+                <p>{{ 'home.cookie'|trans }}</p>
+                <button class="square-button white-button centeredBlock"
+                        id="cookies-button">{{ 'item.ok'|trans }}</button>
+            </div>
+        </div>
+
+        {% if op['GTM_body']['value'] is defined %}
+            <!-- Google Tag Manager (noscript) -->
+            <noscript>
+                <iframe {{ op['GTM_body']['value']|raw }}></iframe>
+            </noscript>
+            <!-- End Google Tag Manager (noscript) -->
+        {% endif %}
+
+        <div class="js-loader loader-container">
+            <div class="loader-inner-wrapper">
+                <div class="loader"></div>
+            </div>
+        </div>
+
+        {% include 'layout/header.html.twig' %}
+        {% block body %}{% endblock %}
+        {% include 'layout/footer.html.twig' %}
+        {% include 'svg.twig' %}
+
+        <template id="notifications">
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="modal" data-type="{{ label }}">{{ message }}</div>
+                {% endfor %}
+            {% endfor %}
+        </template>
+        <script>
+            window.options = {
+                authorized: {% if app.user %}true{% else %}false{% endif %},
+                home: '{{ url('home') }}',
+                ajaxLinks: {
+                    downloadFile: '{{ path('app_profile_download_file') }}'
+                }
+            }
+        </script>
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+        <script src="https://www.youtube.com/iframe_api"></script>
+
+    </body>
+</html>

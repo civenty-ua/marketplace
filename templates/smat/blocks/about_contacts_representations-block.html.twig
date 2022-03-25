@@ -1,0 +1,119 @@
+<div class="section">
+    <h2 class="h2">{{ 'contacts.partners'|trans }}</h2>
+    {% if contacts|length > 0 %}
+        {% set dataColors = ['#D19000','#007A33','#D86018','#00587C'] %}
+        {% set defaultImages = ['region-zaporizha_60x60.svg','region-mukolaiv_60x60.svg','region-odessa_60x60.svg','region-herson_60x60.svg'] %}
+        <div class="partners">
+            <div class="partners__list">
+                {% for key,contact in contacts %}
+                    <div class="partner-item" {% if key <=3 %}data-color="{{ dataColors[key] }}{% endif %}">
+                        <div class="partner-item__inner">
+                            <div class="partner-item-title">
+                                {% if contact.image is defined  and contact.image|length > 0  and contact.image not in defaultImages %}
+                                    {% set imageLink = 'upload/contact/'~ contact.image ~'#Layer_1' %}
+                                    <svg class="partner-item-title-ico">
+                                        <use xlink:href="{{ asset(imageLink) }}"></use>
+                                    </svg>
+                                {% else %}
+                                    {% if key <=3 %}
+                                        {% set imageLink = '/images/smat/'~defaultImages[key]~'#Layer_1' %}
+                                        <svg class="partner-item-title-ico">
+                                            <use xlink:href="{{ asset(imageLink) }}"></use>
+                                        </svg>
+                                    {% endif %}
+                                {% endif %}
+                                {% if contact.region is defined and contact.region|length > 0 %}
+                                    <div class="partner-item-title-region">
+                                        {{ contact.region~' '~ 'form_registration.region'|trans|lower }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="partner-icon-text">
+                                {% set title = contact.translate(app.request.locale).title %}
+                                {% if title is defined and title|length > 0 %}
+                                    <div class="partner-icon-text-title">
+                                        {{ contact.translate(app.request.locale).title }}
+                                    </div>
+                                {% endif %}
+                                <ul class="partner-icon-text-ul">
+                                    {% set address = contact.translate(app.request.locale).address %}
+                                    {% if address is defined and address|length > 0 %}
+                                        <li class="partner-icon-text-li">
+                                            <img class="ico" src="/images/smat/ico-location_dark_24x24.svg" alt="">
+                                            <div class="txt">
+                                                {{ address }}
+                                            </div>
+                                        </li>
+                                    {% endif %}
+                                    {% set head = contact.translate(app.request.locale).head %}
+                                    {% if head is defined and head|length > 0 %}
+                                        <li class="partner-icon-text-li">
+                                            <img class="ico" src="/images/smat/ico-avatar_dark_24x24.svg" alt="">
+                                            <div class="txt">
+                                                <strong>{{ 'contacts.head'|trans~' - ' }}</strong>{{ head }}
+                                            </div>
+                                        </li>
+                                    {% endif %}
+                                    {% if contact.phone is defined and contact.phone|length > 0 %}
+                                        <li class="partner-icon-text-li">
+                                            <img class="ico" src="/images/smat/ico-phone_dark_24x24.svg" alt="">
+                                            <div class="txt">
+                                                <strong>{{ 'contacts.cellphone'|trans }}</strong> {{ contact.phone }}
+                                            </div>
+                                        </li>
+                                    {% endif %}
+                                    {% if contact.email is defined and contact.email|length > 0 %}
+                                        <li class="partner-icon-text-li">
+                                            <img class="ico" src="/images/smat/ico-email_dark_24x24.svg" alt="">
+                                            <div class="txt">
+                                                <strong>{{ 'form_registration.email'|trans~':' }}</strong> <a
+                                                        href="{{ 'mailto:'~contact.email }}"
+                                                        target="_blank">{{ contact.email }}</a>
+                                            </div>
+                                        </li>
+                                    {% endif %}
+                                    {% if contact.site is defined and contact.site|length > 0 %}
+                                        <li class="partner-icon-text-li">
+                                            <img class="ico" src="/images/smat/ico-web_dark_24x24.svg" alt="">
+                                            <div class="txt">
+                                                <strong>{{ 'item.web-site'|trans~':' }}</strong> <a
+                                                        href="{{ contact.site }}" target="_blank">{{ contact.site }}</a>
+                                            </div>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            {% set position = contact.translate(app.request.locale).position %}
+                            {% if position is defined and position|length > 0 %}
+                                <div class="partner-icon-text">
+                                    <div class="partner-icon-text-title">
+                                        {{ position }}
+                                    </div>
+                                    <ul class="partner-icon-text-ul">
+                                        {% set fullname = contact.translate(app.request.locale).fullname %}
+                                        {% if fullname is defined and fullname|length > 0 %}
+                                            <li class="partner-icon-text-li">
+                                                <img class="ico" src="/images/smat/ico-avatar_dark_24x24.svg" alt="">
+                                                <div class="txt">
+                                                    {{ fullname }}
+                                                </div>
+                                            </li>
+                                        {% endif %}
+                                        {% if contact.cellPhone is defined and contact.cellPhone|length > 0 %}
+                                            <li class="partner-icon-text-li">
+                                                <img class="ico" src="/images/smat/ico-phone_dark_24x24.svg" alt="">
+                                                <div class="txt">
+                                                    {{ 'contacts.cellphone'|trans ~' ' ~ contact.cellPhone }}
+                                                </div>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+</div>

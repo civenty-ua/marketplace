@@ -1,0 +1,243 @@
+<div class="js-item" data-list-ajax-url="{{ listAjaxUrl }}">
+    <div class="section">
+        <h1 class="h1">{{ 'item.title'|trans|raw }}</h1>
+        <div class="section__subtitle">
+            {% if op['courses_and_webinars_page_title_uk']['value'] is defined
+                and op['courses_and_webinars_page_title_en']['value'] is defined %}
+            {{ app.request.locale == 'uk'
+                ? op['courses_and_webinars_page_title_uk']['value']
+                : op['courses_and_webinars_page_title_en']['value'] }}
+            {% else %}
+                 {{ 'item.description'|trans }}
+            {% endif %}
+        </div>
+
+        <div class="js-search-container search-container item">
+            <div class="search">
+                <div class="js-search-input">
+                    <input
+                            type="text"
+                            class="search-input"
+                            placeholder="{{ 'header.i_am_looking_for'|trans }}"
+                            value="{{ appliedQueryParams.search }}"
+                    >
+                    <div class="js-search-input__clear" data-clear-tooltip-title="{{ 'clear-tooltip'|trans }}"></div>
+                </div>
+                <button type="submit" class="js-tooltip search__button" data-toggle="tooltip"
+                        data-placement="auto" title="{{ 'search-tooltip'|trans }}">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+            <div class="desktop-tag">
+                <div class="tag-item-container">
+                    <a class="tag-item {% if 'course' in appliedQueryParams.type %}active{% endif %}"
+                            href="javascript:void(0)" data-tag-name="course">
+                        <i class="fas fa-check"></i>
+                        <span class="title">{{ 'item.courses'|trans }}</span>
+                        <span class="quantity">({{ coursesCount }})</span>
+                    </a>
+                    <a class="tag-item {% if 'webinar' in appliedQueryParams.type %}active{% endif %}"
+                            href="javascript:void(0)" data-tag-name="webinar">
+                        <i class="fas fa-check"></i>
+                        <span class="title">{{ 'item.webinars'|trans }}</span>
+                        <span class="quantity">({{ webinarsCount }})</span>
+                    </a>
+                    <a class="tag-item {% if 'article' in appliedQueryParams.type %}active{% endif %}"
+                            href="javascript:void(0)" data-tag-name="article">
+                        <i class="fas fa-check"></i>
+                        <span class="title">{{ 'item.articles'|trans }}</span>
+                        <span class="quantity">({{ articlesCount }})</span>
+                    </a>
+                    <a class="tag-item {% if 'other' in appliedQueryParams.type %}active{% endif %}"
+                            href="javascript:void(0)" data-tag-name="other">
+                        <i class="fas fa-check"></i>
+                        <span class="title">{{ 'item.other'|trans }}</span>
+                        <span class="quantity">({{ otherCount }})</span>
+                    </a>
+                    <a class="tag-item {% if 'occurrence' in appliedQueryParams.type %}active{% endif %}"
+                       href="javascript:void(0)" data-tag-name="occurrence">
+                        <i class="fas fa-check"></i>
+                        <span class="title">{{ 'menu.study.occurrence'|trans }}</span>
+                        <span class="quantity">({{ occurrenceCount }})</span>
+                    </a>
+                    <a class="tag-item {% if 'news' in appliedQueryParams.type %}active{% endif %}"
+                       href="javascript:void(0)" data-tag-name="news">
+                        <i class="fas fa-check"></i>
+                        <span class="title">{{ 'menu.about_us.news'|trans }}</span>
+                        <span class="quantity">({{ newsCount }})</span>
+                    </a>
+                    <a class="tag-item {% if 'success_stories' in appliedQueryParams.type %}active{% endif %}"
+                       href="javascript:void(0)" data-tag-name="success_stories">
+                        <i class="fas fa-check"></i>
+                        <span class="title">{{ 'menu.about_us.success_stories'|trans }}</span>
+                        <span class="quantity">({{ countSuccessStories }})</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="filter-with-list-container">
+            <div class="js-desktop-filter filter-block">
+                <div class="button-container">
+                    <a class="js-select-all square-button marginRight10px"
+                            href="javascript:void(0)">{{ 'item.all'|trans }}</a>
+                    <a class="js-reset-all square-button grey-button"
+                            href="javascript:void(0)">{{ 'item.clear'|trans }}</a>
+                </div>
+
+                <div class="js-item-filter-block">
+                    {% include 'blocks/item-panel/filter-items.html.twig' with {
+                        'appliedQueryParams': appliedQueryParams,
+                        'categories': categories,
+                        'crops': crops,
+                        'partners': partners,
+                        'experts': experts,
+                    } %}
+                </div>
+            </div>
+            <div class="list-block">
+                <div class="filter-wrapper">
+                    <a href="javascript:void(0)" class="js-mobile-filter__open filter__button">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#filter"></use>
+                        </svg>
+                        <span>{{ 'item.filters'|trans }}</span>
+                    </a>
+
+                    <div class="active-filter-container">
+                        {% if appliedQueryParams.category|length > 0 %}
+                            {% for category in categories %}
+                                {% if category[0].id in appliedQueryParams.category %}
+                                    {% set categoryCheckboxId = 'category-' ~ category[0].id %}
+                                    <div data-active-checkbox-id="{{ categoryCheckboxId }}" class="active-filter__item">
+                                        <span>{{ category[0].name }}</span>
+                                        <svg>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cross"></use>
+                                        </svg>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if appliedQueryParams.crop|length > 0 %}
+                            {% for crop in crops %}
+                                {% if crop[0].id in appliedQueryParams.crop %}
+                                    {% set cropCheckboxId = 'crop-' ~ crop[0].id %}
+                                    <div data-active-checkbox-id="{{ cropCheckboxId }}" class="active-filter__item">
+                                        <span>{{ crop[0].name }}</span>
+                                        <svg>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cross"></use>
+                                        </svg>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if appliedQueryParams.partner|length > 0 %}
+                            {% for partner in partners %}
+                                {% if partner[0].id in appliedQueryParams.partner %}
+                                    {% set partnerCheckboxId = 'partner-' ~ partner[0].id %}
+                                    <div data-active-checkbox-id="{{ partnerCheckboxId }}" class="active-filter__item">
+                                        <span>{{ partner[0].name }}</span>
+                                        <svg>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cross"></use>
+                                        </svg>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if appliedQueryParams.expert|length > 0 %}
+                            {% for expert in experts %}
+                                {% if expert[0].id in appliedQueryParams.expert %}
+                                    {% set expertCheckboxId = 'expert-' ~ expert[0].id %}
+                                    <div data-active-checkbox-id="{{ expertCheckboxId }}" class="active-filter__item">
+                                        <span>{{ expert[0].name }}</span>
+                                        <svg>
+                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cross"></use>
+                                        </svg>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <div class="select-wrap small-display-margin">
+                        <select class="js-select2 sorter">
+                            {% for sortValue in filter.sortValues %}
+                                <option value="{{ sortValue }}"
+                                        {% if sortValue == appliedQueryParams.sortBy %}selected{% endif %}>
+                                    {% if sortValue == 'createdAt' %}
+                                        {{ 'item.sort_date'|trans }}
+                                    {% elseif (sortValue == 'viewsAmount') %}
+                                        {{ 'item.sort_views'|trans }}
+                                    {% endif %}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="js-item-list-block">
+                    {% include 'blocks/item-panel/list-items.html.twig' with { 'items': items } %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="js-shade shade"></div>
+    <div class="js-mobile-filter mobile-filter">
+        <div class="mobile-filter__inner-wrapper js-mobile-item-filter">
+            <a href="javascript:void(0)" class="js-mobile-filter__close mobile-filter__close">
+                <svg>
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cross"></use>
+                </svg>
+            </a>
+
+            <div class="mobile-tag">
+                <div class="tag-item-container">
+                    <a class="tag-item {% if 'course' in appliedQueryParams.type %}active{% endif %}"
+                            href="javascript:void(0)" data-tag-name="course">
+                        <i class="fas fa-check"></i>
+                        <span class="title">{{ 'item.courses'|trans }}</span>
+                        <span class="quantity">({{ coursesCount }})</span>
+                    </a>
+                    <a class="tag-item {% if 'webinar' in appliedQueryParams.type %}active{% endif %}"
+                            href="javascript:void(0)" data-tag-name="webinar">
+                        <i class="fas fa-check"></i>
+                        <span class="title">{{ 'item.webinars'|trans }}</span>
+                        <span class="quantity">({{ webinarsCount }})</span>
+                    </a>
+                    <a class="tag-item {% if 'article' in appliedQueryParams.type %}active{% endif %}"
+                            href="javascript:void(0)" data-tag-name="article">
+                        <i class="fas fa-check"></i>
+                        <span class="title">{{ 'item.articles'|trans }}</span>
+                        <span class="quantity">({{ articlesCount }})</span>
+                    </a>
+                    <a class="tag-item {% if 'other' in appliedQueryParams.type %}active{% endif %}"
+                            href="javascript:void(0)" data-tag-name="other">
+                        <i class="fas fa-check"></i>
+                        <span class="title">{{ 'item.other'|trans }}</span>
+                        <span class="quantity">({{ otherCount }})</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="button-container">
+                <a class="js-select-all square-button marginRight10px"
+                        href="javascript:void(0)">{{ 'item.all'|trans }}</a>
+                <a class="js-reset-all square-button grey-button"
+                        href="javascript:void(0)">{{ 'item.clear'|trans }}</a>
+            </div>
+
+            <div class="js-item-filter-block">
+                {% include 'blocks/item-panel/filter-items.html.twig' with {
+                    'appliedQueryParams': appliedQueryParams,
+                    'categories': categories,
+                    'crops': crops,
+                    'partners': partners,
+                    'experts': experts,
+                } %}
+            </div>
+        </div>
+    </div>
+</div>

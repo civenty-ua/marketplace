@@ -1,0 +1,460 @@
+{% extends 'profile/profileMarket.html.twig' %}
+
+{% block tabContent %}
+    <div class="personal-area-center__tabs-wrapper">
+        <div class="personal-area-center__tab marginBottom0">
+
+            <h3 class="h3 marginBottom40px">
+                {{ 'role.current'|trans }} - <span
+                        class="orange">{{ user.currentNameRolesString }} </span>. {{ 'role.current_comment'|trans }}
+            </h3>
+
+            <div class="pricing-list-wrapper">
+                <div class="pricing-list__col">
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title">{{ 'role.purchases'|trans }}
+                            </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item">{{ 'role.goods'|trans }}</div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item">{{ 'role.servises'|trans }}</div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item">{{ 'role.kits'|trans }}</div>
+                    </div>
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title">{{ 'role.add_product'|trans }}</div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item">{{ 'role.buy'|trans }}</div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item">{{ 'role.sell'|trans }}</div>
+                    </div>
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title">{{ 'role.add_service'|trans }}</div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item">{{ 'role.buy'|trans }}</div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item">{{ 'role.sell'|trans }}</div>
+                    </div>
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title">{{ 'role.kits'|trans }}</div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item">{{ 'role.buy'|trans }}</div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item">{{ 'role.sell'|trans }}</div>
+                    </div>
+                </div>
+                <div class="pricing-list__col">
+                    {% if 'ROLE_USER' in user.roles %}
+                        <div class="active-pricing-list__col">
+                            <div class="active-pricing-list-title">{{ 'role.my_role'|trans }}</div>
+                        </div>
+                    {% endif %}
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title column-header">
+                            <span class="position-relative">{{ 'role.buyer'|trans }}&nbsp;
+                            <button class="btn btn-secondary position-absolute bottom-100" data-toogle="tooltip" data-placement="bottom"
+                                    title="{% if infoBlocks[0] is defined %}{{ infoBlocks[0].text }}{% endif %}">
+                                <i class="fas fa-info-circle text-primary"></i>
+                            </button></span>
+                        </div>
+                    </div>
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center included">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center included">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center included">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center excluded">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center excluded">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center excluded">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center excluded">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center excluded">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center excluded">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="pricing-list__col">
+
+                    {% if 'ROLE_WHOLESALE_BUYER' in user.roles %}
+                        <div class="active-pricing-list__col">
+                            <div class="active-pricing-list-title">{{ 'role.my_role'|trans }}</div>
+                        </div>
+                    {% elseif  user.requestRole('wholesale-bayer') %}
+                        <div class="active-pricing-list__col waiting-approve">
+                            <div class="active-pricing-list-title waiting-approve">{{ 'role.my_role_wait'|trans }}</div>
+                        </div>
+                    {% endif %}
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title column-header">
+                            <span class="position-relative">{{ 'role.wholesale_bayer'|trans }}&nbsp;
+                            <button class="btn btn-secondary position-absolute bottom-100" data-toogle="tooltip" data-placement="bottom"
+                                    title="{% if infoBlocks[1] is defined %}{{ infoBlocks[1].text }}{% endif %}">
+                                <i class="fas fa-info-circle text-primary"></i>
+                            </button></span>
+                        </div>
+                    </div>
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center included">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center included">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center included">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center included">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center included">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center excluded">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center excluded">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center excluded">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center excluded">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    {% if constant('ROLE_WHOLESALE_BUYER', user) not in user.roles %}
+                        {% if user.requestRole('wholesale-bayer') %}
+                            <div class="pricing-list__row">
+                                <a class="square-button white-bg-button"
+                                   href="{{ path('profile_form_role_create', {'role': 'wholesale-bayer'}) }}">{{ 'role.edit_anceta'|trans }}</a>
+                            </div>
+                        {% else %}
+                            <div class="pricing-list__row">
+                                <a class="square-button green-bg-button"
+                                   href="{{ path('profile_form_role_create', {'role': 'wholesale-bayer'}) }}">{{ 'role.anceta'|trans }}</a>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="pricing-list__row">
+                            <a class="square-button gray-bg-button delete-button-role"
+                               href="" data-url="{{ path('profile_form_role_delete', {'role': 'wholesale-bayer'}) }}">{{ 'role.cansel'|trans }}</a>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="pricing-list__col">
+                    {% if 'ROLE_SALESMAN' in user.roles %}
+                        <div class="active-pricing-list__col">
+                            <div class="active-pricing-list-title">{{ 'role.my_role'|trans }}</div>
+                        </div>
+                    {% elseif  user.requestRole('salesman') %}
+                        <div class="active-pricing-list__col waiting-approve">
+                            <div class="active-pricing-list-title waiting-approve">{{ 'role.my_role_wait'|trans }}</div>
+                        </div>
+                    {% endif %}
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title column-header">
+                            <span class="position-relative">{{ 'role.seller'|trans }}&nbsp;
+                            <button class="btn btn-secondary position-absolute bottom-100" data-toogle="tooltip" data-placement="bottom"
+                                    title="{% if infoBlocks[2] is defined %}{{ infoBlocks[2].text }}{% endif %}">
+                                <i class="fas fa-info-circle text-primary"></i>
+                            </button></span>
+                        </div>
+                    </div>
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center included">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center included">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center included">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center excluded">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center included">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center excluded">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center excluded">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center excluded">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center included">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    {% if constant('ROLE_SALESMAN', user) not in user.roles %}
+                        {% if user.requestRole('salesman') %}
+                            <div class="pricing-list__row">
+                                <a class="square-button white-bg-button"
+                                   href="{{ path('profile_form_role_create', {'role': 'salesman'}) }}">{{ 'role.edit_anceta'|trans }}</a>
+                            </div>
+                        {% else %}
+                            <div class="pricing-list__row">
+                                <a class="square-button green-bg-button"
+                                   href="{{ path('profile_form_role_create', {'role': 'salesman'}) }}">{{ 'role.anceta'|trans }}</a>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="pricing-list__row">
+                            <a class="square-button gray-bg-button delete-button-role"
+                               href="" data-url="{{ path('profile_form_role_delete', {'role': 'salesman'}) }}">{{ 'role.cansel'|trans }}</a>
+                        </div>
+                    {% endif %}
+
+
+                </div>
+                <div class="pricing-list__col">
+                    {% if 'ROLE_SERVICE_PROVIDER' in user.roles %}
+                        <div class="active-pricing-list__col">
+                            <div class="active-pricing-list-title">{{ 'role.my_role'|trans }}</div>
+                        </div>
+                    {% elseif  user.requestRole('service-provider') %}
+                        <div class="active-pricing-list__col waiting-approve">
+                            <div class="active-pricing-list-title waiting-approve">{{ 'role.my_role_wait'|trans }}</div>
+                        </div>
+                    {% endif %}
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title column-header">
+                            <span class="position-relative">{{ 'role.service_provider'|trans }}&nbsp;
+                            <button class="btn btn-secondary position-absolute bottom-100" data-toogle="tooltip" data-placement="bottom"
+                                    title="{% if infoBlocks[3] is defined %}{{ infoBlocks[3].text }}{% endif %}">
+                                <i class="fas fa-info-circle text-primary"></i>
+                            </button></span></div>
+                    </div>
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center included">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center included">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center included">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center excluded">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center excluded">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center excluded">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center included">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-title"></div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center excluded">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="pricing-list__row">
+                        <div class="pricing-list-item text-center included">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    {% if constant('ROLE_SERVICE_PROVIDER', user) not in user.roles %}
+                        {% if user.requestRole('service-provider') %}
+                            <div class="pricing-list__row">
+                                <a class="square-button white-bg-button"
+                                   href="{{ path('profile_form_role_create', {'role': 'service-provider'}) }}">{{ 'role.edit_anceta'|trans }}</a>
+                            </div>
+                        {% else %}
+                            <div class="pricing-list__row">
+                                <a class="square-button green-bg-button"
+                                   href="{{ path('profile_form_role_create', {'role': 'service-provider'}) }}">{{ 'role.anceta'|trans }}</a>
+                            </div>
+                        {% endif %}
+
+                    {% else %}
+                        <div class="pricing-list__row">
+                            <a class="square-button gray-bg-button delete-button-role"
+                               href="" data-url="{{ path('profile_form_role_delete', {'role': 'service-provider'}) }}">{{ 'role.cansel'|trans }}</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

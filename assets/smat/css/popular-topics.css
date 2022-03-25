@@ -1,0 +1,102 @@
+.popular-topics {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.popular-topics * {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.popular-topics__items-wrap {
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.popular-topics__link {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	border-bottom: 1px solid #D8D8D8;
+	background-color: #ffffff;
+	color: #3A3A3A;
+	text-decoration: none;
+	-webkit-transition: all 0.15s ease 0s;
+	-ms-transition: all 0.15s ease 0s;
+	transition: all 0.15s ease 0s;
+}
+
+.popular-topics__date {
+	width: 150px;
+	padding: 20px 0 20px 0;
+	-webkit-flex-shrink: 0;
+	-ms-flex-negative: 0;
+	flex-shrink: 0;
+	font-size: 14px;
+	color: #737373;
+	-webkit-transition: all 0.15s ease 0s;
+	-ms-transition: all 0.15s ease 0s;
+	transition: all 0.15s ease 0s;
+}
+
+.popular-topics__text {
+	position: relative;
+	width: 100%;
+	padding: 15px 65px 20px 0;
+	font-size: 20px;
+}
+
+.popular-topics__text::after {
+	display: block;
+	position: absolute;
+	content: '';
+	top: 23px;
+	right: 2px;
+	width: 8px;
+	height: 8px;
+	border-top: 1px solid currentColor;
+	border-right: 1px solid currentColor;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.body-desktop-device .popular-topics__link:hover {
+	color: #007A33;
+}
+.body-desktop-device .popular-topics__link:hover .popular-topics__date {
+	color: #007A33;
+}
+
+.body-desktop-device .popular-topics__link:active,
+.body-mobile-device .popular-topics__link:active {
+	color: #00520B;
+}
+.body-desktop-device .popular-topics__link:active .popular-topics__date,
+.body-mobile-device .popular-topics__link:active .popular-topics__date {
+	color: #00520B;
+}
+
+@media (max-width: 767px) {
+	.popular-topics__link {
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
+		flex-direction: column;
+	}
+	.popular-topics__date {
+		width: 100%;
+		padding: 18px 0 0px 0;
+	}
+	.popular-topics__text {
+		padding: 5px 30px 20px 0;
+		font-size: 17px;
+	}
+	.popular-topics__text::after {
+		top: 12px;
+	}
+}

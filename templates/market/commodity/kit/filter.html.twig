@@ -1,0 +1,86 @@
+{% set productIndex = 1 %}
+{% set serviceIndex = 1 %}
+{# ------------------------------------------- #}
+{# price #}
+{# ------------------------------------------- #}
+<div class="field">
+    <label>{{ 'market.product.filter.price'|trans }}</label>
+    {% include 'market/commodity/block/filter/numbersRange.html.twig' with {
+        'name'          : 'price',
+        'values'        : [
+            filter.price[0] ?? '',
+            filter.price[1] ?? '',
+        ],
+        'placeholders'  : [
+            'market.product.filter.numberFrom'|trans,
+            'market.product.filter.numberTo'|trans,
+        ],
+        'maxValue'      : fields.maxValues.price,
+    } only %}
+</div>
+{# ------------------------------------------- #}
+{# sub filters #}
+{# ------------------------------------------- #}
+{% for filter in filter.filters %}
+    {% set filterTitle                  = null %}
+    {% set filterIndex                  = loop.index0 %}
+    {% set commodityFilterTemplatePath  = null %}
+
+    {% if filter.commodityType == constant('App\\Entity\\Market\\Commodity::TYPE_PRODUCT') %}
+        {% set filterTitle                  = 'market.kit.filter.product.title'|trans|replace({
+            '#index#' : productIndex,
+        }) %}
+        {% set commodityFilterTemplatePath  = 'market/commodity/kit/filterProduct.html.twig' %}
+        {% set productIndex                 = productIndex + 1 %}
+    {% elseif filter.commodityType == constant('App\\Entity\\Market\\Commodity::TYPE_SERVICE') %}
+        {% set filterTitle                  = 'market.kit.filter.service.title'|trans|replace({
+            '#index#' : serviceIndex,
+        }) %}
+        {% set commodityFilterTemplatePath  = 'market/commodity/kit/filterService.html.twig' %}
+        {% set serviceIndex                 = serviceIndex + 1 %}
+    {% endif %}
+
+    <div
+        class="accordion-block js-commodities-list-sub-filter"
+        data-filter-index="{{ filterIndex }}"
+    >
+        <div class="
+            js-accordion-block__open
+            accordion-header
+            {% if filter.filterIsClosed != true %}active{% endif %}
+        ">
+            <span class="accordion-header__title fontSize17-20px">
+                {{ filterTitle }}
+            </span>
+        </div>
+        <div class="
+            js-accordion-block__content
+            accordion-block__content
+            {% if filter.filterIsClosed != true %}opened{% endif %}
+        ">
+            {% include commodityFilterTemplatePath with {
+                'filterIndex'   : filterIndex,
+                'filter'        : filter,
+                'fields'        : {
+                    'categories'    : fields.filters[filterIndex].categories    ?? [],
+                    'subCategories' : fields.filters[filterIndex].subCategories ?? [],
+                    'attributes'    : fields.filters[filterIndex].attributes    ?? [],
+                    'maxValues'     : fields.maxValues,
+                },
+            } only %}
+        </div>
+    </div>
+{% endfor %}
+{# ------------------------------------------- #}
+{# sub filters ADD buttons #}
+{# ------------------------------------------- #}
+<div class="bottom-button-container">
+    {% include 'market/commodity/kit/addSubfilterButton.html.twig' with {
+        'title' : 'market.kit.filter.product.add'|trans,
+        'value' : constant('App\\Entity\\Market\\Commodity::TYPE_PRODUCT'),
+    } only %}
+    {% include 'market/commodity/kit/addSubfilterButton.html.twig' with {
+        'title' : 'market.kit.filter.service.add'|trans,
+        'value' : constant('App\\Entity\\Market\\Commodity::TYPE_SERVICE'),
+    } only %}
+</div>

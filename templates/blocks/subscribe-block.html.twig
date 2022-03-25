@@ -1,0 +1,29 @@
+<div
+        class="white1-bg subscribe-block"
+        data-link="{{ path('subscribe_post') }}"
+        data-message-success="{{ 'subscribe.action.success'|trans }}"
+        data-message-failed="{{ 'subscribe.action.failed'|trans }}"
+>
+    <div class="section">
+        <div class="subscribe__block">
+            <div class="block">
+                <div class="h2">
+                    {{ 'subscribe.title'|trans }}
+                </div>
+                <div class="subscribe-subtitle">
+                    {{ 'subscribe.message'|trans }}
+                </div>
+            </div>
+            <div class="
+                    action-button
+                    square-button
+                    height-50
+                    orange-bg-button
+                ">
+                {{ 'subscribe.action.title'|trans|replace({
+                    '%target%': 'home.news'|trans
+                }) }}
+            </div>
+        </div>
+    </div>
+</div>

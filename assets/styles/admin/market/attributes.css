@@ -1,0 +1,4 @@
+.market-attribute-edit-usage-bar .alert-message {
+    color: var(--f-red);
+    margin-bottom: 10px;
+}

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ occurrence.title }}{% endblock %}
+
+{% block keywords %}{% if occurrence.keywords %}{{ occurrence.keywords }}{% else %}{{ op['default_keywords']['value'] }}{% endif %}{% endblock %}
+{% block description %}{% if occurrence.description %}{{ occurrence.description| striptags| raw }}{% elseif occurrence.short %}{{ occurrence.short| striptags| raw }}{% else %}{{ op['default_description']['value'] }}{% endif %}{% endblock %}
+{% block opengraph_title %}{{ occurrence.title }}{% endblock %}
+{% block opengraph_description %}{% if occurrence.description %}{{ occurrence.description| striptags| raw }}{% elseif occurrence.short %}{{ occurrence.short| striptags| raw }}{% else %}{{ op['default_description']['value'] }}{% endif %}{% endblock %}
+{% block opengraph_url %}{{ app.request.uri }}{% endblock %}
+{% block opengraph_image %}{{ baseDom~asset('upload/occurrence/'~ occurrence.imageName) }}{% endblock %}
+{% block body %}
+    {% include 'occurrence/occurrence-block.html.twig' with {
+        'occurrence': occurrence,
+        'voted': voted,
+        'rate': rate ,
+        'registered': registered,
+        'user': user,
+        'userHasRatedWebinar': userHasRatedWebinar
+    } %}
+
+    {% include 'blocks/top-tags-block.html.twig' with {'topTags': topTags} %}
+    {% if similarItemList is defined and similarItelList|length > 0 %}
+        {% include 'blocks/similar-block.html.twig' with {'similarItemList': similarItemList} %}
+    {% endif %}
+    {% if topItems|length > 0 %}
+        {% include 'home/blocks/other-courses-block.html.twig' with {'topItems': topItems} %}
+    {% endif %}
+    {% include 'blocks/business-tools-block.html.twig' with {
+        'pagesList' : pagesList
+    } %}
+    {% include 'blocks/catalog-block.html.twig' %}
+    {% include 'blocks/knowledge-base-block.html.twig' with {'categories': categories} %}
+{% endblock %}

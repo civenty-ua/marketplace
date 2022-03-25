@@ -1,0 +1,97 @@
+{% set articlesTotaCount = 0 %}
+{% set filterOpened = false %}
+
+<div
+        class="section ajax"
+        data-list-ajax-route="{{ listAjaxUrl }}"
+>
+    <ul class="breadcrumbs">
+        <li><a href="{{ path('home') }}">{{ 'menu.home'|trans }}</a></li>
+        <li>{{ 'menu.about_us.eco-articles'|trans }}</li>
+    </ul>
+
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org/",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "{{ 'home.home'|trans }}",
+                    "item": "{{ url('home') }}"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "{{ 'menu.about_us.eco-articles'|trans }}",
+                    "item": "{{ url('eco_articles_list') }}"
+                }
+            ]
+        }
+    </script>
+
+    <h1 class="h1 marginBottom40px">
+        <strong>{{ 'menu.about_us.eco-articles'|trans }}</strong>
+    </h1>
+
+    {% if app.user and app.user.isnewssub == false %}
+        <div class="subscribe-block"
+                data-link="{{ path('subscribe_post') }}"
+                data-message-success="{{ 'subscribe.action.success'|trans }}"
+                data-message-failed="{{ 'subscribe.action.failed'|trans }}">
+            <div class="section__subtitle">{{ 'news.subtitle'|trans }}</div>
+            <div class="action-button square-button height-50 orange-bg-button centeredBlock marginBottom40px">
+                {{ 'subscribe.action.title'|trans|replace({
+                    '%target%': 'home.news'|trans
+                }) }}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="js-search-container search-container">
+            <div class="search">
+                <div class="js-search-input">
+                    <input
+                            type="text"
+                            class="search-input"
+                            placeholder="{{ 'header.i_am_looking_for'|trans }}"
+                            value="{{ filter.applied.search }}"
+                    >
+                    <div class="js-search-input__clear" data-clear-tooltip-title="{{ 'clear-tooltip'|trans }}"></div>
+                </div>
+                <button type="submit" class="js-tooltip search__button" data-toggle="tooltip"
+                        data-placement="auto" title="{{ 'search-tooltip'|trans }}">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+    </div>
+
+    <div class="item">
+        <div class="filter-wrapper justifyContentFlexEnd">
+            <div class="select-wrap">
+                <select class="js-select2 sorter">
+                    {% for sortValue in filter.sortValues %}
+                        <option
+                                value="{{ sortValue }}"
+                                {% if sortValue == filter.applied.sortBy %}selected{% endif %}
+                        >
+                            {% if sortValue == 'createdAt' %}
+                                {{ 'item.sort_date'|trans }}
+                            {% elseif (sortValue == 'title') %}
+                                {{ 'item.sort_name'|trans }}
+                            {% elseif (sortValue == 'viewsAmount') %}
+                                {{ 'item.sort_views'|trans }}
+                            {% endif %}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="items-bar-container">
+            {% include 'eco_articles/list/items-bar.html.twig' with {
+                'items': items
+            } %}
+        </div>
+    </div>
+</div>

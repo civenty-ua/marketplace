@@ -1,0 +1,28 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Відповіді про Елемент Бази Знань</th>
+        <th scope="col">Тип елемета</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for review in user|userFeedback %}
+        <tr>
+            <th scope="row">{{ review.id }}</th>
+            <td>
+                {% set itemDetail = ea_url()
+                    .setController('App\\Controller\\Admin\\UserFeedbackCrudController')
+                    .setAction(constant('EasyCorp\\Bundle\\EasyAdminBundle\\Config\\Action::DETAIL'))
+                    .setEntityId(review.id)
+                %}
+                <a href="{{ itemDetail }}">
+                    {{ review.item }}
+                </a>
+            </td>
+            <td>{{ "admin.dashboard.#{review.item.typeItem}.edit_page_title"|trans }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+

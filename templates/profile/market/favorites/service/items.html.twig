@@ -1,0 +1,41 @@
+{% extends 'market/itemsComponent.html.twig' %}
+{# ------------------------------------------- #}
+{# rebuild URL #}
+{# ------------------------------------------- #}
+{% set rebuildUrl = path('market_profile_favorites_services_list_rebuild') %}
+{# ------------------------------------------- #}
+{# filter #}
+{# ------------------------------------------- #}
+{% block filter %}
+    <div class="filter-bar">
+        <div class="checkbox-row"></div>
+        <div class="select-wrap">
+            {% set sortList = [] %}
+            {% for value in availableSortValues %}
+                {% set sortList = sortList|merge({
+                    (value) : "market.commodity.sortTypes.#{value}"|trans
+                }) %}
+            {% endfor %}
+
+            {% include 'market/commodity/block/filter/select.html.twig' with {
+                'name'          : 'sortField',
+                'emptyValue'    : false,
+                'multiple'      : false,
+                'list'          : sortList,
+                'values'        : [filter.sortField],
+            } only %}
+        </div>
+    </div>
+{% endblock %}
+{# ------------------------------------------- #}
+{# items list #}
+{# ------------------------------------------- #}
+{% block itemsList %}
+    {% include 'market/commodity/items.html.twig' with {
+        'items'             : items,
+        'currentPage'       : filter.page,
+        'paginationName'    : 'page',
+        'actions'           : actions,
+        'mainAction'        : mainAction,
+    } only %}
+{% endblock %}

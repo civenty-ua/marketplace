@@ -1,0 +1,42 @@
+{# ------------------------------------------- #}
+{# items data #}
+{# ------------------------------------------- #}
+{% set items = [
+    {
+        'name'  : constant('App\\Entity\\Market\\Commodity::TYPE_PRODUCT'),
+        'link'  : path('market_profile_favorites_products'),
+        'title' : 'market.profile.favorite.product.title'|trans,
+    },
+    {
+        'name'  : constant('App\\Entity\\Market\\Commodity::TYPE_SERVICE'),
+        'link'  : path('market_profile_favorites_services'),
+        'title' : 'market.profile.favorite.service.title'|trans,
+    },
+    {
+        'name'  : constant('App\\Entity\\Market\\Commodity::TYPE_KIT'),
+        'link'  : path('market_profile_favorites_kits'),
+        'title' : 'market.profile.favorite.kit.title'|trans,
+    },
+    {
+        'name'  : 'user',
+        'link'  : path('market_profile_favorites_users'),
+        'title' : 'market.profile.favorite.user.title'|trans,
+    },
+] %}
+{# ------------------------------------------- #}
+{# output #}
+{# ------------------------------------------- #}
+{% for item in items %}
+    {% if (itemsCount[item.name] ?? 0) > 0 %}
+        <a
+            class="
+                section-nav__item
+                {% if selected == item.name %}section-nav__item--active{% endif %}
+            "
+            href="{{ item.link }}"
+        >
+            <span>{{ item.title }}</span>
+            <span class="section-nav__item-count">({{ itemsCount[item.name] }})</span>
+        </a>
+    {% endif %}
+{% endfor %}

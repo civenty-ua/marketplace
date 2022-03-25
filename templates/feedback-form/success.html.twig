@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Feedback Success{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <div class="section__subtitle marginBottom0">
+            {{ 'feedback_form.success'|trans|replace({
+                '%ENTITY_TYPE%' : ('feedback_form.parent_item.'~item.typeItem)|trans,
+                '%ENTITY_NAME%' : item.title
+            }) }}
+        </div>
+    </div>
+{% endblock %}

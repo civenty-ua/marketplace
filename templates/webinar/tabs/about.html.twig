@@ -1,0 +1,7 @@
+<div id="about" class="tab">
+    {% if registered == true and webinar.videoItem %}
+        {% include 'blocks/video-block.html.twig' with {
+            'video': webinar.videoItem
+        } only %}
+    {% endif %}
+</div>

@@ -1,0 +1,53 @@
+<div class="section">
+    <div class="course-promo">
+        <div class="course-promo__inner">
+            <div class="course-promo__info-column">
+                <div class="course-promo__info-column-inner">
+                    <div class="course-promo__badge">
+                        <div class="course-promo__badge-label">
+                            <svg class="course-promo__badge-label-ico">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#course"></use>
+                            </svg>
+                            <span class="course-promo__badge-label-text">{{ 'home.course' | trans }}</span>
+                        </div>
+                    </div>
+                    <div class="course-promo__title">{{ course.title }}</div>
+                    <div class="course-promo__subtitle">{{ course.short | u.truncate(300, '...') }}</div>
+                    <div class="course-promo__info">
+                        <div class="course-promo__info-item">
+                            <img class="course-promo__info-ico" src="/images/smat/ico-calendar_dark_24x24.svg" alt="">
+                            <span class="course-promo__info-text">20 днів - {{ course.countLesson }} відеоуроків.</span>
+                        </div>
+                        <div class="course-promo__info-item">
+                            <img class="course-promo__info-ico" src="/images/smat/ico-course_dark_24x24.svg" alt="">
+                            <span class="course-promo__info-text">{{ course.expertsCount }} крутих спікерів-експертів</span>
+                        </div>
+                        {% if course.startDate is defined and course.startDate|date('Y-m-d H:i:s') > "now"|date('Y-m-d H:i:s') %}
+                            <div class="course-promo__info-item">
+                                <img class="course-promo__info-ico" src="/images/smat/ico-rocket_dark_24x24.svg" alt="">
+                                {% set month = course.startDate|date('M') %}
+                                {% set day = course.startDate|date('d') %}
+                                {% set Year = course.startDate|date('Y') %}
+                                <span class="course-promo__info-text">
+                                {{ 'starting' | trans }} {{ '%s %s %s' | format(day,month|trans, Year) }}{{ 'starting_year' | trans }}
+                            </span>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="course-promo__bottom">
+                        <a class="btn-h50-green" href="{{ path('course_detail', {'slug': course.slug}) }}">
+                            <span>{{ 'start_studying' | trans }}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="course-promo__pic-column">
+                <figure class="course-promo__figure">
+                    <img class="course-promo__image"
+                         src="{% if course.imageName is empty %}{{ asset('images/item-default.png') }}{% else %} {{ asset('upload/course/' ~ course.imageName) }} {% endif %}"
+                         alt="{{ course.title }}">
+                </figure>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="personal-area-sidebar__tabs-navigation">
+
+    <a class="btn-sidebar-tail-right" href="#">
+        <svg class="ico">
+            <use xlink:href="/images/smat/ico-product_24x24.svg#Layer_1"></use>
+        </svg>
+        <span>{{ 'profile.my_commodities'|trans }}</span>
+    </a>
+
+    <a class="btn-sidebar-tail-right" href="#">
+        <svg class="ico">
+            <use xlink:href="/images/smat/ico-room-service_24x24.svg#Layer_1"></use>
+        </svg>
+        <span>{{ 'profile.my_services'|trans }}</span>
+    </a>
+
+    <a class="btn-sidebar-tail-right" href="#">
+        <svg class="ico">
+            <use xlink:href="/images/smat/ico-service-star_24x24.svg#Layer_1"></use>
+        </svg>
+        <span>{{ 'profile.my_joint_proposals'|trans }}</span>
+    </a>
+
+    <a class="btn-sidebar-tail-right" href="#">
+        <svg class="ico">
+            <use xlink:href="/images/smat/ico-heart-outline_24x24.svg#Layer_1"></use>
+        </svg>
+        <span>{{ 'profile.selected'|trans }}</span>
+        <small>(1234)</small>
+    </a>
+
+    <a class="btn-sidebar-tail-right {% if app.request.attributes.get('_route') ==  'app_profile_market_notification' %}active{% endif %}" href="{{ path('app_profile_market_notification') }}">
+        <div class="ico-wrapper">
+            <svg class="ico">
+                <use xlink:href="/images/smat/ico-notification_24x24.svg#Layer_1"></use>
+            </svg>
+            <div class="ico-total">23</div>
+        </div>
+        <span>{{ 'profile.notifications'|trans }}</span>
+        <small>(1234)</small>
+    </a>
+
+    <a class="btn-sidebar-tail-right {% if app.request.attributes.get('_route') ==  'app_profile_market_role' %}active{% endif %}" href="{{ path('app_profile_market_role') }}">
+        <svg class="ico">
+            <use xlink:href="/images/smat/ico-bookmarks_24x24.svg#Layer_1"></use>
+        </svg>
+        <span>{{ 'profile.my_roles'|trans }}</span>
+    </a>
+
+</div>

@@ -1,0 +1,87 @@
+{% import _self as roleButtonMacros %}
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Ролі</th>
+        <th scope="col">Дії</th>
+        <th>Наявність ролі</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% set MarketRoles = ['ROLE_WHOLESALE_BUYER','ROLE_SALESMAN','ROLE_SERVICE_PROVIDER'] %}
+    {% set AdminRoles = ['ROLE_ADMIN_EDUCATION','ROLE_ADMIN_MARKET'] %}
+    {% set avaibleUserRoles = {
+        'class' : 'App\\Entity\\User',
+        'function' : 'getAvailableRoles',
+        'args' : []
+    } %}
+    {% macro displayUpdateRoleButton(role,user) %}
+        {% set userDataForAddRole = {
+            'id': user.id,
+            'action': 'addUserRole',
+            'crudController': 'App\\Controller\\Admin\\UserCrudController',
+            'role' : role,
+        } %}
+        {% set userDataForDeleteRole = {
+            'id': user.id,
+            'action': 'deleteUserRole',
+            'crudController': 'App\\Controller\\Admin\\UserCrudController',
+            'role' : role,
+        } %}
+        {% if role in user.roles %}
+            <a class="btn btn-secondary deleteRequestRole" href="{{ userDataForDeleteRole|adminUrlGenerator }}">Видалити
+                роль</a>
+        {% else %}
+            <a class="btn btn-secondary" href="{{ userDataForAddRole|adminUrlGenerator }}"> Додати
+                роль</a>
+        {% endif %}
+    {% endmacro %}
+    {% for role in avaibleUserRoles|static_call %}
+
+        <tr>
+            <th scope="row">{{ user.nameRoles[role] }}</th>
+            <td>
+                {% if user != app.user %}
+                    {% if role == 'ROLE_USER' %}
+                        {{ '' }}
+                    {% endif %}
+                    {% if role == 'ROLE_ADMIN_EDUCATION' %}
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                            {{ roleButtonMacros.displayUpdateRoleButton(role,user) }}
+                        {% endif %}
+                    {% endif %}
+                    {% if role == 'ROLE_ADMIN_MARKET' %}
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                            {{ roleButtonMacros.displayUpdateRoleButton(role,user) }}
+                        {% endif %}
+                    {% endif %}
+                    {% if role == 'ROLE_SUPER_ADMIN' %}
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                            {{ roleButtonMacros.displayUpdateRoleButton(role,user) }}
+                        {% endif %}
+                    {% endif %}
+                    {% if role == 'ROLE_WHOLESALE_BUYER' %}
+                        {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_ADMIN_MARKET') %}
+                            {{ roleButtonMacros.displayUpdateRoleButton(role,user) }}
+                        {% endif %}
+                    {% endif %}
+                    {% if role == 'ROLE_SALESMAN' %}
+                        {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_ADMIN_MARKET') %}
+                            {{ roleButtonMacros.displayUpdateRoleButton(role,user) }}
+                        {% endif %}
+                    {% endif %}
+                    {% if role == 'ROLE_SERVICE_PROVIDER' %}
+                        {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_ADMIN_MARKET') %}
+                            {{ roleButtonMacros.displayUpdateRoleButton(role,user) }}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            </td>
+            <td>
+                <span class="{{ role in user.roles ? 'fas fa-toggle-on' : 'fas fa-toggle-off'}}"></span>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+

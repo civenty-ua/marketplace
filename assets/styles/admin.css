@@ -1,0 +1,177 @@
+.form-group {
+    display: block;
+}
+
+.form-widget-compound .form-group {
+    display: block;
+}
+
+.form-group label, .form-group legend.col-form-label {
+    text-align: left;
+}
+
+.field-boolean .form-widget {
+    margin-left: 0;
+}
+
+.field-image .custom-file input[type=file] {
+    display: block !important;
+    opacity: 0;
+}
+
+.float {
+    float: left
+}
+
+.float-last {
+    clear: both;
+}
+
+.padding-left-short {
+    padding-left: 15px;
+}
+
+.check-flag {
+    height: 76px;
+    padding-top: 37px;
+    margin-left: 50px;
+    width: 300px;
+}
+
+.form-widget textarea.form-control.article-description {
+    height: 120px;
+}
+
+.form-widget textarea.form-control.webinar-short {
+    height: 370px;
+}
+
+.form-widget textarea.form-control.item-meta-description {
+    height: 120px;
+}
+
+.form-widget textarea.form-control.item-short {
+    height: 370px;
+}
+
+.form-widget textarea.form-control.page-description {
+    height: 80px;
+}
+
+.float-right {
+    float: right
+}
+
+.big-height {
+    height: 102px;
+}
+
+.end-relative {
+    position: relative;
+    left: 775px;
+    top: -68px;
+}
+
+.hide-delete-btn .ea-fileupload-delete-btn {
+    display: none;
+}
+
+#CommodityProduct_category-ts-control .clear-button {
+    display: none;
+}
+
+/**
+ * Dashboard
+ */
+.admin-dashboard {
+    display: flex;
+    justify-content: space-between;
+}
+.admin-dashboard > .column {
+    width: calc((100% - 30px) / 2);
+}
+.admin-dashboard > .column > *:not(:last-child) {
+    margin-bottom: 10px;
+}
+.admin-dashboard h2 {
+    background-color: var(--f-blue1);
+    font-size: calc(1em + 8px);
+    font-weight: bold;
+    padding: 5px;
+}
+.admin-dashboard h3 {
+    font-size: calc(1em + 8px);
+    font-weight: bold;
+    margin: 0;
+    padding: 0 5px 5px 5px;
+}
+.admin-dashboard .users-info {
+    display: flex;
+    justify-content: space-between;
+}
+.admin-dashboard .users-info > .block {
+    width: calc((100% - 20px) / 2);
+}
+.admin-dashboard .users-info .bar {
+    align-items: center;
+    background-color: var(--f-white1);
+    border-radius: 0 0 4px 4px;
+    border-top: 10px solid var(--f-blue2);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding: 25px 10px;
+}
+.admin-dashboard .users-info .bar .counter {
+    font-size: calc(1em + 6px);
+    font-weight: bold;
+}
+.admin-dashboard .users-info .gender-split {
+    font-size: calc(1em + 6px);
+}
+.admin-dashboard .chart {
+    border-bottom: 1px solid var(--f-white1);
+    padding-bottom: 10px;
+}
+/**
+ * Course statistics: gender split
+ */
+.course-statistics-gender-split .counter {
+    background-color: #F5F5F5;
+    padding: 20px 0;
+    border-radius: 5px;
+    display: block;
+    color: inherit;
+}
+.course-statistics-gender-split .count-title {
+    font-size: 40px;
+    font-weight: normal;
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
+}
+.course-statistics-gender-split .count-text {
+    font-size: 13px;
+    font-weight: normal;
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
+}
+.course-statistics-gender-split .fa-2x {
+    margin: 0 auto;
+    float: none;
+    display: table;
+    color: #4AD1E5;
+}
+/**
+ * Course statistics: users progress
+ */
+.course-statistics-users-progress .item {
+    padding: 10px 0;
+}
+.course-statistics-users-progress .item:not(:last-child) {
+    box-shadow: inset 0 -1px var(--datalist-border-color);
+}
+.course-statistics-users-progress .item .item-row label {
+    width: 15%;
+}

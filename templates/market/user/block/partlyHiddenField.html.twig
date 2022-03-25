@@ -1,0 +1,14 @@
+<span
+    class="market-user-partly-hidden-field"
+    data-user="{{ userId }}"
+    data-field="{{ field }}"
+    data-value="{{ valueId ?? null }}"
+    data-url="{{ path('market_ajax_get_user_field') }}"
+>
+    <span class="value-cell">
+        {{ value|slice(0, 7) }}…
+    </span>
+    <span class="show-full-link">
+        {{ title }}
+    </span>
+</span>

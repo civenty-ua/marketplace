@@ -1,0 +1,25 @@
+<div class="green-bg">
+    <div class="section">
+        <h2 class="h2 white">{{ 'menu.business_tools' | trans }}</h2>
+        <div class="catalog-item-container">
+            {% for tool in pagesList %}
+                <div class="catalog-item white">
+                    <a href=" {% if tool.alias != 'farm-box-platform' %} {{ path('custom_page', {'alias': tool.alias}) }} {% endif %}{% if tool.alias is same as 'farm-box-platform' %} {{ op['farm_box_platform']['value']|trim }} {% endif %}">
+                        {% if  asset('images/business-tools/' ~ tool.imageName)| file_exists  %}
+                        <img src=" {{ asset('images/business-tools/' ~ tool.imageName) }}" alt="{{ tool.title }}">
+                        {% else %}
+                            <img src=" {{ asset('upload/business-tools/' ~ tool.imageName) }}"
+                                 alt="{{ tool.title }}"
+                                 loading="lazy"
+                            >
+                        {% endif %}
+                        <span>{{ tool.title }}</span>
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+                        </svg>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

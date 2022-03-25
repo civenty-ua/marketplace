@@ -1,0 +1,9 @@
+{% for item in formView %}
+    {% if item.children|length == 0 and
+          not 'collection' in item.vars.block_prefixes
+    %}
+        {{ form_row(item) }}
+    {% else %}
+        {{ form_collection(item) }}
+    {% endif %}
+{% endfor %}

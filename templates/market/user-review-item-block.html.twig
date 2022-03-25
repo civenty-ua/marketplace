@@ -1,0 +1,41 @@
+{% if items|length > 0 %}
+    <div class="section">
+        <div class="comment-list">
+            {% for item in items %}
+                <div class="comment-item">
+                    {% set usersImagesFolder    = '/upload/user/avatar' %}
+                    {% set userDefaultImage     = '/main/default-avatar.png' %}
+                    {% set userAvatar           = item.user and item.user.avatar
+                        ? usersImagesFolder ~ '/' ~ item.user.avatar
+                        : userDefaultImage %}
+                    <img class="comment-avatar" src="{{ userAvatar }}">
+                    <div class="comment-item__content">
+                        <a class="comment-item__author marginBottom20px" href="{{ path('market_user_detail',{'id': item.user.id}) }}">
+                            {{ item.user }}
+                        </a>
+                        <div class="comment-item__comment  marginTop20px marginBottom20px">{{ item.reviewText | striptags }}</div>
+                        <div class="comment-item__date marginBottom20px">
+                            <svg>
+                                <use
+                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        xlink:href="#calendar"
+                                ></use>
+                            </svg>
+                            <span>{{ item.createdAt is defined and item.createdAt is not null ? item.createdAt |format_datetime() : '' }}</span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+        <div class="navigation js-no-page-refresh-navigation">
+            <input
+                    type="hidden"
+                    value="{{ currentPage }}"
+                    name="reviewPage"
+            >
+            {{ knp_pagination_render(items) }}
+        </div>
+    </div>
+{% endif %}
+

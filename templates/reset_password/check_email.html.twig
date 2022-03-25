@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'form_reset.check_title'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <div class="section__subtitle">
+            {{ 'form_reset.check_text'|trans }}
+            {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+        </div>
+        <div class="section__subtitle marginBottom0">
+            {{ 'form_reset.try_again_1'|trans }}
+            <a href="{{ path('app_forgot_password_request') }}">{{ 'form_reset.try_again_2'|trans }}</a>.
+        </div>
+    </div>
+{% endblock %}

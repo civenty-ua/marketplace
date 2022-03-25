@@ -1,0 +1,12 @@
+<div
+    class="field-block js-attributes-fields"
+    data-rebuild-attributes-url="{{ path('market_profile_commodity_attributes_rebuild', {
+        'commodityType' : commodityType,
+        'id'            : app.request.attributes.get('id') ?? 0,
+    }) }}"
+>
+    {{ form_row(form.commodityAttributesValues, {
+        'label'         : 'market.profile.commodityForm.attributesValues',
+        'titleEmpty'    : 'market.profile.commodityForm.attributesValuesEmpty',
+    }) }}
+</div>

@@ -1,0 +1,17 @@
+<span
+    class="
+        to-favorite-button
+        item-favorite-toggle
+        {% if item.favorites|length > 0 %}added{% endif %}
+    "
+    data-action-url="{{ path('commodity_to_favorite_toggle', {'id' : item.id}) }}"
+>
+    <span class="already-exist">
+        <i class="fas fa-heart-broken green"></i>
+        <span>{{ 'market.product.detail.favoriteRemove'|trans }}</span>
+    </span>
+    <span class="not-exist">
+        <i class="far fa-heart green"></i>
+        <span>{{ 'market.product.detail.favoriteAdd'|trans }}</span>
+    </span>
+</span>

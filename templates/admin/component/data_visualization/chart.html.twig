@@ -1,0 +1,9 @@
+<div
+        class="chart horizontal-bar"
+        data-info="{{ chart|json_encode }}"
+>
+    <h3>{{ title|trans }}</h3>
+    {% set chartCount = chart|length %}
+    {% set chartHeight = 40 * chartCount %}
+    <canvas height="{{ chartHeight }}"></canvas>
+</div>

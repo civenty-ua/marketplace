@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'profile.title'|trans }}
+{% endblock %}
+
+{% block body %}
+    <div class="section">
+        {# -------------------------------------------------------------------- #}
+        {# breadcrumbs #}
+        {# -------------------------------------------------------------------- #}
+        {% include 'blocks/breadcrumbs.html.twig' with {
+            'items' : breadcrumbsData,
+        } only %}
+        {# -------------------------------------------------------------------- #}
+        {# title #}
+        {# -------------------------------------------------------------------- #}
+        <h1 class="h1">
+            <strong>{{ 'profile.title'|trans }}</strong>
+        </h1>
+        <div class="section__subtitle">
+            {{ app.user.name }}
+        </div>
+        {# -------------------------------------------------------------------- #}
+        {# page #}
+        {# -------------------------------------------------------------------- #}
+        <div class="tabs-personal-area">
+            {# ------------------------------------------- #}
+            {# tabs #}
+            {# ------------------------------------------- #}
+            <div class="tabs__navigation-wrapper">
+                {% include 'profile/blocks/tabs.html.twig' with {
+                    'selected' : tabSelected,
+                } only %}
+            </div>
+            {# ------------------------------------------- #}
+            {# content #}
+            {# ------------------------------------------- #}
+            <div class="personal-area marketplace personal-area__wrapper">
+                <div class="filter-wrapper">
+                    <span class="js-mobile-filter__open filter__button">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#filter"></use>
+                        </svg>
+                        <span>{{ 'profile.menu'|trans }}</span>
+                    </span>
+                </div>
+                <div class="personal-area__inner">
+                    <div class="personal-area-sidebar">
+                        <div class="personal-area-sidebar__content">
+                            <div class="personal-area-sidebar__tabs-navigation">
+                                {{ block('tabMenuDesktop') }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="personal-area-center__tabs-wrapper">
+                        <div class="personal-area-center__tab">
+                            {{ block('tabContent') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {# ------------------------------------------- #}
+            {# mobile menu #}
+            {# ------------------------------------------- #}
+            <div class="js-shade shade"></div>
+            <div class="js-mobile-filter mobile-filter">
+                <div class="mobile-filter__inner-wrapper js-mobile-item-filter">
+                    <a href="javascript:void(0)" class="js-mobile-filter__close mobile-filter__close">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cross"></use>
+                        </svg>
+                    </a>
+                    <div class="marketplace-mobile-filter">
+                        {{ block('tabMenuMobile') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

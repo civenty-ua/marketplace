@@ -1,0 +1,120 @@
+{% extends 'profile/market/myCommodities/kit/preview/form.html.twig' %}
+
+{% set type = 'minimized' %}
+
+{% block content %}
+    {# ------------------------------------------- #}
+    {# title #}
+    {# ------------------------------------------- #}
+    {% if form.title.vars.value ?? null %}
+        <div class="proposal-info__row">
+            <div class="proposal-info__col-name">
+                {{ 'market.profile.kitForm.title'|trans }}
+            </div>
+            <div class="proposal-info__col-value">
+                <strong>{{ form.title.vars.value }}</strong>
+            </div>
+        </div>
+    {% endif %}
+    {# ------------------------------------------- #}
+    {# commodities #}
+    {# ------------------------------------------- #}
+    {% if form.commodities.vars.data|length > 0 %}
+        <div class="proposal-info__row">
+            <div class="proposal-info__col-name">
+                {{ 'market.profile.kitForm.preview.commodities'|trans }}
+            </div>
+            <div class="proposal-info__col-value">
+                {% for commodity in form.commodities.vars.data %}
+                    <div class="
+                        proposal-info-item
+                        js-kit-remove-commodity-row
+                        {% if not commodity|checkCommodityIsPublished() %}inactive{% endif %}
+                    ">
+                        <img
+                            class="proposal-info-item__image"
+                            src="{{ vich_uploader_asset(commodity) }}"
+                            alt="{{ commodity.title }}"
+                            title="{{ commodity.title }}"
+                        >
+                        <div class="proposal-info-item__title">
+                            {{ commodity.title }}
+                        </div>
+                        <span
+                            class="proposal-info-item__trigger js-kit-remove-commodity"
+                            data-value="{{ commodity.id }}"
+                        >
+                            <svg viewBox="0 0 17 17">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5554 16.9698L-0.000151038 1.41421L1.41406 0L16.9696 15.5555L15.5554 16.9698Z"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9698 1.41433L1.41421 16.9699L0 15.5557L15.5555 0.000114921L16.9698 1.41433Z"></path>
+                            </svg>
+                        </span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    {# ------------------------------------------- #}
+    {# users #}
+    {# ------------------------------------------- #}
+    {% set users = {} %}
+    {% for commodity in form.commodities.vars.data %}
+        {% set userKey = "user-#{commodity.user.id}" %}
+
+        {% if userKey not in users|keys %}
+            {% set users = users|merge({
+                (userKey) : commodity.user
+            }) %}
+        {% endif %}
+    {% endfor %}
+
+    {% if users|length > 0 %}
+        <div class="proposal-info__row">
+            <div class="proposal-info__col-name">
+                {{ 'market.profile.kitForm.preview.users'|trans }}
+            </div>
+            <div class="proposal-info__col-value">
+                {% for user in users %}
+                    <div class="proposal-info-item js-kit-remove-user-row">
+                        <div class="proposal-info-item__title">
+                            {{ user.name }}
+                        </div>
+                        <span
+                            class="proposal-info-item__trigger js-kit-remove-user"
+                            data-value="{{ user.id }}"
+                        >
+                            <svg viewBox="0 0 17 17">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5554 16.9698L-0.000151038 1.41421L1.41406 0L16.9696 15.5555L15.5554 16.9698Z"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9698 1.41433L1.41421 16.9699L0 15.5557L15.5555 0.000114921L16.9698 1.41433Z"></path>
+                            </svg>
+                        </span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    {# ------------------------------------------- #}
+    {# contacts #}
+    {# ------------------------------------------- #}
+    <div class="proposal-info__row">
+        <div class="proposal-info__col-name">
+            {{ 'market.profile.kitForm.preview.userName'|trans }}
+        </div>
+        <div class="proposal-info__col-value">
+            <strong>{{ form.vars.data.user.name }}</strong>
+        </div>
+    </div>
+    <div class="proposal-info__row">
+        <div class="proposal-info__col-name">
+            {{ 'market.profile.commodityForm.userContacts'|trans }}
+        </div>
+        <div class="proposal-info__col-value">
+            {{ form.vars.data.user.email }}
+        </div>
+        {% for phone in form.userDisplayPhones.vars.data %}
+            <div class="proposal-info__col-value">
+                {{ phone.phone }}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'profile/profileMarket.html.twig' %}
+
+{% block tabContent %}
+    {% include "profile/market/myCertificates/items.html.twig" with {
+        'availableSortValues'   : availableSortValues,
+        'filter'                : filter,
+        'items'                 : items,
+        'actions'               : actions,
+        'mainAction'            : mainAction,
+        'currentPage'           : currentPage,
+        'paginationName'        : paginationName,
+    } only %}
+{% endblock %}

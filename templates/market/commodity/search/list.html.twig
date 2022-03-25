@@ -1,0 +1,41 @@
+{% extends 'market/commodity/list.html.twig' %}
+{# ------------------------------------------- #}
+{# template variables #}
+{# ------------------------------------------- #}
+{% set pageTitle            = 'market.commoditySearch.title'|trans %}
+{% set listRebuildAjaxUrl   = path('commodities_search_ajax_rebuild') %}
+{# ------------------------------------------- #}
+{# navigation #}
+{# ------------------------------------------- #}
+{% block navigation %}
+{% endblock %}
+{# ------------------------------------------- #}
+{# filter #}
+{# ------------------------------------------- #}
+{% block filter %}
+    {% include 'market/commodity/search/filter.html.twig' with {
+        'fields'    : fields,
+        'filter'    : filter,
+    } only %}
+{% endblock %}
+{# ------------------------------------------- #}
+{# applied filter block #}
+{# ------------------------------------------- #}
+{% block appliedFilter %}
+    {% include 'market/commodity/search/listAppliedFilterBar.html.twig' with {
+        'fields'    : fields,
+        'filter'    : filter,
+    } only %}
+{% endblock %}
+{# ------------------------------------------- #}
+{# items list block #}
+{# ------------------------------------------- #}
+{% block itemsList %}
+    {% include 'market/commodity/items.html.twig' with {
+        'items'             : items,
+        'currentPage'       : filter.page ?? 1,
+        'paginationName'    : 'page',
+        'actions'           : itemActions,
+        'mainAction'        : mainAction,
+    } only %}
+{% endblock %}

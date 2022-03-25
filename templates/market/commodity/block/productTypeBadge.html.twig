@@ -1,0 +1,5 @@
+{% if item.commodityType == constant('App\\Entity\\Market\\Commodity::TYPE_PRODUCT') %}
+    <div class="product-item-badge {{ item.type }}">
+        {{ "market.product.list.productTypes.#{item.type}"|trans }}
+    </div>
+{% endif %}

@@ -1,0 +1,26 @@
+{% for commodity in item.commodities %}
+    <a
+        href="{{ path("#{commodity.commodityType}_detail", {
+            'id' : commodity.id,
+        }) }}"
+        class="product-list-item"
+    >
+        <img
+            src="{{ vich_uploader_asset(commodity) }}"
+            class="product-list-item__image"
+            alt="{{ commodity.title }}"
+            title="{{ commodity.title }}"
+        >
+        <div class="product-list-item__text">
+            {{ commodity.title }}
+        </div>
+        <div class="product-list-item__price">
+            {% if commodity.price > 0 %}
+                <strong>{{ commodity.price|numberFormatAgro }}</strong>
+                {{ commodity|getCurrencyTitle }}
+            {% else %}
+                {{ 'market.product.list.priceNegotiated'|trans }}
+            {% endif %}
+        </div>
+    </a>
+{% endfor %}

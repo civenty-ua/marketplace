@@ -1,0 +1,12 @@
+<li class="glide__slide">
+    <div class="landing-catalog-slider-item__block">
+        <div class="landing-catalog-item">
+            <img src="{{ category_image_asset(item, 'image') | imagine_filter('232x200')  }}" alt="{{ item.description }}">
+            <div class="landing-catalog-item__button-wrapper">
+                <span>{{ item.name }}</span>
+                <a class="square-button white-button"
+                        href="{{ path('category_detail', {'slug': item.slug}) }}">{{ 'home.read_more'|trans }}</a>
+            </div>
+        </div>
+    </div>
+</li>

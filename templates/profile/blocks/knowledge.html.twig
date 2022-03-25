@@ -1,0 +1,36 @@
+<div class="personal-area__inner">
+    <div class="personal-area-sidebar">
+        <div class="personal-area-sidebar__content">
+            <div class="personal-area-sidebar__tabs-navigation">
+                <a class="btn-sidebar-tail-right js-btn-sidebar active" href="#tab_viewed_webinars">
+                    <svg class="ico">
+                        <use xlink:href="/images/smat/ico-webcam2_24x24.svg#Layer_1"></use>
+                    </svg>
+                    <span>{{ 'profile.viewed_webinars' | trans }}</span>
+                </a>
+                <a class="btn-sidebar-tail-right js-btn-sidebar" href="#tab_viewed_courses">
+                    <svg class="ico">
+                        <use xlink:href="/images/smat/ico-course2_24x24.svg#Layer_1"></use>
+                    </svg>
+                    <span>{{ 'profile.viewed_courses' | trans }}</span>
+                </a>
+
+                <a class="btn-sidebar-tail-right js-btn-sidebar" href="#tab_downloaded_files">
+                    <svg class="ico">
+                        <use xlink:href="/images/smat/ico-download_24x24.svg#Layer_1"></use>
+                    </svg>
+                    <span>{{ 'profile.downloaded_files' | trans }}</span>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="personal-area-center">
+        <div class="personal-area-center__tabs-wrapper js-tabs-wrapper">
+            {% include 'profile/blocks/knowledge_viewed-webinars.html.twig' %}
+            {% include 'profile/blocks/knowledge_viewed-courses.html.twig' %}
+            {% include 'profile/blocks/knowledge_downloaded-files.html.twig' %}
+        </div>
+    </div>
+</div>

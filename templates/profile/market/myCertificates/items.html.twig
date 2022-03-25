@@ -1,0 +1,16 @@
+{% extends "profile/market/myCertificates/list.html.twig"  %}
+{% block commoditiesFilter %}
+    <div class="checkbox-row">
+
+    </div>
+{% endblock %}
+{% block itemsList %}
+    {% include "profile/market/myCertificates/itemsListing.html.twig" with {
+        'items'             : items,
+        'actions'           : actions,
+        'mainAction'        : mainAction,
+        'currentPage'       : currentPage,
+        'paginationName'    : paginationName
+    } only %}
+{% endblock %}
+

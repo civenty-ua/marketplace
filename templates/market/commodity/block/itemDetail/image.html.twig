@@ -1,0 +1,11 @@
+<div class="product-image-container">
+    <img
+        class="product-image"
+        src="{{ vich_uploader_asset(item) }}"
+        alt="{{ item.title }}"
+        title="{{ item.title }}"
+    >
+    {% include 'market/commodity/block/organicBadge.html.twig' with {
+        'item' : item,
+    } only %}
+</div>

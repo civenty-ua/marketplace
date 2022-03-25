@@ -1,0 +1,9 @@
+{% if value == true %}
+    {% include 'market/commodity/block/appliedFilter/item.html.twig' with {
+        'title' : title,
+        'value' : null,
+        'data'  : {
+            (inputName) : 'Y',
+        },
+    } only %}
+{% endif %}

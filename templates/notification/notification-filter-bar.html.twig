@@ -1,0 +1,61 @@
+<div class="filter-bar large">
+    <div class="js-select-all select-all field field-checkbox">
+        <div class="checkbox-wrap">
+            <label>
+                <input type="checkbox"
+                       autocomplete="off"
+                >
+                <span>Всі</span>
+            </label>
+        </div>
+
+        <a class="js-select-all__delete-trigger
+         select-all__delete-trigger square-button borderless black
+          notification-delete-trigger" href="javascript:void(0)"
+                {% if trashFlag is defined and trashFlag == false %}
+                    data-url="{{ path('notification_batch_delete') }}"
+                {% elseif  trashFlag is defined and trashFlag == true %}
+                    data-url="{{ path('notification_batch_restore') }}"
+                {% endif %}>
+            <svg>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#delete"></use>
+            </svg>
+            <span>
+                {% if trashFlag is defined and trashFlag == false %}
+                    Видалити
+                {% elseif  trashFlag is defined and trashFlag == true %}
+                    Відновити
+                {% endif %}
+            </span>
+        </a>
+    </div>
+
+    <div class="search">
+        <div class="js-search-input">
+            <input
+                    type="text"
+                    class="search-input js-notification-search"
+                    placeholder="Пошук повідомлення"
+                    value="{{ filter.search }}"
+            >
+            <div class="js-search-input__clear"
+                 data-clear-tooltip-title="{{ 'clear-tooltip'|trans }}"></div>
+        </div>
+        <button type="submit" class="js-tooltip search__button notification-search"
+                data-toggle="tooltip"
+                data-placement="auto" title="{{ 'search-tooltip'|trans }}">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+
+    <div class="select-wrap">
+        <select class="js-select2 notification-sorter">
+            {% for typeValue in filter.typeValues %}
+                <option value="{{ loop.index }}"
+                        {% if loop.index == appliedQueryParams.type %}selected{% endif %}>
+                    {{ typeValue }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+</div>

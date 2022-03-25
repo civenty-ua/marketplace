@@ -1,0 +1,64 @@
+{# ------------------------------------------- #}
+{# tabs #}
+{# ------------------------------------------- #}
+{% set tabsData = [] %}
+
+{% for type, totalCount in commodities.itemsTotalCount %}
+    {% if totalCount > 0 %}
+        {% set tabsData = tabsData|merge([{
+            'type'          : type,
+            'title'         : "market.user.detail.allCommodities.#{type}"|trans,
+            'totalCount'    : totalCount,
+            'isActive'      : type == commodities.filter.commodityType
+        }]) %}
+    {% endif %}
+{% endfor %}
+{# ------------------------------------------- #}
+{# output #}
+{# ------------------------------------------- #}
+{% if tabsData|length > 0 %}
+    <div
+        class="js-market-user-commodities-tabs tabs"
+        data-tab-rebuild-url="{{ path('market_user_commodity_tab_rebuild', {
+            'id' : user.id
+        }) }}"
+    >
+        <div class="tabs__navigation-wrapper">
+            <div class="tabs__navigation">
+                {% for tabData in tabsData %}
+                    <span
+                        class="tabs__link{% if tabData.isActive %} selected{% endif %}"
+                        data-commodity-type="{{ tabData.type }}"
+                    >
+                    <span>{{ tabData.title }}</span>
+                        {% if (tabData.totalCount ?? null) is not null %}
+                            <span class="tabs__total-count">({{ tabData.totalCount }})</span>
+                        {% endif %}
+                    </span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="tabs__content">
+            {% for tabData in tabsData %}
+                <div
+                    class="tab{% if tabData.isActive %} visible{% endif %}"
+                    data-commodity-type="{{ tabData.type }}"
+                >
+                    {% if tabData.isActive %}
+                        {% include 'market/user/commoditiesList.html.twig' with {
+                            'user'                  : user,
+                            'commodityType'         : commodities.filter.commodityType  ?? '',
+                            'items'                 : commodities.items,
+                            'search'                : commodities.filter.search         ?? '',
+                            'availableSortValues'   : commodities.availableSortValues,
+                            'sort'                  : commodities.filter.sortField      ?? '',
+                            'page'                  : commodities.filter.page           ?? 1,
+                            'actions'               : commodities.actions,
+                            'mainAction'            : commodities.mainAction,
+                        } only %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

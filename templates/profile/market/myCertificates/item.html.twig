@@ -1,0 +1,82 @@
+{% set isPdfFile    = 'pdf' in item.mimeType or 'x-pdf' in item.mimeType %}
+{% set inActive     = item.isEcology and not item.approved %}
+
+<div class="
+    item-image
+    commodity-activation-bar
+    {% if inActive %}inactive{% endif %}
+    {% if isPdfFile %}pdf-preview{% endif %}
+">
+    {% if isPdfFile %}
+        <a href="{{ asset(vich_uploader_asset(item)) }}" title="{{ item.name }}"></a>
+    {% else %}
+        <img
+            src="{{ vich_uploader_asset(item) }}"
+            alt="{{ item.name }}"
+            title="{{ item.name }}"
+        >
+    {% endif %}
+    {% if
+        item.isEcology %}
+        <div class="organic-badge">
+            <svg>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#organic"></use>
+            </svg>
+            <span>
+            {{ 'market.certificate.isOrganic'|trans }}
+        </span>
+        </div>
+    {% endif %}
+    {% if inActive %}
+        <div class="activation-dummy">
+            <div class="message">
+                {{ 'market.commodity.notApproved'|trans }}
+            </div>
+        </div>
+    {% endif %}
+</div>
+<div class="item-title">
+
+        <span>
+            {{ item.name }}
+        </span>
+
+</div>
+<div class="
+    product-item__button
+    {% if actions|length > 0 %}has-sub-actions{% endif %}
+">
+    {% if (not item.isEcology) or
+        (item.isEcology and
+        not item.approved
+        ) %}
+        <a
+                class="square-button buy"
+                href="{{ path("market_profile_edit_my_certificates", {'editId' : item.id}) }}"
+        >
+            {{ 'market.certificate.list.actions.edit'|trans }}
+        </a>
+        <span
+                class="square-button more dropdown-toggle-split"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+        >
+            <i class="fas fa-ellipsis-h"></i>
+        </span>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="{{ path("market_profile_delete_my_certificate", {'deleteId' : item.id}) }}">
+                <i class="far"></i>
+                <span>{{ 'market.certificate.list.actions.delete'|trans }}</span>
+            </a>
+        </div>
+    {% else %}
+        <a
+                class="square-button"
+                href="{{ path("market_profile_delete_my_certificate", {'deleteId' : item.id}) }}"
+        >
+            {{ 'market.certificate.list.actions.delete'|trans }}
+        </a>
+    {% endif %}
+</div>
+

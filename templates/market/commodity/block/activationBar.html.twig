@@ -1,0 +1,41 @@
+{% set isAuthorized                 = (app.user ?? null) is not null %}
+{% set commodityInactivityReason    = not item|checkCommodityIsPublished
+    ? item|getCommodityInactivityReason
+    : null
+%}
+{% set commodityInactivityMessage   = null %}
+{% set activatioBarNeed             = false %}
+
+{% if commodityInactivityReason == 'kitNotApproved' %}
+    {% set commodityInactivityMessage = 'market.commodity.notApproved'|trans %}
+{% elseif commodityInactivityReason == 'kitHasInactiveCommodities' %}
+    {% set commodityInactivityMessage = 'market.commodity.hasInactiveCommodities'|trans %}
+{% elseif commodityInactivityReason == 'commodityHasInactiveOwner' %}
+    {% set commodityInactivityMessage = 'market.commodity.hasInactiveOwner'|trans %}
+{% elseif commodityInactivityReason == 'commodityNotPublished' %}
+    {% set commodityInactivityMessage = 'market.commodity.inactiveMessage'|trans %}
+    {% if isAuthorized and item|checkCommodityCanBeActivated(app.user) %}
+        {% set activatioBarNeed = true %}
+    {% endif %}
+{% endif %}
+{# ------------------------------------------- #}
+{# output #}
+{# ------------------------------------------- #}
+{% if commodityInactivityMessage %}
+    <div class="activation-dummy">
+        <div class="message">
+            {{ commodityInactivityMessage }}
+        </div>
+        {% if activatioBarNeed %}
+            <div
+                class="activation-button square-button green-bg-button"
+                data-action-url="{{ path('market_profile_commodity_activate', {
+                    'commodityType' : item.commodityType,
+                    'id'            : item.id,
+                }) }}"
+            >
+                {{ 'market.commodity.activate'|trans }}
+            </div>
+        {% endif %}
+    </div>
+{% endif %}

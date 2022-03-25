@@ -1,0 +1,103 @@
+
+<div class="field collection-field">
+    {% if form|length > 0 %}
+        <label class="field-label-wrapper">
+            <span>{{ 'role.myCertificate'|trans }}</span>
+            {% if form.vars.help is not null %}
+                <i class="fas fa-info-circle js-tooltip" data-toggle="tooltip" data-placement="top"
+                   data-original-title="{{ form_help(form) }}"></i>
+            {% endif %}
+
+        </label>
+    {% endif %}
+    <div class="collection-items">
+        {% for item in form %}
+            <div class="collection-row">
+                <div class="field field-input-text">
+                    {{ form_widget(item.name) }}
+                </div>
+                <div class="field">
+                    {{ form_row(item.file, {
+                        'titleAdd'      : 'market.profile.commodityForm.image.add'|trans,
+                        'titleChange'   : 'market.profile.commodityForm.image.change'|trans,
+                        'attr'          : {
+                            'placeholder'   : 'market.profile.commodityForm.image.placeolder'|trans,
+                        },
+                    }) }}
+
+                </div>
+                <div class="field">
+                    <label>{{ 'role.is_organic_help'|trans }}</label>
+                    <div class="field-checkbox-group">
+                        <div class="checkbox-wrap">
+                            <label>
+                                {{ form_widget(item.isEcology) }}
+                                <span>{{ 'role.is_organic'|trans }}</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if item.vars.errors|length > 0 %}
+                <div class="error">{{ form_errors(item) }}</div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <template id="certificate-template">
+        <div class="collection-row">
+            <div class="field field-input-text">
+                <input type="text" id="user_create_role_form_userProperty_userCertificates_#id#_name"
+                       name="user_create_role_form[userProperty][userCertificates][#id#][name]" required="required"
+                       class="form-text" placeholder="Назва сертифікату" value="">
+            </div>
+            <div class="field">
+                <div class="
+    field
+    product-image
+    js-image-upload-input
+    fill    required
+">
+                    <figure>
+                        <img alt="" title="">
+                    </figure>
+                    <div class="active-button">
+        <span class="title-add">
+            Додати фото
+        </span>
+                        <span class="title-change">
+            Змінити фото
+        </span>
+                        <input type="file"
+                               name="user_create_role_form[userProperty][userCertificates][#id#][file][file]"
+                               accept="image/*" title="Вибрати зображення" placeholder="Вибрати зображення">
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="field">
+                <label>Вкажіть чи є даній сертифікат органічним</label>
+                <div class="field-checkbox-group">
+                    <div class="checkbox-wrap">
+                        <label>
+                            <input type="checkbox"
+                                   id="user_create_role_form_userProperty_userCertificates_#id#_isEcology"
+                                   name="user_create_role_form[userProperty][userCertificates][#id#][isEcology]"
+                                   value="1">
+                            <span>Органічний сертифікат</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <div class="field">
+        <a href="javascript:void(0)" class="square-button add-new-item-to-collection"
+           data-tpl="#certificate-template">
+            <svg>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#plus"></use>
+            </svg>
+            <span>{{ 'role.add_certificate'|trans }}</span>
+        </a>
+    </div>
+</div>

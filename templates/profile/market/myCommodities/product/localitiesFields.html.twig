@@ -1,0 +1,28 @@
+<div
+    class="field-block__content localities-fields"
+    data-rebuild-fields-url="{{ path('market_profile_commodity_localities_fields_rebuild') }}"
+>
+    {{ form_row(form.region, {
+        'label'         : 'market.profile.productForm.region',
+        'emptyValue'    : true,
+        'attr'          : {
+            'data-region-field' : 'Y',
+        },
+    }) }}
+    {{ form_row(form.district, {
+        'label'         : 'market.profile.productForm.district',
+        'emptyValue'    : true,
+        'attr'          : {
+            'data-district-field' : 'Y',
+        },
+        'hidden'        : form.district.vars.choices|length == 0,
+    }) }}
+    {{ form_row(form.locality, {
+        'label'         : 'market.profile.productForm.locality',
+        'emptyValue'    : true,
+        'attr'          : {
+            'data-locality-field' : 'Y',
+        },
+        'hidden'        : form.locality.vars.choices|length == 0,
+    }) }}
+</div>

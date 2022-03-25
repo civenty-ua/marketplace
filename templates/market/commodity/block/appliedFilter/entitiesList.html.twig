@@ -1,0 +1,19 @@
+{% set values               = value is iterable ? value : [value] %}
+{% set valueDisplayParts    = [] %}
+
+{% for listItem in list %}
+    {% if listItem.id in values %}
+        {% set valueDisplay         = attribute(listItem, titleProperty) %}
+        {% set valueDisplayParts    = valueDisplayParts|merge([valueDisplay]) %}
+    {% endif %}
+{% endfor %}
+
+{% if valueDisplayParts|length > 0 %}
+    {% include 'market/commodity/block/appliedFilter/item.html.twig' with {
+        'title' : title,
+        'value' : valueDisplayParts|join(', '),
+        'data'  : {
+            (inputName) : value,
+        },
+    } only %}
+{% endif %}

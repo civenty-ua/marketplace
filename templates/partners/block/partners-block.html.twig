@@ -1,0 +1,34 @@
+<div class="section">
+    <ul class="breadcrumbs">
+        <li><a href="{{ path('home') }}">{{ 'home.home'|trans }}</a></li>
+        <li>{{ 'home.partners'|trans }}</li>
+    </ul>
+
+    <h1 class="h1"><strong>{{ 'partners.title'|trans }}</strong></h1>
+</div>
+
+<div class="white1-bg">
+    <div class="section">
+        <div class="marginBottom20px fontSize15-20px">{{ 'partners.description'|trans }}</div>
+        <div class="green strong fontSize17-20px">{{ 'partners.thanks'|trans }}</div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="partner-list">
+        {% for partner in partnerList %}
+            <div class="partner-list-item">
+                <a class="partner-list-item-image" href="{{ path('partner-detail', {'slug': partner.slug}) }}">
+                    <img src="{{ asset('upload/partner/' ~ partner.image) }}"
+                         alt="{{ partner.name }}"
+                         loading="lazy"
+                    >
+                </a>
+                <a class="partner-list-item__name" href="{{ path('partner-detail', {'slug': partner.slug}) }}">{{ partner.name }}</a>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="navigation">
+        {{ knp_pagination_render(partnerList) }}
+    </div>
+</div>

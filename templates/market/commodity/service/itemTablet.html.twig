@@ -1,0 +1,42 @@
+{% include 'market/commodity/block/itemTablet/image.html.twig' with {
+    'item' : item,
+} only %}
+{% include 'market/commodity/block/itemTablet/title.html.twig' with {
+    'item' : item,
+} only %}
+<div class="product-item-description">
+    <div class="product-item-description-row">
+        <div class="product-item-description__property">
+            {{ 'market.service.list.user'|trans }}:
+        </div>
+        <div class="product-item-description__value">
+            <a
+                href="{{ path('market_user_detail', {'id' : item.user.id }) }}"
+                class="green-link"
+            >
+                {{ item.user.name }}
+            </a>
+        </div>
+    </div>
+    <div class="product-item-description-row">
+        <div class="product-item-description__property">
+            {{ 'market.commodity.publicationDates'|trans }}:
+        </div>
+        <div class="product-item-description__value">
+            {{
+                item.activeTo|date('d.m.Y')
+            }}
+        </div>
+    </div>
+    {% include 'market/commodity/block/itemTablet/attributes.html.twig' with {
+        'item' : item,
+    } only %}
+</div>
+{% include 'market/commodity/block/itemTablet/price.html.twig' with {
+    'item' : item,
+} only %}
+{% include 'market/commodity/block/itemTablet/actions.html.twig' with {
+    'item'          : item,
+    'actions'       : actions,
+    'mainAction'    : mainAction,
+} only %}

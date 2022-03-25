@@ -1,0 +1,7 @@
+<img
+    class="{{ class ?? '' }}"
+    src="{{ user.avatar is empty
+        ? asset('main/default-avatar.png')
+        : user_avatar_asset(user, 'avatar') }}"
+    alt="{{ user.name }}"
+>

@@ -1,0 +1,60 @@
+{% set fieldsWithSpecialCode    = [] %}
+{% set specialCodesInWork       = [
+    constant('App\\Entity\\Market\\Attribute::SPECIAL_CODE_VOLUME'),
+    constant('App\\Entity\\Market\\Attribute::SPECIAL_CODE_MEASURE'),
+] %}
+{% set fieldsWithoutCode        = [] %}
+{% set allFields                = [] %}
+
+{% for attribute in form.children %}
+    {% set attributeCode    = attribute.vars.data.attribute.code %}
+    {% set field            = attribute.value %}
+    {% set specialIndex     = "#{attributeCode}" %}
+
+    {% if
+        attributeCode in specialCodesInWork
+        and not (fieldsWithSpecialCode[specialIndex] ?? null)
+    %}
+        {% set fieldsWithSpecialCode = fieldsWithSpecialCode|merge({
+            (specialIndex) : field
+        }) %}
+    {% else %}
+        {% set fieldsWithoutCode = fieldsWithoutCode|merge([field]) %}
+    {% endif %}
+
+    {% set allFields = allFields|merge([field]) %}
+{% endfor %}
+{# ------------------------------------------- #}
+{# output #}
+{# ------------------------------------------- #}
+<div class="field-block__title">
+    {{ (label ?? null)|trans }}
+</div>
+<div class="field-block__content">
+    {% set volumeField  = fieldsWithSpecialCode[constant('App\\Entity\\Market\\Attribute::SPECIAL_CODE_VOLUME')]    ?? null %}
+    {% set measureField = fieldsWithSpecialCode[constant('App\\Entity\\Market\\Attribute::SPECIAL_CODE_MEASURE')]   ?? null %}
+
+    {% if volumeField and measureField %}
+        <div class="field double">
+            {{ form_row(volumeField, {
+                'emptyValue' : true,
+            }) }}
+            {{ form_row(measureField, {
+                'emptyValue' : true,
+            }) }}
+        </div>
+        {% for field in fieldsWithoutCode %}
+            {{ form_row(field, {
+                'emptyValue' : true,
+            }) }}
+        {% endfor %}
+    {% elseif allFields|length > 0 %}
+        {% for field in allFields %}
+            {{ form_row(field, {
+                'emptyValue' : true,
+            }) }}
+        {% endfor %}
+    {% else %}
+        {{ (titleEmpty ?? null)|trans }}
+    {% endif %}
+</div>

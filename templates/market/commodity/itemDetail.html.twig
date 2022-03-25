@@ -1,0 +1,71 @@
+{% extends 'market/itemDetail.html.twig' %}
+{# ------------------------------------------- #}
+{# page title #}
+{# ------------------------------------------- #}
+{% if seo is defined and seo is not null %}
+    {% set pageTitle = seo.meta_title %}
+{% else %}
+    {% set pageTitle = item.title %}
+{% endif %}
+
+{% if seo is defined and seo is not null %}
+    {% set pageDescription = seo.meta_description %}
+{% else %}
+    {% set pageDescription = item.description %}
+{% endif %}
+
+{% if seo is defined and seo is not null %}
+    {% set pageKeywords = seo.meta_keywords %}
+{% endif %}
+{# ------------------------------------------- #}
+{# page css class #}
+{# ------------------------------------------- #}
+{% set pageCssClass = 'market-commodities-detail-page' %}
+{# ------------------------------------------- #}
+{# head content #}
+{# ------------------------------------------- #}
+{% block contentHead %}
+    <h1 class="product-header__title">
+        {{ item.title }}
+    </h1>
+    <div class="header-info product-header">
+        <div class="header-info__item">
+            <div class="grey1">{% if item.commodityType is same as constant('App\\Entity\\Market\\Commodity::TYPE_PRODUCT') %}
+                {{ 'market.product.detail.id'|trans }}
+                {% elseif item.commodityType is same as constant('App\\Entity\\Market\\Commodity::TYPE_SERVICE') %}
+                    {{ 'market.service.detail.id'|trans }}
+                {% else %}
+                    {{ 'market.kit.detail.id'|trans }}
+                {% endif %}: </div>
+            <span><b>{{ item.id }}</b></span>
+        </div>
+        <div class="header-info__item">
+            <i class="far fa-eye"></i>
+            <span>{{ 'item.views'|trans }} {{ item.viewsAmount }}</span>
+        </div>
+        {% if app.user ?? null %}
+            <div class="header-info__item to-favorite">
+                {% include 'market/commodity/block/itemDetail/toFavorite.html.twig' with {
+                    'item' : item,
+                } only %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+{# ------------------------------------------- #}
+{# content right side #}
+{# ------------------------------------------- #}
+{% block contentRightSide %}
+    <div class="product-price">
+        {% include 'market/commodity/block/itemDetail/price.html.twig' with {
+            'item' : item,
+        } only %}
+    </div>
+    <div class="product-seller">
+        {% include 'market/commodity/block/itemDetail/seller.html.twig' with {
+            'item' : item,
+            'userCanRate' : userCanRate,
+            'rate': rate
+        } only %}
+    </div>
+{% endblock %}

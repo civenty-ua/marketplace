@@ -1,0 +1,45 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 30px auto 0 auto;
+}
+
+.pagination a {
+    display: flex;
+    color: var(--f-black);
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    text-decoration: none;
+    margin: 5px;
+    transition: var(--transition);
+}
+
+.pagination a:hover {
+    background-color: var(--f-grey3);
+}
+
+.pagination a svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--f-black);
+}
+
+.pagination a.active {
+    background-color: var(--f-green);
+    color: var(--f-white);
+}
+
+.pagination .current {
+    display: flex;
+    color: var(--f-white);
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    text-decoration: none;
+    margin: 5px;
+    background-color: var(--f-green);
+}

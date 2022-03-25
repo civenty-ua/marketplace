@@ -1,0 +1,6 @@
+easy_admin:
+  design:
+    form_theme:
+      - '@A2lixTranslationForm/bootstrap_4_layout.html.twig'
+      - '@EasyAdmin/crud/form_theme.html.twig'
+      - '@FOSCKEditor/Form/ckeditor_widget.html.twig'

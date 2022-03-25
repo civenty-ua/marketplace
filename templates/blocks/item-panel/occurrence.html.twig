@@ -1,0 +1,49 @@
+{% if wrapperTag is not defined %}
+    {% set wrapperTag = 'li' %}
+{% endif %}
+
+<{{ wrapperTag }} class="glide__slide">
+    <div class="item">
+        <div class="item-image">
+            <div class="badge-wrapper">
+                <div class="item-badge occurrence">
+                    <svg>
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#webinar"></use>
+                    </svg>
+                    <span{% if badgeFlag is defined and badgeFlag == true %} class="badge-span-small-font-size"{% endif %}>
+                        {{ 'admin.dashboard.occurrence.edit_page_title'|trans }}</span>
+                </div>
+                {% if item.startDate is defined and item.startDate|date('Y-m-d H:i:s') > "now"|date('Y-m-d H:i:s') %}
+                    <div class="item-badge awaits">
+                        <span{% if badgeFlag is defined and badgeFlag == true %} class="badge-span-small-font-size"{% endif %}>
+                            {{ 'item.awaits'|trans }}</span>
+                    </div>
+                {% endif %}
+            </div>
+            <a href="{{ path('occurrence_detail', {'slug': item.slug}) }}">
+                <img src="{% if item.imageName is empty %}{{ asset('images/item-default.png') }}{% else %} {{ asset('upload/occurrence/' ~ item.imageName) }} {% endif %}"
+                        alt="{{ item.title }}">
+            </a>
+        </div>
+        <div class="item-title">
+            <a href="{{ path('occurrence_detail', {'slug': item.slug}) }}">{{ item.title }}</a>
+        </div>
+        {% if item.partners|length > 0 %}
+            <div class="item-partner">
+                <span>{{ 'home.partner'|trans }}:</span>
+                {% for partner in  item.partners %}
+                    <a href="{{ partner.name != 'UHBDP' ? path('partner-detail', {'slug': partner.slug}) : '#' }}"
+                    >{{ partner.name }}</a>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="item-text">
+            {{ item.short|striptags|u.truncate(100,'...')|raw }}
+        </div>
+        {# <div class="icon-text"> #}
+        {# <div> #}
+        {# <div class="js-rating-readonly rating" data-score="{{ item.newRating }}"></div> #}
+        {# </div> #}
+        {# </div> #}
+    </div>
+</{{ wrapperTag }}>

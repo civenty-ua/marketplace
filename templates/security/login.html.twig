@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'header.login'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <div class="section-nav">
+            <div class="section-nav__inner-wrapper">
+                <a class="section-nav__item section-nav__item--active" href="{{ path('login') }}">
+                    {{ 'form_registration.login'|trans }}
+                </a>
+                <a class="section-nav__item" href="{{ path('app_register') }}">
+                    {{ 'form_registration.title_register'|trans }}
+                </a>
+            </div>
+        </div>
+
+        <div class="form-wrapper login-form">
+            {{ form_start(loginForm) }}
+            {% if error %}
+                <div class="form-errors">
+                    {{ error.messageKey|trans(error.messageData, 'security')|raw }}
+                </div>
+            {% endif %}
+            <div class="form-block">
+                {{ form_row(loginForm._username) }}
+            </div>
+            <div class="form-block">
+                {{ form_row(loginForm._password) }}
+            </div>
+            {{ form_row(loginForm._remember_me) }}
+            <div class="form-buttons">
+                <a href="{{ path('app_register') }}" class="square-button height-50">
+                    {{ 'form_registration.not_register'|trans }}
+                </a>
+                {{ form_row(loginForm.save) }}
+            </div>
+
+            <a class="form-bottom-link" href="{{ path('app_forgot_password_request') }}">
+                {{ 'form_registration.forgot'|trans }}?
+            </a>
+
+            {% if loginForm.recaptcha is defined %}
+                {{ form_row(loginForm.captcha) }}
+            {% endif %}
+            {{ form_end(loginForm) }}
+        </div>
+    </div>
+{% endblock %}

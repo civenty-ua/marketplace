@@ -1,0 +1,198 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_title }}
+    {% else %}
+        UHBDP
+    {% endif %}
+{% endblock %}
+
+{% block description %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_description }}
+    {% endif %}
+{% endblock %}
+
+{% block keywords %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_keywords }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <h1 class="h1 marginBottom40px">{{ 'home.title1'|trans|raw }}</h1>
+        <p class="h1 marginBottom40px">{{ 'home.title2'|trans|raw }}</p>
+        <div class="section">
+            <div class="total-count__container">
+                <div class="total-count__item">
+                    <div class="total-count__number">{{ webinars|numberFormatAgro }}</div>
+                    <div class="total-count__title">{{ app.request.locale == 'uk'
+                        ? webinar_count_title_uk
+                        : webinar_count_title_en }}</div>
+                </div>
+                <div class="total-count__item">
+                    <div class="total-count__number">{{ courses|numberFormatAgro }}</div>
+                    <div class="total-count__title">{{ app.request.locale == 'uk'
+                        ? course_count_title_uk
+                        : course_count_title_en }}</div>
+                </div>
+                <div class="total-count__item">
+                    <div class="total-count__number">{{ products|numberFormatAgro }}</div>
+                    <div class="total-count__title">{{ app.request.locale == 'uk'
+                        ? commodity_count_title_uk
+                        : commodity_count_title_en }}</div>
+                </div>
+                <div class="total-count__item">
+                    <div class="total-count__number">{{ users|numberFormatAgro }}</div>
+                    <div class="total-count__title">{{ app.request.locale == 'uk'
+                        ? user_count_title_uk
+                        : user_count_title_en }}</div>
+                </div>
+            </div>
+        </div>
+
+        {% include 'home/blocks/landing-knowledge-base-block.html.twig' with {'categories': categories} %}
+        <h2 class="h1 marginBottom40px">{{ 'home.title_middle'|trans|raw }}</h2>
+        <div class="service__container">
+            <div class="service__item">
+                <div class="service__image">
+                    <img src="{{ asset('/images/service/1.svg') }}" alt="Partners" width="80" height="80">
+                </div>
+                <div class="service__text-with-button">
+                    <div class="service__text">
+                        {{ 'home.partners_text'|trans|raw }}
+                    </div>
+                    <a href="{{ path('partners', {'_fragment': 'contact-name'}) }}"
+                       class="square-button">{{ 'home.read_more'|trans }}</a>
+                </div>
+            </div>
+            <div class="service__item">
+                <div class="service__image">
+                    <img src="{{ asset('/images/service/2.svg') }}" alt="Study" width="80" height="80">
+                </div>
+                <div class="service__text-with-button">
+                    <div class="service__text">
+                        {{ 'home.study_text'|trans|raw }}
+                    </div>
+                    <a href="{{ path('courses_and_webinars') }}" class="square-button">{{ 'home.read_more'|trans }}</a>
+                </div>
+            </div>
+            <div class="service__item">
+                <div class="service__image">
+                    <img src="{{ asset('/images/service/2.svg') }}" alt="Business" width="80" height="80">
+                </div>
+                <div class="service__text-with-button">
+                    <div class="service__text">
+                        {{ 'home.business_tools_text'|trans|raw }}
+                    </div>
+                    <a href="https://uhbdp.org/ua/business-instruments"
+                       class="square-button">{{ 'home.read_more'|trans }}</a>
+                </div>
+            </div>
+            <div class="service__item">
+                <div class="service__image">
+                    <img src="{{ asset('/images/service/3.svg') }}" alt="Technology" width="80" height="80">
+                </div>
+                <div class="service__text-with-button">
+                    <div class="service__text">
+                        {{ 'home.technology_text'|trans|raw }}
+                    </div>
+                    <a href="https://enviro.uhbdp.org/ua/" class="square-button">{{ 'home.read_more'|trans }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="agrarian__container">
+            {% if  op['count_user']['value']  is defined %}
+            <div class="agrarian__item">
+                <div class="total-count__number">{{ op['count_user']['value']|numberFormatAgro }}</div>
+            </div>
+            {% endif %}
+            <div class="agrarian__item">
+                <div class="agrarian__text">
+                    {{ 'home.users_text'|trans }}
+                    {% if app.user.email is not defined %}
+                        <a class="green" href="{{ path('app_register') }}"><strong>{{ 'home.join'|trans }}!</strong></a>
+                    {% endif %}
+                </div>
+            </div>
+            {% if app.user.email is not defined %}
+                <div class="agrarian__item">
+                    <a href="{{ path('app_register') }}"
+                       class="square-button height-50 green-bg-button">{{ 'home.registration'|trans }}</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if topItems|length > 0 %}
+        {% include 'home/blocks/other-courses-block.html.twig' with {'topItems': topItems } %}
+    {% endif %}
+
+    <div style="background: transparent url('/images/landing/what-to-learn-bg.webp') no-repeat scroll center center; background-size: cover">
+        <div class="section">
+            <h3 class="h2 white marginBottom10px">{{ app.request.locale == 'uk'
+                ? op['homepage_footer_h1_uk']['value']
+                : op['homepage_footer_h1_en']['value'] }}
+            </h3>
+            <h4 class="section__subtitle white text-left marginBottom40px">{{ app.request.locale == 'uk'
+                ? op['homepage_footer_h2_uk']['value']
+                : op['homepage_footer_h2_en']['value'] }}
+            </h4>
+
+            <div class="what-to-learn__container">
+                <div class="what-to-learn__item">
+                    {% set whatToLearnLeftTitle = app.request.locale == 'uk'
+                        ? op['homepage_footer_left_block_header_uk']['value']
+                        : op['homepage_footer_left_block_header_en']['value'] %}
+                    <div class="what-to-learn__image">
+                        <img src="{{ asset('/images/what-to-learn/1.svg') }}" alt="{{ whatToLearnLeftTitle }}" width="80" height="80">
+                    </div>
+                    <div class="what-to-learn__title">{{ whatToLearnLeftTitle }}</div>
+                    <div class="what-to-learn__text">{{ app.request.locale == 'uk'
+                        ? op['homepage_footer_left_block_content_uk']['value']
+                        : op['homepage_footer_left_block_content_en']['value'] }}
+                    </div>
+                </div>
+                <div class="what-to-learn__item">
+                    {% set whatToLearnMiddleTitle = app.request.locale == 'uk'
+                        ? op['homepage_footer_middle_block_header_uk']['value']
+                        : op['homepage_footer_middle_block_header_en']['value'] %}
+                    <div class="what-to-learn__image">
+                        <img src="{{ asset('/images/what-to-learn/2.svg') }}" alt="{{ whatToLearnMiddleTitle }}"
+                             width="80" height="80"
+                        >
+                    </div>
+                    <div class="what-to-learn__title">{{ whatToLearnMiddleTitle }}</div>
+                    <div class="what-to-learn__text">{{ app.request.locale == 'uk'
+                        ? op['homepage_footer_middle_block_content_uk']['value']
+                        : op['homepage_footer_middle_block_content_en']['value'] }}
+                    </div>
+                </div>
+                <div class="what-to-learn__item">
+                    {% set whatToLearnRightTitle = app.request.locale == 'uk'
+                    ? op['homepage_footer_right_block_header_uk']['value']
+                    : op['homepage_footer_right_block_header_en']['value'] %}
+                    <div class="what-to-learn__image">
+                        <img src="{{ asset('/images/what-to-learn/3.svg') }}" alt="{{ whatToLearnRightTitle }}" width="80" height="80">
+                    </div>
+                    <div class="what-to-learn__title">{{ whatToLearnRightTitle }}</div>
+                    <div class="what-to-learn__text">{{ app.request.locale == 'uk'
+                        ? op['homepage_footer_right_block_content_uk']['value']
+                        : op['homepage_footer_right_block_content_en']['value'] }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if topTags|length > 0 %}
+        {% include 'blocks/top-tags-block.html.twig' with {'topTags': topTags} %}
+    {% endif %}
+
+    {% include 'home/blocks/reviews-block.html.twig' with {'reviews': reviews } %}
+{% endblock %}

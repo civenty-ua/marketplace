@@ -1,0 +1,35 @@
+{% extends 'profile/profileMarket.html.twig' %}
+
+{% block tabContent %}
+    {% set hasAnyFavorites  = false %}
+    {% set break            = false %}
+
+    {% for count in itemsCount %}
+        {% if count > 0 %}
+            {% set hasAnyFavorites  = true %}
+            {% set break            = true %}
+        {% endif %}
+    {% endfor %}
+
+    {% if hasAnyFavorites %}
+        <div class="section-nav section-nav--small">
+            <div class="section-nav__inner-wrapper">
+                {% include 'profile/market/favorites/topMenu.html.twig' with {
+                    'selected'      : favoriteType,
+                    'itemsCount'    : itemsCount,
+                } only %}
+            </div>
+        </div>
+        <div>
+            {% include "profile/market/favorites/#{favoriteType}/items.html.twig" with {
+                'items'                 : items,
+                'filter'                : filter,
+                'availableSortValues'   : availableSortValues,
+                'actions'               : itemActions,
+                'mainAction'            : mainAction,
+            } only %}
+        </div>
+    {% else %}
+        {{ 'market.profile.favorite.empty'|trans }}
+    {% endif %}
+{% endblock %}

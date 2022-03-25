@@ -1,0 +1,29 @@
+<div class="active-filter__item js-applied-filter-item">
+    <span>
+        {% if value ?? null %}
+            {{ title }}: {{ value }}
+        {% else %}
+            {{ title }}
+        {% endif %}
+    </span>
+    {% for inputName, inputValue in data %}
+        {% if inputValue is iterable %}
+            {% for inputSubValue in inputValue %}
+                <input
+                    type="hidden"
+                    name="{{ inputName }}[]"
+                    value="{{ inputSubValue }}"
+                >
+            {% endfor %}
+        {% else %}
+            <input
+                type="hidden"
+                name="{{ inputName }}"
+                value="{{ inputValue }}"
+            >
+        {% endif %}
+    {% endfor %}
+    <svg class="js-delete">
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cross"></use>
+    </svg>
+</div>

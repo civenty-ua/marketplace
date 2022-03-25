@@ -1,0 +1,227 @@
+{% set isAuthorized         = (app.user ?? null) is not null %}
+{% set isCommodityAuthor    = isAuthorized and app.user == item.user %}
+{% set itemIsInFavorite     = item.favorites|length > 0 %}
+{# ------------------------------------------- #}
+{# main action calculating #}
+{# ------------------------------------------- #}
+{% set mainActionsCondition = {
+    'buy'               : not isCommodityAuthor,
+    'edit'              : isCommodityAuthor,
+    'kitCreatingAdd'    : true,
+    'view'              : item|checkCommodityIsPublished,
+} %}
+{% set mainAction           = (mainActionsCondition[mainAction] ?? false) == true
+    ? mainAction
+    : null
+%}
+
+{% if not mainAction and mainActionsCondition['view'] == true %}
+    {% set mainAction = 'view' %}
+{% endif %}
+{# ------------------------------------------- #}
+{# sub-actions calculating #}
+{# ------------------------------------------- #}
+{% set subActionsIncome = actions %}
+{% if 'activation' in subActionsIncome %}
+    {% set subActionsIncome = subActionsIncome|merge(['deactivation']) %}
+{% endif %}
+
+{% set subActionsCondition  = {
+    'view'                  : true,
+    'offerPrice'            :
+        isAuthorized            and
+        not isCommodityAuthor   and
+        constant('App\\Entity\\User::ROLE_WHOLESALE_BUYER') in app.user.roles,
+    'toFavoriteToggle'      : isAuthorized,
+    'removeFromFavorite'    : isAuthorized and itemIsInFavorite,
+    'edit'                  : isCommodityAuthor,
+    'activation'            : isAuthorized and item|checkCommodityCanBeActivated(app.user),
+    'deactivation'          : isAuthorized and item|checkCommodityCanBeDeactivated(app.user),
+    'kitLeaving'            :
+        item.commodityType == constant('App\\Entity\\Market\\Commodity::TYPE_KIT')  and
+        isAuthorized                                                                and
+        item|checkKitCanBeLeft(app.user),
+} %}
+{% set actions              = [] %}
+
+{% for subAction in subActionsIncome %}
+    {% if (subActionsCondition[subAction] ?? false) == true and subAction != mainAction %}
+        {% set actions = actions|merge([subAction]) %}
+    {% endif %}
+{% endfor %}
+{# ------------------------------------------- #}
+{# output #}
+{# ------------------------------------------- #}
+<div class="
+    product-item__button
+    {% if not mainAction %}empty{% endif %}
+    {% if actions|length > 0 %}has-sub-actions{% endif %}
+">
+    {# ---------------------------- #}
+    {# main action (BUY)
+    {# ---------------------------- #}
+    {% if mainAction == 'buy' %}
+        <span
+            class="square-button buy"
+            data-market-href="{{ path('bid_offer_form', {'itemId': item.id}) }}"
+        >
+            {% if (item.type ?? null) == constant('App\\Entity\\Market\\CommodityProduct::TYPE_SELL') %}
+                {{ 'market.product.list.actions.buy'|trans }}
+            {% elseif (item.type ?? null) == constant('App\\Entity\\Market\\CommodityProduct::TYPE_BUY') %}
+                {{ 'market.product.list.actions.sell'|trans }}
+            {% else %}
+                {{ 'market.product.list.actions.order'|trans }}
+            {% endif %}
+        </span>
+    {# ---------------------------- #}
+    {# main action (EDIT)
+    {# ---------------------------- #}
+    {% elseif mainAction == 'edit' %}
+        <a
+            class="square-button buy"
+            href="{{ path("market_profile_my_commodities_#{item.commodityType}_edit", {'id' : item.id}) }}
+        ">
+            {{ 'market.product.list.actions.edit'|trans }}
+        </a>
+    {# ---------------------------- #}
+    {# main action (KIT ADD)
+    {# ---------------------------- #}
+    {% elseif mainAction == 'kitCreatingAdd' %}
+        <span
+            class="square-button buy js-kit-creating-commodity-add"
+            data-id="{{ item.id }}"
+        >
+            {{ 'market.product.list.actions.kitAddCommodity'|trans }}
+        </span>
+    {# ---------------------------- #}
+    {# main action (VIEW)
+    {# ---------------------------- #}
+    {% elseif mainAction == 'view' %}
+        <a
+            class="square-button buy"
+            href="{{ path("#{item.commodityType}_detail", {'id' : item.slug}) }}
+        ">
+            {{ 'market.product.list.actions.detailShort'|trans }}
+        </a>
+    {% endif %}
+    {# ---------------------------- #}
+    {# subactions list #}
+    {# ---------------------------- #}
+    {% if actions|length > 0 %}
+        <span
+            class="square-button more dropdown-toggle-split"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+        >
+            <i class="fas fa-ellipsis-h"></i>
+        </span>
+        <div class="dropdown-menu">
+            {# ---------------------------- #}
+            {# view detail #}
+            {# ---------------------------- #}
+            {% if 'view' in actions %}
+                <a
+                    class="dropdown-item"
+                    href="{{ path("#{item.commodityType}_detail", {'id' : item.slug}) }}"
+                >
+                    <i class="far fa-eye"></i>
+                    <span>{{ 'market.product.list.actions.detail'|trans }}</span>
+                </a>
+            {% endif %}
+            {# ---------------------------- #}
+            {# offer price #}
+            {# ---------------------------- #}
+            {% if 'offerPrice' in actions %}
+                <span
+                    class="dropdown-item"
+                    data-market-href="{{ path('offer_price_form', {'itemId':item.id}) }}"
+                >
+                    <i class="fas fa-tags"></i>
+                    <span>{{ 'market.product.list.actions.bid'|trans }}</span>
+                </span>
+            {% endif %}
+            {# ---------------------------- #}
+            {# favorites toggle #}
+            {# ---------------------------- #}
+            {% if 'toFavoriteToggle' in actions %}
+                <span
+                    class="
+                        dropdown-item
+                        item-favorite-toggle
+                        {% if itemIsInFavorite %}added{% endif %}
+                    "
+                    data-action-url="{{ path('commodity_to_favorite_toggle', {'id' : item.id}) }}"
+                >
+                    <span class="already-exist">
+                        <i class="fas fa-heart-broken"></i>
+                        <span>{{ 'market.product.list.actions.favoriteRemove'|trans }}</span>
+                    </span>
+                    <span class="not-exist">
+                        <i class="fas fa-heart"></i>
+                        <span>{{ 'market.product.list.actions.favoriteAdd'|trans }}</span>
+                    </span>
+                </span>
+            {% endif %}
+            {# ---------------------------- #}
+            {# remove from favorites #}
+            {# ---------------------------- #}
+            {% if 'removeFromFavorite' in actions %}
+                <span
+                    class="dropdown-item item-favorite-remove"
+                    data-action-url="{{ path('commodity_to_favorite_toggle', {'id' : item.id}) }}"
+                >
+                    <i class="fas fa-heart-broken"></i>
+                    <span>{{ 'market.product.list.actions.favoriteRemove'|trans }}</span>
+                </span>
+            {% endif %}
+            {# ---------------------------- #}
+            {# edit #}
+            {# ---------------------------- #}
+            {% if 'edit' in actions %}
+                <a
+                    class="dropdown-item"
+                    href="{{ path("market_profile_my_commodities_#{item.commodityType}_edit", {'id' : item.id}) }}"
+                >
+                    <i class="fas fa-edit"></i>
+                    <span>{{ 'market.product.list.actions.edit'|trans }}</span>
+                </a>
+            {% endif %}
+            {# ---------------------------- #}
+            {# activation toggle #}
+            {# ---------------------------- #}
+            {% if 'activation' in actions or 'deactivation' in actions %}
+                <span
+                    class="dropdown-item item-activity-toggle"
+                    data-action-url="{{ path('market_profile_commodity_activate', {
+                        'commodityType' : item.commodityType,
+                        'id'            : item.id,
+                    }) }}"
+                >
+                    {% if 'activation' in actions %}
+                        <i class="fas fa-eye"></i>
+                        <span>{{ 'market.product.list.actions.activate'|trans }}</span>
+                    {% else %}
+                        <i class="fas fa-eye-slash"></i>
+                        <span>{{ 'market.product.list.actions.deactivate'|trans }}</span>
+                    {% endif %}
+                </span>
+            {% endif %}
+            {# ---------------------------- #}
+            {# kit leaving #}
+            {# ---------------------------- #}
+            {% if 'kitLeaving' in actions %}
+                <span
+                    class="dropdown-item kit-leaving-toggle"
+                    data-action-url="{{ path('market_profile_kit_leaving', {'id' : item.id}) }}"
+                    data-alert-title="{{ 'market.product.list.actions.kitLeavingAlert.title'|trans }}"
+                    data-alert-message="{{ 'market.product.list.actions.kitLeavingAlert.message'|trans }}"
+                    data-alert-cancel="{{ 'market.product.list.actions.kitLeavingAlert.cancel'|trans }}"
+                >
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>{{ 'market.product.list.actions.kitLeaving'|trans }}</span>
+                </span>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>

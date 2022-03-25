@@ -1,0 +1,24 @@
+<div id="tab_downloaded_files" class="personal-area-center__tab">
+    <div class="personal-area-center__tab-downloaded-files">
+        <h3 class="personal-area__h3">{{ 'profile.downloaded_files' | trans }}</h3>
+
+        <div class="personal-area__files-list">
+            {% for downloadedFile in downloadedFiles %}
+                <a class="personal-area-file"
+                        href="{{  downloadedFile.link }}"
+                >
+                    <svg class="personal-area-file__ico">
+                        <use xlink:href="/images/smat/ico-file-excel_24x24.svg#Layer_1"></use>
+                    </svg>
+                    <span class="personal-area-file__name">
+                        {% if downloadedFile.title %}
+                            {{ downloadedFile.title }}
+                        {% else %}
+                            {{ downloadedFile.fileName }}
+                        {% endif %}
+                    </span>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>

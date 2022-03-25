@@ -1,0 +1,50 @@
+{% extends 'layout/content.html.twig' %}
+
+{% block title %}Личный кабинет{% endblock %}
+
+{% block body %}
+
+    <div class="section">
+        <ul class="breadcrumbs">
+            <li><a href="javascript:void(0)">Головна</a></li>
+            <li>Особистий кабінет</li>
+        </ul>
+
+        <h1 class="h1"><strong>ОСОБИСТИЙ КАБІНЕТ</strong></h1>
+
+        <div class="section__subtitle">Анастасія Антонова-Перепитятько</div>
+
+        <div>
+            <div class="tabs tabs-personal-area">
+
+                <div class="tabs__navigation-wrapper">
+                    <div class="tabs__navigation">
+                        <a class="tabs__link" href="#tab_settings">
+                            <span>Налаштування</span>
+                        </a>
+                        <a class="tabs__link" href="#tab_knowledge">
+                            <span>База знань</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="tabs__content">
+                    <div id="tab_settings" class="tab">
+                        <div class="personal-area">
+                            {% include 'smat/blocks/tab-personal-area-settings.html.twig' %}
+                        </div>
+                    </div>
+                    <div id="tab_knowledge" class="tab">
+                        <div class="personal-area">
+                            {% include 'smat/blocks/tab-personal-area-knowledge.html.twig' %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

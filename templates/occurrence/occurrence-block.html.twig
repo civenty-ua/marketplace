@@ -1,0 +1,236 @@
+<div class="section">
+    <ul class="breadcrumbs">
+        <li><a href="{{ path('home') }}">{{ 'home.home'|trans }}</a></li>
+        <li><a href="{{ path('courses_and_webinars', {'type': 'occurrence'}) }}">{{ 'menu.study.occurrence'| trans }}</a></li>
+        <li>{{ occurrence.title }}</li>
+    </ul>
+
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org/",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "{{ 'home.home'|trans }}",
+                    "item": "{{ url('home') }}"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "{{ 'menu.study.occurrence'|trans }}",
+                    "item": "{{ url('courses_and_webinars', {'type': 'occurrence'}) }}"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "{{ occurrence.title }}",
+                    "item": "{{ app.request.uri }}"
+                }
+            ]
+        }
+    </script>
+
+    <div class="detail-item-header">
+        <div class="item-badge bordered occurrence">
+            <svg>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#webinar"></use>
+            </svg>
+            <span>{{ 'admin.dashboard.occurrence.edit_page_title'|trans }}</span>
+        </div>
+        {% if occurrence.category is defined and occurrence.category|length > 0 %}
+            <a href="{{ path('category_detail', {'slug': occurrence.category.slug}) }}"
+               class="detail-item-header__title"><strong>{{ occurrence.category }}</strong></a>
+        {% endif %}
+    </div>
+
+    <h1 class="h1 detail-item-title marginBottom20px">
+        <strong>{{ occurrence.title }}</strong>
+    </h1>
+
+    <div class="detail-item">
+        <div class="detail-item-block">
+            <img
+                    class="detail-item-image"
+                    src="{% if occurrence.imageName is empty %}{{ asset('images/item-default.png') }}{% else %} {{ asset('upload/occurrence/' ~ occurrence.imageName) }} {% endif %}"
+                    alt="{{ occurrence.title }}"
+                    loading="lazy"
+            >
+            <div class="icon-text desktop">
+                <i class="fas fa-eye"></i>
+                <span>
+                    <strong class="green">{{ occurrence.ViewsAmount }}</strong>
+                    {{ 'course.register_user'|trans }}
+                </span>
+            </div>
+            {% if comments.exist %}
+                <div class="icon-text desktop">
+                    <i class="far fa-comment"></i>
+                    <span>{{ 'admin.dashboard.comment.list_title'|trans~' ' }}{{ comments.totalCount }}</span>
+                </div>
+            {% endif %}
+            {% if occurrence.startDate %}
+                <div class="icon-text desktop">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>{{ 'item.created_at'|trans }}:
+                        <strong> {{ occurrence.startDate|dateFormatAgro }}</strong></span>
+                </div>
+                <div class="icon-text desktop">
+                    <i class="far fa-clock"></i>
+                    <span>{{ 'item.time_created_at'|trans }}:
+                        <strong> {{ occurrence.startDate|date('H:i') }}</strong></span>
+                </div>
+            {% endif %}
+        </div>
+        <div class="detail-item-block">
+            <div class="detail-item-info">
+                <span>{{ 'item.partners' |trans }}:</span>
+                {% if occurrence.partners | length > 0 %}
+                    {% set partners = occurrence.partners %}
+                    <div class="category-container">
+                        {% for partner in partners %}
+                            <a href="{{ partner.name != 'UHBDP' ? path('partner-detail', {'slug': partner.slug}) : '#' }}"
+                               class="category-item">{{ partner.name }}</a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="detail-item-info">
+                <span>{{ 'item.experts'|trans }}:</span>
+                {% if occurrence.experts | length > 0 %}
+                    <div class="category-container">
+                        {% set experts = occurrence.getExperts() %}
+                        {% for expert in experts %}
+                            <a href="{{ path('expert-detail', {'slug': expert.slug}) }}"
+                               class="category-item">{{ expert.name }}</a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="detail-item-text">
+                {{ occurrence.content|raw|fileparser }}
+            </div>
+            {% if user is not defined or
+                (userHasRatedWebinar is defined  and registered == false or
+                (registered == true and userHasRatedWebinar == true)) or
+                (occurrence.startDate is defined and occurrence.startDate|date('Y-m-d H:i:s') > "now"|date('Y-m-d H:i:s')) %}
+                <div class="detail-item-rating marginBottom20px">
+                    <div class="js-rating-readonly rating" data-score="{{ rate }}"></div>
+                    <strong>{{ rate }}</strong>
+                </div>
+            {% elseif userHasRatedWebinar == false and registered == true %}
+                <div class="detail-item-rating marginBottom20px">
+                    <div class="js-rating rating" data-score="{{ rate }}" data-half="y"
+                         data-action="{{ path('occurrence_detail',{'slug': occurrence.slug}) }}"></div>
+                    <strong>{{ rate }}</strong>
+                </div>
+            {% endif %}
+            {% if showSuccessRegistrationMessageBlock is defined and showSuccessRegistrationMessageBlock == true %}
+                <div class="detail-item-text">
+                    {{ 'item.occurrence_registration_success_message_block'|trans }}
+                </div>
+            {% elseif  showSuccessRegistrationMessageBlock is defined and showSuccessRegistrationMessageBlock is same as false %}
+                <div class="detail-item-text">
+                    {{ 'item.past_webinar_registration_success_message_block'|trans }}
+                </div>
+            {% endif %}
+
+            <div class="icon-text mobile">
+                <i class="fas fa-eye"></i>
+                <span><strong class="green">{{ occurrence.ViewsAmount }}</strong> {{ 'item.views'|trans }}</span>
+            </div>
+            {% if comments.exist %}
+                <div class="icon-text mobile">
+                    <i class="far fa-comment"></i>
+                    <span>{{ 'admin.dashboard.comment.list_title'|trans~' ' }}{{ comments.totalCount }}</span>
+                </div>
+            {% endif %}
+            {% if occurrence.startDate %}
+                <div class="icon-text mobile">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>{{ 'item.created_at'|trans }}:
+                        <strong> {{ occurrence.startDate|dateFormatAgro }}</strong></span>
+                </div>
+                <div class="icon-text mobile">
+                    <i class="far fa-clock"></i>
+                    <span>{{ 'item.time_created_at'|trans }}:
+                        <strong> {{ occurrence.startDate|date('H:i') }}</strong></span>
+                </div>
+            {% endif %}
+
+            {% if registered == false %}
+                <a href="{{ path('occurrence_register', {'slug': occurrence.slug}) }}"
+                   class="square-button orange-bg-button height-50 marginTop20px">
+                    {{ 'form_registration.register'|trans }}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="tabs">
+        <div class="tabs__navigation-wrapper">
+            <div class="tabs__navigation">
+                {% if registered == true and occurrence.videoItem %}
+                    <a class="tabs__link" href="#about">
+                        <span>{{ 'course.about_webinar'|trans }}</span>
+                    </a>
+                {% endif %}
+                <a class="tabs__link" href="#expert">
+                    <span>{{ 'item.experts'|trans }}</span>
+                </a>
+                <a class="tabs__link" href="#review">
+                    <span>{{ 'item.reviews'|trans }}</span>
+                </a>
+                <a class="tabs__link" href="#organizer">
+                    <span>{{ 'item.partners' | trans }}</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="tabs__content">
+            {% if registered == true and occurrence.videoItem %}
+            {% include 'webinar/tabs/about.html.twig' with {'webinar': occurrence} %}
+            {% endif %}
+            {% if occurrence.experts|length > 0 %}
+                {% include 'webinar/tabs/experts.html.twig' with {
+                    'webinar': occurrence,
+                    'experts': occurrence.experts
+                } %}
+            {% endif %}
+            {% if occurrence.review|length > 0 %}
+                {% include 'webinar/tabs/reviews.html.twig' with {
+                    'webinar': occurrence,
+                    'rewiews': occurrence.review
+                } %}
+            {% endif %}
+            {% if occurrence.partners|length > 0 %}
+                {% include 'webinar/tabs/partners.html.twig' with {
+                    'webinar': occurrence,
+                    'partners': occurrence.partners
+                } %}
+            {% endif %}
+            {% if review is defined and review is not empty %}
+                {% include 'blocks/review-tab-block.html.twig' %}
+            {% endif %}
+        </div>
+    </div>
+    {% include 'blocks/like-material-block.html.twig' with {
+        'userCanRate' : userCanRate,
+    } %}
+
+    {% if occurrence.commentsAllowed %}
+        <br>
+        {% include 'comment/item-comments-list.html.twig' with {
+            'item'      : occurrence,
+            'itemType'  : 'occurrence',
+            'user'      : user,
+            'comments'  : {
+                'form'          : comments.form,
+                'exist'         : comments.exist,
+                'pageSize'      : comments.pageSize,
+                'totalCount'    : comments.totalCount,
+            },
+        } only %}
+    {% endif %}
+</div>

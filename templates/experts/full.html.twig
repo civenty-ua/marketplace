@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block canonical %}{{ url('experts') }}{% endblock %}
+
+{% block title %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_title }}
+    {% else %}
+        {{ 'menu.about_us.experts'|trans }}
+    {% endif %}
+{% endblock %}
+
+{% block description %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_description }}
+    {% endif %}
+{% endblock %}
+
+{% block keywords %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_keywords }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% include 'experts/list.html.twig' with {
+        'experts': experts,
+        'expertTypes': expertTypes,
+    } %}
+    {% include 'smat/blocks/about_contacts_feedback-block.html.twig' with {
+        'form' : contactUsForm
+    } only %}
+{% endblock %}

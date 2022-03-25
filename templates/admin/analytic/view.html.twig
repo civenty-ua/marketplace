@@ -1,0 +1,34 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block content_title analytic_page_title|trans %}
+
+{% block main %}
+    <div class="container">
+        <div class="container-fluid d-flex flex-row-reverse">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                {% if show == 'value' %}
+                    <span class="btn btn-primary disabled">Значення</span>
+                {% else %}
+                        <a href="{{ url.value }}" class="btn btn-primary">Значення</a>
+                {% endif %}
+                {% if show == 'perc' %}
+                    <span class="btn btn-primary disabled">Проценти</span>
+                {% else %}
+                        <a href="{{ url.perc }}"
+                           class="btn btn-primary">Проценти</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="container-fluid overflow-auto">
+            {% include 'admin/component/data_visualization/table.html.twig' with {
+                'table' : data
+            } only %}
+        </div>
+        <div class="container-fluid admin-dashboard">
+            {% include 'admin/component/data_visualization/chart.html.twig' with {
+                'chart' : data,
+                'title' : 'Діаграмма'
+            } only %}
+        </div>
+    </div>
+{% endblock %}

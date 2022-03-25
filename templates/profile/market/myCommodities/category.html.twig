@@ -1,0 +1,22 @@
+<div class="js-categories-fields">
+    {% if form.parentCategory is defined %}
+        {{ form_row(form.parentCategory, {
+            'label'         : 'market.profile.commodityForm.category',
+            'emptyValue'    : true,
+            'disabled'      : not editable and form.parentCategory.vars.data,
+            'attr'          : {
+                'data-category-field' : 'Y',
+            }
+        }) }}
+    {% endif %}
+    {{ form_row(form.category, {
+        'label'         : form.parentCategory is defined
+            ? 'market.profile.commodityForm.subCategory'
+            : 'market.profile.commodityForm.category',
+        'emptyValue'    : true,
+        'disabled'      : not editable and form.category.vars.data,
+        'attr'          : {
+            'data-category-field' : 'Y',
+        }
+    }) }}
+</div>

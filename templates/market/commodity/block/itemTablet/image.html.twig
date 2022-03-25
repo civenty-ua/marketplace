@@ -1,0 +1,27 @@
+<div class="
+    item-image
+    commodity-activation-bar
+    {% if not item|checkCommodityIsPublished %}inactive{% endif %}
+">
+    <a
+        href="{{ path("#{item.commodityType}_detail", {
+            'id' : item.slug,
+        }) }}"
+        rel="nofollow"
+    >
+        <img
+            src="{{ vich_uploader_asset(item) }}"
+            alt="{{ item.title }}"
+            title="{{ item.title }}"
+        >
+    </a>
+    {% include 'market/commodity/block/organicBadge.html.twig' with {
+        'item' : item,
+    } only %}
+    {% include 'market/commodity/block/productTypeBadge.html.twig' with {
+        'item' : item,
+    } only %}
+    {% include 'market/commodity/block/activationBar.html.twig' with {
+        'item' : item,
+    } only %}
+</div>

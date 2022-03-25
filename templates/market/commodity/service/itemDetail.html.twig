@@ -1,0 +1,85 @@
+{% extends 'market/commodity/itemDetail.html.twig' %}
+{# ------------------------------------------- #}
+{# breadcrumbs #}
+{# ------------------------------------------- #}
+{% block breadcrumbs %}
+    {% include 'blocks/breadcrumbs.html.twig' with {
+        'items' : [
+            {
+                'link'  : path('home'),
+                'title' : 'menu.home'|trans,
+            },
+            {
+                'link'  : path('services_list'),
+                'title' : 'market.service.titles.multiple'|trans,
+            },
+            {
+                'link'  : sameCategory.link,
+                'title' : item.category.parent ? item.category.parent.title : item.category.title,
+            },
+            {
+                'title' : item.title,
+            }
+        ],
+    } only %}
+{% endblock %}
+{% block contentLeftSide %}
+    {% include 'market/commodity/block/itemDetail/image.html.twig' with {
+        'item' : item,
+    } only %}
+    <p class="product-text">
+        {{ item.description|raw|nl2br }}
+    </p>
+{% endblock %}
+{# ------------------------------------------- #}
+{# content right side #}
+{# ------------------------------------------- #}
+{% block contentRightSide %}
+    {{ parent() }}
+    <div class="product-detail">
+        {% include 'market/commodity/block/itemDetail/attributes.html.twig' with {
+            'item' : item,
+        } only %}
+    </div>
+{% endblock %}
+{# ------------------------------------------- #}
+{# content bottom #}
+{# ------------------------------------------- #}
+{% block contentBottom %}
+    {# ---------------------------- #}
+    {# same items #}
+    {# ---------------------------- #}
+    {% if sameItems.items|length > 0 %}
+        <div class="section">
+            <h2 class="h2">
+                {{ 'market.service.detail.sameItems'|trans }}
+            </h2>
+            {% include 'market/commodity/service/sameItems.html.twig' with {
+                'items'         : sameItems.items,
+                'actions'       : sameItems.actions,
+                'mainAction'    : sameItems.mainAction,
+            } only %}
+            <a
+                href="{{ sameItems.link }}"
+                class="square-button green-bg-button centeredBlock height-50"
+            >
+                {{ 'market.service.detail.sameItemsViewAll'|trans }}
+            </a>
+        </div>
+    {% endif %}
+    {# ---------------------------- #}
+    {# same sellers #}
+    {# ---------------------------- #}
+    {% if sameSellers.items|length > 0 %}
+        <div class="section">
+            <h2 class="h2">
+                {{ 'market.service.detail.sameSellers'|trans }}
+            </h2>
+            {% include 'market/commodity/service/sameSellers.html.twig' with {
+                'items'         : sameSellers.items,
+                'actions'       : sameSellers.actions,
+                'mainAction'    : sameSellers.mainAction,
+            } only %}
+        </div>
+    {% endif %}
+{% endblock %}

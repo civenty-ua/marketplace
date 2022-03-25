@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_title }}
+    {% else %}
+        {{ expert.name }}
+    {% endif %}
+{% endblock %}
+
+{% block description %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_description }}
+    {% endif %}
+{% endblock %}
+
+{% block keywords %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_keywords }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <ul class="breadcrumbs">
+            <li><a href="{{ path('home') }}">{{ 'home.home'|trans }}</a></li>
+            <li><a href="{{ path('experts') }}">{{ 'home.experts'|trans }}</a></li>
+            <li>{{ expert.name }}</li>
+        </ul>
+
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org/",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "{{ 'home.home'|trans }}",
+                        "item": "{{ url('home') }}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "{{ 'home.experts'| trans }}",
+                        "item": "{{ url('experts') }}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": "{{ expert.name }}",
+                        "item": "{{ app.request.uri }}"
+                    }
+                ]
+            }
+
+        </script>
+
+        <div class="expert-detail">
+            <a class="return-button" href="{{ app.request.headers.get('referer') }}">
+                <i class="fas fa-angle-left"></i>
+            </a>
+            <div class="expert-detail__inner-wrapper">
+                <div class="expert-detail__image-wrapper">
+                    <img class="expert-detail__image" src="{{ asset('upload/expert/' ~ expert.image) }}"
+                         alt="{{ expert.name }}">
+                </div>
+
+                <div class="expert-detail__content">
+                    <h1 class="expert-detail__title">{{ expert.name }}</h1>
+
+                    {% if expert.position %}
+                        <div class="detail-item-text green">
+                        {{ expert.position|raw|fileparser }}
+                        </div>
+                    {% endif %}
+
+                    {{ expert.content|raw }}
+
+                    {% if expert.address %}
+                        <div class="partner-detail__info">
+                            <div>{{ 'partners.address'|trans }}:</div>
+                            <div>{{ expert.address }}</div>
+                        </div>
+                    {% endif %}
+
+                    {% if expert.email %}
+                        <div class="partner-detail__info">
+                            <div>E-mail:</div>
+                            <div><a class="green-link" href="mailto:{{ expert.email }}">{{ expert.email }}</a>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if expert.phone %}
+                        <div class="partner-detail__info">
+                            <div>{{ 'partners.phone'|trans }}:</div>
+                            <div><a class="green-link" href="tel:{{ expert.phone }}">{{ expert.phone }}</a></div>
+                        </div>
+                    {% endif %}
+
+                    {% if expert.site %}
+                        <div class="partner-detail__info">
+                            <div>{{ 'partners.site'|trans }}:</div>
+                            <div><a class="green-link" href="{{ expert.site }}">{{ expert.site }}</a></div>
+                        </div>
+                    {% endif %}
+
+                    {% if expert.facebook is not empty or expert.twitter is not empty or expert.youtube is not empty or expert.telegram is not empty or expert.instagram is not empty %}
+                        <div class="partner-detail__info">
+                            <div>{{ 'partners.social'|trans }}</div>
+                            <div>
+                                <div class="partner-detail__info-item">
+                                    {% include 'blocks/social-links.html.twig' with {'item': expert } %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                {% if expert.tags %}
+                    <div class="category-container expert-detail tags">
+                        {% for tag in expert.tags %}
+                            <a href="{{ path('tag_detail', {'slug': tag['slug'] is defined ? tag['slug'] : tag.slug}) }}" class="category-item">{{ tag.name|trans }}</a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% if items|length > 0 %}
+        {% include 'experts/block/studying-materials-block.html.twig' with {
+            'items': items,
+        } %}
+    {% endif %}
+
+    {#    {% include 'experts/block/more-experts-block.html.twig' with { #}
+    {#        'items': otherExpertList, #}
+    {#    } %} #}
+
+    {% include 'smat/blocks/about_contacts_feedback-block.html.twig' with {
+        'form' : contactUsForm
+    } only %}
+{% endblock %}

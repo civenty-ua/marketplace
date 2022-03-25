@@ -1,0 +1,39 @@
+<div id="organizer" class="tab">
+    {% if webinar.getPartners() is defined %}
+        {% set partners = webinar.getPartners() %}
+        <div class="organizer-wrapper">
+            {% for partner in partners %}
+                <div class="organizer-item">
+                    <a href="{{ partner.name != 'UHBDP' ? path('partner-detail', {'slug': partner.slug}) : '#' }}">
+                        <img class="organizer-item-image" src="{{ asset('upload/partner/'~ partner.image) }}"
+                             alt="{{ partner.name }}"
+                             loading="lazy"
+                        >
+                    </a>
+                    <a href="{{ path('partner-detail', {'slug': partner.slug}) }}">
+                        <div class="organizer-item-title">{{ partner.name }}</div>
+                    </a>
+                    <div class="organizer-item__city">{{ partner.address }}</div>
+                    {% if partner.site %}
+                        <div class="organizer-item__info">
+                            <span>{{ 'organizer.site'|trans }}:</span>
+                            <a class="green-link" href="{{ partner.site }}">{{ partner.site }}</a>
+                        </div>
+                    {% endif %}
+                    {% if partner.email %}
+                        <div class="organizer-item__info">
+                            <span>{{ 'organizer.email'|trans }}:</span>
+                            <a class="green-link" href="mailto:{{ partner.email }}">{{ partner.email }}</a>
+                        </div>
+                    {% endif %}
+                    {% if partner.phone %}
+                        <div class="organizer-item__info">
+                            <span>{{ 'organizer.phone'|trans }}:</span>
+                            <a class="green-link" href="tel:{{ partner.phone }}">{{ partner.phone }}</a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>

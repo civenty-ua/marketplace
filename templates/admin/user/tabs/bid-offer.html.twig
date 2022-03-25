@@ -1,0 +1,37 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Користувач</th>
+        <th scope="col">Дата</th>
+        <th scope="col">Товар/Послуга/Набір</th>
+        <th scope="col">Повідомлення</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for bidOffer in user|bidOffer %}
+            <tr>
+                <th scope="row">
+                    {% set itemDetail = ea_url()
+                        .setController('App\\Controller\\Admin\\Market\\BidOfferCrudController')
+                        .setAction(constant('EasyCorp\\Bundle\\EasyAdminBundle\\Config\\Action::DETAIL'))
+                        .setEntityId(bidOffer.id)
+                    %}
+                    <a href="{{ itemDetail }}">{{ bidOffer.id }}</a>
+                </th>
+                <td>
+                    {% set itemDetail = ea_url()
+                        .setController('App\\Controller\\Admin\\UserCrudController')
+                        .setAction(constant('EasyCorp\\Bundle\\EasyAdminBundle\\Config\\Action::DETAIL'))
+                        .setEntityId(bidOffer.sender.id)
+                    %}
+                    <a href="{{ itemDetail }}">{{ bidOffer.sender }}</a>
+                </td>
+                <td>{{ bidOffer.createdAt|format_datetime() }}</td>
+                <td>{{ bidOffer.commodity.title }}</td>
+                <td>{{ bidOffer.message ? bidOffer.message | striptags : '' }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+

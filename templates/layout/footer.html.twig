@@ -1,0 +1,105 @@
+{% block footer %}
+    <footer>
+        <div class="footer-content">
+
+            {{ knp_menu_render('footer', {'currentClass': 'active'}) }}
+
+            <div class="footer-block width-66">
+                <div class="footer-logo">
+                    <a class="footer-logo__item" href="{{ path('home') }}">
+                        <img src="{{ asset('images/logo-1.svg') }}" alt="UHBDP" width="86" height="20">
+                    </a>
+                    <a class="footer-logo__item" href="{{ op['canada']['value']|trim }}" rel="nofollow">
+                        <img src="{{ asset('images/logo-2.svg') }}" alt="Canada" width="81" height="30">
+                    </a>
+                    <a class="footer-logo__item" href="{{ op['meda']['value']|trim }}" rel="nofollow">
+                        <img src="{{ asset('images/logo-3.svg') }}" alt="MEDA" width="52" height="30">
+                    </a>
+                </div>
+                {{ app.request.locale == 'uk'
+                ? op['footer_description_main_uk'].value|raw
+                : op['footer_description_main_en'].value|raw
+                }}
+                <div>
+                    {{ 'footer.copyright'|trans }}
+                </div>
+            </div>
+            <div class="footer-block">
+                <div class="footer-block__text-with-icon">
+                    <svg>
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
+                    </svg>
+                    <span>{{ op['email']['value']|trim }}</span>
+                </div>
+                <div class="footer-block__text-with-icon">
+                    <svg>
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#phone"></use>
+                    </svg>
+                    <span>{{ op['phone']['value']|trim }}</span>
+                </div>
+                <div class="footer-block__text-without-icon">
+                    {{ app.request.locale == 'uk'
+                    ? op['footer_description_tel_uk'].value|raw
+                    : op['footer_description_tel_en'].value|raw
+                    }}
+                </div>
+                <div class="footer-block__social">
+                    {% if op['facebook']['value'] is defined %}
+                        <a target="_blank" href="{{ op['facebook']['value'] }}" class="footer-block__social-item">
+                            <svg>
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
+                            </svg>
+                        </a>
+                    {% endif %}
+                    {% if op['twitter']['value'] is defined %}
+                        <a target="_blank" href="{{ op['twitter']['value'] }}" class="footer-block__social-item">
+                            <svg>
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
+                            </svg>
+                        </a>
+                    {% endif %}
+                    {% if op['youtube']['value'] is defined %}
+                        <a target="_blank" href="{{ op['youtube']['value'] }}" class="footer-block__social-item">
+                            <svg>
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#youtube"></use>
+                            </svg>
+                        </a>
+                    {% endif %}
+                    {% if op['telegram']['value'] is defined %}
+                        <a target="_blank" href="{{ op['telegram']['value'] }}" class="footer-block__social-item">
+                            <svg>
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#telegram"></use>
+                            </svg>
+                        </a>
+                    {% endif %}
+                    {% if op['instagram']['value'] is defined %}
+                        <a target="_blank" href="{{ op['instagram']['value'] }}" class="footer-block__social-item">
+                            <svg>
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
+                            </svg>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <span class="clear"></span>
+        </div>
+    </footer>
+{% endblock %}
+
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org/",
+        "@type": "Organization",
+        "name": "{{ 'title'|trans }}",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{ asset('images/logo-1.svg') }}"
+        },
+        "url": "{{ url('home') }}",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "Ukraine"
+        },
+        "sameAs": []
+    }
+</script>

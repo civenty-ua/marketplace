@@ -1,0 +1,111 @@
+<div class="field collection-field">
+    {% if form|length > 0 %}
+        <label class="field-label-wrapper">
+            <span>Мої телефони</span>
+            {% if form.vars.help is not null %}
+                <i class="fas fa-info-circle js-tooltip" data-toggle="tooltip" data-placement="top"
+                   data-original-title="{{ form_help(form) }}"></i>
+            {% endif %}
+
+        </label>
+    {% endif %}
+    <div class="collection-items">
+        <div class="error show">{{ form_errors(form) }}</div>
+        {% for item in form %}
+            <div class="collection-row js-phone-row-item phone-row-item">
+                <div class="field field-input-text">
+                    <label class="field-label-wrapper">
+            <span class="field-label-require">
+                {{ form_label(item.phone) }} <i class=" fas fa-star-of-life"></i>
+            </span>
+                    </label>
+                    <div class="input-text-wrap">
+                        {{ form_widget(item.phone) }}
+                    </div>
+                    <div class="error">{{ form_errors(item.phone) }}</div>
+                </div>
+                <div class="field">
+                    <label>{{ 'role.messager'|trans }}</label>
+                    <div class="field-checkbox-group">
+                        <div class="checkbox-wrap">
+                            <label>
+                                {{ form_widget(item.isViber) }}
+                                <span>Viber</span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrap">
+                            <label>
+                                {{ form_widget(item.isTelegram) }}
+                                <span>Telegram</span>
+                            </label>
+                        </div>
+                        <div class="checkbox-wrap">
+                            <label>
+                                {{ form_widget(item.isWhatsApp) }}
+                                <span>Whatsapp</span>
+                            </label>
+                        </div>
+                        <a href="#" class="phone-delete"><i class="fa fa-trash fa-1x" aria-hidden="true"
+                                                            title="{{ 'role.delete_phone'|trans }}"></i></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <template id="phone-template">
+        <div class="collection-row js-phone-row-item phone-row-item">
+            <div class="field field-input-text">
+                <label class="field-label-wrapper">
+            <span class="field-label-require">
+                 <i class=" fas fa-star-of-life"></i>
+            </span>
+                </label>
+                <div class="input-text-wrap">
+                    <input type="text" id="user_create_role_form_phones_#id#_phone"
+                           name="user_create_role_form[phones][#id#][phone]" required="required"
+                           class="js-phone-mask form-text js-user-phone-input" placeholder="+38 (___) ___ __ __"
+                           value="" aria-invalid="false">
+                </div>
+                <div class="error"></div>
+            </div>
+            <div class="field">
+                <label>{{ 'role.messager'|trans }}</label>
+                <div class="field-checkbox-group">
+                    <div class="checkbox-wrap">
+                        <label>
+                            <input type="checkbox" id="user_create_role_form_phones_#id#_isViber"
+                                   name="user_create_role_form[phones][#id#][isViber]" value="1">
+                            <span>Viber</span>
+                        </label>
+                    </div>
+                    <div class="checkbox-wrap">
+                        <label>
+                            <input type="checkbox" id="user_create_role_form_phones_#id#_isTelegram"
+                                   name="user_create_role_form[phones][#id#][isTelegram]" value="1">
+                            <span>Telegram</span>
+                        </label>
+                    </div>
+                    <div class="checkbox-wrap">
+                        <label>
+                            <input type="checkbox" id="user_create_role_form_phones_#id#_isWhatsApp"
+                                   name="user_create_role_form[phones][#id#][isWhatsApp]" value="1">
+                            <span>Whatsapp</span>
+                        </label>
+                    </div>
+                    <a href="#" class="phone-delete"><i class="fa fa-trash fa-1x" aria-hidden="true"
+                                                        title="Видалити телефон"></i></a>
+                </div>
+            </div>
+        </div>
+    </template>
+    <div class="field">
+        <a href="javascript:void(0)" class="square-button add-new-item-to-collection"
+           data-tpl="#phone-template">
+            <svg>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#plus"></use>
+            </svg>
+            <span>{{ 'role.add_phone'|trans }}</span>
+        </a>
+    </div>
+</div>
+

@@ -1,0 +1,21 @@
+{% set isNew        = form.vars.data.id is null %}
+{% set priceIsNull  = form.price.vars.data == 0 %}
+
+{{ form_row(form.price, {
+    'label'     : 'market.profile.commodityForm.price',
+    'hidden'    : not isNew and priceIsNull,
+    'row_attr'  : {
+        'data-price-row'    : 'Y',
+    },
+    'attr'      : {
+        'data-price-input'  : 'Y',
+        'min'               : form.price.vars.data > 0 ? 1 : 0,
+    },
+}) }}
+{% include 'form/fields/profile/market/checkbox.html.twig' with {
+    'label'     : 'market.profile.commodityForm.priceNegotiated',
+    'checked'   : not isNew and priceIsNull,
+    'attr'      : {
+        'data-price-negotiated-checker' : 'Y',
+    },
+} only %}

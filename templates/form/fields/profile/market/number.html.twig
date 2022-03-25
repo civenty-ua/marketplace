@@ -1,0 +1,35 @@
+{% set hint         = attr.hint ?? null %}
+{% set placeholder  = attr.placeholder ?? null %}
+{% set attr         = attr|merge({
+    'hint'          : null,
+    'placeholder'   : null,
+}) %}
+
+<div
+    class="
+        field
+        field-input-text
+        {% if required %}required{% endif %}
+        {% if hidden ?? false %}hidden{% endif %}
+        {% if form.vars.errors|length > 0 %}validation-error{% endif %}
+    "
+    {{ row_attr|toAttributesString }}
+>
+    <label>
+        {{ label|trans }}
+        {% include 'form/fields/profile/market/fieldHint.html.twig' with {'hint' : hint} only %}
+    </label>
+    <label class="input-text-wrap">
+        <input
+            type="number"
+            name="{{ full_name }}"
+            value="{{ value|replace({',' : '.'}) }}"
+            {% if required %}required{% endif %}
+            placeholder="{{ placeholder|trans }}"
+            {{ attr|toAttributesString }}
+        >
+        {% if form.vars.errors|length > 0 %}
+            <div class="error show">{{ form_errors(form) }}</div>
+        {% endif %}
+    </label>
+</div>

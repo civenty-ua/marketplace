@@ -1,0 +1,10 @@
+<div class="item-container">
+    {% for item in items %}
+        {% set template = '/blocks/item-panel/' ~ item.typeItem ~ '.html.twig' %}
+        {% include template with {'item': item } %}
+    {% endfor %}
+</div>
+
+<div class="navigation">
+    {{ knp_pagination_render(items) }}
+</div>

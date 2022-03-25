@@ -1,0 +1,109 @@
+{% extends 'profile/profileMarket.html.twig' %}
+
+{% block title %}
+    {{ form.vars.data.id
+        ? 'market.profile.productForm.edit'|trans
+        : 'market.profile.productForm.create'|trans
+    }}
+{% endblock %}
+
+{% block tabContent %}
+    {% set steps = [] %}
+    {# ------------------------------------------- #}
+    {# step 1 #}
+    {# ------------------------------------------- #}
+    {% set step %}
+        {{ form_row(form.imageFile, {
+            'titleAdd'      : 'market.profile.commodityForm.image.add'|trans,
+            'titleChange'   : 'market.profile.commodityForm.image.change'|trans,
+            'attr'          : {
+                'placeholder'   : 'market.profile.commodityForm.image.placeolder'|trans,
+            },
+        }) }}
+        <div class="field-block">
+            <div class="field-block__title">
+                {{ 'market.profile.productForm.about'|trans }}
+            </div>
+            <div class="field-block__content">
+                {{ form_row(form.isOrganic, {
+                    'label' : 'market.profile.productForm.organic'|trans,
+                }) }}
+                {{ form_row(form.title, {
+                    'label' : 'market.profile.productForm.title',
+                }) }}
+                {% include 'profile/market/myCommodities/category.html.twig' with {
+                    'form'      : form,
+                    'editable'  : editable,
+                } only %}
+            </div>
+        </div>
+    {% endset %}
+    {% set steps = steps|merge([step]) %}
+    {# ------------------------------------------- #}
+    {# step 2 #}
+    {# ------------------------------------------- #}
+    {% set step %}
+        <div class="field-block">
+            <div class="field-block__title">
+                {{ 'market.profile.productForm.location'|trans }}
+            </div>
+            {% include 'profile/market/myCommodities/product/localitiesFields.html.twig' with {
+                'form' : form,
+            } only %}
+        </div>
+        {% include 'profile/market/myCommodities/attributesForm.html.twig' with {
+            'form'          : form,
+            'commodityType' : constant('App\\Entity\\Market\\Commodity::TYPE_PRODUCT'),
+        } only %}
+    {% endset %}
+    {% set steps = steps|merge([step]) %}
+    {# ------------------------------------------- #}
+    {# step 3 #}
+    {# ------------------------------------------- #}
+    {% set step %}
+        <div class="field-block">
+            <div class="field-block__title">
+                {{ 'market.profile.commodityForm.price'|trans }}
+            </div>
+            <div class="field-block__content">
+                {% include 'profile/market/myCommodities/price.html.twig' with {
+                    'form' : form,
+                } only %}
+            </div>
+        </div>
+        <div class="field-block">
+            <div class="field-block__title">
+                {{ 'market.profile.commodityForm.description'|trans }}
+            </div>
+            <div class="field-block__content">
+                {{ form_row(form.type, {
+                    'label' : 'market.profile.productForm.type',
+                }) }}
+                {{ form_row(form.description, {
+                    'label' : 'market.profile.commodityForm.description',
+                }) }}
+            </div>
+        </div>
+        <div class="
+            field-block
+            {% if form.userDisplayPhones.vars.choices|length == 0 %}hidden{% endif %}
+        ">
+            <div class="field-block__title">
+                {{ 'market.profile.commodityForm.userContacts'|trans }}
+            </div>
+            <div class="field-block__content">
+                {{ form_row(form.userDisplayPhones, {
+                    'label' : 'market.profile.commodityForm.userDisplayPhones',
+                }) }}
+            </div>
+        </div>
+    {% endset %}
+    {% set steps = steps|merge([step]) %}
+    {# ------------------------------------------- #}
+    {# complete form #}
+    {# ------------------------------------------- #}
+    {% include 'profile/market/myCommodities/form.html.twig' with {
+        'form'  : form,
+        'steps' : steps,
+    } only %}
+{% endblock %}

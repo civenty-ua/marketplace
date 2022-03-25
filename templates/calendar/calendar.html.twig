@@ -1,0 +1,61 @@
+{% extends 'layout/content.html.twig' %}
+
+{% block title %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_title }}
+    {% else %}
+        {{ 'footer.calendar_events'|trans }}
+    {% endif %}
+{% endblock %}
+
+{% block description %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_description }}
+    {% endif %}
+{% endblock %}
+
+{% block keywords %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_keywords }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <ul class="breadcrumbs">
+            <li><a href="{{ path('home') }}">{{ 'home.home'|trans }}</a></li>
+            <li>{{ 'footer.calendar_events'|trans }}</li>
+        </ul>
+
+        <h1 class="h1 marginBottom40px"><strong>{{ 'footer.calendar_events'|trans }}</strong></h1>
+        {% include 'calendar/blocks/category.html.twig' with {'partners': partners} %}
+        <div id="js-calendar" data-locale="{{ app.request.locale }}"></div>
+
+        <div class="js-calendar-event-list">
+            {% for key, item in items %}
+                {% if  partnersIds|length > 0 %}
+                    {% set pIds = partnersIds[item.id]|trim %}
+                    <div class="calendar-event-item"
+                         data-id="{{ item.id }}"
+                         data-title="{{ item.title }}"
+                         date-day="{{ item.startDate | date('Y-m-d') }}"
+                         data-start="{{ item.startDate | date('Y-m-d H:i:s') }}"
+                         data-partners="{{ pIds }}"
+                            {% if item.className in 'Webinar' %}
+                                data-url="{{ path('webinar_detail',{'slug': item.slug}) }}"
+                            {% elseif item.className in 'Occurrence' %}
+                                data-url="{{ path('occurrence_detail',{'slug': item.slug}) }}"
+                            {% else %}
+                                data-url="{{ path('course_detail',{'slug': item.slug}) }}"
+                            {% endif %}
+                    >
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% include 'blocks/business-tools-block.html.twig' with {'pageList' : pagesList } %}
+    {% include 'blocks/catalog-block.html.twig' %}
+    {% include 'blocks/knowledge-base-block.html.twig' with {'categories': categories} %}
+    {% include 'blocks/top-tags-block.html.twig' with {'topTags': topTags} %}
+{% endblock %}

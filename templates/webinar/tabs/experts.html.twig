@@ -1,0 +1,35 @@
+<div id="expert" class="tab">
+    <div class="course-expert-wrapper">
+        {% if webinar.getExperts() is defined %}
+            {% set experts = webinar.getExperts() %}
+            {% for expert in experts %}
+                <div class="course-expert">
+                    {% if expert.image is defined and expert.image is not null %}
+                        <img class="course-expert__image" src="{{ asset('upload/expert/' ~ expert.image) }}"
+                                alt="{{ expert.name }}">
+                    {% else %}
+                        <img class="course-expert__image" src="{{ asset('main/default-avatar.png') }}"
+                                alt="{{ expert.name }}">
+                    {% endif %}
+                    <div class="course-expert-description">
+                        <div class="course-expert-description__position">
+                            {% for tag in expert.tags %}
+                                {{ tag.name }}{% if not loop.last %},{% endif %}
+                            {% endfor %}
+                        </div>
+                        <a class="course-expert__name" href="{{ path('expert-detail', {'slug':expert.slug}) }}">
+                            {{ expert.name }}
+                        </a>
+                        <div class="course-expert-description__text">
+                            {% if expert.position %}
+                                <div class="detail-item-text">
+                                    {{ expert.position|raw|fileparser }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>

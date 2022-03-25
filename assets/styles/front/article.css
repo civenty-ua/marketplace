@@ -1,0 +1,341 @@
+ .article-header {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .article-header {
+        margin-bottom: 40px;
+    }
+}
+
+.article-social {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-left: 60px;
+}
+
+@media (min-width: 768px) {
+    .article-social {
+        position: absolute;
+        left: 0;
+        top: 80px;
+        flex-direction: column;
+        margin-bottom: 0;
+        margin-left: 0;
+        z-index: 10;
+    }
+
+    .article-social .shareon {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.article-social__item {
+    cursor: pointer;
+    display: block;
+    margin: 10px;
+    transition: var(--transition);
+}
+
+.article-social__item img {
+    display: block;
+    width: 24px;
+    height: 24px;
+}
+
+.article-header__block {
+    position: relative;
+    padding-left: 60px;
+}
+
+@media (min-width: 768px) {
+    .article-header__block {
+        padding-left: 80px;
+    }
+}
+
+.return-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--f-grey);
+    border-radius: 4px;
+    transition: var(--transition);
+    z-index: 10;
+}
+
+.return-button:hover {
+    border-color: var(--f-black);
+}
+
+.return-button i {
+    display: block;
+    font-size: 24px;
+    color: var(--f-black);
+}
+
+.article-title {
+    display: block;
+    font-size: 23px;
+    font-weight: 700;
+    text-transform: uppercase;
+    word-break: break-word;
+    color: var(--f-black);
+    margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .article-title {
+        font-size: 44px;
+    }
+}
+
+.header-info__item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: var(--f-grey1);
+    margin-bottom: 10px;
+}
+
+.header-info__item:last-child {
+    margin-bottom: 0;
+    margin-right: 0;
+}
+
+.header-info__item i {
+    display: block;
+    margin-right: 10px;
+}
+
+.header-info__item.author {
+    font-size: 15px;
+    color: var(--f-black);
+}
+
+.header-info__item.author img {
+    width: 24px;
+    height: 24px;
+}
+
+.header-info {
+    margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .header-info {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .header-info__item {
+        margin-right: 20px;
+        margin-bottom: 0;
+    }
+}
+
+.article-main-image {
+    display: block;
+    box-sizing: border-box;
+}
+
+.article-main-image img {
+    display: block;
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+}
+
+@media (min-width: 768px) {
+    .article-main-image {
+        padding-left: 80px;
+    }
+}
+
+
+
+@media (min-width: 768px) {
+    .article-body {
+        padding-left: 80px;
+    }
+}
+
+.article-body h3 {
+    display: block;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--f-green);
+    margin-bottom: 10px;
+}
+
+.article-body p {
+    display: block;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.article-body p img {
+    display: block;
+    object-fit: contain;
+}
+@media (min-width: 992px) {
+    .section .article-body p img {
+        max-width: 100%;
+    }
+    .article-main-image img {
+        max-height: 600px;
+    }
+}
+@media (max-width: 991px) {
+    .article-body p img {
+        width: 100%;
+    }
+}
+.article-body p iframe,
+.article-body p object,
+.article-body p embed {
+    min-height: 400px !important;
+}
+
+@media (max-width: 660px) {
+    .article-body p iframe,
+    .article-body p object,
+    .article-body p embed {
+        width: 100% !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .article-body h3 {
+        font-size: 23px;
+    }
+
+    .article-body p {
+        font-size: 17px;
+    }
+}
+
+.article-body a {
+    color: var(--f-green);
+    text-decoration: underline;
+    transition: var(--transition);
+}
+
+.article-body blockquote {
+    display: block;
+    box-sizing: border-box;
+    border-radius: 6px;
+    font-size: 15px;
+    padding: 30px;
+    font-style: italic;
+    color: var(--f-black);
+    border-left: 6px solid var(--f-green);
+    background-color: var(--f-light-green1);
+    margin-bottom: 20px;
+}
+
+.article-body blockquote p:last-of-type {
+    margin-bottom: 0;
+}
+
+.article-body table {
+    display: block;
+    overflow-x: auto;
+    font-size: 15px;
+    font-weight: 400;
+    width: 100%;
+    border: 1px solid var(--f-white);
+}
+
+.article-body table thead th {
+    box-sizing: border-box;
+    padding: 10px 20px;
+    font-weight: 500;
+    vertical-align: center !important;
+    background-color: var(--f-grey3);
+    border: 1px solid var(--f-white);
+}
+
+.article-body table tbody td {
+    background-color: var(--f-white1);
+    box-sizing: border-box;
+    padding: 10px 20px;
+    border: 1px solid var(--f-white);
+}
+
+.article-body ul {
+    display: block;
+    list-style: disc;
+    font-size: 15px;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .article-body ul {
+        font-size: 17px;
+    }
+}
+
+.article-body ul li {
+    margin-bottom: 10px;
+}
+
+.article-body ul li:last-of-type {
+    margin-bottom: 0;
+}
+
+.article-body ul li ul {
+    margin-top: 10px;
+}
+
+.article-body .video-block__wrapper {
+    margin-bottom: 40px;
+}
+
+.article-body .square-button {
+    display: inline-block;
+}
+
+.article-footer__item {
+    display: block;
+    position: relative;
+    margin-bottom: 20px;
+    font-size: 15px;
+    padding-top: 20px;
+    border-top: 1px solid var(--f-grey);
+}
+
+.article-footer__item:last-of-type {
+    margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+    .article-footer__item {
+        font-size: 17px;
+    }
+}
+
+.article-footer__item img {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 20px;
+    width: 24px;
+    height: 24px;
+}
+
+.article-footer__item div {
+    padding-left: 50px;
+}

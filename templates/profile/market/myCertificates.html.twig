@@ -1,0 +1,87 @@
+{% extends 'profile/profileMarket.html.twig' %}
+{% import 'profile/market/roles/form_role_create.html.twig' as formMacros %}
+
+{%- block tabContent -%}
+    <div class="personal-area-center__tabs-wrapper">
+        <div class="personal-area-center__tab">
+            {% if user.userProperty  is defined and user.userProperty is not null %}
+                {%- if user.userProperty.userCertificatesApproved|length > 0 -%}
+                    <h3 class="personal-area__h3">Мої сертифікати</h3>
+                    <div class="personal-area__files-list">
+                        {%- if user.userProperty.userCertificatesApproved is not empty -%}
+                            {%- for certificate in user.userProperty.userCertificatesApproved -%}
+                                <a class="personal-area-file" href="javascript:void(0)"
+                                   data-fancybox="certificate-{{ loop.index }}"
+                                   data-src="{{ vich_uploader_asset(certificate) }}">
+                                    {% if certificate.mimeType == 'application/pdf' or certificate.mimeType == 'application/x-pdf' %}
+                                        <img src="{{ asset('main/pdf.jpeg') | imagine_filter('certificate') }}"
+                                             alt="{{ certificate.name }}"/>
+                                    {% else %}
+                                        <img src="{{ vich_uploader_asset(certificate) | imagine_filter('certificate') }}"
+                                             alt="{{ certificate.name }}"/>
+                                    {% endif %}
+                                    <span class="personal-area-file__name">{{ certificate.name }}</span>
+                                </a>
+                            {%- endfor -%}
+                        {%- else -%}
+                            <div class="certificate-empty">{{ 'sertificate.empty' | trans }}</div>
+                        {%- endif -%}
+                    </div>
+                {%- endif -%}
+                {%- if user.userProperty.userCertificatesNotApproved|length > 0 -%}
+                    <h3 class="personal-area__h3">Сертифікати, що очікують на узгодження</h3>
+                    <div class="personal-area__files-list">
+                        {%- if user.userProperty.userCertificatesNotApproved is not empty -%}
+                            {%- for certificate in user.userProperty.userCertificatesNotApproved -%}
+                                <a class="personal-area-file" href="javascript:void(0)"
+                                   data-fancybox="certificate-{{ loop.index }}"
+                                   data-src="{{ vich_uploader_asset(certificate) }}">
+                                    {% if certificate.mimeType == 'application/pdf' or certificate.mimeType == 'application/x-pdf' %}
+                                        <img src="{{ asset('main/pdf.jpeg') | imagine_filter('certificate') }}"
+                                             alt="{{ certificate.name }}"/>
+                                    {% else %}
+                                        <img src="{{ vich_uploader_asset(certificate) | imagine_filter('certificate') }}"
+                                             alt="{{ certificate.name }}"/>
+                                    {% endif %}
+                                    <span class="personal-area-file__name">{{ certificate.name }}</span>
+                                </a>
+                            {%- endfor -%}
+                        {%- else -%}
+                            <div class="certificate-empty">{{ 'sertificate.empty' | trans }}</div>
+                        {%- endif -%}
+                    </div>
+                {%- endif -%}
+            {% else %}
+            <h3 class="personal-area__h3">Мої сертифікати</h3>
+
+            <div>
+                <div class="certificate-empty">{{ 'sertificate.empty' | trans }}</div>
+            </div>
+            {% endif %}
+
+            <div class="field">
+                <a href="javascript:void(0)" class="square-button add-certificate-collection"
+                   data-list="#certificate-prototype">
+                    <svg>
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#plus"></use>
+                    </svg>
+                    <span>{{ 'role.add_certificate'|trans }}</span>
+                </a>
+            </div>
+            <div class="form-added-certificate-in-page hide">
+                <div class="js-certificate-row-item certificate-row-item">
+                    {{ form_start(form, {'action' : path('market_profile_my_certificates')}) }}
+                    {{ formMacros.printCertificateRow(form) }}
+                    {{ form_end(form) }}
+                    <div class="field">
+                        <a href="javascript:void(0)" class="square-button"
+                           data-profile-form="user_certificate_form"
+                           data-list="#certificate-prototype">
+                            <span>{{ 'role.save_certificate'|trans }}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{%- endblock -%}

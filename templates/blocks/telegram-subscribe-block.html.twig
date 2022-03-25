@@ -1,0 +1,26 @@
+<div class="white1-bg">
+    <div class="section">
+        <div class="subscribe__block">
+            <div class="h2">
+                {{ 'home.more_news'|trans }}
+            </div>
+            <div class="telegram-channel">
+                <div class="telegram-channel__item">
+                    <svg>
+                        <use
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                xlink:href="#telegram"
+                        ></use>
+                    </svg>
+                    <span>
+                        {{ 'home.telegram'|trans ~'-'~'home.channel'|trans }}:
+                    </span>
+                </div>
+                <a
+                        href="{{ op['telegram']['value'] }}"
+                        class="square-button green-bg-button height-50"
+                >{{ 'item.subscribe'|trans }}</a>
+            </div>
+        </div>
+    </div>
+</div>

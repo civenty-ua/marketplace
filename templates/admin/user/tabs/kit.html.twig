@@ -1,0 +1,36 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Назва</th>
+{#        <th scope="col">Зображення</th>#}
+{#        <th scope="col">Категорія</th>#}
+
+        <th scope="col">Ціна</th>
+        <th scope="col">Активно до</th>
+        <th scope="col">Дії</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in user.commodityKits %}
+        <tr>
+            <th scope="row">{{ item.id }}</th>
+            <td>{{ item.title }}</td>
+{#            <td><img src="{{ asset('upload/kit/' ~ item.image) | imagine_filter('50x50')}}"></td>#}
+{#            <td>{{ item.category.title }}</td>#}
+            <td>{{ item.price }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.activeTo|format_datetime() }}</td>
+            <td>
+                {% set itemDetail = ea_url()
+                    .setController('App\\Controller\\Admin\\Market\\CommodityKitCrudController')
+                    .setAction(constant('EasyCorp\\Bundle\\EasyAdminBundle\\Config\\Action::DETAIL'))
+                    .setEntityId(item.id)
+                %}
+                <a href="{{ itemDetail }}"><i class="action-icon fas fa-edit"></i></a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+

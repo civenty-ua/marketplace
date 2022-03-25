@@ -1,0 +1,49 @@
+{# ------------------------------------------- #}
+{# sub filters #}
+{# ------------------------------------------- #}
+{% for subFilter in filter.filters %}
+    {% set filterIndex = loop.index0 %}
+    {# ---------------------------- #}
+    {# categories #}
+    {# ---------------------------- #}
+    {% include 'market/commodity/block/appliedFilter/entitiesList.html.twig' with {
+        'title'         : 'market.product.filter.category'|trans,
+        'list'          : fields.filters[filterIndex].categories ?? [],
+        'value'         : subFilter.category ?? null,
+        'titleProperty' : 'title',
+        'inputName'     : "filters[#{filterIndex}][category]",
+    } only %}
+    {% include 'market/commodity/block/appliedFilter/entitiesList.html.twig' with {
+        'title'         : 'market.product.filter.subCategory'|trans,
+        'list'          : fields.filters[filterIndex].subCategories ?? [],
+        'value'         : subFilter.subCategory ?? null,
+        'titleProperty' : 'title',
+        'inputName'     : "filters[#{filterIndex}][subCategory]",
+    } only %}
+    {# ---------------------------- #}
+    {# category attributes #}
+    {# ---------------------------- #}
+    {% for attributeParameters in fields.filters[filterIndex].attributes ?? [] %}
+        {% include 'market/commodity/block/appliedFilter/categoryAttribute.html.twig' with {
+            'attributeParameters'   : attributeParameters,
+            'value'                 : subFilter.attributes[attributeParameters.id] ?? null,
+            'inputName'             : "filters[#{filterIndex}][attributes][#{attributeParameters.id}]",
+        } only %}
+    {% endfor %}
+    {# ---------------------------- #}
+    {# other product filters #}
+    {# ---------------------------- #}
+    {% include 'market/commodity/block/appliedFilter/checkbox.html.twig' with {
+        'title'     : 'market.product.filter.organicOnly'|trans,
+        'value'     : subFilter.organicOnly ?? null,
+        'inputName' : "filters[#{filterIndex}][organicOnly]",
+    } only %}
+{% endfor %}
+{# ------------------------------------------- #}
+{# price #}
+{# ------------------------------------------- #}
+{% include 'market/commodity/block/appliedFilter/numbersRange.html.twig' with {
+    'title'     : 'market.product.filter.price'|trans,
+    'value'     : filter.price ?? null,
+    'inputName' : 'price',
+} only %}

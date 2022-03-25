@@ -1,0 +1,56 @@
+.market-search {
+    display: flex;
+}
+.market-search label {
+    position: relative;
+    width: 100%;
+}
+.market-search label input {
+    border: 1px solid var(--f-grey);
+    border-radius: 4px 0 0 4px;
+    border-right: none;
+    color: var(--f-black);
+    font-size: 17px;
+    padding: 13px 20px;
+    outline: none;
+    transition: var(--transition);
+    width: 100%;
+}
+.market-search label input:hover,
+.market-search label input:active,
+.market-search label input:focus {
+    border-color: var(--f-green);
+}
+.market-search label .clear-button {
+    color: var(--f-orange);
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    width: 11px;
+    height: 16px;
+    font-size: 16px;
+    transform: translateY(-50%);
+}
+.market-search.empty label .clear-button {
+    display: none;
+}
+.market-search .search-button {
+    align-items: center;
+    background: var(--f-green);
+    border: 1px solid var(--f-green);
+    border-radius: 0 5px 5px 0;
+    color: var(--f-white);
+    cursor: pointer;
+    display: flex;
+    font-size: 16px;
+    justify-content: center;
+    transition: var(--transition);
+    width: 40px;
+}
+.market-search .search-button:hover,
+.market-search .search-button:active,
+.market-search .search-button:focus {
+    border-color: var(--f-orange);
+    background: var(--f-orange);
+}

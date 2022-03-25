@@ -1,0 +1,57 @@
+{# ------------------------------------------- #}
+{# SALE/BUY #}
+{# ------------------------------------------- #}
+{% set productTypesList = {
+    (constant('App\\Entity\\Market\\CommodityProduct::TYPE_BUY'))   : 'market.product.filter.productTypes.buy'|trans,
+    (constant('App\\Entity\\Market\\CommodityProduct::TYPE_SELL'))  : 'market.product.filter.productTypes.sell'|trans,
+} %}
+
+{% include 'market/commodity/block/appliedFilter/list.html.twig' with {
+    'title'     : 'market.product.filter.productType'|trans,
+    'list'      : productTypesList,
+    'value'     : filter.productType,
+    'inputName' : 'productType',
+} only %}
+{# ------------------------------------------- #}
+{# categories #}
+{# ------------------------------------------- #}
+{% include 'market/commodity/block/appliedFilter/entitiesList.html.twig' with {
+    'title'         : 'market.product.filter.category'|trans,
+    'list'          : fields.categories ?? [],
+    'value'         : filter.category ?? null,
+    'titleProperty' : 'title',
+    'inputName'     : 'category',
+} only %}
+{% include 'market/commodity/block/appliedFilter/entitiesList.html.twig' with {
+    'title'         : 'market.product.filter.subCategory'|trans,
+    'list'          : fields.subCategories ?? [],
+    'value'         : filter.subCategory ?? null,
+    'titleProperty' : 'title',
+    'inputName'     : 'subCategory',
+} only %}
+{# ------------------------------------------- #}
+{# category attributes #}
+{# ------------------------------------------- #}
+{% for attributeParameters in fields.attributes %}
+    {% include 'market/commodity/block/appliedFilter/categoryAttribute.html.twig' with {
+        'attributeParameters'   : attributeParameters,
+        'value'                 : filter.attributes[attributeParameters.id] ?? null,
+        'inputName'             : "attributes[#{attributeParameters.id}]",
+    } only %}
+{% endfor %}
+{# ------------------------------------------- #}
+{# price #}
+{# ------------------------------------------- #}
+{% include 'market/commodity/block/appliedFilter/numbersRange.html.twig' with {
+    'title'     : 'market.product.filter.price'|trans,
+    'value'     : filter.price ?? null,
+    'inputName' : 'price',
+} only %}
+{# ------------------------------------------- #}
+{# other product filters #}
+{# ------------------------------------------- #}
+{% include 'market/commodity/block/appliedFilter/checkbox.html.twig' with {
+    'title'     : 'market.product.filter.organicOnly'|trans,
+    'value'     : filter.organicOnly ?? null,
+    'inputName' : 'organicOnly',
+} only %}

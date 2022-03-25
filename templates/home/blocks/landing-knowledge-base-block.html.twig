@@ -1,0 +1,48 @@
+<div class="section paddingLeft0 paddingRight0">
+    <div class="js-glide-landing-catalog glide catalog-slider">
+        <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+                {% for item in categories %}
+                    {% include 'home/blocks/landing-knowledge-mobile.html.twig' with {'item': item} %}
+                {% endfor %}
+
+                <li class="glide__slide">
+                    <div class="landing-catalog-slider-item__block">
+                        <div class="landing-catalog-chat-bot__item">
+                            <div class="landing-catalog-chat-bot__inner-wrapper">
+                                <div class="landing-catalog-chat-bot__title">{{ 'home.question'|trans }}?</div>
+                                <a
+                                    class="square-button white-button"
+                                    href="{{ path('contacts') }}#form"
+                                >{{ 'home.feadback'|trans }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="glide__bullets" data-glide-el="controls[nav]">
+            {% for item in categories %}
+                <button class="glide__bullet" data-glide-dir="={{ loop.index0 }}"></button>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="desktop-catalog">
+        <div class="landing-catalog-item-container">
+            {% for item in categories %}
+                {% include 'home/blocks/landing-knowledge-desktop.html.twig' with {'item': item} %}
+            {% endfor %}
+
+            <div class="landing-catalog-chat-bot__item">
+                <div class="landing-catalog-chat-bot__inner-wrapper">
+                    <div class="landing-catalog-chat-bot__title">{{ 'home.question'|trans }}?</div>
+                    <a
+                        class="square-button white-button"
+                        href="{{ path('contacts') }}#form"
+                    >{{ 'home.feadback'|trans }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

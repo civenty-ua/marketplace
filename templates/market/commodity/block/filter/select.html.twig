@@ -1,0 +1,19 @@
+<div class="select-wrap">
+    <select
+        name="{{ name }}{% if multiple == true %}[]{% endif %}"
+        class="js-select2"
+        {% if multiple %}multiple{% endif %}
+    >
+        {% if emptyValue == true and not multiple%}
+            <option value=""></option>
+        {% endif %}
+        {% for key, value in list %}
+            <option
+                value="{{ key }}"
+                {% if key in values %}selected{% endif %}
+            >
+                {{ value }}
+            </option>
+        {% endfor %}
+    </select>
+</div>

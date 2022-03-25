@@ -1,0 +1,13 @@
+<form class="js-search-form form search-form" method="{{ method }}" action="{{ action }}">
+    <div class="search">
+        <div class="js-search-input">
+            <input type="text" class=" search-input" value="" name="search"
+                    placeholder="{{ 'header.i_am_looking_for'|trans }}">
+            <div class="js-search-input__clear" data-clear-tooltip-title="{{ 'clear-tooltip'|trans }}"></div>
+        </div>
+        <button type="submit" class="js-tooltip search__button" data-toggle="tooltip"
+                data-placement="auto" title="{{ 'search-tooltip'|trans }}">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+</form>

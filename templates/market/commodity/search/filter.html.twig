@@ -1,0 +1,120 @@
+{# ------------------------------------------- #}
+{# commodity type #}
+{# ------------------------------------------- #}
+<div class="field commodity-filter-faded-container">
+    {% for commodityType in [
+        constant('App\\Entity\\Market\\Commodity::TYPE_PRODUCT'),
+        constant('App\\Entity\\Market\\Commodity::TYPE_SERVICE'),
+        constant('App\\Entity\\Market\\Commodity::TYPE_KIT'),
+    ] %}
+        {% set isSelected = filter.commodityType == commodityType %}
+        <div>
+            {% include 'market/commodity/block/filter/radiobutton.html.twig' with {
+                'name'      : 'commodityType',
+                'value'     : commodityType,
+                'title'     : "market.#{commodityType}.titles.multiple"|trans,
+                'isChecked' : isSelected,
+            } only %}
+        </div>
+
+        {% if
+            isSelected and
+            commodityType == constant('App\\Entity\\Market\\Commodity::TYPE_PRODUCT')
+        %}
+            {% for type, class in {
+                (constant('App\\Entity\\Market\\CommodityProduct::TYPE_BUY'))   : 'orange',
+                (constant('App\\Entity\\Market\\CommodityProduct::TYPE_SELL'))  : 'blue',
+            } %}
+                <div class="field-checkbox sub-field">
+                    {% include 'market/commodity/block/filter/checkbox.html.twig' with {
+                        'name'      : 'productType[]',
+                        'value'     : type,
+                        'title'     : "market.product.filter.productTypes.#{type}"|trans,
+                        'isChecked' : type in filter.productType ?? [],
+                        'class'     : class,
+                    } only %}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+</div>
+{# ------------------------------------------- #}
+{# categories / subcategories #}
+{# ------------------------------------------- #}
+{% if (fields.categories ?? [])|length > 0 %}
+    <div class="field">
+        <label>{{ 'market.product.filter.category'|trans }}</label>
+        {% include 'market/commodity/block/filter/entitiesList.html.twig' with {
+            'name'              : 'category',
+            'emptyValue'        : true,
+            'multiple'          : false,
+            'entities'          : fields.categories,
+            'values'            : [filter.category ?? null],
+            'titlePropertyName' : 'title',
+        } only %}
+    </div>
+{% endif %}
+{% if (fields.subCategories ?? [])|length > 0 %}
+    <div class="field">
+        <label>{{ 'market.product.filter.subCategory'|trans }}</label>
+        {% include 'market/commodity/block/filter/entitiesList.html.twig' with {
+            'name'              : 'subCategory',
+            'emptyValue'        : true,
+            'multiple'          : false,
+            'entities'          : fields.subCategories,
+            'values'            : [filter.subCategory ?? null],
+            'titlePropertyName' : 'title',
+        } only %}
+    </div>
+{% endif %}
+{# ------------------------------------------- #}
+{# category attributes #}
+{# ------------------------------------------- #}
+{% for categoryAttributeParameters in fields.attributes %}
+    {% set input %}
+        {% include 'market/commodity/block/filter/categoryAttribute.html.twig' with {
+            'inputName'             : "attributes[#{categoryAttributeParameters.id}]",
+            'value'                 : filter.attributes[categoryAttributeParameters.id] ?? null,
+            'attributeParameters'   : categoryAttributeParameters,
+            'maxValues'             : fields.maxValues.attributes,
+        } only %}
+    {% endset %}
+
+    {% if input|trim|length > 0 %}
+        <div class="field">
+            <label>{{ categoryAttributeParameters.attribute.title }}</label>
+            {{ input }}
+        </div>
+    {% endif %}
+{% endfor %}
+{# ------------------------------------------- #}
+{# price #}
+{# ------------------------------------------- #}
+<div class="field">
+    <label>{{ 'market.product.filter.price'|trans }}</label>
+    {% include 'market/commodity/block/filter/numbersRange.html.twig' with {
+        'name'          : 'price',
+        'values'        : [
+            filter.price[0] ?? '',
+            filter.price[1] ?? '',
+        ],
+        'placeholders'  : [
+            'market.product.filter.numberFrom'|trans,
+            'market.product.filter.numberTo'|trans,
+        ],
+        'maxValue'      : fields.maxValues.price,
+    } only %}
+</div>
+{# ------------------------------------------- #}
+{# other filters #}
+{# ------------------------------------------- #}
+{% if filter.commodityType == constant('App\\Entity\\Market\\Commodity::TYPE_PRODUCT') %}
+    <div class="field">
+        {% include 'market/commodity/block/filter/checkbox.html.twig' with {
+            'name'      : 'organicOnly',
+            'value'     : 'Y',
+            'title'     : 'market.product.filter.organicOnly'|trans,
+            'isChecked' : filter['organicOnly']|default(false) == true,
+        } only %}
+    </div>
+{% endif %}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ webinar.title }}</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <h1>{{ webinar.title }}</h1>
+
+        {% if webinar.commentsAllowed %}
+            <h3>exist comments</h3>
+            <div id="exist-comments">
+                <div class="template">
+                    <hr>
+                    <label class="comment-title">
+                        <span>{{ 'comment.title'|trans }}</span>
+                        <span>#TITLE#</span>
+                    </label><br>
+                    <label class="comment-message">
+                        <span>{{ 'comment.message'|trans }}</span>
+                        <span>#MESSAGE#</span>
+                    </label>
+                    <hr>
+                </div>
+                {% for comment in comments %}
+                    <div>
+                        <hr>
+                        <label class="comment-title">
+                            <span>{{ 'comment.title'|trans }}</span>
+                            <span>{{ comment.title }}</span>
+                        </label><br>
+                        <label class="comment-message">
+                            <span>{{ 'comment.message'|trans }}</span>
+                            <span>{{ comment.message | raw }}</span>
+                        </label>
+                        <hr>
+                    </div>
+                {% endfor %}
+            </div>
+            <div
+                    id="comment-form"
+                    data-comment-post-route="{{ path('comment_post', {itemId: webinar.id, itemType: 'webinar'}) }}"
+            >
+                <label>
+                    {{ 'comment.new'|trans }}:
+                </label>
+                {{ form(commentNew) }}
+            </div>
+        {% endif %}
+        <style>
+            .template {
+                display: none;
+            }
+        </style>
+        <script>
+            $('#comment-form form').on('submit', function (event) {
+                let
+                    $form = $(this),
+                    $existCommentsBar = $('#exist-comments'),
+                    $submitButton = $form.find(':submit'),
+                    submitPath = $form.parent().attr('data-comment-post-route'),
+                    formData = {};
+
+                event.preventDefault();
+                $form.serializeArray().forEach(function (item) {
+                    formData[item.name] = item.value;
+                });
+
+                $submitButton.attr('disabled', true);
+                $.ajax({
+                    type: 'POST',
+                    url: submitPath,
+                    data: formData,
+                    success: function (data) {
+                        let $newComment = $existCommentsBar.find('.template').clone();
+
+                        $newComment
+                            .find('.comment-title span:last-child')
+                            .html(data.title);
+                        $newComment
+                            .find('.comment-message span:last-child')
+                            .html(data.message);
+                        $newComment
+                            .appendTo($existCommentsBar)
+                            .removeClass('template');
+                        $submitButton.attr('disabled', false);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                        $submitButton.attr('disabled', false);
+                    }
+                });
+                return false;
+            });
+        </script>
+    </body>
+</html>

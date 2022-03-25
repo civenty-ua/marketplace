@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'messages' %}
+{% block title %}{{ 'form_registration.title_register'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <h1 class="h1">{{ 'success_registration.confirm_title'|trans }}</h1>
+        <div class="section__subtitle">{{ 'success_registration.confirm_div'|trans }}</div>
+    </div>
+{% endblock %}

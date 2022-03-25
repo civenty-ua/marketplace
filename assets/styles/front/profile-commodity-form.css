@@ -1,0 +1,210 @@
+.commodity-creating-form .field.required > label:first-child::after {
+    color: var(--f-red);
+    content: '*';
+    display: inline-block;
+}
+.commodity-creating-form .field.hidden {
+    display: none;
+}
+/** *********************************************
+ * Image.
+ ***********************************************/
+.commodity-creating-form .field.product-image {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+.commodity-creating-form .field.product-image figure {
+    align-items: center;
+    background-color: #F3F5F6;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    margin: 0 0 40px 0;
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+}
+.commodity-creating-form .field.product-image figure img {
+    cursor: pointer;
+    display: block;
+    opacity: 0;
+    object-fit: cover;
+    transition: opacity 0.3s ease 0s;
+    height: 100%;
+    width: 100%;
+}
+.commodity-creating-form .field.product-image figure img[src] {
+    opacity: 1;
+}
+.commodity-creating-form .field.product-image figure a {
+    background-image: url(../images/pdf-icon.png);
+    background-size: 50% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+    width:  100%;
+    height: 100%;
+}
+.commodity-creating-form .field.product-image .active-button {
+    align-items: center;
+    background-color: var(--f-green);
+    border-radius: 4px;
+    color: var(--f-white);
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    padding: 0 16px;
+    transition: var(--transition);
+}
+.commodity-creating-form .field.product-image .active-button:hover {
+    background-color: var(--f-orange);
+}
+.commodity-creating-form .field.product-image .active-button:active,
+.commodity-creating-form .field.product-image .active-button:focus {
+    background-color: var(--f-orange2);
+}
+.commodity-creating-form .field.product-image.fill                  .active-button .title-add,
+.commodity-creating-form .field.product-image:not(.fill)            .active-button .title-change,
+.commodity-creating-form .field.product-image.pdf-uploaded          figure img,
+.commodity-creating-form .field.product-image:not(.pdf-uploaded)    figure a {
+    display: none;
+}
+.commodity-creating-form .field.product-image input {
+    cursor: pointer;
+    height: 40px;
+    opacity: 0;
+    position: absolute;
+    width: 100px;
+}
+
+@media (min-width: 768px) {
+    .commodity-creating-form .field.product-image {
+        justify-content: flex-start;
+        flex-direction: row;
+    }
+    .commodity-creating-form .field.product-image figure {
+        margin: 0 40px 0 0;
+    }
+}
+/** *********************************************
+ * Double field.
+ ***********************************************/
+.field.double {
+    display: flex;
+}
+.field.double > * {
+    margin: 0;
+    width: calc((100% - 20px) / 2);
+}
+.field.double > *:first-child {
+    margin-right: 20px;
+}
+/** *********************************************
+ * Alert row.
+ ***********************************************/
+.alert-row {
+    align-items: flex-start;
+    display: flex;
+}
+.alert-row > i {
+    color: var(--f-green);
+    font-size: 22px;
+    padding-right: 18px;
+}
+.alert-row > div {
+    width: calc(100% - 40px);
+}
+/** *********************************************
+ * Kit commodities alerts.
+ ***********************************************/
+.commodity-creating-form .field.commodities-validation-alert {
+    color: var(--f-red);
+}
+.commodity-creating-form .field.commodities-validation-alert:not(.validation-error),
+.commodity-creating-form .field.commodities-validation-alert input {
+    display: none;
+}
+/** *********************************************
+ * Kit commodities selectors.
+ ***********************************************/
+.user-commodities-list {
+    display: none;
+}
+.back-to-users-list-link {
+    align-items: center;
+    color: var(--f-grey1);
+    cursor: pointer;
+    display: flex;
+}
+.back-to-users-list-link i {
+    margin-right: 5px;
+}
+.back-to-users-list-link:hover  span,
+.back-to-users-list-link:active span,
+.back-to-users-list-link:focus  span {
+    text-decoration: underline;
+}
+/** *********************************************
+ * Kit price summary.
+ ***********************************************/
+.lit-commodities-price-summary .price b {
+    color: var(--f-green);
+    font-size: calc(1em + 6px);
+}
+.lit-commodities-price-summary .price span {
+    font-size: calc(1em - 2px);
+}
+/** *********************************************
+ * Kit name edition.
+ ***********************************************/
+.kit-title-edit {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+.kit-title-edit > *:not(:first-child) {
+    margin-left: 20px;
+}
+.kit-title-edit .title {
+    font-size: calc(1em + 6px);
+    font-weight: bold;
+    width: calc(100% - 44px);
+}
+.kit-title-edit .input-text-wrap {
+    flex-grow: 1;
+}
+.kit-title-edit .edit,
+.kit-title-edit .cancel {
+    cursor: pointer;
+    width: 24px;
+}
+.kit-title-edit .edit {
+    fill: var(--f-green);
+}
+.kit-title-edit:not(.process) .input-text-wrap,
+.kit-title-edit:not(.process) .apply,
+.kit-title-edit:not(.process) .cancel,
+.kit-title-edit.process .title,
+.kit-title-edit.process .edit,
+.kit-title-edit.process.empty .apply {
+    display: none;
+}
+/** *********************************************
+ * Form errors.
+ ***********************************************/
+.commodity-creating-form .field.product-image.validation-error      figure,
+.commodity-creating-form .field.field-checkbox.validation-error     .checkbox-wrap input + span::before,
+.commodity-creating-form .field.field-input-text.validation-error   input,
+.commodity-creating-form .field.field-input-text.validation-error   textarea,
+.commodity-creating-form .field.field-select.validation-error       .select2-container--default .select2-selection--single {
+    border-color: var(--f-red);
+}
+.commodity-creating-form .field.field-checkbox.validation-error     .checkbox-wrap input + span,
+.commodity-creating-form .field.field-input-text.validation-error   > label:first-child,
+.commodity-creating-form .field.field-select.validation-error       > label:first-child {
+    color: var(--f-red);
+}

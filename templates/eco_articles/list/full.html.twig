@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block canonical %}{{ url('eco_articles_list') }}{% endblock %}
+
+{% block title %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_title }}
+    {% else %}
+        {{ 'menu.about_us.eco-articles'|trans }}
+    {% endif %}
+{% endblock %}
+
+{% block description %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_description }}
+    {% endif %}
+{% endblock %}
+
+{% block keywords %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_keywords }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% include 'eco_articles/list/list.html.twig' %}
+    {% include 'blocks/business-tools-lite-block.html.twig' with {
+        'pagesList' : pagesList
+    } %}
+    {% include 'blocks/catalog-block.html.twig' %}
+    {% include 'blocks/knowledge-base-block.html.twig' with {
+        'categories': categories
+    } %}
+    {% include 'blocks/top-tags-block.html.twig' with {'topTags': topTags} %}
+{% endblock %}

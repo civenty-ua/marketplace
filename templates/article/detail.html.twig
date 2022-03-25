@@ -1,0 +1,166 @@
+{% extends 'layout/content.html.twig' %}
+
+{% block title %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_title }}
+    {% else %}
+        {{ article.title }}
+    {% endif %}
+{% endblock %}
+
+{% block description %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_description }}
+    {% endif %}
+{% endblock %}
+
+{% block keywords %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_keywords }}
+    {% endif %}
+{% endblock %}
+
+{% block opengraph_title %}{{ article.title }}{% endblock %}
+{% block opengraph_description %}{% if article.description %}{{ article.description| striptags| raw }}{% elseif article.short %}{{ article.short| striptags| raw }}{% else %}{{ op['default_description']['value'] }}{% endif %}{% endblock %}
+{% block opengraph_url %}{{ app.request.uri }}{% endblock %}
+{% block opengraph_image %}{{ baseDom~asset('upload/article/'~ article.imageName) }}{% endblock %}
+{% block body %}
+    <div class="section">
+        <ul class="breadcrumbs">
+            <li><a href="{{ path('home') }}">{{ 'home.home'|trans }}</a></li>
+            <li><a href="{{ path('courses_and_webinars', {'type': 'article'}) }}">{{ 'header.article'|trans }}</a></li>
+            <li>{{ article.title }}</li>
+        </ul>
+
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org/",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "{{ 'home.home'|trans }}",
+                        "item": "{{ url('home') }}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "{{ 'header.article'|trans }}",
+                        "item": "{{ url('courses_and_webinars', {'type': 'article'}) }}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": "{{ article.title }}",
+                        "item": "{{ app.request.uri }}"
+                    }
+                ]
+            }
+        </script>
+
+        <div class="article-header">
+            <div class="article-social">{# todo configure shareon (Taras) #}
+                <div class="shareon" data-url="{{ app.request.uri }}">
+                    <button class="facebook"></button>
+                    <button class="linkedin"></button>
+                    <button class="telegram"></button>
+                    <button class="twitter"></button>
+                </div>
+            </div>
+
+            <div class="article-header__block">
+                <a class="return-button" href="{{ app.request.headers.get('referer') }}">
+                    <i class="fas fa-angle-left"></i>
+                </a>
+                <h1 class="article-title">{{ article.title }}</h1>
+                <div class="header-info">
+                        {% set month = article.createdAt|date('M') %}
+                        {% set day = article.createdAt|date('d') %}
+                        {% set year = article.createdAt|date('Y') %}
+                    <div class="header-info__item">
+                        <i class="far fa-calendar"></i>
+                        <span>{{ '%s %s %s'|format(day,month|trans, year) }}</span>
+                    </div>
+                    {% if comments.exist %}
+                        <div class="header-info__item">
+                            <i class="far fa-comment"></i>
+                            <span>{{ comments.totalCount }}</span>
+                        </div>
+                    {% endif %}
+                    <div class="header-info__item">
+                        <i class="far fa-eye"></i>
+                        <span>{{ 'item.views'|trans }}{{ ' ' ~ article.getViewsAmount() }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-main-image">
+                {% set mainImage = asset('upload/article/' ~ article.imageName) %}
+
+                <img src="{{ mainImage }}" alt="{{ article.title }}">
+            </div>
+        </div>
+
+        <div class="article-body">
+            {{ article.content|raw|fileparser }}
+        </div>
+    </div>
+
+    {% include 'article/blocks/review-block.html.twig' %}
+    {% include 'blocks/top-tags-block.html.twig' with {'topTags': topTags} %}
+    {% if similar | length > 0 %}
+        {% include 'article/blocks/similar-articles-block.html.twig' with {
+            'topItems': similar
+        } %}
+    {% endif %}
+    {% if article.commentsAllowed %}
+        {% include 'comment/item-comments-list.html.twig' with {
+            'item'      : article,
+            'user'      : user,
+            'comments'  : {
+                'form'          : comments.form,
+                'exist'         : comments.exist,
+                'pageSize'      : comments.pageSize,
+                'totalCount'    : comments.totalCount,
+            },
+        } only %}
+    {% endif %}
+    {% include 'blocks/business-tools-lite-block.html.twig' with {
+        'pagesList': pagesList
+    } %}
+    {% include 'blocks/catalog-block.html.twig' %}
+    {% if categories|length > 0 %}
+        {% include 'blocks/knowledge-base-block.html.twig' with {
+            'categories': categories
+        } %}
+    {% endif %}
+
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org/",
+            "@type": "Article",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "{{ app.request.uri }}"
+            },
+            "author": {
+                "@type": "Person",
+                "name": "{{ 'title'|trans }}",
+                "url": "{{ url('home') }}"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "{{ 'title'|trans }}",
+                "url": "{{ url('home') }}",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ asset('images/logo-1.svg') }}"
+                }
+            },
+            "headline": "{{ article.title }}",
+            "image": "{{ mainImage }}",
+            "datePublished": "{{ article.createdAt | date('Y-m-d') }}",
+            "dateModified": "{{ article.updatedAt | date('Y-m-d') }}"
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,161 @@
+<div id="tab_edit_profile" class="personal-area-center__tab">
+
+    <div class="personal-area-center__tab-edit-profile">
+        <h3 class="personal-area__h3">Редагування профілю</h3>
+
+        <div class="personal-area__fields-group">
+
+            <div class="field field-avatar">
+                <figure class="field-avatar__figure">
+                    <img class="field-avatar__image" alt="">
+                </figure>
+                <div class="field-avatar__file-input">
+                    <span class="btn-h40-input-file-green">
+                        <span>Додати фото</span>
+                        <span>Змінити фото</span>
+                        <input type="file" size="1" value="" readonly="readonly" accept="image/*"
+                                title="Вибрати інше зображення">
+                    </span>
+                </div>
+            </div>
+
+            <div class="field field-input-text">
+                <label>Прізвище, ім'я, по батькові</label>
+                <div class="input-text-wrap">
+                    <input type="text" name="username" data-name="username">
+                </div>
+                <div class="error">Текст ошибки текст ошибки</div>
+            </div>
+
+            <div class="field field-radio">
+                <div class="radio-wrap">
+                    <label>
+                        <input type="radio" name="sex" data-name="sex" value="man" checked>
+                        <span>Чоловік</span>
+                    </label>
+                </div>
+                <div class="radio-wrap">
+                    <label>
+                        <input type="radio" name="sex" data-name="sex" value="woman">
+                        <span>Жінка</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="field field-text">
+                <label>Адреса електронної пошти</label>
+                <p class="text">petrenko@gmail.com</p>
+            </div>
+
+            <div class="field field-input-text">
+                <label>Мобільний телефон</label>
+                <div class="input-text-wrap">
+                    <input type="tel"
+                            value="+38 067 345 33 33"
+                            name="phone"
+                            data-name="phone"
+                            placeholder="+38 ___ ___ __ __"
+                            data-phone-mask="+38 000 000 00 00"
+                    >
+                </div>
+                <div class="error">Текст ошибки текст ошибки</div>
+            </div>
+
+            <div class="field">
+                <a class="btn-h40-green" href="#">
+                    <span>Підтвердити телефон</span>
+                </a>
+            </div>
+
+            <div class="field field-select">
+                <label>Область</label>
+                <div class="select-wrap">
+                    <select name="region" class="js-select2">
+                        <option value="02">Вінницька</option>
+                        <option value="03">Волинська</option>
+                        <option value="04">Дніпропетровська</option>
+                        <option value="05">Донецька</option>
+                        <option value="06">Житомирська</option>
+                        <option value="07">Закарпатська</option>
+                        <option value="08" selected>Запорізька</option>
+                        <option value="09">Івано-Франківська</option>
+                        <option value="10">Київ та Київська</option>
+                        <option value="11">Кіровоградська</option>
+                        <option value="12">Луганська</option>
+                        <option value="13">Львівська</option>
+                        <option value="14">Миколаївська</option>
+                        <option value="15">Одеська</option>
+                        <option value="15">Полтавська</option>
+                        <option value="17">Рівненська</option>
+                        <option value="18">Тернопільська</option>
+                        <option value="19">Севастополь</option>
+                        <option value="20">Сумська</option>
+                        <option value="21">Тернопільська</option>
+                        <option value="22">Харківська</option>
+                        <option value="23">Херсонська</option>
+                        <option value="24">Хмельницька</option>
+                        <option value="25">Черкаська</option>
+                        <option value="26">Чернівецька</option>
+                        <option value="27">Чернігівська</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="field field-select">
+                <label>Основна діяльність в агросфері</label>
+                <div class="select-wrap">
+                    <select name="activity" class="js-select2">
+                        <option value="01">Якась діяльність</option>
+                        <option value="02">Склады ломятся от зерна</option>
+                        <option value="03">Давайте разбираться: небо темнеет</option>
+                        <option value="04">Давайте разбираться</option>
+                        <option value="04">Новая модель организационной деятельности</option>
+                        <option value="04">Все чаще появляется</option>
+                        <option value="04">Главные СМИ предупреждают</option>
+                        <option value="04">Граница обучения</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="field field-select">
+                <label>Культури</label>
+                <div class="select-wrap">
+                    <select name="culture" class="js-select2" multiple>
+                        <option value="01" selected>яблука</option>
+                        <option value="02">груші</option>
+                        <option value="03" selected>виноград</option>
+                        <option value="04" selected>полуниця</option>
+                        <option value="05">картопля</option>
+                        <option value="06" selected>капуста</option>
+                        <option value="07">морква</option>
+                        <option value="08">малина</option>
+                        <option value="09">смородина</option>
+                        <option value="10">агрус</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="field field-checkbox">
+                <div class="checkbox-wrap">
+                    <label>
+                        <input type="checkbox" name="subscribe" data-name="subscribe" checked>
+                        <span>Підписатися на новини сервісу</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="field field-buttons">
+                <div class="buttons-list">
+                    <a class="btn-h50-green-line" href="#">
+                        <span>Відміна</span>
+                    </a>
+                    <button class="btn-h50-green">
+                        <span>Зберегти</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

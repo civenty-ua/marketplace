@@ -1,0 +1,35 @@
+<div
+    class="commodity-creating-form steps-form {{ class ?? '' }}"
+    data-title-next="{{ 'market.profile.commodityForm.next'|trans }}"
+    data-title-previous="{{ 'market.profile.commodityForm.previous'|trans }}"
+    data-title-finish="{{ 'market.profile.commodityForm.finish'|trans }}"
+    data-is-new="{{ form.vars.data.id ? 'N' : 'Y' }}"
+    {% for key, value in dataParameters ?? [] %}
+        {{ key }}="{{ value }}"
+    {% endfor %}
+>
+    {{ form_start(form) }}
+        {% set formErrors = form.vars.errors.form.getErrors(true) %}
+
+        {% if formErrors|length > 0 %}
+            <ul class="errors-block">
+                {% for error in formErrors %}
+                    <li>{{ error.message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% for step in steps %}
+            <h6>{{ 'market.profile.commodityForm.step'|trans }} {{ loop.index }}</h6>
+            <section>
+                <div class="personal-area__fields-group">
+                    {{ step }}
+                </div>
+            </section>
+        {% endfor %}
+
+        <div class="submit-section">
+            {{ form_row(form.submit) }}
+        </div>
+    {{ form_end(form) }}
+</div>

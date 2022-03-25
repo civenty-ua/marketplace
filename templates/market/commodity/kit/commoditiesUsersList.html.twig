@@ -1,0 +1,26 @@
+{% set users = {} %}
+
+{% for commodity in item.commodities %}
+    {% set userKey = "user-#{commodity.user.id}" %}
+
+    {% if userKey not in users|keys %}
+        {% set users = users|merge({
+            (userKey) : commodity.user
+        }) %}
+    {% endif %}
+{% endfor %}
+
+{% for user in users %}
+    <a
+        href="{{ path('market_user_detail', {'id' : user.id }) }}"
+        class="product-list-item"
+    >
+        {% include 'market/user/block/avatar.html.twig' with {
+            'user'  : user,
+            'class' : 'product-list-item__image avatar',
+        } only %}
+        <div class="product-list-item__text">
+            {{ user.name }}
+        </div>
+    </a>
+{% endfor %}

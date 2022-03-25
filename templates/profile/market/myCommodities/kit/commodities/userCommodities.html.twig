@@ -1,0 +1,23 @@
+{% extends 'market/itemsComponent.html.twig' %}
+
+{% set rebuildUrl = path('market_profile_commodity_kit_user_commodities_rebuild') %}
+{# -------------------------------------------------------------------- #}
+{# hidden fields #}
+{# -------------------------------------------------------------------- #}
+{% block hiddenFields %}
+    {% include 'profile/market/myCommodities/kit/commodities/hiddenSelector.html.twig' with {
+        'name'      : 'selectedCommodities',
+        'choices'   : form.commodities.vars.choices,
+        'value'     : form.commodities.vars.data,
+    } only %}
+    <input
+        type="hidden"
+        name="selectedUser"
+        value="0"
+    >
+{% endblock %}
+{# -------------------------------------------------------------------- #}
+{# items list #}
+{# -------------------------------------------------------------------- #}
+{% block itemsList %}
+{% endblock %}

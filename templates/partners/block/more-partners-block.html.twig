@@ -1,0 +1,35 @@
+<div class="section">
+    <h2 class="h2">{{ 'partners.more'|trans }}</h2>
+    <div class="js-glide glide" data-max-items-per-slide="3">
+        <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+                {% for item in items %}
+                    <li class="glide__slide">
+                        <div class="expert-item">
+                            <a class="catalog-item" href="{{ path('partner-detail', {'slug': item.slug}) }}">
+                                <img src="{{ asset('upload/partner/' ~ item.image) }}" alt="{{ item.name }}">
+                            </a>
+                                <a class="expert-item__name text-center" href="{{ path('partner-detail', {'slug': item.slug}) }}">
+                                    {{ item.name }}
+                                </a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="glide__arrows" data-glide-el="controls">
+            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+                <svg width="36" height="80" viewBox="0 0 36 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.0001 9.13334L9.85812 40L22.0001 70.8667" stroke="black" stroke-width="1.5"/>
+                </svg>
+            </button>
+            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+                <svg width="36" height="80" viewBox="0 0 36 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.9999 9.13334L26.1419 40L13.9999 70.8667" stroke="black" stroke-width="1.5"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <a href="{{ path('partners') }}"
+            class="square-button height-50 green-bg-button centeredBlock">{{ 'home.view_all'|trans }}</a>
+</div>

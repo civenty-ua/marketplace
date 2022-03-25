@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block meta_robots %}{{ metaRobots }}{% endblock %}
+
+{% block title %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_title }}
+    {% else %}
+        {{ 'home.other_courses'|trans }}
+    {% endif %}
+{% endblock %}
+
+{% block description %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_description }}
+    {% endif %}
+{% endblock %}
+
+{% block keywords %}
+    {% if seo is defined and seo is not null %}
+        {{ seo.meta_keywords }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% include 'item/list.html.twig' with {
+        'categories': categories,
+        'crops': crops,
+        'partners': partners,
+        'experts': experts,
+        'coursesCount': coursesCount,
+        'articlesCount': articlesCount,
+        'webinarsCount': webinarsCount,
+        'items': items
+    } %}
+    {% include 'blocks/knowledge-base-block.html.twig' with {'categories': categoriesBlock} %}
+    {% include 'blocks/top-tags-block.html.twig' with {'topTags': topTags} %}
+{% endblock %}

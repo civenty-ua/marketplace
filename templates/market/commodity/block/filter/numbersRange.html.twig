@@ -1,0 +1,24 @@
+<div
+    class="js-price-slider price-slider"
+    data-max-value="{{ maxValue }}"
+></div>
+<div class="slider-input">
+    <input
+        type="number"
+        value="{{ values[0] ?? '' }}"
+        class="slider-input__from form-text"
+        name="{{ name }}[]"
+        placeholder="{{ placeholders[0] ?? '' }}"
+        min="0"
+        max="{{ maxValue }}"
+    >
+    <input
+        type="number"
+        value="{{ values[1] ?? '' }}"
+        class="slider-input__to form-text"
+        name="{{ name }}[]"
+        placeholder="{{ placeholders[1] ?? '' }}"
+        min="0"
+        max="{{ maxValue }}"
+    >
+</div>

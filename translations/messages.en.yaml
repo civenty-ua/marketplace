@@ -1,0 +1,1329 @@
+modal:
+  title: "Раді вітати Вас на сервісі!"
+  line1: 'Ваша поточна роль - %roles%. Ви можете ознайомитись з іншими ролями і розширити свою роль <a class="font-weight-bold" href="%pathUri%">тут</a>'
+  line2: 'Прочитати про сервіс і ознайомитися з правилами та можливостями Ви можете <a class="font-weight-bold" href="%pathUri%">тут</a>'
+title: AgroWiki
+form_registration:
+  remember: "Remember me"
+  not_register: "Not registered?"
+  login: "Login"
+  forgot: "Forgot your password"
+  verifi_phone: "Verify phone"
+  enter_code: "Enter the code from the SMS"
+  code_invalid: 'The entered code is not valid'
+  cancel: "Cancel"
+  title_register: 'Registration on the portal'
+  register: 'Register'
+  name: "First and last name"
+  email: "Email"
+  phone: "Phone"
+  gender_label: "Become a"
+  date_of_birth: "Date of birth"
+  agree_terms: "I agree with the rules of the service"
+  agree_terms2: "I allow the processing of personal data"
+  agree_subscribe: "I subscribe to the newsletter"
+  plain_password: "Password"
+  confirm_password: "Confirm password"
+  password_regex: 'The password must be at least 8 characters long, contain numbers and Latin letters, including uppercase.'
+  password_confirm_error: 'Passwords are different'
+  password_incorrect: 'Invalid password'
+  gender:
+    men: 'Man'
+    women: 'Woman'
+  region: 'Region'
+  region_select: 'Оберіть область'
+  roles: 'Roles'
+  email_verify: 'Your email address has been verified.'
+  confirm_email: 'Please Confirm your Email'
+  confirm_email_title: 'Hi! Please confirm your email!'
+  confirm_email_error: 'Your Email isn`t confirmed'
+  unknown_email_error: 'unknown Email'
+  confirm_email_link: 'Send email confirmation letter once more'
+  link: 'Please confirm your email address by clicking the following link'
+  link_confirm: 'Confirm my Email'
+  date_expire: 'This link will expire in'
+  gheers: 'Cheers'
+  sms: 'This message from UHBDP. Your code: '
+  captcha: 'Your computer or network may be sending automated queries'
+  captcha_mis: 'The captcha value is missing'
+  captcha_connection_failed: 'Google Recaptcha does not response'
+  birthday_error: 'You could not be born in the future'
+success_registration:
+  confirm_title: "Hi! Please confirm your email!"
+  confirm_div: "Please confirm your email address"
+form_reset:
+  title: 'Reset your password'
+  enter_emeil: 'Enter your email address and we we will send you a link to reset your password.'
+  enter_password: 'Enter your new password'
+  send_emeil: 'Send'
+  send_password: 'Save'
+  new_password: 'New password'
+  repeat_password: 'Repeat Password'
+  invalid_message: 'The password fields must match.'
+  check_title: 'Password Reset Email Sent'
+  check_text: 'An email has been sent that contains a link that you can click to reset your password. This link will expire in'
+  try_again_1: "If you don't receive an email please check your spam folder or"
+  try_again_2: 'try again'
+  link_expired: 'There was a problem validating your reset request - The email link in your email is expired. Please try to reset your password again.'
+feedback_form:
+  title: "Feedback form"
+  header: "You are in feedback form page %ENTITY_TYPE% - %ENTITY_NAME%"
+  success: "Thank You! Your feedback about %ENTITY_TYPE% %ENTITY_NAME% sent"
+  parent_item:
+    article: 'article'
+    course: 'courses'
+    webinar: 'webinar'
+    other: 'element'
+  question:
+    title: 'Name'
+    description: 'Description'
+    parameters: 'Parameters'
+    type: 'type'
+    types:
+      string: 'string'
+      number: 'number'
+      rate: 'rate'
+      review: 'review'
+    required: "Required field"
+    sort: 'Sort order'
+    answer: 'Answer'
+  save: 'Save'
+user_feedback:
+  user:
+    entity: 'User'
+    name: "User (name)"
+    gender: "User (gender)"
+    region: "User (region)"
+  parent_item_type: 'Element type'
+  parent_item:
+    common: 'Element'
+    article: 'Article'
+    course: 'Course'
+    webinar: 'Webinar'
+  created_at: 'Date of creation'
+  answers: 'Answers'
+  export: 'Export'
+  gender:
+    male: 'male'
+    female: 'female'
+comment:
+  new:
+    message: 'Comment'
+    messagePlaceholder: 'Your comment'
+    save: 'Submit'
+  list:
+    title: 'Comments'
+    showMore: 'Show more'
+    avatar: 'User avatar'
+subscribe:
+  title: 'Subscribe!'
+  message: 'Every week we prepare the most interesting for you'
+  action:
+    title: 'Subscribe on %target%'
+    success: 'Subscription successful'
+    failed: 'Error subscribing'
+email:
+  item_feedback:
+    title: 'Review on %type% "%name%"'
+    types:
+      article: 'article'
+      course: 'course'
+      webinar: 'webinar'
+      other: 'item'
+      occurrence: 'occurrence'
+    types2:
+      article: 'article'
+      course: 'course'
+      webinar: 'webinar'
+      other: 'item'
+      occurrence: 'occurrence'
+    body: 'Thanks form watching %type% "%name%"'
+    link: 'How about <a href="%link%">feedback us?</a>'
+'[Default]': '[Default]'
+user:
+  avatar: 'Avatar'
+  change_photo: 'Change photo'
+  add_photo: 'Add photo'
+  block_in_dev: 'Блок знаходиться в розробці для вашої ролі!'
+  roles:
+    ROLE_USER: 'User'
+    ROLE_ADMIN_EDUCATION: 'Administrator (education platform)'
+    ROLE_ADMIN_MARKET: 'Administrator (market place)'
+    ROLE_SUPER_ADMIN: 'Superadmin'
+    ROLE_WHOLESALE_BUYER: 'Buyer'
+    ROLE_SALESMAN: 'Seller'
+    ROLE_SERVICE_PROVIDER: 'Service provider'
+General: 'General'
+Jan: January
+Feb: February
+Mar: March
+Apr: April
+May: May
+Jun: June
+Jul: July
+Aug: August
+Sep: September
+Oct: October
+Nov: November
+Dec: December
+NJan: January
+NFeb: February
+NMar: March
+NApr: April
+NMay: May
+NJun: June
+NJul: July
+NAug: August
+NSep: September
+NOct: October
+NNov: November
+NDec: December
+
+header:
+  login: 'Login'
+  registration: 'Registration'
+  logout: 'Logout'
+  calls_are_free: 'Calls are free'
+  favorites: 'Favorites'
+  call: 'Call'
+  call_text: '<p class="call-dropdown__text">Calls are free from all numbers of fixed and mobile communication operators of Ukraine</p><p class="call-dropdown__text"><strong>Mon-Fri, 08:00-17:00 </strong></p>'
+  all: 'All'
+  course: 'Courses'
+  webinar: 'Webinars'
+  article: 'Articles'
+  business: 'Business tools'
+  catalog: 'Catalogs'
+  i_am_looking_for: "I'm looking for..."
+  my_profile: 'Profile'
+menu:
+  study:
+    label: 'Learning'
+    courses: 'Courses'
+    webinars: 'Webinars'
+    articles: 'Articles'
+    other: 'Videos'
+    occurrence: 'Events'
+  home: 'Home'
+  calendar_of_events: 'Calendar of events'
+  knowledge_base: 'Knowledge base'
+  business_tools: 'Business tools'
+  catalog:
+    label: 'Catalogs'
+    catalog_of_ecotechnologies: 'Catalog of ecotechnologies'
+    catalog_of_small_mechanization: 'Catalog of small mechanization'
+    support_program:
+      code: 'Catalog of state support programs'
+  about_us:
+    label: 'About us'
+    project: 'About project'
+    news: 'News'
+    eco-articles: 'Eco-articles'
+    activity: 'Activity'
+    partners: 'Partners'
+    experts: 'Experts'
+    success_stories: 'Success stories'
+    contacts: 'Contacts'
+  trading_floor:
+    label: 'Marketplace'
+    goods: 'Goods'
+    services: 'Services'
+    proposals: 'Proposals'
+    about: 'How it works?'
+    contacts: 'Contacts'
+    organic_product: 'Organic product'
+  success_stories: 'Histories of success'
+Ukraine: 'Uk'
+English: 'En'
+home:
+  read_more: 'Read more'
+  title1: '<strong class="green">AgroWiki is the first platform of agricultural knowledge</strong>'
+  title2: '<strong class="green">Learn interestingly and sell successfully!</strong>'
+  title_middle: 'FEEL THE TASTE OF A <strong class="green">PROFITABLE</strong> AGRICULTURAL BUSINESS!<br/>'
+  partners_text: '<strong class="green">Get advice</strong> on agronomy and business from real professionals in Ukraine!'
+  study_text: '<strong class = "green"> Learn </strong> from home - our webinars and online courses are open to everyone!'
+  business_tools_text: '<strong class = "green"> Improve your business </strong> with our business tools!'
+  technology_text: '<strong class = "green"> Choose technologies that </strong> make physical work easier and are environmentally friendly'
+  users_text: 'farmers of Ukraine are already participants of the AgroWiki project.'
+  join: 'Join'
+  registration: 'Register'
+  question: 'There are questions'
+  feadback: "Feedback form"
+  webinars: 'webinars'
+  courses: 'courses'
+  success_story: 'success stories'
+  other_courses: 'Training materials AgroWiki'
+  view_all: 'View all'
+  view_all_exsperts: 'View all'
+  article: 'Article'
+  webinar: 'Webinar'
+  course: 'Course'
+  partner: 'Partner'
+  why: 'Why learn from AgroWiki'
+  goal: 'The goal of UHBDP is free access to knowledge for horticultural growers'
+  task: 'The task of the organization'
+  task_detail: 'Thus, a high-quality prototype of a future project requires an analysis of the rethinking of foreign economic policies.'
+  reviews: 'Manufacturer reviews'
+  home: 'Home'
+  news: 'News'
+  telegram: 'Telegram'
+  channel: 'channel'
+  more_news: 'More news on our'
+  partners: 'Partners'
+  experts: 'Experts'
+  studying: 'Studying materials'
+  cookie: 'Our website uses cookies to improve your experience.'
+  interesting_videos: 'Interesting thematic videos'
+item:
+  all: 'Select all'
+  clear: 'Clear all'
+  category: 'Categories'
+  category_learning_title: 'Learning Materials'
+  crops: 'Crops'
+  partners: 'Partners'
+  experts: 'Experts'
+  regions: 'Regions'
+  ok: 'Accept'
+  cancel: 'Cancel'
+  title: 'Get to know with the materials'
+  description: 'The goal of UHBDP is to transform access to knowledge for horticultural growers'
+  articles: 'Articles'
+  webinars: 'Webinars'
+  courses: 'Courses'
+  other: 'Videos'
+  filters: 'Filters'
+  knowledge_base: 'Knowledge base'
+  popular_tags: 'Popular Tags'
+  tags: 'Tags'
+  consulting: 'Individual consultations'
+  views: 'Views'
+  created_at: 'Release date'
+  reviews: 'Reviews'
+  about: 'About'
+  web-site: 'Web-site'
+  sort_date: 'By date'
+  sort_name: 'By name'
+  sort_views: 'By popularity'
+  subscribe_to: 'Subscribe to '
+  subscribe: 'Subscribe'
+  like_material: 'Did you like material?'
+  rated: 'Already rated by: '
+  average_mark: 'Rating: '
+  excellent_mark: 'Excellent'
+  so-so_mark: 'So-so'
+  similar_items: 'Similar materials'
+  other_stories: 'Other stories'
+  awaits: 'Coming soon'
+  occurrence_you_registered: 'You have already registered on occurrence'
+  webinar_you_registered: 'You have already registered on webinar'
+  webinar_registration_success: 'You have successfully registered on webinar'
+  webinar_registration_dear: 'Dear '
+  webinar_registration_msg_part_one: 'This message from UHBDP. You have successfully registered on webinar'
+  webinar_registration_msg_part_two: 'This is yours URL to join our webinar '
+  webinar_registration_msg_part_three: 'Webinar  starts  - '
+  webinar_registration_error: 'Something went wrong'
+  webinar_email: 'Email with webinar invite URL has been sent. Please check your mailbox.'
+  webinar_email_subject: 'Invitation to Webinar'
+  no_found: 'There is nothing behind your pooshukovy feed. Try to change the filter or sound power'
+  webinar_estimation: 'Your rating has been taken into account'
+  webinar_estimation_login: 'You have to be authorized to estimate a webinar'
+  webinar_registration_success_message_block: 'Congratulations, you have successfully registered for this webinar. Check the Zoom-join link in your email. After the webinar on the same page you will be able to watch the video.'
+  past_webinar_registration_success_message_block: 'Congratulations, you are already registered! Go to the video section and continue watching.'
+  occurrence_registration_success_message_block: 'Congratulations, you have successfully registered for this occurrence.'
+  course_estimation_login: 'You have to be authorized to estimate a course'
+footer:
+  study: 'Learning'
+  courses: 'Courses'
+  webinars: 'Webinars'
+  articles: 'Articles'
+  other: 'Other'
+  calendar_events: 'Calendar of events'
+  categories: 'Categories'
+  buisnes_tools: 'Business Tools'
+  catalogs: 'Catalogs'
+  eco_catalog: 'Catalog of ecotechnologies'
+  mini_catalog: 'Catalog of small mechanization'
+  about_us: 'About the project'
+  news: 'News'
+  do: 'Project activities'
+  partners: 'Partners'
+  experts: 'Experts'
+  story: 'Success stories'
+  contacts: 'Contacts'
+  text: 'The Ukrainian Fruit and Vegetable Business Development Project (UHBDP) is funded by the Ministry of International Affairs of Canada, co-financed and implemented by the Mennonite Association for Economic Development (MEDA).'
+  text_2: 'Use of information from the site is possible without prior agreement, but always with a link to https://uhbdp.org '
+  phone: 'Calls are free from all numbers of fixed and mobile telecom operators in Ukraine'
+  copyright: '© UHBDP, 2015 - 2021. All rights reserved.'
+course:
+  personal_consulting: 'Individual consultations'
+  lesson: 'Lessons'
+  register_user: 'participants have already been registered'
+  partners: 'Partners'
+  experts: 'Experts'
+  about_course: 'About course'
+  about_webinar: 'Video'
+  program: 'Program'
+  reviews: 'Reviews'
+  position: 'Course speaker'
+  partner_site: 'Web-site'
+  partner_phone: 'Phone'
+  partner_address: 'Address'
+  module: 'Module'
+  speaker: 'Speaker'
+  date_begin: 'Date start'
+  title: 'Congratulations'
+  not_course: 'Error registering for the course'
+  you_register: 'You have already registered for the course'
+  register_success: 'You have successfully registered on course '
+  need_login: 'You must be logged in'
+  title_info: 'Warning'
+  title_error: 'Error'
+  title_ok: 'Congratulations'
+  will_be_available: ' which will be available on '
+  go_to_lesson: 'To lesson'
+  go_to_course: 'Go to the whole program'
+  watch_lesson: 'To view the video, you need to register for the course'
+  start: 'Course start date '
+  finish: 'Take the course and be the first to review'
+  rating: 'Old Rating'
+  old_user: 'Old User count'
+partners:
+  title: 'Partner organizations'
+  description: 'Working with professional partners in areas that share our values, we create and implement leading services, organize practical events and find an individual approach to each individual client of the Project.'
+  thanks: 'We thank our strategic partners for the development of the fruit and vegetable market in the south of Ukraine and the improvement of customers well-being!'
+  address: 'Address'
+  phone: 'Phone'
+  site: 'Website'
+  social: 'Social'
+  more: 'Other partners'
+  ukraine: 'Ukraine'
+  resources: 'Resources'
+experts:
+  title: '<strong class="green">Command UHBDP</strong> - is a team of professionals who love their job. We are working on the realization of our common goal - the development of the fruit and vegetable market in the south of Ukraine.'
+  description: 'We are directly involved in the development of the fruit and vegetable market in southern Ukraine and create valuable services and activities for all Project participants, we work with local partners and communities, as well as international professionals, innovate and have our own grant programs to implement them.'
+  description-1: 'We provide advice, information support to producers and other players in the fruit and vegetable market. We have a separate internship program for students who are taking their first professional steps in the field of fruit and vegetables.'
+  description-2: 'We do everything possible to make the Ukrainian fruit and vegetable business modern, high-quality, profitable and well-known in the world!s'
+  more: 'More experts'
+contact-us:
+  title: 'Write to us!'
+  description: 'Have you decided to implement one of the technologies seen in the catalog? Or do you have a desire to share a new successful technique and your unique experience? Write to us!'
+not-found: 'Nothing was found'
+calendar:
+  day: 'Day'
+  month: 'Month'
+  year: 'Year'
+  week: 'Week'
+page_404:
+  text: 'Sorry, this page does not exist'
+  button: 'To the main page'
+catalog:
+  earth_bloom: 'Increasing soil fertility'
+  plants_protection: 'Plants protecting tools'
+  trash_util: 'Waste disposal'
+  green_energy: 'Green energy'
+  eco_tech_integration: 'Introduction of eco-technologies'
+  resourse_usage: 'Rational use of resources'
+  planting: 'Planting'
+  care: 'Care'
+  harvest: 'Gathering'
+  dorobka: 'Completion'
+  recycle: 'Recycling'
+tools:
+  calc: 'Business calculator'
+  bee-calc: 'Business calculator for beekeeper'
+  bee-calendar: 'Beekeeper calendar'
+  canvas-model: 'Business model CANVAS'
+  wheel: 'Business wheel'
+  mineral-calc: 'Calculator of mineral fertilizers'
+  obs-calc: 'OBS calculator'
+  farm-box: '"Farm box" platform '
+regions:
+  other: 'Another region'
+contacts:
+  for_us: 'Every client of our project is important to us, so we make every effort to ensure that every entrepreneur, farmer, any interested person finds our support as soon as possible.'
+  or: 'or'
+  write_to: 'write to our email'
+  call: 'call the UHBDP contact center by phone'
+  contact_us: 'To contact us you can:'
+  partners: 'Our offices in the following areas:'
+  cellphone: 'phone number'
+  head: 'Head'
+  name: 'Name'
+  surname: 'Surname'
+  message: 'Message'
+  send: 'Send'
+  ok_send: "Your request has been sent successfully. You will be contacted soon regarding your question"
+search:
+  result: 'Search results'
+success_stories:
+  subtitle: 'The success stories of individuals are the best evidence that their perseverance, diligence and diligence have helped them achieve their goals. In this section, you will be able to see the success stories of UHBDP clients and learn about the role that the Project has played for their business.'
+news:
+  subtitle: 'Receive the most important agricultural events and useful materials from the Ukrainian Fruit and Vegetable Business Development Project every Wednesday to your mailbox. Now you will never miss the really important thing!'
+profile:
+  title: 'Personal area'
+  menu: 'Menu'
+  settings: 'Settings'
+  knowledge: 'Knowledge base'
+  marketplace: 'Marketplace'
+  change_password: 'Change password'
+  edit_profile: 'Edit profile'
+  viewed_webinars: 'Revised webinars'
+  viewed_courses: 'Revised courses'
+  downloaded_files: 'Uploaded files'
+  mainInfo: 'Main info'
+  about_me: 'About me'
+  my_certificates: 'My certificates'
+  my_commodities: 'My commodities'
+  my_services: 'My services'
+  my_joint_proposals: 'My joint suggestions'
+  selected: 'Selected'
+  notifications: 'Notifications'
+  my_roles: 'My roles'
+  forms:
+    profile_edit:
+      cancel: 'Cancel'
+      submit: 'Submit'
+      activity: 'The main activity in agro communication'
+      user_crops: 'Cultures'
+      profile_edit_successfully: 'Profile updated successfully'
+    change_password:
+      old_password: 'Old password'
+      new_password: 'News password'
+      confirm_password: 'Confirm new password'
+      cancel: 'Cancel'
+      submit: 'Change password'
+      forgot_password: 'Forgot your password?'
+      password_changed_successfully: 'Your password has been successfully changed!'
+search-tooltip: 'Search'
+clear-tooltip: 'Clear search input'
+DeadRequest: 'Incorrect request'
+RedirectTo: 'Redirect to'
+IsActive: 'Active'
+Banned: 'Your account is banned.'
+BannedInAdmin: 'Banned'
+
+program_support_promo:
+  title: Agricultural sector support programs
+  quote: Budget programs to support the agricultural sector are developed by the state precisely to help farmers. I encourage you to participate in all existing programs. And remember, "whoever doesn't knock on the door won't open it!"
+admin:
+  dashboard:
+    usersInfo:
+      title: 'Profile of participants'
+      registerToday: 'new user rooms'
+      registerTotal: 'total number of rooms'
+      gender:
+        women: 'Women'
+        men: 'Men'
+        unknown: 'Not specified'
+      registrationChart: 'Registration on the platform in time'
+      topRegionsChart: 'Geography (TOP 5 regions) from which they are registered'
+    articlesCountChart: 'Number of articles'
+    courseRegistrationChart: 'Registration for courses'
+    webinarsCountChart: 'Registration for webinars'
+    infoPlatform:
+      title: 'Interaction with the platform'
+    pageTitle: 'General information'
+    title: 'Agro platform'
+    description: 'General indicators of the site'
+    countUser: 'Number of users'
+    countArtical: 'Number of articles'
+    countWebinar: 'Number of webinars'
+    countCurse: 'Number of courses'
+    countLesson: 'Number of lessons'
+    countWebinarUsers: 'Registered users to webinars'
+    course:
+      list_title: 'Courses'
+      new_page_title: 'Create New Course'
+      edit_button_title: 'Course'
+      edit_page_title: 'Course'
+      module:
+        list_title: 'Modules'
+        new_page_title: 'Create New Module'
+        edit_button_title: 'Module'
+        edit_page_title: 'Module'
+      lesson:
+        list_title: 'Lessons'
+        new_page_title: 'Create New Lessons'
+        edit_button_title: 'Lessons'
+        edit_page_title: 'Lessons'
+    webinar:
+      list_title: 'Webinars'
+      new_page_title: 'Create New Webinar'
+      edit_button_title: 'Webinar'
+      edit_page_title: 'Webinar'
+    article:
+      list_title: 'Articles'
+      new_page_title: 'Create New Article'
+      edit_button_title: 'Article'
+      edit_page_title: 'Article'
+    register_users:
+      list_title: 'Registered Users'
+      new_page_title: 'Create New User'
+      edit_button_title: 'User'
+      edit_page_title: 'User'
+    other:
+      list_title: 'Other'
+      new_page_title: 'Create New Other'
+      edit_button_title: 'Other'
+      edit_page_title: 'Other'
+    video:
+      list_title: 'Videos'
+      new_page_title: 'Create New Video'
+      edit_button_title: 'Video'
+      edit_page_title: 'Video'
+    feedback_form:
+      list_title: 'Feedback Forms'
+      new_page_title: 'Create New Feedback Form'
+      edit_button_title: 'Form'
+      edit_page_title: 'Feedback Form'
+      title_help: 'English field is required'
+    comment:
+      list_title: 'Comments'
+      new_page_title: 'Create New Comment'
+      edit_button_title: 'Comment'
+      edit_page_title: 'Comment'
+    page:
+      list_title: 'Pages'
+      new_page_title: 'Create New Page'
+      edit_button_title: 'Page'
+      edit_page_title: 'Page'
+    partner:
+      list_title: 'Partners'
+      new_page_title: 'Create New Partner'
+      edit_button_title: 'Partner'
+      edit_page_title: 'Partner'
+    expert:
+      list_title: 'Experts'
+      new_page_title: 'Create New Expert'
+      edit_button_title: 'Expert'
+      edit_page_title: 'Expert'
+    review:
+      list_title: 'Producers Reviews'
+      new_page_title: 'Create New Review'
+      edit_button_title: 'Review'
+      edit_page_title: 'Review'
+    directory:
+      type_page:
+        list_title: 'Page Types'
+        new_page_title: 'Create New Page Type'
+        edit_button_title: 'Page Type'
+        edit_page_title: 'Page Type'
+      expert_type:
+        list_title: 'Expert Types'
+        new_page_title: 'Create New Expert Type'
+        edit_button_title: 'Expert Type'
+        edit_page_title: 'Expert Typ'
+      category:
+        list_title: 'Categories'
+        new_page_title: 'Create New Category'
+        edit_button_title: 'Category'
+        edit_page_title: 'Category'
+      tag:
+        list_title: 'Tags'
+        new_page_title: 'Create New Tag'
+        edit_button_title: 'Tag'
+        edit_page_title: 'Tag'
+      crop:
+        list_title: 'Crops'
+        new_page_title: 'Create New Crop'
+        edit_button_title: 'Crop'
+        edit_page_title: 'Crop'
+      activity:
+        list_title: 'Activity'
+        new_page_title: 'Create New Activity'
+        edit_button_title: 'Activity'
+        edit_page_title: 'Activity'
+    user:
+      list_title: 'Users'
+      new_page_title: 'Create New User'
+      edit_button_title: 'User'
+      edit_page_title: 'User'
+      email_confirm: 'Email Confirmed'
+      news_sub: 'Subscribed for news'
+    contact:
+      list_title: 'Contacts'
+      new_page_title: 'Create New Contact'
+      edit_button_title: 'Contact'
+      edit_page_title: 'Contact'
+    messages_from_visitors:
+      list_title: 'Messages from Visitors'
+      new_page_title: 'Create New Message'
+      edit_button_title: 'Message'
+      edit_page_title: 'Message from Visitor'
+    feedback_from_visitors:
+      list_title: 'Feedback from Visitors'
+      new_page_title: 'Create New Feedback'
+      edit_button_title: 'Feedback'
+      edit_page_title: 'Feedback from Visitor'
+      status_action:
+        active_msg: 'Answer''s status with type review changed to Active'
+        not_active_msg: 'Answer''s status with type review changed to Inactive'
+        no_reviews: 'There is no answer with type review and required attribute'
+    option:
+      list_title: 'Options'
+      new_page_title: 'Create New Option'
+      edit_button_title: 'Option'
+      edit_page_title: 'Option'
+    dead_url:
+      list_title: 'Inactive Links'
+      new_page_title: 'Create New Link'
+      edit_button_title: 'Link'
+      edit_page_title: 'Link'
+    user_download:
+      list_title: 'User Files'
+      new_page_title: 'Create New User File'
+      edit_button_title: 'User File'
+      edit_page_title: 'User File'
+      downloaded_at: 'Downloaded at'
+      ext: 'Extension'
+    occurrence:
+      list_title: 'Occurrence'
+      new_page_title: 'Create New Occurrence'
+      edit_button_title: 'Occurrence'
+      edit_page_title: 'Event'
+    news:
+      list_title: 'News'
+      new_page_title: 'Create News'
+      edit_button_title: 'News'
+      edit_page_title: 'News'
+  userFeedback:
+    gender:
+      male: 'Man'
+      female: 'Woman'
+      none: 'Not specified'
+  itemRegistration:
+    user: 'User'
+    userRegion: 'Region'
+    item: 'Item'
+    createdDate: 'Date'
+    userFeedback:
+      title: 'Left feedback'
+      exist: 'Yse'
+      notExist: 'No'
+    titles:
+      index: 'Registered users'
+      plural: 'user'
+      singular: 'user'
+    actions:
+      export: 'Export'
+      sendFeedbackForm: 'send form'
+    errors:
+      itemHasNoFeedbackForm: 'Item has no feedback form'
+  courseStatistic:
+    title: 'Title'
+    totalDuration: 'Total duration of the course'
+    registrationsAmount: 'Number of registrations'
+    region:
+      title: 'Region'
+      split: 'Distribution by region'
+      empty: 'not specified'
+    gender:
+      split: 'Distribution by gender'
+      male: 'Men'
+      female: 'Women'
+      none: 'Not specified'
+    usersProgress:
+      title: 'Passages'
+      link: 'passages'
+      inProgress: '%USER% - %TIME% (%PERCENT%%)'
+      progressNoN: '%USER% - did not pass'
+    titles:
+      index: 'Passages statistics'
+      plural: 'statistics'
+      singular: 'statistic'
+    actions:
+      export: 'Export'
+  courseRegistration:
+    user: 'User'
+    userRegion: 'Region'
+    usersProgress:
+      title: 'Passages'
+      inProgress: '%TIME% (%PERCENT%%)'
+      progressNoN: 'did not pass'
+    isNotified:
+      title: 'Got feedback form'
+      yes: 'Yes'
+      no: 'No'
+    titles:
+      index: 'Courses passages'
+      plural: 'passages'
+      singular: 'passages'
+    actions:
+      sendFeedbackForm: 'send form'
+    errors:
+      courseWasNoFound: 'Course was not found'
+      courseHasNoFeedbackForm: 'Item has no feedback form'
+  comment:
+    title: 'Comments'
+    link: 'comments'
+  market:
+    title: 'Торгівельний майданчик'
+    product:
+      activity: 'Is active'
+      active_from: 'Active from'
+      active_to: 'Active to'
+      title: 'Title'
+      description: 'Description'
+      price: 'Price'
+      region: 'Region'
+      district: 'District'
+      locality: 'Locality'
+      category: 'Category'
+      attributes_values: 'Commodity attributes values'
+      image: 'Image'
+      type: 'Type'
+      types:
+        sell: 'Sell'
+        buy: 'Buy'
+      user: 'User'
+      userDisplayPhones: 'User phones'
+      isOrganic: 'Organic product'
+      titles:
+        index: 'Products'
+        new: 'Make product'
+        edit: 'Product'
+        plural: 'products'
+        singular: 'product'
+    service:
+      titles:
+        index: 'Services'
+        new: 'Make service'
+        edit: 'Service'
+        plural: 'services'
+        singular: 'service'
+    kit:
+      approved: 'Approved'
+      commodities: 'Product and services'
+      titles:
+        index: 'Kits'
+        new: 'Make kit'
+        edit: 'Kit'
+        plural: 'kits'
+        singular: 'kit'
+    kit_agreement:
+      kit: 'kit'
+      commodity: 'Product and services'
+      status: 'Status'
+      statuses:
+        approved: 'Approved'
+        rejected: 'Rejected'
+        pending: 'Pending'
+        expired: 'Expired'
+      titles:
+        index: 'Kits orders'
+        new: 'Make kit order'
+        edit: 'Kit order'
+        plural: 'orders'
+        singular: 'order'
+    commodityAttrValue:
+      list_title: 'Product Attributes'
+      new_page_title: 'Create New Product Attribute'
+      edit_button_title: 'Product Attribute'
+      edit_page_title: 'Product Attribute'
+    category:
+      id: 'ID'
+      title: 'Title'
+      parent: 'Parent Category'
+      attributes: 'Attributes'
+      attributes_form:
+        noAttributesExist: 'No attributes exist'
+        attribute: 'Attribute'
+        required: 'Is required'
+        showOnList: 'Show on list page'
+        listSortAlphabetic: 'Sort list values alphabetic'
+        sort: 'Sort order'
+        list_values: 'Value'
+        delete: 'Delete'
+        add: 'Add'
+    categoryProduct:
+      titles:
+        index: 'Products categories'
+        new: 'New Category'
+        edit: 'Category'
+        plural: 'Categories'
+        singular: 'Category'
+    categoryService:
+      titles:
+        index: 'Services categories'
+        new: 'New Category'
+        edit: 'Category'
+        plural: 'Categories'
+        singular: 'Category'
+    attribute:
+      id: 'ID'
+      title: 'Title'
+      description: 'Description'
+      type: 'Type'
+      required: 'Is required'
+      code: 'Special behavior'
+      codes:
+        volume: 'Product volume'
+        measure: 'Measure'
+        price_measure: 'Measure (for price)'
+      types:
+        string: 'text'
+        int: 'number'
+        list: 'list'
+        listMultiple: 'multiple list'
+        dictionary: 'dictionary'
+      dictionary: 'Dictionary'
+      dictionaries:
+        crop: 'Culture'
+      titles:
+        index: 'Attributes'
+        new: 'New Attribute'
+        edit: 'Attributes'
+        plural: 'Attributes'
+        singular: 'Attribute'
+      usageBar:
+        title: 'Attention!'
+        message: '
+          This attribute has already used.
+          It`s parameters changing`s can lead to it`s different display errors.'
+        categoriesInUse: 'Is used in categories'
+        commodities:
+          products: 'products'
+          services: 'services'
+        preSubmitAlert: '
+          Are you sure? Changing of this attribute can lead to display errors 
+          into products ans services, where it is inn use'
+    phone:
+      phone: 'Phone'
+      main: 'Main'
+      telegram: 'Telegram'
+      viber: 'Viber'
+      whatsApp: 'WhatsApp'
+      titles:
+        index: 'Phones'
+        new: 'New Phone'
+        edit: 'Phone'
+        plural: 'Phones'
+        singular: 'Phone'
+    textBlock:
+      titles:
+        index: 'Text Blocks'
+        new: 'Make text block'
+        edit: 'Text Block'
+        plural: 'Text Blocks'
+        singular: 'Text Block'
+    textType:
+      titles:
+        index: 'Text Types'
+        new: 'Make text block'
+        edit: 'Text Block'
+        plural: 'Text Types'
+        singular: 'Text Type'
+
+options:
+  footer_main:
+    description: 'Description for the main information in the footer'
+  footer_tel:
+    description: 'Description for telephone information in the footer'
+
+reset_password_email:
+  subject: 'Your password reset request'
+  title: 'Hello!'
+  message: 'To reset your password, please visit following link'
+  success: 'Password reset link sent to email'
+  expire: 'This link will expire in'
+  not_found_email: 'Sorry, your e-mail is not in the list of system users.
+    Please try to recover password from e-mail,
+     that was specified during registration, or register.'
+  signature: 'Cheers!'
+subscribe_to_news: 'Subscribe to news of the service'
+organizer:
+  site: 'Website'
+  email: 'Email'
+  phone: 'Phone'
+start_studying: 'Start studying'
+starting: 'Starting'
+starting_year: 'year!'
+form:
+list:
+  emptyValues: 'empty values'
+  label:
+    delete: 'Delete'
+contact_us_email:
+  title: 'Agro Portal Contact Form'
+  subject: 'Message from '
+course_review:
+  thanks: 'Thanks form watching course'
+  feedback: 'How about'
+  link: 'feedback us?'
+market:
+  title: 'Trading floor'
+  currency:
+    short: 'grn'
+  commodity:
+    type: 'Type'
+    isOrganic: 'Organic product'
+    inactiveMessage: 'Not active'
+    hasInactiveCommodities: 'Not active products exist'
+    hasInactiveOwner: 'Owner is not active'
+    notApproved: 'Not approved yet'
+    activate: 'Activate'
+    publicationDates: 'Active to'
+    sortTypes:
+      createdDate: 'By date'
+      priceDesc: 'From most to less expensive'
+      priceAsc: 'From less to most expensive'
+  product:
+    create: 'Add product'
+    titles:
+      multiple: 'Products'
+    filter:
+      productType: 'Type'
+      productTypes:
+        buy: 'Buy'
+        sell: 'Sell'
+      category: 'Category'
+      subCategory: 'SubCategory'
+      numberFrom: 'from'
+      numberTo: 'to'
+      price: 'Price'
+      organicOnly: 'Only organic products'
+    search:
+      placeholder: 'Search products by name and category'
+    list:
+      user: 'Seller'
+      productTypes:
+        buy: 'Buy'
+        sell: 'Sell'
+      region: 'Region'
+      district: 'District'
+      locality: 'Locality'
+      phone: 'Phone'
+      priceNegotiated: 'Договірна ціна'
+      actions:
+        buy: 'Buy'
+        sell: 'Sell'
+        order: 'Order'
+        detail: 'View detail'
+        detailShort: 'Detail'
+        bid: 'Bid'
+        favoriteAdd: 'Add to favorite'
+        favoriteRemove: 'Remove from favorite'
+        edit: 'Edit'
+        activate: 'Activate'
+        deactivate: 'Deactivate'
+        kitAddCommodity: 'Add'
+        kitLeaving: 'Leave the kit'
+        kitLeavingAlert:
+          title: 'Attention'
+          message: 'After you leave the kit, it will be deactivated and all participants will be notified'
+          cancel: 'Cancel'
+      empty: 'nothing was found'
+    detail:
+      id: 'product ID'
+      favoriteAdd: 'To favorite'
+      favoriteRemove: 'Remove from favorite'
+      price: 'Price'
+      showPhone: 'Show phone'
+      showEmail: 'Show email'
+      sellerGetContact: 'Contact'
+      category: 'Category'
+      sameItems: 'Same products'
+      sameItemsViewAll: 'View all'
+      sameSellers: 'Other sellers'
+      sameSellersViewAll: 'View all'
+  service:
+    create: 'Add service'
+    titles:
+      multiple: 'Services'
+    search:
+      placeholder: 'Search services by name and category'
+    list:
+      user: 'Provider'
+    detail:
+      sameItems: 'Same services'
+      sameItemsViewAll: 'View all'
+      sameSellers: 'Other services providers'
+      sameSellersViewAll: 'View all'
+  kit:
+    create: 'Add kit'
+    titles:
+      multiple: 'Kits'
+    filter:
+      product:
+        title: 'Product #index#'
+        add: 'Add product'
+      service:
+        title: 'Service #index#'
+        add: 'Add service'
+    search:
+      placeholder: 'Search products by name and category'
+    list:
+      user: 'Seller'
+    detail:
+      innerCommodities: 'Products, services'
+      innerSellers: 'Sellers or services providers'
+      sameItems: 'Same kits'
+      sameItemsViewAll: 'View all'
+      sameSellers: 'Other sellers'
+      sameSellersViewAll: 'View all'
+  commoditySearch:
+    title: 'Пошук'
+  user:
+    review:
+      firstUserReview: 'Be the first to leave a review about '
+      userReview: 'User reviews'
+      publish: 'Publish'
+    titles:
+      multiple: 'Users'
+    list:
+      empty: 'нічого не знайдено'
+      actions:
+        detail: 'Detail'
+        detailAlt: 'Перегляд користувача'
+        favoriteAdd: 'Add to favorite'
+        favoriteRemove: 'Remove from favorite'
+        kitAddCommodity: 'Add'
+    detail:
+      id: 'ID'
+      activeFrom: 'Active from'
+      name: 'Name'
+      roles: 'Roles'
+      gender:
+        title: 'Gender'
+        male: 'Male'
+        female: 'Female'
+      email: 'Email'
+      showEmail: 'Show email'
+      phone: 'Mobile phone'
+      showPhone: 'Show phone'
+      socialLinks: 'Social links'
+      region: 'Region'
+      certificates:
+        title: 'Certificates'
+        organic: 'Organic'
+        others: 'Others'
+      allCommodities:
+        product: 'All product from this seller'
+        service: 'All services from this seller'
+        kit: 'All kits from this seller'
+      sameUsers: 'Same sellers'
+  profile:
+    menu:
+      myProducts: 'My products'
+      myServices: 'My services'
+      myKits: 'My kits'
+      favorites: 'Favorites'
+      notifications: 'Notifications'
+      roles: 'My roles'
+      myCertificates: 'My certificates'
+      aboutMe: 'About me'
+    aboutMe:
+      title: 'About me'
+      descriptionVideoLink:
+        title: 'Video'
+        placeholder: 'Video link'
+        error: 'Please insert a valid link ( "https://www.youtube.com/watch?v=_FWirIjoCAQ" )!'
+        notExist: 'Video not exist, check your link!'
+      submit: 'Save'
+    myCommodities:
+      product:
+        add: 'Add product'
+        addedSuccessfully: 'Product added successfully'
+        addedSuccessfullyLink: 'Go to product'
+      service:
+        add: 'Add service'
+        addedSuccessfully: 'Service added successfully'
+        addedSuccessfullyLink: 'Go to service'
+      kit:
+        add: 'Add kit'
+        addedSuccessfully: 'Kit added successfully'
+        addedSuccessfullyLink: 'Go to kit edit page'
+      publicationsCountLeft: 'You have #NUMBER# publications more'
+      publicationsCountLeftNoMore: 'You have no more publications'
+      editAccessDenied: 'You have no access to edit this element'
+      rolesRequiredError: 'Your role does not support this functionality'
+      rolesRequiredMessage: 'Post pleas form to get role "#ROLE#"'
+    commodityForm:
+      step: 'Step'
+      next: 'Next'
+      previous: 'Previous'
+      finish: 'Public'
+      boolean:
+        yes: 'Yes'
+        no: 'No'
+      image:
+        add: 'Add photo'
+        change: 'Change photo'
+        placeolder: 'Pick photo'
+      description: 'Description'
+      price: 'Price'
+      priceNegotiated: 'Price is negotiated'
+      category: 'Category'
+      subCategory: 'Subcategory'
+      attributesValues: 'Attributes'
+      attributesValuesEmpty: 'empty'
+      userContacts: 'User contacts'
+      userDisplayPhones: 'Show phones'
+    productForm:
+      create: 'Create product'
+      edit: 'Edit product'
+      about: 'About product'
+      title: 'Product name'
+      type: 'Type'
+      types:
+        buy: 'Buy'
+        sell: 'Sell'
+      location: 'Place'
+      region: 'Region'
+      district: 'District'
+      locality: 'Locality'
+      organic: 'Organic product'
+    serviceForm:
+      create: 'Create service'
+      edit: 'Edit service'
+      about: 'About service'
+      title: 'Service name'
+    kitForm:
+      create: 'Create kit'
+      edit: 'Edit kit'
+      about: 'About kit'
+      title: 'Service kit'
+      priceSummary: 'All products and services summary price is'
+      commoditiesSelection:
+        tabs:
+          addCommodity: 'Add product or service'
+          addUser: 'Add Seller or Provider'
+          addMyCommodity: 'My products and services'
+        all:
+          search: 'Product name or ID'
+          searchPlaceholder: 'Product name or ID (for example: 23984)'
+        byUser:
+          searchPlaceholder: 'User name, email or ID'
+          userCommoditiesTitle: 'Products and services by seller "#USER#"'
+          backToUsersList: 'back to sellers list'
+        validation:
+          commoditiesCountNotEnough: 'Commodities count must be at least #COUNT#'
+          commoditiesCountToMuch: 'Commodities count must be not more than #COUNT#'
+          creatorCommodityAbsent: 'Must be at least one your product/service'
+      preview:
+        commodities: 'Products or services'
+        users: 'Sellers or providers'
+        userName: 'Responsible user'
+      summaryInformation:
+        activeToWarning:
+          'Kit activity term can not be longer than term chosen products terms.
+          This mean that if chosen product term has expired,
+          then kit has become expired automatically.'
+        price: 'Price, grn'
+        kitPrice: 'Offer price'
+        commoditySummary: 'Total price of products and services'
+        commodityActivityDays: 'Active days'
+        kitActivityDays:
+          title: 'Kit activity'
+          days1: 'day'
+          daysFrom2To4: 'days'
+          daysOver5: 'days'
+          till: 'Till'
+        addCommodity: 'Додати ще товар або послугу'
+    favorite:
+      empty: 'nothing were found'
+      product:
+        title: 'Products'
+      service:
+        title: 'Services'
+      kit:
+        title: 'Kits'
+      user:
+        title: 'Sellers'
+      filter:
+        activity:
+          Y: 'Active'
+          N: 'Not active'
+  certificate:
+    titles:
+      multiple: 'Certificates'
+    list:
+      actions:
+        edit: 'Редагувати'
+        delete: 'Видалити'
+    search:
+      placeholder: 'Знайти сертифікат'
+      sortValues:
+        ecology: 'Organic'
+        create: 'Дата створення'
+    isOrganic: 'Еко'
+    form:
+      certificateTypeApproved: 'Узгоджені'
+      certificateTypeNotApproved: 'Не узгоджені'
+      ecology: 'Organic'
+      default: 'Звичайний'
+role:
+  application_form_role: 'Application form for the role'
+  required_to_fill: 'Required to fill'
+  cancel: 'Cancel'
+  send: 'Send'
+  current: 'You current role'
+  current_comment: 'You can expand it according to your needs'
+  success_certificate_added: 'Сертифікат успішно збережено.'
+  success_certificate_added_check: 'Сертифікат успішно збережено. Очікуйте перевірки.'
+  success_certificate_deleted: 'Сертифікат успішно видалено!'
+  success_certificate_edit_rejected: 'Неможливо редагувати затвержений органічний сертифікат!'
+  empty_file: "Вкажіть файл сертифікату"
+  empty_name: "Вкажіть назву сертифікату"
+cron:
+  notification_sender:
+    author:
+      title: ''
+      message: ''
+    co_author:
+      title: '%kit_name% було %event%.'
+      message: 'Шановний %user%, спільна пропозиція %kit_name%, де ви є співатором %event%'
+    enjoyer:
+      title: '%commodity_name% було %event%.'
+      message: 'Шановний %user%, %commodity_type% - %commodity_name%, що у вас в обраному бу(-в)(-ла) %event%'
+    msg_parts_by_event:
+      CommodityActiveToExpireEvent: 'деактивована за часом'
+      CommodityActivationEvent: 'знову активна'
+      CommodityDeactivationEvent: 'деактивована власником'
+      CommodityAdminActivationEvent: 'активована адміністрацією'
+      CommodityAdminDeactivationEvent: 'деактивована адміністрацією'
+      CommodityCreateEvent:
+        kit:
+          email: 'Перейдіть за посиланням, щоб переглянути нові повідомлення.'
+      CommodityUpdateEvent:
+        product:
+        service:
+        kit:
+          systemMessage:
+            title: 'Деактивація спільної пропозиції - %kit%'
+            message: 'Автор %kit%  -  %user% редагував спільну пропозицію та тим самим деактивува її. Згодом вам буде надіслане нове повідомлення, щоб узгодити нову версію спільної пропозиції - %kit%'
+          kitAgreement:
+            title: 'Заявка на реактивацію спільної пропозиції - %kit%'
+            message: 'Автор %kit%  -  %user% редагував спільну пропозицію. Підвердіть участь у спільній пропозиції %kit%, якщо згодні з новими умовами.'
+      CommodityAdminCreateEvent: ''
+      CommodityAdminUpdateEvent: ''
+      CommodityOfferReviewSendEvent:
+        product:
+          buy:
+            titlePart: 'продаж'
+            msgPart: 'продати'
+          sell:
+            titlePart: 'купити'
+            msgPart: 'купівлю'
+          message: 'Шановний користувач, нещодавно ви запропонували користувачеві %user%, %msgPart% %product%. %end_msg%'
+          title: ''
+        service:
+          titlePart: 'замовлення послуги'
+          msgPart: 'замовлення послуги'
+          message: 'Шановний користувач, нещодавно ви зробили у %user% - %msgPart% - %product%. %end_msg%'
+        kit:
+          titlePart: 'замовлення послуги'
+          msgPart: 'стати учасником спільної пропозиції'
+          message: 'Шановний користувач, нещодавно %user% вам запропонував  %msgPart% - %product%. %end_msg%'
+        price:
+          titlePart: 'пропозицію ціни'
+          msgPart: 'ціну'
+          message: 'Шановний користувач, нещодавно %user% вам запропонував  %msgPart% - на ваш %product%. %end_msg%'
+        end_msg: 'Напишіть відгук, щодо користувача %user% та угоди у цілому.'
+        title: 'Відгукнітся про %titlePart% - %product%.'
+      CommodityKitDeactivationByCoAuthorEvent:
+        author:
+          title: 'Деактивація вашего %kit% користувачем %coauthor%'
+          message: 'Шановний %user%, ваша спільна пропозиція - %kit% була деактивована одним із учасників - %coauthor%. Ви можете відредагувати %kit% та запустити процес підвердження знову.'
+        coauthor:
+          title: 'Деактивація спільної пропозиції, де ви співавтор - %kit% користувачем %coauthor%'
+          message: 'Шановний %user%,  спільна пропозиція, де ви співавтор - %kit% була деактивована одним із учасників - %coauthor%. Автор цієї спільної пропозиції може відредагувати %kit% та запустити процес підвердження знову.'

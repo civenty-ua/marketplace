@@ -1,0 +1,523 @@
+<div class="personal-area marketplace personal-area__wrapper">
+    <div class="filter-wrapper">
+        <a href="javascript:void(0)" class="js-mobile-filter__open filter__button">
+            <svg>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#filter"></use>
+            </svg>
+            <span>{{ 'item.filters'|trans }}</span>
+        </a>
+    </div>
+
+    <div class="personal-area__inner">
+        <div class="personal-area-sidebar">
+            <div class="personal-area-sidebar__content">
+                <div class="personal-area-sidebar__tabs-navigation">
+                    <a class="btn-sidebar-tail-right" href="{{ path('about_me') }}">
+                        <svg class="ico">
+                            <use xlink:href="/images/smat/ico-account-edit_24x24.svg#Layer_1"></use>
+                        </svg>
+                        <span>{{ 'profile.about_me'|trans }}</span>
+                    </a>
+
+                    <a class="btn-sidebar-tail-right" href="{{ path('my_certificates') }}">
+                        <svg class="ico">
+                            <use xlink:href="/images/smat/ico-offer_24x24.svg#Layer_1"></use>
+                        </svg>
+                        <span>{{ 'profile.my_certificates'|trans }}</span>
+                    </a>
+                    
+                    <a class="btn-sidebar-tail-right" href="{{ path('my_commodities') }}">
+                        <svg class="ico">
+                            <use xlink:href="/images/smat/ico-product_24x24.svg#Layer_1"></use>
+                        </svg>
+                        <span>{{ 'profile.my_commodities'|trans }}</span>
+                    </a>
+
+                    <a class="btn-sidebar-tail-right" href="{{ path('my_services') }}">
+                        <svg class="ico">
+                            <use xlink:href="/images/smat/ico-room-service_24x24.svg#Layer_1"></use>
+                        </svg>
+                        <span>{{ 'profile.my_services'|trans }}</span>
+                    </a>
+
+                    <a class="btn-sidebar-tail-right" href="{{ path('my_proposals') }}">
+                        <svg class="ico">
+                            <use xlink:href="/images/smat/ico-service-star_24x24.svg#Layer_1"></use>
+                        </svg>
+                        <span>{{ 'profile.my_joint_proposals'|trans }}</span>
+                    </a>
+
+                    <a class="btn-sidebar-tail-right" href="{{ path('my_selected_commodities') }}">
+                        <svg class="ico">
+                            <use xlink:href="/images/smat/ico-heart-outline_24x24.svg#Layer_1"></use>
+                        </svg>
+                        <span>{{ 'profile.selected'|trans }}</span>
+                        <small>(1234)</small>
+                    </a>
+
+                    <a class="btn-sidebar-tail-right" href="{{ path('my_notifications') }}">
+                        <div class="ico-wrapper">
+                            <svg class="ico">
+                                <use xlink:href="/images/smat/ico-notification_24x24.svg#Layer_1"></use>
+                            </svg>
+                            <div class="ico-total">23</div>
+                        </div>
+                        <span>{{ 'profile.notifications'|trans }}</span>
+                        <small>(1234)</small>
+                    </a>
+
+                    <a class="btn-sidebar-tail-right active" href="{{ path('my_roles') }}">
+                        <svg class="ico">
+                            <use xlink:href="/images/smat/ico-bookmarks_24x24.svg#Layer_1"></use>
+                        </svg>
+                        <span>{{ 'profile.my_roles'|trans }}</span>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="personal-area-center__tabs-wrapper">
+            <div class="personal-area-center__tab marginBottom0">
+
+                <h3 class="h3 marginBottom40px">
+                    Ваша поточна роль - <span
+                            class="orange">покупець, оптовий покупець, продавець, постачальник послуг</span>. Ви можете розширити її згідно ваших потреб
+                </h3>
+
+                <div class="pricing-list-wrapper">
+                    <div class="pricing-list__col">
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title">Покупки</div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item">Товари</div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item">Послуги</div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item">Пропозиції</div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title">Додати товар</div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item">Купити</div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item">Продати</div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title">Додати послугу</div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item">Купити</div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item">Продати</div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title">Пропозиції</div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item">Купити</div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item">Продати</div>
+                        </div>
+                    </div>
+
+                    <div class="pricing-list__col">
+
+                        <div class="active-pricing-list__col">
+                            <div class="active-pricing-list-title">Моя роль</div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title column-header">Покупець</div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <a class="square-button green-bg-button" href="{{ path('questionnaire') }}">Анкета</a>
+                        </div>
+                    </div>
+                    <div class="pricing-list__col">
+
+                        <div class="active-pricing-list__col">
+                            <div class="active-pricing-list-title">Моя роль</div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title column-header">Оптовий покупець</div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <a class="square-button green-bg-button" href="{{ path('questionnaire') }}">Анкета</a>
+                        </div>
+                    </div>
+                    <div class="pricing-list__col">
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title column-header">Продавець</div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <a class="square-button green-bg-button" href="{{ path('questionnaire') }}">Анкета</a>
+                        </div>
+                    </div>
+                    <div class="pricing-list__col">
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title column-header">Постачальник послуг</div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-title"></div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center excluded">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="pricing-list__row">
+                            <div class="pricing-list-item text-center included">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="pricing-list__row">
+                            <a class="square-button green-bg-button" href="{{ path('questionnaire') }}">Анкета</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="js-shade shade"></div>
+<div class="js-mobile-filter mobile-filter">
+    <div class="mobile-filter__inner-wrapper js-mobile-item-filter">
+        <a href="javascript:void(0)" class="js-mobile-filter__close mobile-filter__close">
+            <svg>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cross"></use>
+            </svg>
+        </a>
+
+        <div class="marketplace-mobile-filter">
+            <a class="sidebar-button" href="{{ path('about_me') }}">
+                <svg class="ico">
+                    <use xlink:href="/images/smat/ico-account-edit_24x24.svg#Layer_1"></use>
+                </svg>
+                <span>{{ 'profile.about_me'|trans }}</span>
+            </a>
+
+            <a class="sidebar-button" href="{{ path('my_certificates') }}">
+                <svg class="ico">
+                    <use xlink:href="/images/smat/ico-offer_24x24.svg#Layer_1"></use>
+                </svg>
+                <span>{{ 'profile.my_certificates'|trans }}</span>
+            </a>
+
+            <a class="sidebar-button" href="{{ path('my_commodities') }}">
+                <svg class="ico">
+                    <use xlink:href="/images/smat/ico-product_24x24.svg#Layer_1"></use>
+                </svg>
+                <span>{{ 'profile.my_commodities'|trans }}</span>
+            </a>
+
+            <a class="sidebar-button" href="{{ path('my_services') }}">
+                <svg class="ico">
+                    <use xlink:href="/images/smat/ico-room-service_24x24.svg#Layer_1"></use>
+                </svg>
+                <span>{{ 'profile.my_services'|trans }}</span>
+            </a>
+
+            <a class="sidebar-button" href="{{ path('my_proposals') }}">
+                <svg class="ico">
+                    <use xlink:href="/images/smat/ico-service-star_24x24.svg#Layer_1"></use>
+                </svg>
+                <span>{{ 'profile.my_joint_proposals'|trans }}</span>
+            </a>
+
+            <a class="sidebar-button" href="{{ path('my_selected_commodities') }}">
+                <svg class="ico">
+                    <use xlink:href="/images/smat/ico-heart-outline_24x24.svg#Layer_1"></use>
+                </svg>
+                <span>{{ 'profile.selected'|trans }}</span>
+                <small>(1234)</small>
+            </a>
+
+            <a class="sidebar-button" href="{{ path('my_notifications') }}">
+                <div class="ico-wrapper">
+                    <svg class="ico">
+                        <use xlink:href="/images/smat/ico-notification_24x24.svg#Layer_1"></use>
+                    </svg>
+                    <div class="ico-total">23</div>
+                </div>
+                <span>{{ 'profile.notifications'|trans }}</span>
+                <small>(1234)</small>
+            </a>
+
+            <a class="sidebar-button active" href="{{ path('my_roles') }}">
+                <svg class="ico">
+                    <use xlink:href="/images/smat/ico-bookmarks_24x24.svg#Layer_1"></use>
+                </svg>
+                <span>{{ 'profile.my_roles'|trans }}</span>
+            </a>
+        </div>
+    </div>
+</div>

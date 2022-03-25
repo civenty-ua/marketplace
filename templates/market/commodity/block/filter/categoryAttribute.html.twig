@@ -1,0 +1,37 @@
+{% if
+    attributeParameters.attribute.type == constant('App\\Entity\\Market\\Attribute::TYPE_LIST') or
+    attributeParameters.attribute.type == constant('App\\Entity\\Market\\Attribute::TYPE_LIST_MULTIPLE')
+%}
+    {% include 'market/commodity/block/filter/entitiesList.html.twig' with {
+        'name'              : inputName,
+        'emptyValue'        : false,
+        'multiple'          : true,
+        'entities'          : attributeParameters.categoryAttributeListValues,
+        'values'            : value,
+        'titlePropertyName' : 'value',
+    } only %}
+{% elseif attributeParameters.attribute.type == constant('App\\Entity\\Market\\Attribute::TYPE_DICTIONARY') %}
+    {% include 'market/commodity/block/filter/select.html.twig' with {
+        'name'          : inputName,
+        'emptyValue'    : true,
+        'multiple'      : false,
+        'list'          : getAttributesDictionaries()[attributeParameters.attribute.dictionary] ?? [],
+        'values'        : [value],
+    } only %}
+{% elseif
+    attributeParameters.attribute.type == constant('App\\Entity\\Market\\Attribute::TYPE_INT') and
+    (maxValues[attributeParameters.id] ?? 0) > 0
+%}
+    {% include 'market/commodity/block/filter/numbersRange.html.twig' with {
+        'name'              : inputName,
+        'values'            : [
+            value[0] ?? '',
+            value[1] ?? '',
+        ],
+        'placeholders'      : [
+            'market.product.filter.numberFrom'|trans,
+            'market.product.filter.numberTo'|trans,
+        ],
+        'maxValue'          : maxValues[attributeParameters.id],
+    } only %}
+{% endif %}

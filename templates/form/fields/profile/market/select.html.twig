@@ -1,0 +1,52 @@
+{% set hint = attr.hint ?? null %}
+{% set attr = attr|merge({
+    'hint' : null,
+}) %}
+
+<div
+    class="
+        field
+        field-select
+        {% if required %}required{% endif %}
+        {% if hidden ?? false %}hidden{% endif %}
+        {% if form.vars.errors|length > 0 %}validation-error{% endif %}
+    "
+    {{ row_attr|toAttributesString }}
+>
+    <label>
+        {{ (label ?? null)|trans }}
+        {% include 'form/fields/profile/market/fieldHint.html.twig' with {'hint' : hint} only %}
+    </label>
+    <label class="select-wrap">
+        {% if multiple and choices|length == 0 %}
+            {{ 'form.list.emptyValues'|trans }}
+        {% else %}
+            <select
+                class="js-steps-form-select"
+                data-class="js-select2"
+                name="{{ full_name }}"
+                {% if required %}required{% endif %}
+                {% if multiple %}multiple{% endif %}
+                {% if disabled %}readonly{% endif %}
+                {{ attr|toAttributesString }}
+            >
+                {% if (emptyValue ?? false) and not multiple %}
+                    <option value=""></option>
+                {% endif %}
+                {% for choice in choices %}
+                    <option
+                        value="{{ choice.value }}"
+                        {% if
+                            (choice.value == (data.id ?? null)) or
+                            (choice.value == value)             or
+                            (multiple and choice.value in value)
+                        %}selected{% endif %}
+                    >{{ choice.label }}</option>
+                {% endfor %}
+            </select>
+        {% endif %}
+        {% if form.vars.errors|length > 0 %}
+            <div class="error">{{ form_errors(form) }}</div>
+        {% endif %}
+    </label>
+</div>

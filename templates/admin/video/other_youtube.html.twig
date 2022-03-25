@@ -1,0 +1,14 @@
+{% set html_id = 'ea-lightbox-' ~ field.uniqueId %}
+{% if field.value is not null and field.value  is defined %}
+    {% set youtubeLinkCodeTmp = field.value.videoID %}
+    {% set youtubeLinkCode = (youtubeLinkCodeTmp|split('='))|last %}
+
+    <a href="#" class="ea-lightbox-thumbnail" data-featherlight="#{{ html_id }}"
+            data-featherlight-close-on-click="anywhere">
+        <img src="{{ asset('http://img.youtube.com/vi/' ~ youtubeLinkCode ~ '/sddefault.jpg') }}" class="img-fluid">
+    </a>
+
+    <div id="{{ html_id }}" class="ea-lightbox">
+        <img src="{{ asset('http://img.youtube.com/vi/' ~ youtubeLinkCode ~ '/sddefault.jpg') }}">
+    </div>
+{% endif %}

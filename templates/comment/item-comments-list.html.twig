@@ -1,0 +1,80 @@
+{% set usersImagesFolder    = '/upload/user/avatar' %}
+{% set userDefaultImage     = '/main/default-avatar.png' %}
+{% set userAvatar           = user and user.avatar
+    ? usersImagesFolder ~ '/' ~ user.avatar
+    : userDefaultImage %}
+<div class="white1-bg">
+    <div
+            class="section comment-block"
+            data-user-image-folder="{{ usersImagesFolder }}"
+            data-page-size="{{ comments.pageSize }}"
+            data-comment-post-route="{{ path('comment_post', {
+                itemId : item.id,
+            }) }}"
+            data-comment-get-route="{{ path('comment_get_list', {
+                itemId : item.id,
+            }) }}"
+            data-ckeditor-id="comment_message"
+    >
+        <div class="h2">
+            {{ 'comment.list.title'|trans }}
+        </div>
+        <div class="comment-form__container">
+            <img
+                    class="comment-avatar"
+                    src="{{ userAvatar }}"
+                    alt="{{ 'comment.list.avatar'|trans }}"
+            >
+            <div class="comment-form">
+                {{ form(comments.form) }}
+            </div>
+        </div>
+        <div class="comment-list">
+            {% for comment in [null]|merge(comments.exist) %}
+                <div class="comment-item{% if comment == null %} template{% endif %}">
+                    {% set commentUserAvatar =
+                        comment                 and
+                        comment.authorizedUser  and
+                        comment.authorizedUser.avatar
+                        ? usersImagesFolder ~ '/' ~ comment.authorizedUser.avatar
+                        : userDefaultImage %}
+                    <img
+                            class="comment-avatar"
+                            src="{{ commentUserAvatar }}"
+{#                            alt="{{ 'comment.list.avatar'|trans }}"#}
+                    >
+                    <div class="comment-item__content">
+                        <div class="comment-item__author">
+                            {% if comment != null %}
+                                {{ comment.userTitle }}
+                            {% endif %}
+                        </div>
+                        <div class="comment-item__comment">
+                            {% if comment != null %}
+                                {{ comment.message | raw }}
+                            {% endif %}
+                        </div>
+                        <div class="comment-item__date">
+                            <svg>
+                                <use
+                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        xlink:href="#calendar"
+                                ></use>
+                            </svg>
+                            <span>
+                                {% if comment != null %}
+                                    {{ comment.createdAt|date('d.m.Y H:i:s') }}
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% if comments.totalCount > comments.pageSize %}
+            <span class="square-button centeredBlock height-50 show-more">
+                {{ 'comment.list.showMore'|trans }}
+            </span>
+        {% endif %}
+    </div>
+</div>

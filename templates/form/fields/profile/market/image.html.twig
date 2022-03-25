@@ -1,0 +1,64 @@
+{% set maxSize          = attr.maxSize ?? 0 %}
+{% set allowMimeTypes   = attr.allowMimeTypes ?? 0 %}
+{% set attr             = attr|merge({
+    'maxSize'           : null,
+    'allowMimeTypes'    : null,
+}) %}
+
+{% if (image_uri ?? null) is not null %}
+    {% set src = image_uri %}
+{% elseif (download_uri ?? null) is not null %}
+    {% set src = download_uri %}
+{% else %}
+    {% set src = null %}
+{% endif %}
+
+<div class="
+    field
+    product-image
+    js-image-upload-input
+    {% if (src ?? null) is not null %}fill{% endif %}
+    {% if '.pdf' in src or '.x-pdf' in src %}pdf-uploaded{% endif %}
+    {% if required %}required{% endif %}
+    {% if hidden ?? false %}hidden{% endif %}
+    {% if form.vars.errors|length > 0 %}validation-error{% endif %}
+    {{ (row_attr ?? [])|toAttributesString }}
+">
+    <figure>
+        <a href="{{ src }}"></a>
+        <img
+            {% if src %}src="{{ src }}"{% endif %}
+            alt=""
+            title=""
+        >
+    </figure>
+    <div class="active-button">
+        <span class="title-add">
+            {{ (titleAdd ?? null)|trans }}
+        </span>
+        <span class="title-change">
+            {{ (titleChange ?? null)|trans }}
+        </span>
+        <input
+            type="file"
+            name="{{ full_name }}[file]"
+            title="{{ (attr.placeholder ?? null)|trans }}"
+            {% if allowMimeTypes != 0 %}
+                data-allow-mime-types="{{ allowMimeTypes|join(',') }}"
+                data-allow-mime-type-message="{{ 'WrongFileType'|trans|replace({
+                    '%value%' : allowMimeTypes|join(', '),
+                }) }}"
+            {% endif %}
+            {% if required and not src %}required{% endif %}
+            {% if maxSize > 0 %}
+                data-size-limit="{{ maxSize }}"
+                data-size-limit-message="{{ 'MaxFileSize'|trans|replace({
+                    '%value%' : maxSize / 1024,
+                }) }}"
+            {% endif %}
+        >
+    </div>
+</div>
+{% if form.vars.errors|length > 0 %}
+    <div class="error show">{{ form_errors(form) }}</div>
+{% endif %}

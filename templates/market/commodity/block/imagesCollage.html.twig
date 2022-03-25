@@ -1,0 +1,51 @@
+{# ------------------------------------------- #}
+{# images set #}
+{# ------------------------------------------- #}
+{% set imagesData = [] %}
+{% for commodity in item.commodities %}
+    {% if commodity.category ?? null %}
+        {% set imagesData = imagesData|merge([{
+            'image' : vich_uploader_asset(commodity),
+            'title' : commodity.title,
+        }]) %}
+    {% endif %}
+{% endfor %}
+{# ------------------------------------------- #}
+{# images collage special class #}
+{# ------------------------------------------- #}
+{% set imagesCollageClass = 'max-image-1' %}
+
+{% if imagesData|length == 2 %}
+    {% set imagesCollageClass = 'max-image-2' %}
+{% elseif imagesData|length > 2 and imagesData|length <= 4 %}
+    {% set imagesCollageClass = 'max-image-4' %}
+{% elseif imagesData|length > 4 and imagesData|length <= 6 %}
+    {% set imagesCollageClass = 'max-image-6' %}
+{% elseif imagesData|length > 6 %}
+    {% set imagesCollageClass = 'max-image-9' %}
+{% endif %}
+{# ------------------------------------------- #}
+{# output #}
+{# ------------------------------------------- #}
+<div class="
+    proposal-image
+    {{ imagesCollageClass }}
+    commodity-activation-bar
+    {% if not item|checkCommodityIsPublished %}inactive{% endif %}
+">
+    {% for imageData in imagesData %}
+        <a data-fancybox data-src="{{ imageData.image }}">
+            <img
+                src="{{ imageData.image }}"
+                alt="{{ imageData.title }}"
+                title="{{ imageData.title }}"
+            >
+        </a>
+    {% endfor %}
+    {% include 'market/commodity/block/organicBadge.html.twig' with {
+        'item' : item,
+    } only %}
+    {% include 'market/commodity/block/activationBar.html.twig' with {
+        'item' : item,
+    } only %}
+</div>

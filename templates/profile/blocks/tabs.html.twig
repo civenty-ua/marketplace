@@ -1,0 +1,33 @@
+{% set tabs = [
+    {
+        'name'      : 'settings',
+        'enabled'   : true,
+        'link'      : path('app_profile'),
+        'title'     : 'profile.settings'|trans,
+    },
+    {
+        'name'      : 'knowledge',
+        'enabled'   : true,
+        'link'      : path('app_profile_knowledge'),
+        'title'     : 'profile.knowledge'|trans,
+    },
+    {
+        'name'      : 'marketplace',
+        'enabled'   : (options('market_plase_enable')['value'] ?? null) == '1',
+        'link'      : path('market_profile_my_commodities_product'),
+        'title'     : 'profile.marketplace'|trans,
+    },
+] %}
+{% for tab in tabs %}
+    {% if tab.enabled %}
+        <a
+            class="
+                tabs__link
+                {% if tab.name == selected ?? '' %}selected{% endif %}
+            "
+            href="{{ tab.link }}"
+        >
+            <span>{{ tab.title }}</span>
+        </a>
+    {% endif %}
+{% endfor %}

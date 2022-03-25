@@ -1,0 +1,123 @@
+{{ form_start(profileEditForm) }}
+{% include 'common/loader.html.twig' %}
+
+<div class="field field-avatar">
+    <figure class="field-avatar__figure">
+        <img {% if app.user.avatar %}src="
+                {{ user_avatar_asset(app.user, 'avatar') }}
+            " {% endif %}
+                class="field-avatar__image"
+                alt="{{ app.user.name }}"
+        >
+    </figure>
+    <div class="field-avatar__file-input">
+        <span class="btn-h40-input-file-green">
+            {% if app.user.avatar %}
+                <span>{{ 'user.change_photo'|trans }}</span>
+            {% else %}
+                <span>{{ 'user.add_photo'|trans }}</span>
+            {% endif %}
+
+            {{ form_widget(profileEditForm.avatar) }}
+        </span>
+    </div>
+</div>
+
+<div class="form-block">
+    {{ form_label(profileEditForm.name) }}
+    {{ form_widget(profileEditForm.name) }}
+    <div class="input-error">
+        {{ form_errors(profileEditForm.name) }}
+    </div>
+</div>
+<div class="form-block">
+    {{ form_row(profileEditForm.gender) }}
+</div>
+<div class="field field-text">
+    <label>{{ 'form_registration.email' | trans }}</label>
+    <p class="text">{{ app.user.email }}</p>
+</div>
+<div class="form-block date-of-birth__block">
+    {{ form_label(profileEditForm.dateOfBirth) }}
+    {{ form_widget(profileEditForm.dateOfBirth.day, {'attr': {'class': 'select-input height-50'}}) }}
+    {{ form_widget(profileEditForm.dateOfBirth.month, {'attr': {'class': 'select-input height-50'}}) }}
+    {{ form_widget(profileEditForm.dateOfBirth.year, {'attr': {'class': 'select-input height-50'}}) }}
+    <div class="input-error">
+        {{ form_errors(profileEditForm.dateOfBirth) }}
+    </div>
+</div>
+<div class="form-block">
+    {{ form_label(profileEditForm.phone) }}
+    {{ form_widget(profileEditForm.phone) }}
+    <div class="input-error">
+        {{ form_errors(profileEditForm.phone) }}
+    </div>
+</div>
+<div class="form-block">
+    <a
+            href="javascript:void(0)"
+            class="js-verification-phone__button square-button green-bg-button height-50"
+            {% if profileEditForm.code.vars.value is not empty or user.verifyPhone %}style="display: none;"{% endif %}
+    >
+        {{ 'form_registration.verifi_phone'|trans }}
+    </a>
+    <div
+            class="
+            js-verification-phone__code
+            verification-phone__code
+            {% if user.verifyPhone %}verified{% endif %}
+        "
+            {% if profileEditForm.code.vars.value is not empty %} style="display: block;"{% endif %}
+    >
+        <div class="form-block">
+            {{ form_label(profileEditForm.code) }}
+            {{ form_widget(profileEditForm.code) }}
+        </div>
+    </div>
+</div>
+
+<div class="field field-select {% if not profileEditForm.region.vars.valid %}error{% endif %}">
+    {{ form_label(profileEditForm.region) }}
+    <div class="select-wrap">
+        {{ form_widget(profileEditForm.region) }}
+    </div>
+    <div class="error">{{ form_errors(profileEditForm.region) }}</div>
+</div>
+<div class="field field-select {% if not profileEditForm.activity.vars.valid %}error{% endif %}">
+    {{ form_label(profileEditForm.activity) }}
+    <div class="select-wrap">
+        {{ form_widget(profileEditForm.activity) }}
+    </div>
+    <div class="error">{{ form_errors(profileEditForm.activity) }}</div>
+</div>
+<div class="field field-select {% if not profileEditForm.crops.vars.valid %}error{% endif %}">
+    {{ form_label(profileEditForm.crops) }}
+    <div class="select-wrap">
+        {{ form_widget(profileEditForm.crops) }}
+    </div>
+    <div class="error">{{ form_errors(profileEditForm.crops) }}</div>
+</div>
+<div class="field field-checkbox">
+    <div class="checkbox-wrap">
+        <label>
+            {{ form_widget(profileEditForm.isNewsSub) }}
+            <span>{{ 'subscribe_to_news'|trans }}</span>
+        </label>
+    </div>
+</div>
+<div class="field-buttons">
+    <div class="buttons-list">
+        <a class="btn-h50-green-line" href="#">
+            <span>{{ 'profile.forms.profile_edit.cancel' | trans }}</span>
+        </a>
+        <button type="submit" class="btn-h50-green">
+            <span>{{ 'profile.forms.profile_edit.submit' | trans }}</span>
+        </button>
+    </div>
+</div>
+
+{{ form_end(profileEditForm) }}
+
+
+
+

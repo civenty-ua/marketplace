@@ -1,0 +1,10 @@
+{% block category_attributes_widget %}
+    {% if attributesAll|length == 0 %}
+        <i>{{ 'admin.market.category.attributes_form.noAttributesExist'|trans }}</i>
+    {% else %}
+        {% include 'admin/market/category_attributes.html.twig' %}
+    {% endif %}
+{% endblock %}
+{% block commodity_attributes_values_widget %}
+    {% include 'admin/market/commodity_attributes_values.html.twig' %}
+{% endblock %}

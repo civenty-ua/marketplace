@@ -1,0 +1,33 @@
+<div class="review__block" style="margin-top: 40px">
+    <div class="h2">
+        {% if userRating is not defined %}
+            {{ 'item.like_material'|trans }}
+            {% if webinar is defined %}
+                {% set rateDataAction  =  path('webinar_detail',{'slug': webinar.slug}) %}
+            {% endif %}
+        {% else %}
+            Оцініть користувача {{ targetUser }}
+            {% set rateDataAction  =  path('user_estimate',{'id': targetUser.id}) %}
+        {% endif %}
+    </div>
+    <div class="review-count">
+        <div class="review-count__item"><span>{{ 'item.rated'|trans }} </span><strong>{{ voted }}</strong></div>
+        <div class="review-count__item"><span> {{ 'item.average_mark'|trans }}</span><strong>{{ rate }}</strong></div>
+    </div>
+    {% if userCanRate is not defined or userCanRate == false %}
+        <div class="review-rating">
+            <span>{{ 'item.so-so_mark' | trans }}</span>
+            <div class="js-rating-readonly rating" data-score="{{ rate }}"></div>
+            <span>{{ 'item.excellent_mark'|trans }}</span>
+        </div>
+    {% else %}
+        {% if rateDataAction is defined %}
+            <div class="review-rating">
+                <span>{{ 'item.so-so_mark' | trans }}</span>
+                <div class="js-rating rating" data-score="{{ rate }}" data-half="y"
+                     data-action="{{ rateDataAction }}"></div>
+                <span>{{ 'item.excellent_mark'|trans }}</span>
+            </div>
+        {% endif %}
+    {% endif %}
+</div>

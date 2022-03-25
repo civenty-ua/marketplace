@@ -1,0 +1,23 @@
+<div class="experts-container">
+    {% for expert in experts %}
+        <div class="expert-item">
+            <a class="expert-item-image" href="{{ path('expert-detail', {'slug': expert.slug}) }}">
+                <img src="{{ asset('upload/expert/' ~ expert.image) }}" alt="{{ expert.name }}" loading="lazy">
+            </a>
+            <div class="expert-item__content">
+                <a class="expert-item__name" href="{{ path('expert-detail', {'slug': expert.slug}) }}">
+                    {{ expert.name }}
+                </a>
+                {% if expert.position %}
+                    <div class="detail-item-text">
+                        {{ expert.position|raw|fileparser }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="navigation">
+    {{ knp_pagination_render(experts) }}
+</div>

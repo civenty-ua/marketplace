@@ -1,0 +1,275 @@
+<div class="section">
+    <ul class="breadcrumbs">
+        <li><a href="{{ path('home') }}">{{ 'home.home'|trans }}</a></li>
+        <li><a href="{{ path('courses_and_webinars', {'type': 'course'}) }}">{{ 'menu.study.courses'| trans }}</a></li>
+        <li>{{ course.title }}</li>
+    </ul>
+
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org/",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "{{ 'home.home'|trans }}",
+                    "item": "{{ url('home') }}"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "{{ 'menu.study.courses'|trans }}",
+                    "item": "{{ url('courses_and_webinars', {'type': 'course'}) }}"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "{{ course.title }}",
+                    "item": "{{ app.request.uri }}"
+                }
+            ]
+        }
+    </script>
+
+    <div class="detail-item-header">
+        <div class="item-badge bordered course">
+            <svg>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#course"></use>
+            </svg>
+            <span>{{ 'header.course'|trans }}</span>
+        </div>
+    </div>
+
+    <h1 class="h1 detail-item-title marginBottom20px">
+        <strong>{{ course.title }}</strong>
+    </h1>
+
+    <div class="detail-item">
+        <div class="detail-item-block">
+            {% set mainImage = course.imageName is empty
+                ? asset('images/item-default.png')
+                : asset('upload/course/' ~ course.imageName)
+            %}
+            <img class="detail-item-image" src="{{ mainImage }}" alt="{{ course.title }}">
+
+            <div class="icon-text desktop">
+                <i class="fab fa-youtube"></i>
+                <span>{{ course.countLesson }} {{ 'course.lesson'|trans }}</span>
+            </div>
+            {% if course.personalConsalting %}
+                <div class="icon-text desktop">
+                    <i class="far fa-comment"></i>
+                    <span>{{ 'course.personal_consulting'|trans }}</span>
+                </div>
+            {% endif %}
+            <div class="icon-text desktop">
+                <i class="fas fa-check"></i>
+                <span>
+                    <strong class="green">{{
+                        course.viewsAmount > countRegisteredUser
+                        ? course.viewsAmount
+                        : countRegisteredUser
+                        }}
+                    </strong>
+                    {{ 'course.register_user'|trans }}
+                </span>
+            </div>
+            {% if course.startDate %}
+                <div class="icon-text desktop">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>{{ 'item.created_at'|trans }}:
+                        <strong> {{ course.startDate|dateFormatAgro }}</strong></span>
+                </div>
+                <div class="icon-text desktop">
+                    <i class="far fa-clock"></i>
+                    <span>{{ 'item.time_created_at'|trans }}:
+                        <strong> {{ course.startDate|date('H:i') }}</strong></span>
+                </div>
+            {% endif %}
+        </div>
+        <div class="detail-item-block">
+            <div class="detail-item-info">
+                <span>{{ 'course.partners'|trans }}:</span>
+                <div class="category-container">
+                    {% for partner in course.partners %}
+                        <a href="{{ partner.name != 'UHBDP' ? path('partner-detail', {'slug': partner.slug}) : '#' }}"
+                           class="category-item">{{ partner.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="detail-item-info">
+                <span>{{ 'course.experts'|trans }}:</span>
+                <div class="category-container">
+                    {% for expert in course.experts %}
+                        <a href="{{ path('expert-detail', {'slug': expert.slug}) }}"
+                           class="category-item">{{ expert.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="detail-item-text">
+                {{ course.content|raw|fileparser }}
+            </div>
+            {% if user is not defined  %}
+                <div class="detail-item-rating marginBottom20px">
+                    <div class="js-rating-readonly rating" data-score="{{ rate }}"></div>
+                    <strong>{{ rate }}</strong>
+                </div>
+            {% else%}
+                <div class="detail-item-rating marginBottom20px">
+                    <div class="js-rating rating" data-score="{{ rate }}" data-half="y"
+                         data-action="{{ path('course_detail',{'slug': course.slug}) }}"></div>
+                    <strong>{{ rate }}</strong>
+                </div>
+            {% endif %}
+
+            <div class="icon-text mobile">
+                <i class="fab fa-youtube"></i>
+                <span>{{ course.countLesson }} {{ 'course.lesson'|trans }}</span>
+            </div>
+            {% if course.personalConsalting %}
+                <div class="icon-text mobile">
+                    <i class="far fa-comments"></i>
+                    <span>{{ 'course.personal_consulting'|trans }}</span>
+                </div>
+            {% endif %}
+            <div class="icon-text mobile">
+                <i class="fas fa-check"></i>
+                <span>
+                    <strong class="green">{{
+                        course.viewsAmount > countRegisteredUser
+                        ? course.viewsAmount
+                        : countRegisteredUser
+                        }}</strong>
+                    {{ 'course.register_user'|trans }}
+                </span>
+            </div>
+            {% if course.startDate %}
+                <div class="icon-text mobile">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>{{ 'item.created_at'|trans }}:
+                        <strong> {{ course.startDate|dateFormatAgro }}</strong></span>
+                </div>
+                <div class="icon-text mobile">
+                    <i class="far fa-clock"></i>
+                    <span>{{ 'item.time_created_at'|trans }}:
+                        <strong> {{ course.startDate|date('H:i') }}</strong></span>
+                </div>
+            {% endif %}
+
+            {% if not register %}
+                <a data-url="{{ path('course_register', {'slug': course.slug}) }}" data-login-url="{{ path('login') }}"
+                   class="js-course-register square-button orange-bg-button height-50 marginTop20px">
+                    {{ 'form_registration.register'|trans }}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+    {% if showSuccessRegistrationMessageBlock is defined and showSuccessRegistrationMessageBlock == true %}
+    <div class="detail-item-text">
+        <div class="green showSuccessMessage">
+            {{ 'course.register_success'|trans }}
+        </div>
+    </div>
+    {% elseif  showSuccessRegistrationMessageBlock is defined and showSuccessRegistrationMessageBlock is same as false %}
+    <div class="detail-item-text">
+        <div class="green showSuccessMessage">
+            {{ 'item.past_webinar_registration_success_message_block'|trans }}
+        </div>
+    </div>
+    {% endif %}
+    <div class="tabs">
+        <div class="tabs__navigation-wrapper">
+            <div class="tabs__navigation{% if (activeTab) %} has-active-tab{% endif %}">
+                <a class="tabs__link {% if (activeTab == 'program' or type == 'lesson') %}selected{% endif %}"
+                   href="#program">
+                    <span>{{ 'course.program'|trans }}</span>
+                </a>
+                {% if course.experts|length > 0 %}
+                    <a class="tabs__link" href="#expert">
+                        <span>{{ 'course.experts'|trans }}</span>
+                    </a>
+                {% endif %}
+                {% if course.partners|length > 0 %}
+                    <a class="tabs__link" href="#organizer">
+                        <span>{{ 'course.partners'|trans }}</span>
+                    </a>
+                {% endif %}
+                <a class="tabs__link" href="#review">
+                    <span>{{ 'item.reviews'|trans }}</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="tabs__content">
+            {% if type == 'course' %}
+                {% include 'course/tabs/program.html.twig' with {'course': course} %}
+            {% else %}
+                {% include 'course/tabs/lesson.html.twig' with {'lesson': lesson} %}
+            {% endif %}
+            {% if course.experts|length > 0 %}
+                {% include 'course/tabs/experts.html.twig' with {'experts': course.experts} %}
+            {% endif %}
+            {% if course.partners|length > 0 %}
+                {% include 'course/tabs/partners.html.twig' with {'partners': course.partners} %}
+            {% endif %}
+            {% include 'blocks/review-tab-block.html.twig' %}
+        </div>
+        <div class="detail-item-text">
+            {{ course.descriptionTwo|raw|fileparser }}
+        </div>
+
+        {% if not register %}
+            <a data-url="{{ path('course_register', {'slug': course.slug}) }}" data-login-url="{{ path('login') }}"
+               class="js-course-register square-button height-50 orange-bg-button centeredBlock marginBottom40px">
+                {{ 'form_registration.register'|trans }}
+            </a>
+        {% endif %}
+
+        {% include 'blocks/like-material-block.html.twig' %}
+
+        {% if course.commentsAllowed %}
+            <br>
+            {% include 'comment/item-comments-list.html.twig' with {
+                'item'      : course,
+                'itemType'  : 'course',
+                'user'      : user,
+                'comments'  : {
+                    'form'          : comments.form,
+                    'exist'         : comments.exist,
+                    'pageSize'      : comments.pageSize,
+                    'totalCount'    : comments.totalCount,
+                },
+            } only %}
+        {% endif %}
+    </div>
+</div>
+
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org/",
+        "@type": "Article",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ app.request.uri }}"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "{{ 'title'|trans }}",
+            "url": "{{ url('home') }}"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "{{ 'title'|trans }}",
+            "url": "{{ url('home') }}",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "{{ asset('images/logo-1.svg') }}"
+            }
+        },
+        "headline": "{{ course.title }}",
+        "image": "{{ mainImage }}",
+        "datePublished": "{{ course.createdAt | date('Y-m-d') }}",
+        "dateModified": "{{ course.updatedAt | date('Y-m-d') }}"
+    }
+</script>

@@ -1,0 +1,34 @@
+## Read the documentation: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html
+#
+#twig:
+#  form_themes:
+#    - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+#
+#fos_ck_editor:
+#  configs:
+#    my_config:
+#      toolbar: standard
+
+# Read the documentation: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html
+
+twig:
+  form_themes:
+    - 'ckeditor/ckeditor_widget.html.twig'
+
+fos_ck_editor:
+  configs:
+    my_config:
+      filebrowserBrowseRoute: elfinder
+      extraPlugins: 'youtube'
+      removePlugins: 'iframe'
+      allowedContent: true
+      extraAllowedContent: 'p(*)[*]{*};div(*)[*]{*};li(*)[*]{*};ul(*)[*]{*}'
+      filebrowserBrowseRouteParameters: [ ]
+      fillEmptyBlocks: false
+      autoParagraph: false
+      links:
+        decorators: file.pdf, file.png
+  plugins:
+    youtube:
+      path: '/bundles/fosckeditor/plugins/youtube/'
+      filename: 'plugin.js'

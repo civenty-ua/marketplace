@@ -1,0 +1,13 @@
+<div class="checkbox-wrap {{ class ?? '' }}">
+    <label>
+        <input
+            type="checkbox"
+            name="{{ name }}"
+            value="{{ value }}"
+            {% if isChecked %}checked{% endif %}
+        >
+        <span>
+            {{ title }}
+        </span>
+    </label>
+</div>

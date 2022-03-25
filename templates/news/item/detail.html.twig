@@ -1,0 +1,116 @@
+{% extends 'layout/content.html.twig' %}
+
+{% block title %}
+    {{ item.title }}
+{% endblock %}
+
+{% block keywords %}{% if item.keywords %}{{ item.keywords }}{% else %}{{ op['default_keywords']['value'] }}{% endif %}{% endblock %}
+{% block description %}{% if item.description %}{{ item.description| striptags| raw }}{% elseif item.short %}{{ item.short| striptags| raw }}{% else %}{{ op['default_description']['value'] }}{% endif %}{% endblock %}
+{% block opengraph_title %}{{ item.title }}{% endblock %}
+{% block opengraph_description %}{% if item.description %}{{ item.description| striptags| raw }}{% elseif item.short %}{{ item.short| striptags| raw }}{% else %}{{ op['default_description']['value'] }}{% endif %}{% endblock %}
+{% block opengraph_url %}{{ app.request.uri }}{% endblock %}
+{% block opengraph_image %}{{ baseDom~asset('upload/article/'~ item.imageName) }}{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <ul class="breadcrumbs">
+            <li><a href="{{ path('home') }}">{{ 'menu.home'|trans }}</a></li>
+            <li><a href="{{ path('news_list') }}">{{ 'menu.about_us.news'|trans }}</a></li>
+            <li>{{ item.title }}</li>
+        </ul>
+
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org/",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "{{ 'home.home'|trans }}",
+                        "item": "{{ url('home') }}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "{{ 'menu.about_us.news'|trans }}",
+                        "item": "{{ url('news_list') }}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": "{{ item.title }}",
+                        "item": "{{ app.request.uri }}"
+                    }
+                ]
+            }
+        </script>
+
+        <div class="article-header">
+            <div class="article-social">
+                <div class="shareon" data-url="{{ app.request.uri }}">
+                    <button class="facebook"></button>
+                    <button class="linkedin"></button>
+                    <button class="telegram"></button>
+                    <button class="twitter"></button>
+                </div>
+            </div>
+            <div class="article-header__block">
+                <a class="return-button" href="{{ app.request.headers.get('referer') }}">
+                    <i class="fas fa-angle-left"></i>
+                </a>
+                <h1 class="article-title">
+                    {{ item.title }}
+                </h1>
+                <div class="header-info">
+                        {% set month = item.createdAt|date('M') %}
+                        {% set day = item.createdAt|date('d') %}
+                        {% set year = item.createdAt|date('Y') %}
+                    <div class="header-info__item">
+                        <i class="far fa-calendar"></i>
+                        <span>{{ '%s %s %s'|format(day,month|trans, year) }}</span>
+                    </div>
+                    <div class="header-info__item">
+                        <i class="far fa-eye"></i>
+                        <span>{{ 'item.views'|trans }}{{ ' ' ~ item.viewsAmount }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-main-image">
+                <img
+                        src="{{ asset('upload/article/' ~ item.imageName) }}"
+                        alt="{{ item.title }}"
+                >
+            </div>
+        </div>
+        <div class="article-body">
+            {{ item.content|raw|fileparser }}
+        </div>
+    </div>
+    {% if app.user and app.user.isnewssub == false %}
+        {% include 'blocks/subscribe-block.html.twig' %}
+    {% endif %}
+    {% include 'blocks/telegram-subscribe-block.html.twig' %}
+    {% include 'blocks/top-tags-block.html.twig' with {'topTags': topTags} %}
+    {% include '/blocks/similar-block.html.twig' with {'similarItemList': similarItemList} %}
+    {% if item.commentsAllowed %}
+        {% include 'comment/item-comments-list.html.twig' with {
+            'item'      : item,
+            'user'      : user,
+            'comments'  : {
+                'form'          : comments.form,
+                'exist'         : comments.exist,
+                'pageSize'      : comments.pageSize,
+                'totalCount'    : comments.totalCount,
+            },
+        } only %}
+    {% endif %}
+    {% include 'blocks/business-tools-lite-block.html.twig' %}
+    {% include 'blocks/catalog-block.html.twig' %}
+    {% if categories|length > 0 %}
+        {% include 'blocks/knowledge-base-block.html.twig' with {
+            'categories': categories
+        } %}
+    {% endif %}
+
+{% endblock %}

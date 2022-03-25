@@ -1,0 +1,49 @@
+{# ------------------------------------------- #}
+{# categories / subcategories #}
+{# ------------------------------------------- #}
+{% if (fields.categories ?? [])|length > 0 %}
+    <div class="field">
+        <label>{{ 'market.product.filter.category'|trans }}</label>
+        {% include 'market/commodity/block/filter/entitiesList.html.twig' with {
+            'name'              : "filters[#{filterIndex}][category]",
+            'emptyValue'        : true,
+            'multiple'          : false,
+            'entities'          : fields.categories,
+            'values'            : [filter.category ?? null],
+            'titlePropertyName' : 'title',
+        } only %}
+    </div>
+{% endif %}
+{% if (fields.subCategories ?? [])|length > 0 %}
+    <div class="field">
+        <label>{{ 'market.product.filter.subCategory'|trans }}</label>
+        {% include 'market/commodity/block/filter/entitiesList.html.twig' with {
+            'name'              : "filters[#{filterIndex}][subCategory]",
+            'emptyValue'        : true,
+            'multiple'          : false,
+            'entities'          : fields.subCategories,
+            'values'            : [filter.subCategory ?? null],
+            'titlePropertyName' : 'title',
+        } only %}
+    </div>
+{% endif %}
+{# ------------------------------------------- #}
+{# category attributes #}
+{# ------------------------------------------- #}
+{% for categoryAttributeParameters in fields.attributes %}
+    {% set input %}
+        {% include 'market/commodity/block/filter/categoryAttribute.html.twig' with {
+            'inputName'             : "filters[#{filterIndex}][attributes][#{categoryAttributeParameters.id}]",
+            'value'                 : filter.attributes[categoryAttributeParameters.id] ?? null,
+            'attributeParameters'   : categoryAttributeParameters,
+            'maxValues'             : fields.maxValues.attributes,
+        } only %}
+    {% endset %}
+
+    {% if input|trim|length > 0 %}
+        <div class="field">
+            <label>{{ categoryAttributeParameters.attribute.title }}</label>
+            {{ input }}
+        </div>
+    {% endif %}
+{% endfor %}

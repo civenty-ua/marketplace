@@ -1,0 +1,201 @@
+{% extends 'market/itemDetail.html.twig' %}
+{# ------------------------------------------- #}
+{# page title #}
+{# ------------------------------------------- #}
+{% set pageTitle = user.name %}
+{# ------------------------------------------- #}
+{# page css class #}
+{# ------------------------------------------- #}
+{% set pageCssClass = 'market-user-detail-page' %}
+{# ------------------------------------------- #}
+{# breadcrumbs #}
+{# ------------------------------------------- #}
+{% block breadcrumbs %}
+    {% include 'blocks/breadcrumbs.html.twig' with {
+        'items' : [
+            {
+                'link'  : path('home'),
+                'title' : 'menu.home'|trans,
+            },
+            {
+                'title' : user.name,
+            },
+        ],
+    } only %}
+{% endblock %}
+{# ------------------------------------------- #}
+{# whole content #}
+{# ------------------------------------------- #}
+{% block contentBody %}
+    {% if
+        (user.userProperty.description ?? null) or
+        (user.userProperty.descriptvideoIdion ?? null)
+    %}
+        <tab>
+            <tab-nav>
+                <nav-item class="tabs__link selected">{{ 'profile.mainInfo'|trans }}</nav-item>
+                <nav-item class="tabs__link">{{ 'profile.about_me'|trans }}</nav-item>
+            </tab-nav>
+            <tab-content-block>
+                <tab-content class="active">{{ parent() }}</tab-content>
+                <tab-content>
+                    {% include 'market/user/aboutMe.html.twig' with {
+                        'user' : user,
+                    } only %}
+                </tab-content>
+            </tab-content-block>
+        </tab>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+{# ------------------------------------------- #}
+{# head content #}
+{# ------------------------------------------- #}
+{% block contentHead %}
+    <h1 class="product-header__title">
+        {{ user.name }}
+    </h1>
+    <div class="header-info product-header">
+        <div class="header-info__item">
+            <div class="grey1">{{ 'market.user.detail.id'|trans }}:</div>
+            <span><b>{{ user.id }}</b></span>
+        </div>
+        <div class="header-info__item">
+            <i class="far fa-calendar"></i>
+            <span>
+                {{ 'market.user.detail.activeFrom'|trans }}:
+                <strong>
+                    {% include 'blocks/datePrintable.html.twig' with {
+                        'date' : user.createdAt,
+                    } only %}
+                </strong>
+            </span>
+        </div>
+        {% if (app.user ?? null) is not null and app.user != user %}
+            <div class="header-info__item to-favorite">
+                {% include 'market/user/block/toFavorite.html.twig' with {
+                    'user' : user,
+                } only %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+{# ------------------------------------------- #}
+{# content left side #}
+{# ------------------------------------------- #}
+{% block contentLeftSide %}
+    <div class="product-image-container">
+        {% include 'market/user/block/avatar.html.twig' with {
+            'user'  : user,
+            'class' : 'product-image avatar',
+        } only %}
+    </div>
+    <div class="detail-item-rating">
+        <div class="{{ userCanRate == true ? 'js-rating' : 'js-rating-readonly' }} rating"
+             data-score="{{ rate }}"
+             data-half="y"
+             data-action="{{ path('user_estimate',{'id': user.id}) }}"></div>
+        <strong>{{ rate }}</strong>
+    </div>
+{% endblock %}
+{# ------------------------------------------- #}
+{# content right side #}
+{# ------------------------------------------- #}
+{% block contentRightSide %}
+    <div class="seller-info">
+        {% include 'market/user/block/fieldsTable.html.twig' with {
+            'user' : user,
+        } only %}
+    </div>
+{% endblock %}
+{# ------------------------------------------- #}
+{# content bottom #}
+{# ------------------------------------------- #}
+{% block contentBottom %}
+    {# ---------------------------- #}
+    {# user commodities #}
+    {# ---------------------------- #}
+    {% set userCommodities %}
+        {% include 'market/user/commoditiesTabs.html.twig' with {
+            'user'          : user,
+            'commodities'   : commodities
+        } only %}
+    {% endset %}
+    {% if userCommodities|trim|length > 0 %}
+        <div class="section">
+            {{ userCommodities }}
+        </div>
+    {% endif %}
+    {# ---------------------------- #}
+    {# same users #}
+    {# ---------------------------- #}
+    {% if sameUsers.items|length > 0 %}
+        <div class="section">
+            <h2 class="h2">
+                {{ 'market.user.detail.sameUsers'|trans }}
+            </h2>
+            {% include 'market/user/sameUsers.html.twig' with {
+                'items'         : sameUsers.items,
+                'actions'       : sameUsers.actions,
+                'mainAction'    : sameUsers.mainAction,
+            } only %}
+        </div>
+    {% endif %}
+    {# ---------------------------- #}
+    {# reviews #}
+    {# ---------------------------- #}
+    {% if userReviews.items|length > 0 %}
+        <h3 class="h3 marginTop20px marginBottom20px">{{ 'market.user.review.userReview'|trans }}</h3>
+        {% include 'market/user/userReviewList.html.twig' with {
+            'items' : userReviews.items,
+            'currentPage' : userReviews.page,
+            'user'        : user,
+            'rebuildUrl' : userReviews.rebuildUrl,
+        } %}
+    {% else %}
+        <h3 class="h3 marginTop20px">{{ 'market.user.review.firstUserReview'|trans }} {{ user }}</h3>
+    {% endif %}
+    {% if app.user %}
+        {{ form_start(userReviews.form) }}
+
+        {# reviewText #}
+        {# ---------------------------- #}
+        {% set maxlength    = userReviews.form.reviewText.vars.attr.maxlength  ?? 100 %}
+        {% set value        = userReviews.form.reviewText.vars.value           ?? '' %}
+
+        <div class="
+            field
+            textarea-wrap marginTop20px
+            {% if userReviews.form.reviewText.vars.errors|length > 0 %}error{% endif %}
+        ">
+            {{ form_widget(userReviews.form.reviewText, {
+                'attr' : {
+                    'class'     : 'js-textarea',
+                    'maxlength' : maxlength,
+                    'rows'      : 5,
+                },
+            }) }}
+            <div class="textarea-count">
+                <span class="js-textarea-count__current-count">{{ value|length }}</span>
+                <span class="textarea-count__maximum-count">/ {{ maxlength }}</span>
+            </div>
+            <div class="error">
+                {{ form_errors(userReviews.form.reviewText) }}
+            </div>
+        </div>
+        {# ---------------------------- #}
+        {# submit #}
+        {# ---------------------------- #}
+        <div class="centeredBlock">
+            {{ form_row(userReviews.form.submit, {
+                'label' :  'market.user.review.publish'|trans ,
+                'attr'  : {
+                    'class' : 'form-button',
+                },
+            }) }}
+        </div>
+
+        {{ form_end(userReviews.form) }}
+    {% endif %}
+{% endblock %}

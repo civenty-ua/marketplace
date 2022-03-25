@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'menu.knowledge_base' | trans }}{% endblock %}
+
+{% block body %}
+    {% include 'home/blocks/landing-knowledge-base-block.html.twig' with {'categories': categories} %}
+{% endblock %}

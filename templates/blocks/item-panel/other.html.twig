@@ -1,0 +1,33 @@
+{% if wrapperTag is not defined %}
+    {% set wrapperTag = 'li' %}
+{% endif %}
+
+<{{ wrapperTag }} class="glide__slide">
+    <div class="item">
+        <div class="item-badge webinar">
+            <svg>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#webinar"></use>
+            </svg>
+            <span>{{ 'menu.study.other'|trans }}</span>
+        </div>
+        {% if item.videoItem.videoId is defined and item.videoItem.videoId|length > 0 %}
+            {% set VideoImage = 'http://img.youtube.com/vi/'~item.videoItem.videoId~'/0.jpg' %}
+        {% endif %}
+        <div class="item-image">
+            <a href="{{ path('other_detail', {'slug': item.slug}) }}">
+                {% if VideoImage is defined %}
+                    <img src="{{ asset(VideoImage) }}" alt="{{ item.title }}">
+                {% else %}
+                    <img src="{{ asset('images/item-default.png') | imagine_filter('238x200') }}" alt="{{ item.title }}">
+                {% endif %}
+            </a>
+        </div>
+        <div class="item-title">
+            <a href="{{ path('other_detail', {'slug': item.slug}) }}" title="{{ item.title }}">{{ item.title }}</a>
+        </div>
+        <div class="icon-text desktop">
+            <i class="far fa-eye"></i>
+            <span>{{ item.ViewsAmount }} {{ 'item.views'|trans }}</span>
+        </div>
+    </div>
+</{{ wrapperTag }}>

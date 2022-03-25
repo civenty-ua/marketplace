@@ -1,0 +1,96 @@
+<div class="js-expert" data-list-ajax-url="{{ listAjaxUrl }}">
+    <div class="section">
+        <ul class="breadcrumbs">
+            <li><a href="{{ path('home') }}">{{ 'home.home'|trans }}</a></li>
+            <li>{{ 'home.experts'|trans }}</li>
+        </ul>
+
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org/",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "{{ 'home.home'|trans }}",
+                        "item": "{{ url('home') }}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "{{ 'home.experts'| trans }}",
+                        "item": "{{ url('experts') }}"
+                    }
+                ]
+            }
+        </script>
+
+        <h1 class="h1"><strong>{{ 'home.experts'|trans }}</strong></h1>
+        <div class="section__subtitle marginBottom0">{{ ('experts.title'|trans)|raw }}</div>
+    </div>
+
+    <div class="white1-bg">
+        <div class="section">
+            <div class="marginBottom20px fontSize15-20px">{{ 'experts.description'|trans }}</div>
+            <div class="marginBottom20px fontSize15-20px">{{ 'experts.description-1'|trans }}</div>
+            <div class="green strong fontSize17-20px">{{ 'experts.description-2'|trans }}</div>
+        </div>
+    </div>
+
+    <div class="section experts">
+        <div class="desktop-tag marginBottom40px">
+            <div class="js-desktop-filter">
+                <div class="tag-item-container centered">
+                    {% if tags is defined %}
+                        {% for tag in tags %}
+                            <a class="tag-item {% if tag.id in appliedQueryParams.tags %}active{% endif %}"
+                                    href="javascript:void(0)" data-tag-name="{{ tag.id }}">
+                                <i class="fas fa-check"></i>
+                                <span class="title">{{ tag.name }}</span>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-wrapper">
+            <a href="javascript:void(0)" class="js-mobile-filter__open filter__button">
+                <svg>
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#filter"></use>
+                </svg>
+                <span>{{ 'item.filters'|trans }}</span>
+            </a>
+        </div>
+
+        <div class="js-expert-list-block">
+            {% include 'blocks/item-panel/list-experts.html.twig' with { 'experts': experts } %}
+        </div>
+    </div>
+
+    <div class="js-shade shade"></div>
+    <div class="js-mobile-filter mobile-filter">
+        <div class="mobile-filter__inner-wrapper js-mobile-item-filter experts">
+            <a href="javascript:void(0)" class="js-mobile-filter__close mobile-filter__close">
+                <svg>
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cross"></use>
+                </svg>
+            </a>
+
+            <div class="mobile-tag">
+                <div class="tag-item-container">
+                    {% if tags is defined %}
+                        {% for tag in tags %}
+                            <a class="tag-item {% if tag.id in appliedQueryParams.tags %}active{% endif %}"
+                                    href="javascript:void(0)" data-tag-name="{{ tag.id }}">
+                                <i class="fas fa-check"></i>
+                                <span class="title">{{ tag.name }}</span>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
